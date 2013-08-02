@@ -415,7 +415,7 @@
 		<dependency>
 			<groupId>com.gmail.xcjava</groupId>
 			<artifactId>base_tool</artifactId>
-		<version>0.0.2-SNAPSHOT</version>
+		<version>13.8.2-SNAPSHOT</version>
 	</dependency>
 
 	</dependencies>
