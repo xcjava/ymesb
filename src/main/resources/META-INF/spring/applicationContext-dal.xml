@@ -16,13 +16,13 @@
 							http://camel.apache.org/schema/cxf http://camel.apache.org/schema/cxf/camel-cxf.xsd 
 							http://activemq.apache.org/schema/core http://activemq.apache.org/schema/core/activemq-core-5.7.0.xsd">
     
-    <bean id="dalConsume" class="com.gdcct.ec.manager.DalConsume"></bean>
+    <bean id="dalConsume" class="com.ymsino.esb.manager.DalConsume"></bean>
 
-	<bean id="roleDao" class="com.gdcct.ec.manager.dal.RoleDao">
+	<bean id="roleDao" class="com.ymsino.esb.manager.dal.RoleDao">
     	<property name="commonHibernateDao" ref="commonHibernateDao"></property>
     </bean>
     
-    <bean id="managerDao" class="com.gdcct.ec.manager.dal.ManagerDao">
+    <bean id="managerDao" class="com.ymsino.esb.manager.dal.ManagerDao">
     	<property name="commonHibernateDao" ref="commonHibernateDao"></property>
     </bean>
     

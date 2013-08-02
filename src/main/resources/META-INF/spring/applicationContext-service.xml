@@ -16,22 +16,22 @@
 							http://camel.apache.org/schema/cxf http://camel.apache.org/schema/cxf/camel-cxf.xsd 
 							http://activemq.apache.org/schema/core http://activemq.apache.org/schema/core/activemq-core-5.7.0.xsd">
 
-	<bean id="roleServiceImpl" class="com.gdcct.ec.manager.service.impl.RoleServiceImpl">
+	<bean id="roleServiceImpl" class="com.ymsino.esb.manager.service.impl.RoleServiceImpl">
 		<property name="commonHibernateDao" ref="commonHibernateDao"></property>
 		<property name="camelTemplate" ref="camelTemplate"></property>
 		<property name="roleDao" ref="roleDao"></property>
 	</bean>
-	<bean id="managerServiceImpl" class="com.gdcct.ec.manager.service.impl.ManagerServiceImpl">
+	<bean id="managerServiceImpl" class="com.ymsino.esb.manager.service.impl.ManagerServiceImpl">
 		<property name="commonHibernateDao" ref="commonHibernateDao"></property>
 		<property name="camelTemplate" ref="camelTemplate"></property>
 		<property name="managerDao" ref="managerDao"></property>
 	</bean>
 	
 	
-	<jaxws:server id="roleService" serviceClass="com.gdcct.ec.manager.service.api.RoleService" address="camel://jetty:http://${ws.host}:${ws.port}/ws/roleService">
+	<jaxws:server id="roleService" serviceClass="com.ymsino.esb.manager.service.api.RoleService" address="camel://jetty:http://${ws.host}:${ws.port}/ws/roleService">
 		<jaxws:serviceBean><ref bean="roleServiceImpl"/></jaxws:serviceBean>
 	</jaxws:server>
-	<jaxws:server id="managerService" serviceClass="com.gdcct.ec.manager.service.api.ManagerService" address="camel://jetty:http://${ws.host}:${ws.port}/ws/managerService">
+	<jaxws:server id="managerService" serviceClass="com.ymsino.esb.manager.service.api.ManagerService" address="camel://jetty:http://${ws.host}:${ws.port}/ws/managerService">
 		<jaxws:serviceBean><ref bean="managerServiceImpl"/></jaxws:serviceBean>
 	</jaxws:server>
 	
