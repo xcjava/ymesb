@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.ymsino.esb.manager.model.Role" table="MANAGER_ROLE">
+					
+		<id name="id" type="java.lang.Long">
+			<meta attribute="field-description">角色id</meta>
+			<meta attribute="use-in-equals">true</meta>
+			<column name="ID">
+				<comment>角色id</comment>
+			</column>
+			<generator class="native" />
+		</id>
+
+		<property name="name" type="java.lang.String">
+			<meta attribute="field-description">角色名字</meta>
+			<column name="NAME" length="100">
+				<comment>角色名字</comment>
+			</column>
+		</property>
+		
+		<property name="description" type="java.lang.String">
+			<meta attribute="field-description">角色描述</meta>
+			<column name="DESCRIPTION" length="1000">
+				<comment>角色描述</comment>
+			</column>
+		</property>
+		
+		<property name="createTimestamp" type="java.lang.Long">
+			<meta attribute="field-description">创建时间</meta>
+			<column name="CREATE_TIMESTAMP">
+				<comment>创建时间</comment>
+			</column>
+		</property>
+		
+		<property name="status" type="java.lang.Short">
+			<meta attribute="field-description">状态:0新建,1启用,-1停用</meta>
+			<column name="STATUS">
+				<comment>状态:0新建,1启用,-1停用</comment>
+			</column>
+		</property>
+		
+		<property name="createrId" type="java.lang.String">
+			<meta attribute="field-description">创建人ID</meta>
+			<column length="100" name="CREATER_ID">
+				<comment>创建人ID</comment>
+			</column>
+		</property>
+		
+		<property name="popedomJson" type="org.springframework.orm.hibernate3.support.ClobStringType">
+			<meta attribute="field-description">权限json,格式为{"模块代号":""操作代号","模块代号":""操作代号,操作代号"},如,{"001":"001,002","002":"003"}</meta>
+        	<column name="POPEDOM_JSON">
+				<comment>权限json,格式为{"模块代号":""操作代号","模块代号":""操作代号,操作代号"},如,{"001":"001,002","002":"003"}</comment>
+			</column>
+        </property>
+		
+	</class>
+</hibernate-mapping>
