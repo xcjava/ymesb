@@ -6,28 +6,14 @@
 <hibernate-mapping>
 	<class name="com.ymsino.esb.manager.model.Manager" table="MANAGER_MANAGER">
 	
-		<id name="userId" type="java.lang.String">
+		<id name="managerId" type="java.lang.String">
 			<meta attribute="field-description">管理员id</meta>
 			<meta attribute="use-in-equals">true</meta>
-			<column name="USER_ID" length="100">
+			<column name="MANAGER_ID" length="100">
 				<comment>管理员id</comment>
 			</column>
 			<generator class="assigned" />
 		</id>
-		
-		<property name="loginIp" type="java.lang.String">
-			<meta attribute="field-description">登录ip</meta>
-			<column length="100" name="LOGIN_IP">
-				<comment>登录ip</comment>
-			</column>
-		</property>
-		
-		<property name="lastLoginTimestamp" type="java.lang.Long">
-			<meta attribute="field-description">最后登录时间</meta>
-			<column name="LAST_LOGIN_TIMESTAMP">
-				<comment>最后登录时间</comment>
-			</column>
-		</property>
 		
 		<property name="name" type="java.lang.String">
 			<meta attribute="field-description">姓名</meta>
@@ -36,24 +22,10 @@
 			</column>
 		</property>
 		
-		<property name="dept" type="java.lang.String">
-			<meta attribute="field-description">部门</meta>
-			<column name="DEPT" length="100">
-				<comment>部门</comment>
-			</column>
-		</property>
-		
 		<property name="password" type="java.lang.String">
 			<meta attribute="field-description">密码(MD5加密)</meta>
 			<column name="PASSWORD" length="100">
 				<comment>密码(MD5加密)</comment>
-			</column>
-		</property>
-		
-		<property name="position" type="java.lang.String">
-			<meta attribute="field-description">职位</meta>
-			<column name="POSITION" length="100">
-				<comment>职位</comment>
 			</column>
 		</property>
 		
@@ -85,47 +57,25 @@
 			</column>
 		</property>
 		
-		<property name="modifiyTimestamp" type="java.lang.Long">
-			<meta attribute="field-description">修改时间</meta>
-			<column name="MODIFIY_TIMESTAMP">
-				<comment>修改时间</comment>
+		<property name="chargingUnitId" type="java.lang.String">
+			<meta attribute="field-description">收费单位编号</meta>
+			<column name="CHARGING_UNIT_ID">
+				<comment>收费单位编号</comment>
 			</column>
 		</property>
 		
-		<property name="checkTimestamp" type="java.lang.Long">
-			<meta attribute="field-description">审核时间</meta>
-			<column name="CHECK_TIMESTAMP">
-				<comment>审核时间</comment>
+		<property name="departmentId" type="java.lang.String">
+			<meta attribute="field-description">部门编号</meta>
+			<column name="DEPARTMENT_ID">
+				<comment>部门编号</comment>
 			</column>
 		</property>
 		
-		<property name="createrId" type="java.lang.String">
-			<meta attribute="field-description">创建人ID</meta>
-			<column name="CREATER_ID" length="100">
-				<comment>创建人ID</comment>
+		<property name="parentUnits" type="org.springframework.orm.hibernate3.support.ClobStringType">
+			<meta attribute="field-description">上级收费单位编号，多个用"||"包住，如|123||456|,用于搜索</meta>
+			<column name="PARENT_UNITS">
+				<comment>上级收费单位编号，多个用"||"包住，如|123||456|,用于搜索</comment>
 			</column>
 		</property>
-		
-		<property name="modifierId" type="java.lang.String">
-			<meta attribute="field-description">修改人ID</meta>
-			<column name="MODIFIER_ID" length="100">
-				<comment>修改人ID</comment>
-			</column>
-		</property>
-		
-		<property name="checkerId" type="java.lang.String">
-			<meta attribute="field-description">审核人ID</meta>
-			<column name="CHECKER_ID" length="100">
-				<comment>审核人ID</comment>
-			</column>
-		</property>
-		
-		<property name="roles" type="org.springframework.orm.hibernate3.support.ClobStringType">
-			<meta attribute="field-description">角色id，多个用"||"包住，如|123||456|</meta>
-			<column name="ROLES">
-				<comment>角色id，多个用"||"包住，如|123||456|</comment>
-			</column>
-		</property>
-		
 	</class>
 </hibernate-mapping>

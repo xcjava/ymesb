@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.ymsino.esb.manager.model.ChargingUnit" table="MANAGER_CHARGINGUNIT">
+	
+		<id name="unitId" type="java.lang.String">
+			<meta attribute="field-description">收费单位编号</meta>
+			<meta attribute="use-in-equals">true</meta>
+			<column name="UNIT_ID" length="100">
+				<comment>收费单位编号</comment>
+			</column>
+			<generator class="assigned" />
+		</id>
+		
+		<property name="name" type="java.lang.String">
+			<meta attribute="field-description">收费单位名称</meta>
+			<column name="NAME" length="300">
+				<comment>收费单位名称</comment>
+			</column>
+		</property>
+		
+		<property name="linkMan" type="java.lang.String">
+			<meta attribute="field-description">联系人</meta>
+			<column name="LINK_MAN" length="100">
+				<comment>联系人</comment>
+			</column>
+		</property>
+		
+		<property name="linkTel" type="java.lang.String">
+			<meta attribute="field-description">联系电话</meta>
+			<column name="LINK_TEL" length="100">
+				<comment>联系电话</comment>
+			</column>
+		</property>
+		
+		<property name="linkAddr" type="java.lang.String">
+			<meta attribute="field-description">联系地址</meta>
+			<column name="LINK_ADDR" length="300">
+				<comment>联系地址</comment>
+			</column>
+		</property>
+		
+		<property name="status" type="java.lang.Short">
+			<meta attribute="field-description">状态: 1正常, -1删除</meta>
+			<column name="STATUS">
+				<comment>状态: 1正常, -1删除</comment>
+			</column>
+		</property>
+		
+		<property name="createTimestamp" type="java.lang.Long">
+			<meta attribute="field-description">创建时间</meta>
+			<column name="CREATE_TIMESTAMP">
+				<comment>创建时间</comment>
+			</column>
+		</property>
+		
+		<property name="createrId" type="java.lang.String">
+			<meta attribute="field-description">创建人ID</meta>
+			<column name="CREATER_ID" length="100">
+				<comment>创建人ID</comment>
+			</column>
+		</property>
+		
+		<property name="parentUnitId" type="java.lang.String">
+			<meta attribute="field-description">上级收费单位编号</meta>
+			<column name="PARENT_UNIT_ID">
+				<comment>上级收费单位编号</comment>
+			</column>
+		</property>
+		
+		<property name="parentUnits" type="org.springframework.orm.hibernate3.support.ClobStringType">
+			<meta attribute="field-description">上级收费单位编号，多个用"||"包住，如|123||456|,用于搜索</meta>
+			<column name="PARENT_UNITS">
+				<comment>上级收费单位编号，多个用"||"包住，如|123||456|,用于搜索</comment>
+			</column>
+		</property>
+		
+	</class>
+</hibernate-mapping>
