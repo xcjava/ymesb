@@ -29,16 +29,9 @@ public class ExceptionDate extends AbstractMessage {
 	public String[] exceptionNo = new String[1];
 	
 	/**
-	 * 校验码
-	 * 1字节
+	 * 消息尾
 	 */
-	private String[] checkCode = new String[1];
-	
-	/**
-	 * 结束符
-	 * 1字节
-	 */
-	private final String[] endSign = {"16"};
+	private MessageBottom messageBottom;
 	
 	public ExceptionDate(){}
 	
@@ -61,11 +54,11 @@ public class ExceptionDate extends AbstractMessage {
 		this.exceptionNo[0] = DataConverter.bytesToHexString(ByteTool.subByte(bytes, offset, 1));
 		offset += this.exceptionNo.length;
 		
-		this.checkCode[0] = DataConverter.bytesToHexString(ByteTool.subByte(bytes, offset, 1));
-		offset += this.checkCode.length;
+		this.messageBottom.checkCode[0] = DataConverter.bytesToHexString(ByteTool.subByte(bytes, offset, 1));
+		offset += this.messageBottom.checkCode.length;
 		
-		this.endSign[0] = DataConverter.bytesToHexString(ByteTool.subByte(bytes, offset, 1));
-		offset += this.endSign.length;
+		this.messageBottom.endSign[0] = DataConverter.bytesToHexString(ByteTool.subByte(bytes, offset, 1));
+		offset += this.messageBottom.endSign.length;
 		
 	}
 	
@@ -75,8 +68,7 @@ public class ExceptionDate extends AbstractMessage {
 		                         this.controlCode.length +
 		                         this.dataLength.length + 
 		                         this.exceptionNo.length + 
-		                         this.checkCode.length + 
-		                         this.endSign.length];
+		                         MessageBottom.dataLength];
 		
 		int offset = 0;
 		System.arraycopy(head.toBytes(), 0, this.bytes, offset, MessageHead.dataLength);
@@ -92,14 +84,14 @@ public class ExceptionDate extends AbstractMessage {
 		offset += this.exceptionNo.length;
 
 		this.bytes[offset] = 0;
-		for(int i = 0; i < this.bytes.length - this.checkCode.length - this.endSign.length; i++){
+		for(int i = 0; i < this.bytes.length - MessageBottom.dataLength; i++){
 			this.bytes[offset] += this.bytes[i];
 		}
-		this.checkCode[0] = DataConverter.bytesToHexString(ByteTool.subByte(this.bytes, offset, 1));
-		offset += this.checkCode.length;
+		this.messageBottom.checkCode[0] = DataConverter.bytesToHexString(ByteTool.subByte(this.bytes, offset, 1));
+		offset += this.messageBottom.checkCode.length;
 		
-		System.arraycopy(ByteTool.reverse(DataConverter.hexStringToByte(getFieldString(this.endSign))), 0, this.bytes, offset, this.endSign.length);
-		offset += this.endSign.length;
+		System.arraycopy(ByteTool.reverse(DataConverter.hexStringToByte(getFieldString(this.messageBottom.endSign))), 0, this.bytes, offset, this.messageBottom.endSign.length);
+		offset += this.messageBottom.endSign.length;
 
 	}
 	
@@ -108,8 +100,7 @@ public class ExceptionDate extends AbstractMessage {
 		String str = this.head.toString();
 		str += getNioFieldString(this.controlCode) + "|";
 		str += getNioFieldString(this.dataLength) + "|";
-		str += getNioFieldString(this.checkCode) + "|";
-		str += getNioFieldString(this.endSign);
+		str += this.messageBottom.toString();
 		
 		return str;
 	}

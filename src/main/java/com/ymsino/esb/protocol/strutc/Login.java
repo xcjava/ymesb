@@ -30,16 +30,9 @@ public class Login extends AbstractMessage {
 	public String[] password = new String[3];
 	
 	/**
-	 * 校验码
-	 * 1字节
+	 * 消息尾
 	 */
-	private String[] checkCode = new String[1];
-	
-	/**
-	 * 结束符
-	 * 1字节
-	 */
-	private final String[] endSign = {"16"};
+	private MessageBottom messageBottom;
 	
 	public Login(){}
 	
@@ -64,11 +57,11 @@ public class Login extends AbstractMessage {
 		this.password[1] = DataConverter.bytesToHexString(ByteTool.subByte(temp, 1, 1));
 		this.password[2] = DataConverter.bytesToHexString(ByteTool.subByte(temp, 0, 1));
 		
-		this.checkCode[0] = DataConverter.bytesToHexString(ByteTool.subByte(bytes, offset, 1));
-		offset += this.checkCode.length;
+		this.messageBottom.checkCode[0] = DataConverter.bytesToHexString(ByteTool.subByte(bytes, offset, 1));
+		offset += this.messageBottom.checkCode.length;
 		
-		this.endSign[0] = DataConverter.bytesToHexString(ByteTool.subByte(bytes, offset, 1));
-		offset += this.endSign.length;
+		this.messageBottom.endSign[0] = DataConverter.bytesToHexString(ByteTool.subByte(bytes, offset, 1));
+		offset += this.messageBottom.endSign.length;
 	}
 
 	@Override
@@ -77,8 +70,7 @@ public class Login extends AbstractMessage {
 		                         this.controlCode.length +
 		                         this.dataLength.length + 
 		                         this.password.length + 
-		                         this.checkCode.length + 
-		                         this.endSign.length];
+		                         MessageBottom.dataLength];
 		
 		int offset = 0;
 		System.arraycopy(head.toBytes(), 0, this.bytes, offset, MessageHead.dataLength);
@@ -95,14 +87,14 @@ public class Login extends AbstractMessage {
 		
 		
 		this.bytes[offset] = 0;
-		for(int i = 0; i < this.bytes.length - this.checkCode.length - this.endSign.length; i++){
+		for(int i = 0; i < this.bytes.length - MessageBottom.dataLength; i++){
 			this.bytes[offset] += this.bytes[i];
 		}
-		this.checkCode[0] = DataConverter.bytesToHexString(ByteTool.subByte(this.bytes, offset, 1));
-		offset += this.checkCode.length;
+		this.messageBottom.checkCode[0] = DataConverter.bytesToHexString(ByteTool.subByte(this.bytes, offset, 1));
+		offset += this.messageBottom.checkCode.length;
 		
-		System.arraycopy(ByteTool.reverse(DataConverter.hexStringToByte(getFieldString(this.endSign))), 0, this.bytes, offset, this.endSign.length);
-		offset += this.endSign.length;
+		System.arraycopy(ByteTool.reverse(DataConverter.hexStringToByte(getFieldString(this.messageBottom.endSign))), 0, this.bytes, offset, this.messageBottom.endSign.length);
+		offset += this.messageBottom.endSign.length;
 	}
 	
 	@Override
@@ -111,8 +103,7 @@ public class Login extends AbstractMessage {
 		str += getNioFieldString(this.controlCode) + "|";
 		str += getNioFieldString(this.dataLength) + "|";
 		str += getNioFieldString(this.password) + "|";
-		str += getNioFieldString(this.checkCode) + "|";
-		str += getNioFieldString(this.endSign);
+		str += this.messageBottom.toString();
 		
 		return str;
 	}
@@ -134,8 +125,8 @@ public class Login extends AbstractMessage {
 		msg.password[0] = "12";
 		msg.password[1] = "34";
 		msg.password[2] = "56";
-		msg.checkCode[0] = "AA";
-		msg.endSign[0] = "16";
+		//msg.checkCode[0] = "AA";
+		//msg.endSign[0] = "16";
 		
 		System.out.println(msg);
 		byte[] bytes = msg.toBytes();
