@@ -21,7 +21,7 @@ public interface ManagerService {
 	 * @return
 	 */
 	@WSDLDocumentation("保存管理员")
-	public Boolean save(@WebParam(name="managerSaveParam")ManagerSaveParam vo);
+	public Long save(@WebParam(name="managerSaveParam")ManagerSaveParam vo);
 	
 	/**
 	 * 修改管理员
