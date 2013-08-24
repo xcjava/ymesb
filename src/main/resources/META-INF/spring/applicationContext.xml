@@ -54,8 +54,9 @@
 		</property>
 		<property name="mappingResources">
 			<list>
+				<value>hbm/manager/ChargingUnit.hbm.xml</value>
+				<value>hbm/manager/Department.hbm.xml</value>
 				<value>hbm/manager/Manager.hbm.xml</value>
-				<value>hbm/manager/Role.hbm.xml</value>
 			</list>
 		</property>
 	</bean>
@@ -69,11 +70,6 @@
 
 	<tx:advice id="transactionServiceAdvice" transaction-manager="transactionManager">
 		<tx:attributes>
-			<tx:method name="*" isolation="READ_COMMITTED" rollback-for="java.lang.RuntimeException"/>
-		</tx:attributes>
-	</tx:advice>
-	<tx:advice id="transactionDaoAdvice" transaction-manager="transactionManager">
-		<tx:attributes>
 			<tx:method name="*" rollback-for="java.lang.RuntimeException"/>
 		</tx:attributes>
 	</tx:advice>
@@ -85,10 +81,8 @@
 	<aop:config proxy-target-class="true">
 		<aop:pointcut id="txDomainPointcut" expression="execution(* com.ymsino.esb.*.domain..*Manager.*(..))" />
 		<aop:pointcut id="txServicePointcut" expression="execution(* com.ymsino.esb.*.service..*Service.*(..))" />
-		<aop:pointcut id="txDaoPointcut" expression="execution(* com.ymsino.esb.*.dal..*Dao.*(..))" />
 		<aop:advisor advice-ref="transactionDomainAdvice" pointcut-ref="txDomainPointcut" />
 		<aop:advisor advice-ref="transactionServiceAdvice" pointcut-ref="txServicePointcut" />
-		<aop:advisor advice-ref="transactionDaoAdvice" pointcut-ref="txDaoPointcut" />
 	</aop:config>
 
 	<bean id="commonHibernateDao" class="com.gmail.xcjava.base.spring.CommonHibernateDaoImpl">
