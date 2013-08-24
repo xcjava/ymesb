@@ -7,31 +7,11 @@ public class ManagerReturn implements Serializable {
 	/**
      * 管理员id
     */
-    String userId;
-    /**
-     * 登录ip
-    */
-    String loginIp;
-    /**
-     * 最后登录时间
-    */
-    Long lastLoginTimestamp;
+    String managerId;
     /**
      * 姓名
     */
     String name;
-    /**
-     * 部门
-    */
-    String dept;
-    /**
-     * 密码(MD5加密)
-    */
-    String password;
-    /**
-     * 职位
-    */
-    String position;
     /**
      * 邮箱
     */
@@ -41,7 +21,7 @@ public class ManagerReturn implements Serializable {
     */
     String tel;
     /**
-     * 状态: -2冻结, -1不通过审核, 0新建, 1审核
+     * 状态: -1停用, 0新建, 1启用
     */
     Short status;
     /**
@@ -49,70 +29,28 @@ public class ManagerReturn implements Serializable {
     */
     Long createTimestamp;
     /**
-     * 修改时间
+     * 收费单位编号
     */
-    Long modifiyTimestamp;
+    String chargingUnitId;
     /**
-     * 审核时间
+     * 部门编号
     */
-    Long checkTimestamp;
+    String departmentId;
     /**
-     * 创建人ID
+     * 上级收费单位编号，多个用"||"包住，如|123||456|,用于搜索
     */
-    String createrId;
-    /**
-     * 修改人ID
-    */
-    String modifierId;
-    /**
-     * 审核人ID
-    */
-    String checkerId;
-    /**
-     * 角色id，多个用"||"包住，如|123||456|
-    */
-    String roles;
-	public String getUserId() {
-		return userId;
+    String parentUnits;
+	public String getManagerId() {
+		return managerId;
 	}
-	public void setUserId(String userId) {
-		this.userId = userId;
-	}
-	public String getLoginIp() {
-		return loginIp;
-	}
-	public void setLoginIp(String loginIp) {
-		this.loginIp = loginIp;
-	}
-	public Long getLastLoginTimestamp() {
-		return lastLoginTimestamp;
-	}
-	public void setLastLoginTimestamp(Long lastLoginTimestamp) {
-		this.lastLoginTimestamp = lastLoginTimestamp;
+	public void setManagerId(String managerId) {
+		this.managerId = managerId;
 	}
 	public String getName() {
 		return name;
 	}
 	public void setName(String name) {
 		this.name = name;
-	}
-	public String getDept() {
-		return dept;
-	}
-	public void setDept(String dept) {
-		this.dept = dept;
-	}
-	public String getPassword() {
-		return password;
-	}
-	public void setPassword(String password) {
-		this.password = password;
-	}
-	public String getPosition() {
-		return position;
-	}
-	public void setPosition(String position) {
-		this.position = position;
 	}
 	public String getEmail() {
 		return email;
@@ -138,40 +76,22 @@ public class ManagerReturn implements Serializable {
 	public void setCreateTimestamp(Long createTimestamp) {
 		this.createTimestamp = createTimestamp;
 	}
-	public Long getModifiyTimestamp() {
-		return modifiyTimestamp;
+	public String getChargingUnitId() {
+		return chargingUnitId;
 	}
-	public void setModifiyTimestamp(Long modifiyTimestamp) {
-		this.modifiyTimestamp = modifiyTimestamp;
+	public void setChargingUnitId(String chargingUnitId) {
+		this.chargingUnitId = chargingUnitId;
 	}
-	public Long getCheckTimestamp() {
-		return checkTimestamp;
+	public String getDepartmentId() {
+		return departmentId;
 	}
-	public void setCheckTimestamp(Long checkTimestamp) {
-		this.checkTimestamp = checkTimestamp;
+	public void setDepartmentId(String departmentId) {
+		this.departmentId = departmentId;
 	}
-	public String getCreaterId() {
-		return createrId;
+	public String getParentUnits() {
+		return parentUnits;
 	}
-	public void setCreaterId(String createrId) {
-		this.createrId = createrId;
-	}
-	public String getModifierId() {
-		return modifierId;
-	}
-	public void setModifierId(String modifierId) {
-		this.modifierId = modifierId;
-	}
-	public String getCheckerId() {
-		return checkerId;
-	}
-	public void setCheckerId(String checkerId) {
-		this.checkerId = checkerId;
-	}
-	public String getRoles() {
-		return roles;
-	}
-	public void setRoles(String roles) {
-		this.roles = roles;
+	public void setParentUnits(String parentUnits) {
+		this.parentUnits = parentUnits;
 	}
 }

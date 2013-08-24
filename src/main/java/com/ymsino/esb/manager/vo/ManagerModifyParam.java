@@ -7,23 +7,15 @@ public class ManagerModifyParam implements Serializable {
 	/**
      * 管理员id
     */
-    String userId;
+    String managerId;
     /**
      * 姓名
     */
     String name;
     /**
-     * 部门
-    */
-    String dept;
-    /**
      * 密码(明文)
     */
     String password;
-    /**
-     * 职位
-    */
-    String position;
     /**
      * 邮箱
     */
@@ -33,18 +25,18 @@ public class ManagerModifyParam implements Serializable {
     */
     String tel;
     /**
-     * 修改人ID
+     * 收费单位编号
     */
-    String modifierId;
+    String chargingUnitId;
     /**
-     * 角色id，多个用"||"包住，如|123||456|
+     * 部门编号
     */
-    String roles;
-	public String getUserId() {
-		return userId;
+    String departmentId;
+	public String getManagerId() {
+		return managerId;
 	}
-	public void setUserId(String userId) {
-		this.userId = userId;
+	public void setManagerId(String managerId) {
+		this.managerId = managerId;
 	}
 	public String getName() {
 		return name;
@@ -52,23 +44,11 @@ public class ManagerModifyParam implements Serializable {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getDept() {
-		return dept;
-	}
-	public void setDept(String dept) {
-		this.dept = dept;
-	}
 	public String getPassword() {
 		return password;
 	}
 	public void setPassword(String password) {
 		this.password = password;
-	}
-	public String getPosition() {
-		return position;
-	}
-	public void setPosition(String position) {
-		this.position = position;
 	}
 	public String getEmail() {
 		return email;
@@ -82,16 +62,16 @@ public class ManagerModifyParam implements Serializable {
 	public void setTel(String tel) {
 		this.tel = tel;
 	}
-	public String getModifierId() {
-		return modifierId;
+	public String getChargingUnitId() {
+		return chargingUnitId;
 	}
-	public void setModifierId(String modifierId) {
-		this.modifierId = modifierId;
+	public void setChargingUnitId(String chargingUnitId) {
+		this.chargingUnitId = chargingUnitId;
 	}
-	public String getRoles() {
-		return roles;
+	public String getDepartmentId() {
+		return departmentId;
 	}
-	public void setRoles(String roles) {
-		this.roles = roles;
+	public void setDepartmentId(String departmentId) {
+		this.departmentId = departmentId;
 	}
 }

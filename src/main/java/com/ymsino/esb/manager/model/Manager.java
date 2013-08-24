@@ -12,73 +12,45 @@ public class Manager  implements java.io.Serializable {
     // Fields    
 
      /**
-      * ç®¡ç†å‘˜id
+      * ¹ÜÀíÔ±id
      */
-     private String userId;
+     private String managerId;
      /**
-      * ç™»å½•ip
-     */
-     private String loginIp;
-     /**
-      * æœ€åç™»å½•æ—¶é—´
-     */
-     private Long lastLoginTimestamp;
-     /**
-      * å§“å
+      * ĞÕÃû
      */
      private String name;
      /**
-      * éƒ¨é—¨
-     */
-     private String dept;
-     /**
-      * å¯†ç (MD5åŠ å¯†)
+      * ÃÜÂë(MD5¼ÓÃÜ)
      */
      private String password;
      /**
-      * èŒä½
-     */
-     private String position;
-     /**
-      * é‚®ç®±
+      * ÓÊÏä
      */
      private String email;
      /**
-      * ç”µè¯
+      * µç»°
      */
      private String tel;
      /**
-      * çŠ¶æ€: -2å†»ç»“, -1ä¸é€šè¿‡å®¡æ ¸, 0æ–°å»º, 1å®¡æ ¸
+      * ×´Ì¬: -1Í£ÓÃ, 0ĞÂ½¨, 1ÆôÓÃ
      */
      private Short status;
      /**
-      * åˆ›å»ºæ—¶é—´
+      * ´´½¨Ê±¼ä
      */
      private Long createTimestamp;
      /**
-      * ä¿®æ”¹æ—¶é—´
+      * ÊÕ·Ñµ¥Î»±àºÅ
      */
-     private Long modifiyTimestamp;
+     private String chargingUnitId;
      /**
-      * å®¡æ ¸æ—¶é—´
+      * ²¿ÃÅ±àºÅ
      */
-     private Long checkTimestamp;
+     private String departmentId;
      /**
-      * åˆ›å»ºäººID
+      * ÉÏ¼¶ÊÕ·Ñµ¥Î»±àºÅ£¬¶à¸öÓÃ"||"°ü×¡£¬Èç|123||456|,ÓÃÓÚËÑË÷
      */
-     private String createrId;
-     /**
-      * ä¿®æ”¹äººID
-     */
-     private String modifierId;
-     /**
-      * å®¡æ ¸äººID
-     */
-     private String checkerId;
-     /**
-      * è§’è‰²idï¼Œå¤šä¸ªç”¨"||"åŒ…ä½ï¼Œå¦‚|123||456|
-     */
-     private String roles;
+     private String parentUnits;
 
 
     // Constructors
@@ -88,68 +60,39 @@ public class Manager  implements java.io.Serializable {
     }
 
 	/** minimal constructor */
-    public Manager(String userId) {
-        this.userId = userId;
+    public Manager(String managerId) {
+        this.managerId = managerId;
     }
     
     /** full constructor */
-    public Manager(String userId, String loginIp, Long lastLoginTimestamp, String name, String dept, String password, String position, String email, String tel, Short status, Long createTimestamp, Long modifiyTimestamp, Long checkTimestamp, String createrId, String modifierId, String checkerId, String roles) {
-        this.userId = userId;
-        this.loginIp = loginIp;
-        this.lastLoginTimestamp = lastLoginTimestamp;
+    public Manager(String managerId, String name, String password, String email, String tel, Short status, Long createTimestamp, String chargingUnitId, String departmentId, String parentUnits) {
+        this.managerId = managerId;
         this.name = name;
-        this.dept = dept;
         this.password = password;
-        this.position = position;
         this.email = email;
         this.tel = tel;
         this.status = status;
         this.createTimestamp = createTimestamp;
-        this.modifiyTimestamp = modifiyTimestamp;
-        this.checkTimestamp = checkTimestamp;
-        this.createrId = createrId;
-        this.modifierId = modifierId;
-        this.checkerId = checkerId;
-        this.roles = roles;
+        this.chargingUnitId = chargingUnitId;
+        this.departmentId = departmentId;
+        this.parentUnits = parentUnits;
     }
 
    
     // Property accessors
     /**       
-     *      * ç®¡ç†å‘˜id
+     *      * ¹ÜÀíÔ±id
      */
 
-    public String getUserId() {
-        return this.userId;
+    public String getManagerId() {
+        return this.managerId;
     }
     
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void setManagerId(String managerId) {
+        this.managerId = managerId;
     }
     /**       
-     *      * ç™»å½•ip
-     */
-
-    public String getLoginIp() {
-        return this.loginIp;
-    }
-    
-    public void setLoginIp(String loginIp) {
-        this.loginIp = loginIp;
-    }
-    /**       
-     *      * æœ€åç™»å½•æ—¶é—´
-     */
-
-    public Long getLastLoginTimestamp() {
-        return this.lastLoginTimestamp;
-    }
-    
-    public void setLastLoginTimestamp(Long lastLoginTimestamp) {
-        this.lastLoginTimestamp = lastLoginTimestamp;
-    }
-    /**       
-     *      * å§“å
+     *      * ĞÕÃû
      */
 
     public String getName() {
@@ -160,18 +103,7 @@ public class Manager  implements java.io.Serializable {
         this.name = name;
     }
     /**       
-     *      * éƒ¨é—¨
-     */
-
-    public String getDept() {
-        return this.dept;
-    }
-    
-    public void setDept(String dept) {
-        this.dept = dept;
-    }
-    /**       
-     *      * å¯†ç (MD5åŠ å¯†)
+     *      * ÃÜÂë(MD5¼ÓÃÜ)
      */
 
     public String getPassword() {
@@ -182,18 +114,7 @@ public class Manager  implements java.io.Serializable {
         this.password = password;
     }
     /**       
-     *      * èŒä½
-     */
-
-    public String getPosition() {
-        return this.position;
-    }
-    
-    public void setPosition(String position) {
-        this.position = position;
-    }
-    /**       
-     *      * é‚®ç®±
+     *      * ÓÊÏä
      */
 
     public String getEmail() {
@@ -204,7 +125,7 @@ public class Manager  implements java.io.Serializable {
         this.email = email;
     }
     /**       
-     *      * ç”µè¯
+     *      * µç»°
      */
 
     public String getTel() {
@@ -215,7 +136,7 @@ public class Manager  implements java.io.Serializable {
         this.tel = tel;
     }
     /**       
-     *      * çŠ¶æ€: -2å†»ç»“, -1ä¸é€šè¿‡å®¡æ ¸, 0æ–°å»º, 1å®¡æ ¸
+     *      * ×´Ì¬: -1Í£ÓÃ, 0ĞÂ½¨, 1ÆôÓÃ
      */
 
     public Short getStatus() {
@@ -226,7 +147,7 @@ public class Manager  implements java.io.Serializable {
         this.status = status;
     }
     /**       
-     *      * åˆ›å»ºæ—¶é—´
+     *      * ´´½¨Ê±¼ä
      */
 
     public Long getCreateTimestamp() {
@@ -237,70 +158,37 @@ public class Manager  implements java.io.Serializable {
         this.createTimestamp = createTimestamp;
     }
     /**       
-     *      * ä¿®æ”¹æ—¶é—´
+     *      * ÊÕ·Ñµ¥Î»±àºÅ
      */
 
-    public Long getModifiyTimestamp() {
-        return this.modifiyTimestamp;
+    public String getChargingUnitId() {
+        return this.chargingUnitId;
     }
     
-    public void setModifiyTimestamp(Long modifiyTimestamp) {
-        this.modifiyTimestamp = modifiyTimestamp;
+    public void setChargingUnitId(String chargingUnitId) {
+        this.chargingUnitId = chargingUnitId;
     }
     /**       
-     *      * å®¡æ ¸æ—¶é—´
+     *      * ²¿ÃÅ±àºÅ
      */
 
-    public Long getCheckTimestamp() {
-        return this.checkTimestamp;
+    public String getDepartmentId() {
+        return this.departmentId;
     }
     
-    public void setCheckTimestamp(Long checkTimestamp) {
-        this.checkTimestamp = checkTimestamp;
+    public void setDepartmentId(String departmentId) {
+        this.departmentId = departmentId;
     }
     /**       
-     *      * åˆ›å»ºäººID
+     *      * ÉÏ¼¶ÊÕ·Ñµ¥Î»±àºÅ£¬¶à¸öÓÃ"||"°ü×¡£¬Èç|123||456|,ÓÃÓÚËÑË÷
      */
 
-    public String getCreaterId() {
-        return this.createrId;
+    public String getParentUnits() {
+        return this.parentUnits;
     }
     
-    public void setCreaterId(String createrId) {
-        this.createrId = createrId;
-    }
-    /**       
-     *      * ä¿®æ”¹äººID
-     */
-
-    public String getModifierId() {
-        return this.modifierId;
-    }
-    
-    public void setModifierId(String modifierId) {
-        this.modifierId = modifierId;
-    }
-    /**       
-     *      * å®¡æ ¸äººID
-     */
-
-    public String getCheckerId() {
-        return this.checkerId;
-    }
-    
-    public void setCheckerId(String checkerId) {
-        this.checkerId = checkerId;
-    }
-    /**       
-     *      * è§’è‰²idï¼Œå¤šä¸ªç”¨"||"åŒ…ä½ï¼Œå¦‚|123||456|
-     */
-
-    public String getRoles() {
-        return this.roles;
-    }
-    
-    public void setRoles(String roles) {
-        this.roles = roles;
+    public void setParentUnits(String parentUnits) {
+        this.parentUnits = parentUnits;
     }
    
 
@@ -311,17 +199,17 @@ public class Manager  implements java.io.Serializable {
 		if ( (other == null ) ) return false;
 		if ( !(other instanceof Manager) ) return false;
 		Manager castOther = ( Manager ) other;
-		if( this.getUserId() == null || castOther.getUserId() == null){
+		if( this.getManagerId() == null || castOther.getManagerId() == null){
 			return false;
 		}
 		
-		return ( (this.getUserId()==castOther.getUserId()) || ( this.getUserId()!=null && castOther.getUserId()!=null && this.getUserId().equals(castOther.getUserId()) ) );
+		return ( (this.getManagerId()==castOther.getManagerId()) || ( this.getManagerId()!=null && castOther.getManagerId()!=null && this.getManagerId().equals(castOther.getManagerId()) ) );
 	}
 
 	public int hashCode() {
 		java.util.Random random = new java.util.Random();
 		int result = 0;
-		result += result + (this.getUserId() == null ? random.nextInt(Integer.MAX_VALUE) : this.getUserId().hashCode());
+		result += result + (this.getManagerId() == null ? random.nextInt(Integer.MAX_VALUE) : this.getManagerId().hashCode());
 		return result;
 	}
 

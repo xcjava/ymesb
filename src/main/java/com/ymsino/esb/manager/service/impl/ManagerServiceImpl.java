@@ -2,294 +2,163 @@ package com.ymsino.esb.manager.service.impl;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-import org.apache.camel.ExchangePattern;
-import org.apache.camel.ProducerTemplate;
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 
-import com.amazonaws.services.identitymanagement.model.Role;
-import com.gmail.xcjava.base.dataMapping.MapMapping;
 import com.gmail.xcjava.base.dataMapping.ObjectMapping;
 import com.gmail.xcjava.base.hql.OrderParamReader;
 import com.gmail.xcjava.base.hql.QueryParam;
 import com.gmail.xcjava.base.hql.QueryParamReader;
 import com.gmail.xcjava.base.security.MD5;
 import com.gmail.xcjava.base.spring.CommonHibernateDao;
-import com.gmail.xcjava.base.str.StringTool;
-import com.ymsino.esb.manager.dal.ManagerDao;
+import com.ymsino.esb.manager.domain.ChargingUnitManager;
 import com.ymsino.esb.manager.model.Manager;
 import com.ymsino.esb.manager.service.api.ManagerService;
 import com.ymsino.esb.manager.vo.ManagerModifyParam;
 import com.ymsino.esb.manager.vo.ManagerReturn;
 import com.ymsino.esb.manager.vo.ManagerSaveParam;
-import com.ymsino.esb.manager.vo.RoleReturn;
 
 public class ManagerServiceImpl implements ManagerService {
 
 	private Logger logger = Logger.getLogger(ManagerServiceImpl.class);
 	private CommonHibernateDao commonHibernateDao;
-	private ProducerTemplate camelTemplate;
-	private ManagerDao managerDao;
+	private ChargingUnitManager chargingUnitManager;
+	public void setChargingUnitManager(ChargingUnitManager chargingUnitManager) {
+		this.chargingUnitManager = chargingUnitManager;
+	}
 	public void setCommonHibernateDao(CommonHibernateDao commonHibernateDao) {
 		this.commonHibernateDao = commonHibernateDao;
 	}
-	public void setCamelTemplate(ProducerTemplate camelTemplate) {
-		this.camelTemplate = camelTemplate;
-	}
-	public void setManagerDao(ManagerDao managerDao) {
-		this.managerDao = managerDao;
-	}
 
-	@SuppressWarnings("unchecked")
 	@Override
-	public Boolean save(ManagerSaveParam vo, Boolean async) {
+	public Boolean save(ManagerSaveParam vo) {
 		
 		if(vo == null){
 			logger.error("save:管理员参数对象为空");
 			throw new RuntimeException("管理员参数对象为空");
 		}
 		
-		if(StringUtils.isEmpty(vo.getUserId()) || StringUtils.isEmpty(vo.getPassword())){
+		if(StringUtils.isEmpty(vo.getManagerId()) ||
+				StringUtils.isEmpty(vo.getPassword()) ||
+				StringUtils.isEmpty(vo.getChargingUnitId()) ||
+				StringUtils.isEmpty(vo.getDepartmentId())){
 			logger.error("save:缺少必要属性");
 			throw new RuntimeException("缺少必要属性");
 		}
 		
-		Manager po = this.getManagetByUserId(vo.getUserId());
+		Manager po = this.getManagerByManagerId(vo.getManagerId());
 		if(po != null){
 			logger.error("save:管理员id已经存在，不能重复添加");
 			throw new RuntimeException("管理员id已经存在，不能重复添加");
 		}
 		
-		if(async!= null && !async){
-			return managerDao.insert((Map<String, Object>) MapMapping.obj2map(vo));
-		}else{
-			Map<String, Object> header = new HashMap<String, Object>();
-			header.put("method", "insert");
-			header.put("beanName", "managerDao");
-			camelTemplate.sendBodyAndHeaders("jms:queue:com.gdcct.ec.manager.dal", ExchangePattern.InOnly, MapMapping.obj2map(vo), header);
-		}
+		Manager model = (Manager) ObjectMapping.objMapping(vo, new Manager());
+		model.setManagerId(vo.getManagerId().trim().toLowerCase());
+		model.setCreateTimestamp(new Date().getTime());
+		model.setPassword(MD5.getMD5(vo.getPassword().trim()));
+		model.setStatus(Short.valueOf("0"));
+		model.setParentUnits(chargingUnitManager.getParentUnitIds(model.getChargingUnitId()));
 		
+		this.commonHibernateDao.save(model);
 		return Boolean.TRUE;
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
-	public Boolean modify(ManagerModifyParam vo, Boolean async) {
+	public Boolean modify(ManagerModifyParam vo) {
 		
-		if(vo == null || StringUtils.isEmpty(vo.getUserId())){
+		if(vo == null || StringUtils.isEmpty(vo.getManagerId())){
 			logger.error("modify:参数对象为空");
 			throw new RuntimeException("参数对象为空");
 		}
 		
-		Manager po = this.getManagetByUserId(vo.getUserId());
+		Manager po = this.getManagerByManagerId(vo.getManagerId());
 		if(po == null){
 			logger.error("modify:管理员未持久化");
 			throw new RuntimeException("管理员未持久化");
 		}
 		
-		if(async!= null && !async){
-			return managerDao.update((Map<String, Object>) MapMapping.obj2map(vo));
-		}else{
-			Map<String, Object> header = new HashMap<String, Object>();
-			header.put("method", "update");
-			header.put("beanName", "managerDao");
-			camelTemplate.sendBodyAndHeaders("jms:queue:com.gdcct.ec.manager.dal", ExchangePattern.InOnly, MapMapping.obj2map(vo), header);
+		if(vo.getName() != null){
+			po.setName(vo.getName());
 		}
-		
+		if(vo.getPassword() != null){
+			po.setPassword(MD5.getMD5(vo.getPassword().trim()));
+		}
+		if(vo.getTel() != null){
+			po.setTel(vo.getTel());
+		}
+		if(vo.getEmail() != null){
+			po.setEmail(vo.getEmail());
+		}
+		if(vo.getDepartmentId() != null){
+			po.setDepartmentId(vo.getDepartmentId());
+		}
+		if(vo.getChargingUnitId() != null){
+			po.setChargingUnitId(vo.getChargingUnitId());
+			po.setParentUnits(chargingUnitManager.getParentUnitIds(vo.getChargingUnitId()));
+		}
 		return Boolean.TRUE;
 	}
 
 	@Override
-	public Boolean frozenStatus(String userId, String mangerId, Boolean async) {
-		
-		if(StringUtils.isEmpty(userId)){
-			logger.error("frozenStatus:管理员id为空");
-			throw new RuntimeException("管理员id为空");
-		}
+	public Boolean openStatus(String mangerId) {
 		
 		if(StringUtils.isEmpty(mangerId)){
-			logger.error("frozenStatus:审核管理员为空");
-			throw new RuntimeException("审核管理员id为空");
-		}
-		
-		Manager po = this.getManagetByUserId(userId);
-		if(po == null){
-			logger.error("frozenStatus:管理员未持久化");
-			throw new RuntimeException("管理员未持久化");
-		}
-		
-		Map<String, Object> vo = new HashMap<String, Object>();
-		vo.put("userId", userId);
-		vo.put("checkerId", mangerId);
-		vo.put("status", Short.valueOf("-2"));
-		if(async!= null && !async){
-			return managerDao.updateStatus(vo);
-		}else{
-			Map<String, Object> header = new HashMap<String, Object>();
-			header.put("method", "updateStatus");
-			header.put("beanName", "managerDao");
-			camelTemplate.sendBodyAndHeaders("jms:queue:com.gdcct.ec.manager.dal", ExchangePattern.InOnly, vo, header);
-		}
-		
-		return Boolean.TRUE;
-	}
-
-	@Override
-	public Boolean openStatus(String userId, String mangerId, Boolean async) {
-		
-		if(StringUtils.isEmpty(userId)){
 			logger.error("openStatus:管理员id为空");
 			throw new RuntimeException("管理员id为空");
 		}
 		
-		if(StringUtils.isEmpty(mangerId)){
-			logger.error("openStatus:审核管理员为空");
-			throw new RuntimeException("审核管理员id为空");
-		}
-		
-		Manager po = this.getManagetByUserId(userId);
+		Manager po = this.getManagerByManagerId(mangerId);
 		if(po == null){
 			logger.error("openStatus:管理员未持久化");
 			throw new RuntimeException("管理员未持久化");
 		}
 		
-		Map<String, Object> vo = new HashMap<String, Object>();
-		vo.put("userId", userId);
-		vo.put("checkerId", mangerId);
-		vo.put("status", Short.valueOf("1"));
-		if(async!= null && !async){
-			return managerDao.updateStatus(vo);
-		}else{
-			Map<String, Object> header = new HashMap<String, Object>();
-			header.put("method", "updateStatus");
-			header.put("beanName", "managerDao");
-			camelTemplate.sendBodyAndHeaders("jms:queue:com.gdcct.ec.manager.dal", ExchangePattern.InOnly, vo, header);
-		}
+		po.setStatus(Short.valueOf("1"));
 		
 		return Boolean.TRUE;
 	}
 
 	@Override
-	public Boolean closeStatus(String userId, String mangerId, Boolean async) {
+	public Boolean closeStatus(String mangerId) {
 		
-		if(StringUtils.isEmpty(userId)){
+		if(StringUtils.isEmpty(mangerId)){
 			logger.error("closeStatus:管理员id为空");
 			throw new RuntimeException("管理员id为空");
 		}
 		
-		if(StringUtils.isEmpty(mangerId)){
-			logger.error("closeStatus:审核管理员为空");
-			throw new RuntimeException("审核管理员id为空");
-		}
-		
-		Manager po = this.getManagetByUserId(userId);
+		Manager po = this.getManagerByManagerId(mangerId);
 		if(po == null){
 			logger.error("closeStatus:管理员未持久化");
 			throw new RuntimeException("管理员未持久化");
 		}
 		
-		Map<String, Object> vo = new HashMap<String, Object>();
-		vo.put("userId", userId);
-		vo.put("checkerId", mangerId);
-		vo.put("status", Short.valueOf("-1"));
-		if(async!= null && !async){
-			return managerDao.updateStatus(vo);
-		}else{
-			Map<String, Object> header = new HashMap<String, Object>();
-			header.put("method", "updateStatus");
-			header.put("beanName", "managerDao");
-			camelTemplate.sendBodyAndHeaders("jms:queue:com.gdcct.ec.manager.dal", ExchangePattern.InOnly, vo, header);
-		}
+		po.setStatus(Short.valueOf("-1"));
 		
 		return Boolean.TRUE;
 	}
 
 	@Override
-	public ManagerReturn getByUserId(String userId) {
+	public ManagerReturn getByManagerId(String mangerId) {
 		
-		if(StringUtils.isEmpty(userId)){
-			logger.error("getByUserId:管理员id为空");
+		if(StringUtils.isEmpty(mangerId)){
+			logger.error("getByManagerId:管理员id为空");
 			throw new RuntimeException("管理员id为空");
 		}
 		
-		Manager po = this.getManagetByUserId(userId);
+		Manager po = this.getManagerByManagerId(mangerId.trim());
 		if(po == null)
 			return null;
 		
 		return (ManagerReturn) ObjectMapping.objMapping(po, new ManagerReturn());
 	}
 
-	@Override
-	public List<RoleReturn> getLegalRoles(String userId) {
-		
-		if(StringUtils.isEmpty(userId)){
-			logger.error("getLegalRole:管理员id为空");
-			throw new RuntimeException("管理员id为空");
-		}
-		
-		Manager po = this.getManagetByUserId(userId);
-		if(po == null){
-			logger.error("getLegalRole:管理员未持久化");
-			throw new RuntimeException("管理员未持久化");
-		}
-		
-		List<RoleReturn> roles = this.getRoles(userId);
-		if(roles == null || roles.size() == 0)
-			return null;
-		
-		List<RoleReturn> result = new ArrayList<RoleReturn>();
-		for(RoleReturn item : roles){
-			if(Short.valueOf("1").equals(item.getStatus()))
-				result.add(item);
-		}
-		
-		return result;
-	}
-	
-	@Override
-	public List<RoleReturn> getRoles(String userId) {
-		
-		if(StringUtils.isEmpty(userId)){
-			logger.error("getRoles:管理员id为空");
-			throw new RuntimeException("管理员id为空");
-		}
-		
-		Manager po = this.getManagetByUserId(userId);
-		if(po == null){
-			logger.error("getRoles:管理员未持久化");
-			throw new RuntimeException("管理员未持久化");
-		}
-		
-		String rolesStr = po.getRoles();
-		if(StringUtils.isEmpty(rolesStr))
-			return null;
-		
-		List<String> roleIds = StringTool.split(rolesStr, "|");
-		List<RoleReturn> result = new ArrayList<RoleReturn>();
-		for(String str : roleIds){
-			try {
-				if(StringUtils.isEmpty(str))continue;
-				Role role = (Role) this.commonHibernateDao.get(Role.class, Long.valueOf(str.trim()));
-				if(role == null)continue;
-				RoleReturn rr = (RoleReturn) ObjectMapping.objMapping(role, new RoleReturn());
-				result.add(rr);	
-			} catch (Exception e) {
-				continue;
-			}
-		}
-		
-		return result;
-	}
-
 	@SuppressWarnings("unchecked")
 	@Override
-	public ManagerReturn login(String userId, String password, String loginIp) {
+	public ManagerReturn login(String mangerId, String password) {
 		
-		if(StringUtils.isEmpty(userId)){
+		if(StringUtils.isEmpty(mangerId)){
 			logger.error("login:管理员id为空");
 			throw new RuntimeException("管理员id为空");
 		}
@@ -300,14 +169,12 @@ public class ManagerServiceImpl implements ManagerService {
 		}
 		List<Object> paramList = new ArrayList<Object>();
 		paramList.add(MD5.getMD5(password.trim()));
-		paramList.add(userId.trim().toLowerCase());
+		paramList.add(mangerId.trim().toLowerCase());
 		String hql = "from Manager model where status = 1 and model.password = ? and model.userId = ?";
 		List<Manager> list = this.commonHibernateDao.findBy(hql, paramList.toArray());
 		if(list.size() != 1)
 			return null;
 		else{
-			list.get(0).setLoginIp(loginIp);
-			list.get(0).setLastLoginTimestamp(new Date().getTime());
 			return (ManagerReturn) ObjectMapping.objMapping(list.get(0), new ManagerReturn());
 		}
 		
@@ -387,10 +254,10 @@ public class ManagerServiceImpl implements ManagerService {
 
 	/**
 	 * 根据管理员id获取管理员实体(内部使用)
-	 * @param userId
+	 * @param mangerId
 	 * @return
 	 */
-	private Manager getManagetByUserId(String userId){
-		return (Manager) this.commonHibernateDao.get(Manager.class, userId.trim().toLowerCase());
+	private Manager getManagerByManagerId(String mangerId){
+		return (Manager) this.commonHibernateDao.get(Manager.class, mangerId.trim().toLowerCase());
 	}
 }

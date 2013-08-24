@@ -18,13 +18,10 @@ public class ManagerApplicationMain {
 		boolean startTask = Boolean.valueOf(PropertyReader.getProperties("config.properties").getProperty("esb.task.startup"));
 		boolean startService = Boolean.valueOf(PropertyReader.getProperties("config.properties").getProperty("esb.service.startup"));
 		boolean startDomain = Boolean.valueOf(PropertyReader.getProperties("config.properties").getProperty("esb.domain.startup"));
-		boolean startDal = Boolean.valueOf(PropertyReader.getProperties("config.properties").getProperty("esb.dal.startup"));
 		
 		List<String> list = new ArrayList<String>();
 		list.add("/META-INF/spring/applicationContext.xml");
 		list.add("/META-INF/spring/applicationContext-esb.xml");
-		if(startDal)
-			list.add("/META-INF/spring/applicationContext-dal.xml");
 		if(startDomain)
 			list.add("/META-INF/spring/applicationContext-domain.xml");
 		if(startService)
