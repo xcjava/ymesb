@@ -39,7 +39,7 @@ public interface ChargingUnitService {
 	public Boolean openStatus(@WebParam(name="unitId")String unitId);
 	
 	/**
-	 * 删除（又下级单位的不可删除）
+	 * 删除（有下级单位的不可删除）
 	 * @param unitId
 	 * @return
 	 */
