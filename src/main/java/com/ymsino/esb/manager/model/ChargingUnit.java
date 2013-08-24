@@ -48,6 +48,10 @@ public class ChargingUnit  implements java.io.Serializable {
      */
      private String parentUnitId;
      /**
+      * 备注
+     */
+     private String remark;
+     /**
       * 上级收费单位编号，多个用"||"包住，如|123||456|,用于搜索
      */
      private String parentUnits;
@@ -65,7 +69,7 @@ public class ChargingUnit  implements java.io.Serializable {
     }
     
     /** full constructor */
-    public ChargingUnit(String unitId, String name, String linkMan, String linkTel, String linkAddr, Short status, Long createTimestamp, String createrId, String parentUnitId, String parentUnits) {
+    public ChargingUnit(String unitId, String name, String linkMan, String linkTel, String linkAddr, Short status, Long createTimestamp, String createrId, String parentUnitId, String remark, String parentUnits) {
         this.unitId = unitId;
         this.name = name;
         this.linkMan = linkMan;
@@ -75,6 +79,7 @@ public class ChargingUnit  implements java.io.Serializable {
         this.createTimestamp = createTimestamp;
         this.createrId = createrId;
         this.parentUnitId = parentUnitId;
+        this.remark = remark;
         this.parentUnits = parentUnits;
     }
 
@@ -178,6 +183,17 @@ public class ChargingUnit  implements java.io.Serializable {
     
     public void setParentUnitId(String parentUnitId) {
         this.parentUnitId = parentUnitId;
+    }
+    /**       
+     *      * 备注
+     */
+
+    public String getRemark() {
+        return this.remark;
+    }
+    
+    public void setRemark(String remark) {
+        this.remark = remark;
     }
     /**       
      *      * 上级收费单位编号，多个用"||"包住，如|123||456|,用于搜索
