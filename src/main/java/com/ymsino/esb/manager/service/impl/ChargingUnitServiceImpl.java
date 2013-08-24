@@ -32,7 +32,7 @@ public class ChargingUnitServiceImpl implements ChargingUnitService {
 	}
 	
 	@Override
-	public Long save(ChargingUnitSaveParam vo) {
+	public Boolean save(ChargingUnitSaveParam vo) {
 		
 		if(vo == null){
 			logger.error("save:收费单位参数对象为空");
@@ -56,8 +56,8 @@ public class ChargingUnitServiceImpl implements ChargingUnitService {
 		if(model.getParentUnitId() != null){
 			model.setParentUnits(chargingUnitManager.getParentUnitIds(model.getParentUnitId()));
 		}
-		
-		return (Long) this.commonHibernateDao.save(model);
+		this.commonHibernateDao.save(model);
+		return Boolean.TRUE;
 	}
 
 	@Override

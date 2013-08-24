@@ -33,7 +33,7 @@ public class ManagerServiceImpl implements ManagerService {
 	}
 
 	@Override
-	public Long save(ManagerSaveParam vo) {
+	public Boolean save(ManagerSaveParam vo) {
 		
 		if(vo == null){
 			logger.error("save:管理员参数对象为空");
@@ -60,9 +60,9 @@ public class ManagerServiceImpl implements ManagerService {
 		model.setPassword(MD5.getMD5(vo.getPassword().trim()));
 		model.setStatus(Short.valueOf("0"));
 		model.setParentUnits(chargingUnitManager.getParentUnitIds(model.getChargingUnitId()));
+		this.commonHibernateDao.save(model);
 		
-		
-		return (Long) this.commonHibernateDao.save(model);
+		return Boolean.TRUE;
 	}
 
 	@Override
