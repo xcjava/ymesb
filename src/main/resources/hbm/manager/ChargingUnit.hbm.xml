@@ -71,6 +71,13 @@
 			</column>
 		</property>
 		
+		<property name="remark" type="org.springframework.orm.hibernate3.support.ClobStringType">
+			<meta attribute="field-description">备注</meta>
+			<column name="REMARK">
+				<comment>备注</comment>
+			</column>
+		</property>
+		
 		<property name="parentUnits" type="org.springframework.orm.hibernate3.support.ClobStringType">
 			<meta attribute="field-description">上级收费单位编号，多个用"||"包住，如|123||456|,用于搜索</meta>
 			<column name="PARENT_UNITS">
