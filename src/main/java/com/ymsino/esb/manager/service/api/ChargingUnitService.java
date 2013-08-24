@@ -21,7 +21,7 @@ public interface ChargingUnitService {
 	 * @return
 	 */
 	@WSDLDocumentation("保存收费单位")
-	public Long save(@WebParam(name="chargingUnitSaveParam")ChargingUnitSaveParam vo);
+	public Boolean save(@WebParam(name="chargingUnitSaveParam")ChargingUnitSaveParam vo);
 	
 	/**
 	 * 修改收费单位
@@ -32,10 +32,10 @@ public interface ChargingUnitService {
 	public Boolean modify(@WebParam(name="chargingUnitModifyParam")ChargingUnitModifyParam vo);
 	
 	/**
-	 * 恢复（收费单位删除之后恢复）
+	 * 启用或删除之后恢复
 	 * @return
 	 */
-	@WSDLDocumentation("恢复（收费单位删除之后恢复）")
+	@WSDLDocumentation("启用或删除之后恢复")
 	public Boolean openStatus(@WebParam(name="unitId")String unitId);
 	
 	/**
