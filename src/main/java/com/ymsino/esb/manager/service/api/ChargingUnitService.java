@@ -43,7 +43,7 @@ public interface ChargingUnitService {
 	 * @param unitId
 	 * @return
 	 */
-	@WSDLDocumentation("删除（又下级单位的不可删除）")
+	@WSDLDocumentation("删除（有下级单位的不可删除）")
 	public Boolean closeStatus(@WebParam(name="unitId")String unitId);
 	
 	/**
