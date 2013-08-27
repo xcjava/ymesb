@@ -16,7 +16,7 @@
 							http://camel.apache.org/schema/cxf http://camel.apache.org/schema/cxf/camel-cxf.xsd 
 							http://activemq.apache.org/schema/core http://activemq.apache.org/schema/core/activemq-core-5.7.0.xsd">
     
-    <bean id="domainConsume" class="com.ymsino.esb.manager.DomainConsume"></bean>
+    <bean id="domainConsume" class="com.ymsino.esb.DomainConsume"></bean>
 	
 	<bean id="chargingUnitManager" class="com.ymsino.esb.manager.domain.ChargingUnitManager">
 		<property name="commonHibernateDao" ref="commonHibernateDao"></property>
