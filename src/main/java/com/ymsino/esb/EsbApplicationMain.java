@@ -11,7 +11,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.gmail.xcjava.base.io.PropertyReader;
 
-public class ManagerApplicationMain {
+public class EsbApplicationMain {
 
 	public static void main(String[] args) throws Exception{  
 		
