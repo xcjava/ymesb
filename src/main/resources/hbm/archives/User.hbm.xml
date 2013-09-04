@@ -3,7 +3,7 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-    <class name="com.ymsino.esb.archives.model.User" table="ARCHIVES_USER_INFO">
+    <class name="com.ymsino.esb.archives.model.User" table="ARCHIVES_USER_USER">
     
 		<id name="id" type="java.lang.Long">
 			<meta attribute="field-description">客户标识，自增id</meta>
@@ -49,15 +49,15 @@
 				<comment>收费单位编号</comment>
 			</column>
 		</property>
+		
+		<property name="parentUnits" type="org.springframework.orm.hibernate3.support.ClobStringType">
+			<meta attribute="field-description">上级收费单位编号，多个用"||"包住，如|123||456|,用于搜索</meta>
+			<column length="2147483647" name="PARENT_UNITS">
+				<comment>上级收费单位编号，多个用"||"包住，如|123||456|,用于搜索</comment>
+			</column>
+		</property>
 		<!-- 基本信息 -->
 		<!-- 客户地址 -->
-		<!-- <property name="addressId" type="java.lang.String">
-			<meta attribute="field-description">客户地址标识</meta>
-			<column name="ADDRESS_ID" length="300">
-				<comment>客户地址标识</comment>
-			</column>
-		</property> -->
-		
 		<property name="province" type="java.lang.String">
 			<meta attribute="field-description">省码</meta>
 			<column name="PROVINCE" length="300">
@@ -156,213 +156,48 @@
 			</column>
 		</property>
 		<!-- 客户地址 -->
-		<!-- 联系信息 -->
-		<!-- <property name="linkId" type="java.lang.String">
-			<meta attribute="field-description">联系信息标识</meta>
-			<column name="LINK_ID" length="300">
-				<comment>联系信息标识</comment>
-			</column>
-		</property> -->
-		<property name="linkType" type="java.lang.String">
-			<meta attribute="field-description">联系类型</meta>
-			<column name="LINK_TYPE" length="300">
-				<comment>联系类型</comment>
-			</column>
-		</property>
-		
-		<property name="linkSource" type="java.lang.String">
-			<meta attribute="field-description">联系信息来源</meta>
-			<column name="LINK_SOURCE" length="300">
-				<comment>联系信息来源</comment>
-			</column>
-		</property>
-		
-		<property name="linkPriority" type="java.lang.String">
-			<meta attribute="field-description">联系优先级</meta>
-			<column name="LINK_PRIORITY" length="300">
-				<comment>联系优先级</comment>
-			</column>
-		</property>
-		
-		<property name="linkMan" type="java.lang.String">
-			<meta attribute="field-description">联系人</meta>
-			<column name="LINK_MAN" length="300">
-				<comment>联系人</comment>
-			</column>
-		</property>
-		
-		<property name="sex" type="java.lang.String">
-			<meta attribute="field-description">性别</meta>
-			<column name="SEX" length="300">
-				<comment>性别</comment>
-			</column>
-		</property>
-		
-		<property name="departmentId" type="java.lang.String">
-			<meta attribute="field-description">部门编号</meta>
-			<column name="DEPARTMENT_ID">
-				<comment>部门编号</comment>
-			</column>
-		</property>
-		
-		<property name="position" type="java.lang.String">
-			<meta attribute="field-description">职务/职称</meta>
-			<column name="POSITION" length="300">
-				<comment>职务/职称</comment>
-			</column>
-		</property>
-		
-		<property name="officePhone" type="java.lang.String">
-			<meta attribute="field-description">办公电话</meta>
-			<column name="OFFICE_PHONE" length="300">
-				<comment>办公电话</comment>
-			</column>
-		</property>
-		
-		<property name="mobile" type="java.lang.String">
-			<meta attribute="field-description">移动电话</meta>
-			<column name="MOBILE" length="300">
-				<comment>移动电话</comment>
-			</column>
-		</property>
-		
-		<property name="fax" type="java.lang.String">
-			<meta attribute="field-description">传真号码</meta>
-			<column name="FAX" length="300">
-				<comment>传真号码</comment>
-			</column>
-		</property>
-		
-		<!-- 邮编？？？？ -->
-		
-		<property name="email" type="java.lang.String">
-			<meta attribute="field-description">电子邮箱</meta>
-			<column name="EMAIL" length="300">
-				<comment>电子邮箱</comment>
-			</column>
-		</property>
-		
-		<property name="linkRemark" type="org.springframework.orm.hibernate3.support.ClobStringType">
-			<meta attribute="field-description">联系备注</meta>
-			<column name="LINK_REMARK">
-				<comment>联系备注</comment>
-			</column>
-		</property>
-		
-		<property name="linkAddress" type="org.springframework.orm.hibernate3.support.ClobStringType">
-			<meta attribute="field-description">联系备注</meta>
-			<column name="LINK_ADDRESS">
-				<comment>联系备注</comment>
-			</column>
-		</property>
-		<!-- 联系信息 -->
-		<!-- 银行帐号 -->
-		<!-- <property name="bankAccountId" type="java.lang.String">
-			<meta attribute="field-description">银行帐号标识</meta>
-			<column name="BANK_ACCOUNT_ID" length="300">
-				<comment>银行帐号标识</comment>
-			</column>
-		</property> -->
-		
-		<property name="payPriority" type="java.lang.String">
-			<meta attribute="field-description">付费优先级</meta>
-			<column name="PAY_PRIORITY" length="300">
-				<comment>付费优先级</comment>
-			</column>
-		</property>
-		
-		<property name="bankCode" type="java.lang.String">
-			<meta attribute="field-description">银行代码</meta>
-			<column name="BANK_CODE" length="300">
-				<comment>银行代码</comment>
-			</column>
-		</property>
-		
-		<property name="bankAccount" type="java.lang.String">
-			<meta attribute="field-description">银行帐号</meta>
-			<column name="BANK_ACCOUNT" length="300">
-				<comment>银行帐号</comment>
-			</column>
-		</property>
-		
-		<property name="accountName" type="java.lang.String">
-			<meta attribute="field-description">账户名称</meta>
-			<column name="ACCOUNT_NAME" length="300">
-				<comment>账户名称</comment>
-			</column>
-		</property>
-		
-		<property name="collAgreementId" type="java.lang.String">
-			<meta attribute="field-description">托收协议标识</meta>
-			<column name="COLL_AGREEMENT_ID" length="300">
-				<comment>托收协议标识</comment>
-			</column>
-		</property>
-		
-		<property name="accountType" type="java.lang.String">
-			<meta attribute="field-description">账户类型</meta>
-			<column name="ACCOUNT_TYPE" length="300">
-				<comment>账户类型</comment>
-			</column>
-		</property>
-		<!-- 银行帐号 -->
-		<!-- 业务地址 -->
-		
-		
-		
-		
-		<!-- 业务地址 -->
-		<!-- 增值税 -->
-		<!-- <property name="vatId" type="java.lang.String">
-			<meta attribute="field-description">增值税标识</meta>
-			<column name="VAT_ID" length="300">
-				<comment>增值税标识</comment>
-			</column>
-		</property> -->
-		
-		<property name="vatName" type="java.lang.String">
-			<meta attribute="field-description">增值税名</meta>
-			<column name="VAT_NAME" length="300">
-				<comment>增值税名</comment>
-			</column>
-		</property>
-		
-		<property name="vatNum" type="java.lang.String">
-			<meta attribute="field-description">增值税号</meta>
-			<column name="VAT_NUM" length="300">
-				<comment>增值税号</comment>
-			</column>
-		</property>
-		
-		<property name="vatAccount" type="java.lang.String">
-			<meta attribute="field-description">增值税帐号</meta>
-			<column name="VAT_ACCOUNT" length="300">
-				<comment>增值税帐号</comment>
-			</column>
-		</property>
-		
-		<property name="vatBank" type="java.lang.String">
-			<meta attribute="field-description">增值税银行</meta>
-			<column name="VAT_BANK" length="300">
-				<comment>增值税银行</comment>
-			</column>
-		</property>
-		
-		<!-- 电话号码？？？ -->
-		
-		<property name="regAddress" type="org.springframework.orm.hibernate3.support.ClobStringType">
-			<meta attribute="field-description">注册地址</meta>
-			<column name="REG_ADDRESS">
-				<comment>注册地址</comment>
-			</column>
-		</property>
-		<!-- 增值税 -->
 		<!-- 证件 -->
+		<property name="credType" type="java.lang.String">
+			<meta attribute="field-description">证件类型</meta>
+			<column name="CRED_TYPE" length="300">
+				<comment>证件类型</comment>
+			</column>
+		</property>
 		
+		<property name="credName" type="java.lang.String">
+			<meta attribute="field-description">证件名称</meta>
+			<column name="CRED_NAME" length="300">
+				<comment>证件名称</comment>
+			</column>
+		</property>
 		
+		<property name="credNum" type="java.lang.String">
+			<meta attribute="field-description">证件号码</meta>
+			<column name="CRED_NUM" length="300">
+				<comment>证件号码</comment>
+			</column>
+		</property>
 		
+		<property name="credValidTimestamp" type="java.lang.Long">
+			<meta attribute="field-description">证件生效时间</meta>
+			<column name="CRED_VALID_TIMESTAMP">
+				<comment>证件生效时间</comment>
+			</column>
+		</property>
 		
+		<property name="credInvalidTimestamp" type="java.lang.Long">
+			<meta attribute="field-description">证件失效时间</meta>
+			<column name="CRED_INVALID_TIMESTAMP">
+				<comment>证件失效时间</comment>
+			</column>
+		</property>
 		
+		<property name="credFilePath" type="java.lang.String">
+			<meta attribute="field-description">扫描件存放位置索引</meta>
+			<column name="CRED_FILE_PATH" length="300">
+				<comment>扫描件存放位置索引</comment>
+			</column>
+		</property>
 		<!-- 证件 -->
 		
     </class>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.ymsino.esb.archives.model.Bank" table="ARCHIVES_USER_BANK">
+    
+		<id name="id" type="java.lang.Long">
+			<meta attribute="field-description">银行帐号标识，自增id</meta>
+			<meta attribute="use-in-equals">true</meta>
+			<column name="ID">
+				<comment>银行帐号标识，自增id</comment>
+			</column>
+			<generator class="native"></generator>
+		</id>
+		
+		<property name="payPriority" type="java.lang.String">
+			<meta attribute="field-description">付费优先级</meta>
+			<column name="PAY_PRIORITY" length="300">
+				<comment>付费优先级</comment>
+			</column>
+		</property>
+		
+		<property name="bankCode" type="java.lang.String">
+			<meta attribute="field-description">银行代码</meta>
+			<column name="BANK_CODE" length="300">
+				<comment>银行代码</comment>
+			</column>
+		</property>
+		
+		<property name="bankAccount" type="java.lang.String">
+			<meta attribute="field-description">银行帐号</meta>
+			<column name="BANK_ACCOUNT" length="300">
+				<comment>银行帐号</comment>
+			</column>
+		</property>
+		
+		<property name="accountName" type="java.lang.String">
+			<meta attribute="field-description">账户名称</meta>
+			<column name="ACCOUNT_NAME" length="300">
+				<comment>账户名称</comment>
+			</column>
+		</property>
+		
+		<property name="collAgreementId" type="java.lang.String">
+			<meta attribute="field-description">托收协议标识</meta>
+			<column name="COLL_AGREEMENT_ID" length="300">
+				<comment>托收协议标识</comment>
+			</column>
+		</property>
+		
+		<property name="accountType" type="java.lang.String">
+			<meta attribute="field-description">账户类型</meta>
+			<column name="ACCOUNT_TYPE" length="300">
+				<comment>账户类型</comment>
+			</column>
+		</property>
+		
+		<property name="uid" type="java.lang.Long">
+			<meta attribute="field-description">用户id</meta>
+			<column name="U_ID">
+				<comment>用户id</comment>
+			</column>
+		</property>
+		
+		<!-- 收费单位？？？？？？ -->
+		
+    </class>
+</hibernate-mapping>

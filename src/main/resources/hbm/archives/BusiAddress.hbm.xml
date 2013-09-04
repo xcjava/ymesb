@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.ymsino.esb.archives.model.BusiAddress" table="ARCHIVES_USER_BUSIADDRESS">
+    
+		<id name="id" type="java.lang.Long">
+			<meta attribute="field-description">业务地址标识，自增id</meta>
+			<meta attribute="use-in-equals">true</meta>
+			<column name="ID">
+				<comment>业务地址标识，自增id</comment>
+			</column>
+			<generator class="native"></generator>
+		</id>
+		
+		<property name="province" type="java.lang.String">
+			<meta attribute="field-description">省码</meta>
+			<column name="PROVINCE" length="300">
+				<comment>省码</comment>
+			</column>
+		</property>
+		
+		<property name="city" type="java.lang.String">
+			<meta attribute="field-description">市码</meta>
+			<column name="CITY" length="300">
+				<comment>市码</comment>
+			</column>
+		</property>
+		
+		<property name="district" type="java.lang.String">
+			<meta attribute="field-description">区县码</meta>
+			<column name="DISTRICT" length="300">
+				<comment>区县码</comment>
+			</column>
+		</property>
+		
+		<property name="street" type="java.lang.String">
+			<meta attribute="field-description">街道码（乡镇）</meta>
+			<column name="STREET" length="300">
+				<comment>街道码（乡镇）</comment>
+			</column>
+		</property>
+		
+		<property name="village" type="java.lang.String">
+			<meta attribute="field-description">居委会码（村）</meta>
+			<column name="VILLAGE" length="300">
+				<comment>居委会码（村）</comment>
+			</column>
+		</property>
+		
+		<property name="road" type="java.lang.String">
+			<meta attribute="field-description">道路码</meta>
+			<column name="ROAD" length="300">
+				<comment>道路码</comment>
+			</column>
+		</property>
+		
+		<property name="residential" type="java.lang.String">
+			<meta attribute="field-description">小区码</meta>
+			<column name="RESIDENTIAL" length="300">
+				<comment>小区码</comment>
+			</column>
+		</property>
+		
+		<property name="storiedBuilding" type="java.lang.String">
+			<meta attribute="field-description">楼栋码</meta>
+			<column name="STORIED_BUILDING" length="300">
+				<comment>楼栋码</comment>
+			</column>
+		</property>
+		
+		<property name="unit" type="java.lang.String">
+			<meta attribute="field-description">单元码</meta>
+			<column name="UNIT" length="300">
+				<comment>单元码</comment>
+			</column>
+		</property>
+		
+		<property name="floor" type="java.lang.String">
+			<meta attribute="field-description">楼层码</meta>
+			<column name="FLOOR" length="300">
+				<comment>楼层码</comment>
+			</column>
+		</property>
+		
+		<property name="roomNo" type="java.lang.String">
+			<meta attribute="field-description">门牌号</meta>
+			<column name="ROOM_NO" length="300">
+				<comment>门牌号</comment>
+			</column>
+		</property>
+		
+		<property name="linkMan" type="java.lang.String">
+			<meta attribute="field-description">业务联系人</meta>
+			<column name="LINK_MAN" length="300">
+				<comment>业务联系人</comment>
+			</column>
+		</property>
+		
+		<property name="uid" type="java.lang.Long">
+			<meta attribute="field-description">用户id</meta>
+			<column name="U_ID">
+				<comment>用户id</comment>
+			</column>
+		</property>
+		
+		<!-- 收费单位？？？？？？ -->
+    </class>
+</hibernate-mapping>
