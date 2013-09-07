@@ -16,6 +16,7 @@
 							http://camel.apache.org/schema/cxf http://camel.apache.org/schema/cxf/camel-cxf.xsd 
 							http://activemq.apache.org/schema/core http://activemq.apache.org/schema/core/activemq-core-5.7.0.xsd">
 
+	<!-- 系统管理 -->
 	<bean id="managerServiceImpl" class="com.ymsino.esb.manager.service.impl.ManagerServiceImpl">
 		<property name="commonHibernateDao" ref="commonHibernateDao"></property>
 		<property name="chargingUnitManager" ref="chargingUnitManager"></property>
@@ -28,8 +29,31 @@
 		<property name="commonHibernateDao" ref="commonHibernateDao"></property>
 		<property name="chargingUnitManager" ref="chargingUnitManager"></property>
 	</bean>
+	<!-- 系统管理 -->
+	<!-- 档案管理 -->
+	<bean id="userServiceImpl" class="com.ymsino.esb.archives.service.impl.UserServiceImpl">
+		<property name="commonHibernateDao" ref="commonHibernateDao"></property>
+		<property name="chargingUnitManager" ref="chargingUnitManager"></property>
+	</bean>
+	<bean id="contactServiceImpl" class="com.ymsino.esb.archives.service.impl.ContactServiceImpl">
+		<property name="commonHibernateDao" ref="commonHibernateDao"></property>
+		<property name="chargingUnitManager" ref="chargingUnitManager"></property>
+	</bean>
+	<bean id="bankServiceImpl" class="com.ymsino.esb.archives.service.impl.BankServiceImpl">
+		<property name="commonHibernateDao" ref="commonHibernateDao"></property>
+		<property name="chargingUnitManager" ref="chargingUnitManager"></property>
+	</bean>
+	<bean id="busiAddressServiceImpl" class="com.ymsino.esb.archives.service.impl.BusiAddressServiceImpl">
+		<property name="commonHibernateDao" ref="commonHibernateDao"></property>
+	</bean>
+	<bean id="vatServiceImpl" class="com.ymsino.esb.archives.service.impl.VatServiceImpl">
+		<property name="commonHibernateDao" ref="commonHibernateDao"></property>
+		<property name="chargingUnitManager" ref="chargingUnitManager"></property>
+	</bean>
+	<!-- 档案管理 -->
 	
 	
+	<!-- 系统管理 -->
 	<jaxws:server id="managerService" serviceClass="com.ymsino.esb.manager.service.api.ManagerService" address="camel://jetty:http://${ws.host}:${ws.port}/ws/managerService">
 		<jaxws:serviceBean><ref bean="managerServiceImpl"/></jaxws:serviceBean>
 	</jaxws:server>
@@ -39,5 +63,22 @@
 	<jaxws:server id="departmentService" serviceClass="com.ymsino.esb.manager.service.api.DepartmentService" address="camel://jetty:http://${ws.host}:${ws.port}/ws/departmentService">
 		<jaxws:serviceBean><ref bean="departmentServiceImpl"/></jaxws:serviceBean>
 	</jaxws:server>
-	
+	<!-- 系统管理 -->
+	<!-- 档案管理 -->
+	<jaxws:server id="userService" serviceClass="com.ymsino.esb.archives.service.api.UserService" address="camel://jetty:http://${ws.host}:${ws.port}/ws/userService">
+		<jaxws:serviceBean><ref bean="userServiceImpl"/></jaxws:serviceBean>
+	</jaxws:server>
+	<jaxws:server id="contactService" serviceClass="com.ymsino.esb.archives.service.api.ContactService" address="camel://jetty:http://${ws.host}:${ws.port}/ws/contactService">
+		<jaxws:serviceBean><ref bean="contactServiceImpl"/></jaxws:serviceBean>
+	</jaxws:server>
+	<jaxws:server id="bankService" serviceClass="com.ymsino.esb.archives.service.api.BankService" address="camel://jetty:http://${ws.host}:${ws.port}/ws/bankService">
+		<jaxws:serviceBean><ref bean="bankServiceImpl"/></jaxws:serviceBean>
+	</jaxws:server>
+	<jaxws:server id="busiAddressService" serviceClass="com.ymsino.esb.archives.service.api.BusiAddressService" address="camel://jetty:http://${ws.host}:${ws.port}/ws/busiAddressService">
+		<jaxws:serviceBean><ref bean="busiAddressServiceImpl"/></jaxws:serviceBean>
+	</jaxws:server>
+	<jaxws:server id="vatService" serviceClass="com.ymsino.esb.archives.service.api.VatService" address="camel://jetty:http://${ws.host}:${ws.port}/ws/vatService">
+		<jaxws:serviceBean><ref bean="vatServiceImpl"/></jaxws:serviceBean>
+	</jaxws:server>
+	<!-- 档案管理 -->
 </beans>

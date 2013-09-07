@@ -57,6 +57,12 @@
 				<value>hbm/manager/ChargingUnit.hbm.xml</value>
 				<value>hbm/manager/Department.hbm.xml</value>
 				<value>hbm/manager/Manager.hbm.xml</value>
+				
+				<value>hbm/archives/Bank.hbm.xml</value>
+				<value>hbm/archives/BusiAddress.hbm.xml</value>
+				<value>hbm/archives/Contact.hbm.xml</value>
+				<value>hbm/archives/User.hbm.xml</value>
+				<value>hbm/archives/Vat.hbm.xml</value>
 			</list>
 		</property>
 	</bean>
