@@ -132,5 +132,12 @@
 				<comment>上级收费单位编号，多个用"||"包住，如|123||456|,用于搜索</comment>
 			</column>
 		</property>
+		
+		<property name="createTimestamp" type="java.lang.Long">
+			<meta attribute="field-description">创建时间</meta>
+			<column name="CREATE_TIMESTAMP">
+				<comment>创建时间</comment>
+			</column>
+		</property>
     </class>
 </hibernate-mapping>
