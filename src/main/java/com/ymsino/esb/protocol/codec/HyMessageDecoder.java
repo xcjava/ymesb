@@ -64,17 +64,76 @@ public class HyMessageDecoder implements MessageDecoder {
 			message = new Ping(in.array());
 		}else if(AbstractMessage.getControlCode(bytes).equals("24")){
 			message = new PingResp(in.array());
+		}else if(AbstractMessage.getControlCode(bytes).equals("01")){
+			message = new ReadClock(in.array());
+		}else if(AbstractMessage.getControlCode(bytes).equals("81")){
+			message = new ReadClockResp(in.array());
+		}else if(AbstractMessage.getControlCode(bytes).equals("15")){
+			message = new ReadParam(in.array());
+		}else if(AbstractMessage.getControlCode(bytes).equals("95")){
+			message = new ReadParamResp(in.array());
 		}else if(AbstractMessage.getControlCode(bytes).equals("12")){
 			message = new ReadData(in.array());
-		}else if(AbstractMessage.getControlCode(bytes).equals("08")){
-			message = new LoadWm(in.array());
-		}else if(AbstractMessage.getControlCode(bytes).equals("88")){
-			message = new LoadWmResp(in.array());
 		}else if(AbstractMessage.getControlCode(bytes).equals("92")){
 			message = new ReadDataResp(in.array());
-		}else if(AbstractMessage.getControlCode(bytes).equals("15")){
-			message = new ExceptionDate(in.array());
-		}else{
+		}
+
+		else if(AbstractMessage.getControlCode(bytes).equals("08")){
+			if(AbstractMessage.getDataLength(bytes).equals("000E")){
+				message = new SetupClock(in.array());
+			}else if(AbstractMessage.getDataLength(bytes).equals("0153")){
+				message = new LoadWm(in.array());
+			}else if(AbstractMessage.getDataLength(bytes).equals("0009") &&
+					AbstractMessage.getDataSn(bytes, 17).equals("8023")){
+				message = new RestoreSettings(in.array());
+			}else if(AbstractMessage.getDataLength(bytes).equals("0009") &&
+					AbstractMessage.getDataSn(bytes, 17).equals("7808")){
+				message = new DeleteData(in.array());
+			}else if(AbstractMessage.getDataLength(bytes).equals("0009") &&
+					AbstractMessage.getDataSn(bytes, 17).equals("780A")){
+				message = new DeleteSettings(in.array());
+			}
+		}else if(AbstractMessage.getControlCode(bytes).equals("88")){
+			if(AbstractMessage.getDataLength(bytes).equals("0004")){
+				message = new RestoreSettingsResp(in.array());
+			}else if(AbstractMessage.getDataLength(bytes).equals("0005") &&
+					AbstractMessage.getDataSn(bytes, 13).equals("8030")){
+				message = new SetupClockResp(in.array());
+			}else if(AbstractMessage.getDataLength(bytes).equals("0005") &&
+					AbstractMessage.getDataSn(bytes, 13).equals("894D")){
+				message = new LoadWmResp(in.array());
+			}else if(AbstractMessage.getDataLength(bytes).equals("0005") &&
+					AbstractMessage.getDataSn(bytes, 13).equals("7808")){
+				message = new DeleteDataResp(in.array());
+			}else if(AbstractMessage.getDataLength(bytes).equals("0005") &&
+					AbstractMessage.getDataSn(bytes, 13).equals("780A")){
+				message = new DeleteSettingsResp(in.array());
+			}
+		}
+		
+		else if(AbstractMessage.getControlCode(bytes).equals("11")){
+			
+			if(AbstractMessage.getDataSn(bytes, 56).equals("7878")){
+				message = new Debug(in.array());
+			}else if(AbstractMessage.getDataSn(bytes, 56).equals("7877")){
+				message = new TestMeterCode(in.array());
+			}else if(AbstractMessage.getDataSn(bytes, 56).equals("7979")){
+				message = new TestData(in.array());
+			}
+			
+		}else if(AbstractMessage.getControlCode(bytes).equals("91")){
+			
+			if(AbstractMessage.getDataLength(bytes).equals("0009")){
+				message = new DebugResp(in.array());
+			}else if(AbstractMessage.getDataLength(bytes).equals("000E")){
+				message = new TestMeterCodeResp(in.array());
+			}else if(AbstractMessage.getDataLength(bytes).equals("0012")){
+				message = new TestDataResp(in.array());
+			}
+			
+		}
+		
+		else{
 			return MessageDecoderResult.NOT_OK;
 		}
 		

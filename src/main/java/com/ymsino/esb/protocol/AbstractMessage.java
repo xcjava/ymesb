@@ -1,6 +1,7 @@
 package com.ymsino.esb.protocol;
 
 import com.gmail.xcjava.base.math.DataConverter;
+import com.gmail.xcjava.base.str.ByteTool;
 
 /**
  * 协议工具
@@ -45,6 +46,26 @@ public abstract class AbstractMessage {
 		byte[] bs = {bytes[8]};
 		String code = DataConverter.bytesToHexString(bs);
 		return code;
+	}
+	
+	public static String getDataLength(byte[] bytes){
+		if(bytes.length < 12)
+			return null;
+		
+		byte[] bs = {bytes[9], bytes[10]};
+		String[] dataLength = new String[2];
+		dataLength[0] = DataConverter.bytesToHexString(ByteTool.subByte(bs, 1, 1));
+		dataLength[1] = DataConverter.bytesToHexString(ByteTool.subByte(bs, 0, 1));
+		return dataLength[0] + dataLength[1];
+	}
+	
+	public static String getDataSn(byte[] bytes, int startLength){
+		
+		byte[] bs = {bytes[startLength], bytes[startLength + 1]};
+		String[] dataSn = new String[2];
+		dataSn[0] = DataConverter.bytesToHexString(ByteTool.subByte(bs, 1, 1));
+		dataSn[1] = DataConverter.bytesToHexString(ByteTool.subByte(bs, 0, 1));
+		return dataSn[0] + dataSn[1];
 	}
 	
 	/**
@@ -126,8 +147,9 @@ public abstract class AbstractMessage {
 	}
 	
 	public static void main(String[] args) {  
-		byte[] bytes = DataConverter.hexStringToByte("0000000000000000A1000000");
+		byte[] bytes = DataConverter.hexStringToByte("0000000000000000A1030400");
 		System.out.println(bytes.length);
 		System.out.println(getControlCode(bytes));
+		System.out.println(getDataLength(bytes));
 	}
 }
