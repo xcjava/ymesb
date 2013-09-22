@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.ymsino.esb.archives.model.PrepaidMeter" table="ARCHIVES_PREPAIDMETER">
+    
+		<id name="pmSn" type="java.lang.String">
+			<meta attribute="field-description">预付费水表编号</meta>
+			<meta attribute="use-in-equals">true</meta>
+			<column name="PM_SN">
+				<comment>预付费水表编号</comment>
+			</column>
+			<generator class="assigned"></generator>
+		</id>
+		
+		<property name="uid" type="java.lang.Long">
+			<meta attribute="field-description">用户id</meta>
+			<column name="U_ID">
+				<comment>用户id</comment>
+			</column>
+		</property>
+		
+		<property name="userId" type="java.lang.String">
+			<meta attribute="field-description">客户编号</meta>
+			<column name="USER_ID" length="300">
+				<comment>客户编号</comment>
+			</column>
+		</property>
+		
+		<property name="userName" type="java.lang.String">
+			<meta attribute="field-description">客户名称</meta>
+			<column name="USER_NAME" length="300">
+				<comment>客户名称</comment>
+			</column>
+		</property>
+		
+		<property name="chargingUnitId" type="java.lang.String">
+			<meta attribute="field-description">收费单位编号</meta>
+			<column name="CHARGING_UNIT_ID">
+				<comment>收费单位编号</comment>
+			</column>
+		</property>
+		
+		<property name="parentUnits" type="org.springframework.orm.hibernate3.support.ClobStringType">
+			<meta attribute="field-description">上级收费单位编号，多个用"||"包住，如|123||456|,用于搜索</meta>
+			<column length="2147483647" name="PARENT_UNITS">
+				<comment>上级收费单位编号，多个用"||"包住，如|123||456|,用于搜索</comment>
+			</column>
+		</property>
+		
+		<property name="childPmSn" type="java.lang.String">
+			<meta attribute="field-description">子表号</meta>
+			<column name="CHILD_PM_SN" length="300">
+				<comment>子表号</comment>
+			</column>
+		</property>
+		
+		<property name="nature" type="java.lang.String">
+			<meta attribute="field-description">用水性质</meta>
+			<column name="NATURE" length="300">
+				<comment>用水性质</comment>
+			</column>
+		</property>
+		
+		<property name="purcAmount" type="java.lang.String">
+			<meta attribute="field-description">限购量</meta>
+			<column name="PURC_AMOUNT" length="300">
+				<comment>限购量</comment>
+			</column>
+		</property>
+		
+		<property name="showWarn" type="java.lang.String">
+			<meta attribute="field-description">显示告警</meta>
+			<column name="SHOW_WARN" length="300">
+				<comment>显示告警</comment>
+			</column>
+		</property>
+		
+		<property name="closeWarn" type="java.lang.String">
+			<meta attribute="field-description">关阀告警</meta>
+			<column name="CLOSE_WARN" length="300">
+				<comment>关阀告警</comment>
+			</column>
+		</property>
+		
+		<property name="currentPrice" type="java.lang.Long">
+			<meta attribute="field-description">当前水价(单位：分)</meta>
+			<column name="CURRENT_PRICE">
+				<comment>当前水价(单位：分)</comment>
+			</column>
+		</property>
+		
+		<property name="type" type="java.lang.Short">
+			<meta attribute="field-description">水表类型：1,IC卡预付费水表;2,红外卡预付费水表</meta>
+			<column name="TYPE">
+				<comment>水表类型：1,IC卡预付费水表;2,红外卡预付费水表</comment>
+			</column>
+		</property>
+		
+		<property name="createTimestamp" type="java.lang.Long">
+			<meta attribute="field-description">创建时间</meta>
+			<column name="CREATE_TIMESTAMP">
+				<comment>创建时间</comment>
+			</column>
+		</property>
+    </class>
+</hibernate-mapping>
