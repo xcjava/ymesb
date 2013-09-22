@@ -61,10 +61,10 @@ public interface VatService {
 			@WebParam(name="pageSize")Integer pageSize);
 	
 	/**
-	 * 根据查询参数获取增值税分页列表
+	 * 根据查询参数获取增值税总记录数
 	 * @param queryParam				查询参数对象;
 	 * @return
 	 */
-	@WSDLDocumentation("根据查询参数获取增值税分页列表")
+	@WSDLDocumentation("根据查询参数获取增值税总记录数")
 	public Integer getCount(@WebParam(name="queryParam")QueryParam queryParam);
 }

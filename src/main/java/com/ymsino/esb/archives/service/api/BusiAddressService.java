@@ -61,10 +61,10 @@ public interface BusiAddressService {
 			@WebParam(name="pageSize")Integer pageSize);
 	
 	/**
-	 * 根据查询参数获取业务地址分页列表
+	 * 根据查询参数获取业务地址总记录数
 	 * @param queryParam				查询参数对象;
 	 * @return
 	 */
-	@WSDLDocumentation("根据查询参数获取业务地址分页列表")
+	@WSDLDocumentation("根据查询参数获取业务地址总记录数")
 	public Integer getCount(@WebParam(name="queryParam")QueryParam queryParam);
 }

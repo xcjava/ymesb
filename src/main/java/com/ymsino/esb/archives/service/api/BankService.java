@@ -61,10 +61,10 @@ public interface BankService {
 			@WebParam(name="pageSize")Integer pageSize);
 	
 	/**
-	 * 根据查询参数获取银行信息分页列表
+	 * 根据查询参数获取银行信息总记录数
 	 * @param queryParam				查询参数对象;
 	 * @return
 	 */
-	@WSDLDocumentation("根据查询参数获取银行信息分页列表")
+	@WSDLDocumentation("根据查询参数获取银行信息总记录数")
 	public Integer getCount(@WebParam(name="queryParam")QueryParam queryParam);
 }
