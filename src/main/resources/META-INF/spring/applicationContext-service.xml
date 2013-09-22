@@ -50,6 +50,14 @@
 		<property name="commonHibernateDao" ref="commonHibernateDao"></property>
 		<property name="chargingUnitManager" ref="chargingUnitManager"></property>
 	</bean>
+	<bean id="prepaidMeterServiceImpl" class="com.ymsino.esb.archives.service.impl.PrepaidMeterServiceImpl">
+		<property name="commonHibernateDao" ref="commonHibernateDao"></property>
+		<property name="chargingUnitManager" ref="chargingUnitManager"></property>
+	</bean>
+	<bean id="wirelessMeterServiceImpl" class="com.ymsino.esb.archives.service.impl.WirelessMeterServiceImpl">
+		<property name="commonHibernateDao" ref="commonHibernateDao"></property>
+		<property name="chargingUnitManager" ref="chargingUnitManager"></property>
+	</bean>
 	<!-- 档案管理 -->
 	
 	
@@ -79,6 +87,12 @@
 	</jaxws:server>
 	<jaxws:server id="vatService" serviceClass="com.ymsino.esb.archives.service.api.VatService" address="camel://jetty:http://${ws.host}:${ws.port}/ws/vatService">
 		<jaxws:serviceBean><ref bean="vatServiceImpl"/></jaxws:serviceBean>
+	</jaxws:server>
+	<jaxws:server id="prepaidMeterService" serviceClass="com.ymsino.esb.archives.service.api.PrepaidMeterService" address="camel://jetty:http://${ws.host}:${ws.port}/ws/prepaidMeterService">
+		<jaxws:serviceBean><ref bean="prepaidMeterServiceImpl"/></jaxws:serviceBean>
+	</jaxws:server>
+	<jaxws:server id="wirelessMeterService" serviceClass="com.ymsino.esb.archives.service.api.WirelessMeterService" address="camel://jetty:http://${ws.host}:${ws.port}/ws/wirelessMeterService">
+		<jaxws:serviceBean><ref bean="wirelessMeterServiceImpl"/></jaxws:serviceBean>
 	</jaxws:server>
 	<!-- 档案管理 -->
 </beans>
