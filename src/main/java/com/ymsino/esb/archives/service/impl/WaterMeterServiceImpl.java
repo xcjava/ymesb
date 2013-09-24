@@ -12,16 +12,16 @@ import com.gmail.xcjava.base.hql.OrderParamReader;
 import com.gmail.xcjava.base.hql.QueryParam;
 import com.gmail.xcjava.base.hql.QueryParamReader;
 import com.gmail.xcjava.base.spring.CommonHibernateDao;
-import com.ymsino.esb.archives.model.WirelessMeter;
-import com.ymsino.esb.archives.service.api.WirelessMeterService;
-import com.ymsino.esb.archives.vo.WirelessMeterModifyParam;
-import com.ymsino.esb.archives.vo.WirelessMeterReturn;
-import com.ymsino.esb.archives.vo.WirelessMeterSaveParam;
+import com.ymsino.esb.archives.model.WaterMeter;
+import com.ymsino.esb.archives.service.api.WaterMeterService;
+import com.ymsino.esb.archives.vo.WaterMeterModifyParam;
+import com.ymsino.esb.archives.vo.WaterMeterReturn;
+import com.ymsino.esb.archives.vo.WaterMeterSaveParam;
 import com.ymsino.esb.manager.domain.ChargingUnitManager;
 
-public class WirelessMeterServiceImpl implements WirelessMeterService {
+public class WaterMeterServiceImpl implements WaterMeterService {
 
-	private Logger logger = Logger.getLogger(WirelessMeterServiceImpl.class);
+	private Logger logger = Logger.getLogger(WaterMeterServiceImpl.class);
 	private CommonHibernateDao commonHibernateDao;
 	private ChargingUnitManager chargingUnitManager;
 	public void setChargingUnitManager(ChargingUnitManager chargingUnitManager) {
@@ -32,24 +32,24 @@ public class WirelessMeterServiceImpl implements WirelessMeterService {
 	}
 	
 	@Override
-	public Boolean save(WirelessMeterSaveParam vo) {
+	public Boolean save(WaterMeterSaveParam vo) {
 		
 		if(vo == null){
 			logger.error("save:参数对象为空");
 			throw new RuntimeException("参数对象为空");
 		}
 		
-		if(StringUtils.isEmpty(vo.getWmSn())){
+		if(StringUtils.isEmpty(vo.getHardwareId()) || vo.getType() == null){
 			logger.error("save:缺少必要属性");
 			throw new RuntimeException("缺少必要属性");
 		}
 		
-		if(this.getBySn(vo.getWmSn().trim()) != null){
+		if(this.getById(vo.getHardwareId().trim()) != null){
 			logger.error("save:水表编码已经存在，不能重复添加");
 			throw new RuntimeException("水表编码已经存在，不能重复添加");
 		}
 		
-		WirelessMeter model = (WirelessMeter) ObjectMapping.objMapping(vo, new WirelessMeter());
+		WaterMeter model =  (WaterMeter) ObjectMapping.objMapping(vo, new WaterMeter());
 		model.setCreateTimestamp(new Date().getTime());
 		if(!StringUtils.isEmpty(model.getChargingUnitId()))
 			model.setParentUnits(chargingUnitManager.getParentUnitIds(model.getChargingUnitId()));
@@ -60,17 +60,17 @@ public class WirelessMeterServiceImpl implements WirelessMeterService {
 	}
 
 	@Override
-	public Boolean modify(WirelessMeterModifyParam vo) {
+	public Boolean modify(WaterMeterModifyParam vo) {
 		
-		if(vo == null || StringUtils.isEmpty(vo.getWmSn())){
+		if(vo == null || StringUtils.isEmpty(vo.getHardwareId())){
 			logger.error("modify:参数对象为空");
 			throw new RuntimeException("参数对象为空");
 		}
 		
-		WirelessMeter po = (WirelessMeter) this.commonHibernateDao.get(WirelessMeter.class, vo.getWmSn().trim());
+		WaterMeter po = (WaterMeter) this.commonHibernateDao.get(WaterMeter.class, vo.getHardwareId().trim());
 		if(po == null){
-			logger.error("modify:无线智能水表未持久化");
-			throw new RuntimeException("无线智能水表未持久化");
+			logger.error("modify:水表未持久化");
+			throw new RuntimeException("水表未持久化");
 		}
 		if(vo.getChargingUnitId() != null && vo.getChargingUnitId().equals(po.getChargingUnitId())){
 			if("".equals(vo.getChargingUnitId()))
@@ -79,31 +79,31 @@ public class WirelessMeterServiceImpl implements WirelessMeterService {
 				po.setParentUnits(chargingUnitManager.getParentUnitIds(vo.getChargingUnitId()));
 			
 		}
-		vo.setWmSn(null);
+		vo.setHardwareId(null);
 		ObjectMapping.objMapping(vo, po, false);
 		
 		return Boolean.TRUE;
 	}
 
 	@Override
-	public WirelessMeterReturn getBySn(String wmSn) {
+	public WaterMeterReturn getById(String hardwareId) {
 		
-		if(StringUtils.isEmpty(wmSn))
+		if(StringUtils.isEmpty(hardwareId))
 			return null;
 		
-		WirelessMeter po = (WirelessMeter) this.commonHibernateDao.get(WirelessMeter.class, wmSn.trim());
+		WaterMeter po = (WaterMeter) this.commonHibernateDao.get(WaterMeter.class, hardwareId.trim());
 		if(po == null)
 			return null;
 		
-		return (WirelessMeterReturn) ObjectMapping.objMapping(po, new WirelessMeterReturn());
+		return (WaterMeterReturn) ObjectMapping.objMapping(po, new WaterMeterReturn());
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<WirelessMeterReturn> getListpager(QueryParam queryParam,
+	public List<WaterMeterReturn> getListpager(QueryParam queryParam,
 			Integer startRow, Integer pageSize) {
 		
-		String hql = "from WirelessMeter model where 1=1 ";
+		String hql = "from WaterMeter model where 1=1 ";
 		List<Object> paramList = new ArrayList<Object>();
 		
 		if(queryParam != null && 
@@ -126,17 +126,17 @@ public class WirelessMeterServiceImpl implements WirelessMeterService {
 		}
 		hql += " model.createTimestamp desc";
 		
-		List<WirelessMeter> list = null;
+		List<WaterMeter> list = null;
 		if(paramList.size()>0){
 			list = this.commonHibernateDao.findBy(hql, paramList.toArray(), startRow, pageSize);
 		}else{
 			list = this.commonHibernateDao.find(hql, startRow, pageSize);
 		}
 		
-		List<WirelessMeterReturn> result = new ArrayList<WirelessMeterReturn>();
+		List<WaterMeterReturn> result = new ArrayList<WaterMeterReturn>();
 		if(list != null && list.size() > 0){
-			for(WirelessMeter item : list){
-				WirelessMeterReturn wmr = (WirelessMeterReturn) ObjectMapping.objMapping(item, new WirelessMeterReturn());
+			for(WaterMeter item : list){
+				WaterMeterReturn wmr = (WaterMeterReturn) ObjectMapping.objMapping(item, new WaterMeterReturn());
 				result.add(wmr);
 			}
 		}
@@ -146,7 +146,7 @@ public class WirelessMeterServiceImpl implements WirelessMeterService {
 	@Override
 	public Integer getCount(QueryParam queryParam) {
 		
-		String hql = "select count(*) from WirelessMeter model where 1=1 ";
+		String hql = "select count(*) from WaterMeter model where 1=1 ";
 		List<Object> paramList = new ArrayList<Object>();
 		
 		if(queryParam != null && 

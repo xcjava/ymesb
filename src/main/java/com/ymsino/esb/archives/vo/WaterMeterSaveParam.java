@@ -2,12 +2,12 @@ package com.ymsino.esb.archives.vo;
 
 import java.io.Serializable;
 
-public class WirelessMeterSaveParam implements Serializable {
+public class WaterMeterSaveParam implements Serializable {
 
 	/**
-     * 无线智能水表编号
+     * 水表编号
     */
-    private String wmSn;
+    private String hardwareId;
     /**
      * 用户id
     */
@@ -25,11 +25,27 @@ public class WirelessMeterSaveParam implements Serializable {
     */
     private String chargingUnitId;
     /**
+     * 用水性质
+    */
+    private String nature;
+    /**
+     * 限购量
+    */
+    private String purcAmount;
+    /**
+     * 显示告警
+    */
+    private String showWarn;
+    /**
+     * 关阀告警
+    */
+    private String closeWarn;
+    /**
      * 子表号
     */
-    private String childWmSn;
+    private String childHardwareId;
     /**
-     * 水表类型
+     * 数据类别
     */
     private String dataType;
     /**
@@ -45,9 +61,9 @@ public class WirelessMeterSaveParam implements Serializable {
     */
     private String initialYards;
     /**
-     * 适用水价(单位：分)
+     * 适用水价、当前水价(单位：分)
     */
-    private Long suitablePrice;
+    private Long price;
     /**
      * 告警量
     */
@@ -56,11 +72,15 @@ public class WirelessMeterSaveParam implements Serializable {
      * 无线频率
     */
     private String radioFrequency;
-	public String getWmSn() {
-		return wmSn;
+    /**
+     * 水表类型：1,IC卡预付费水表;2,红外卡预付费水表;3,无线智能水表
+    */
+    private Short type;
+	public String getHardwareId() {
+		return hardwareId;
 	}
-	public void setWmSn(String wmSn) {
-		this.wmSn = wmSn;
+	public void setHardwareId(String hardwareId) {
+		this.hardwareId = hardwareId;
 	}
 	public Long getUid() {
 		return uid;
@@ -86,11 +106,35 @@ public class WirelessMeterSaveParam implements Serializable {
 	public void setChargingUnitId(String chargingUnitId) {
 		this.chargingUnitId = chargingUnitId;
 	}
-	public String getChildWmSn() {
-		return childWmSn;
+	public String getNature() {
+		return nature;
 	}
-	public void setChildWmSn(String childWmSn) {
-		this.childWmSn = childWmSn;
+	public void setNature(String nature) {
+		this.nature = nature;
+	}
+	public String getPurcAmount() {
+		return purcAmount;
+	}
+	public void setPurcAmount(String purcAmount) {
+		this.purcAmount = purcAmount;
+	}
+	public String getShowWarn() {
+		return showWarn;
+	}
+	public void setShowWarn(String showWarn) {
+		this.showWarn = showWarn;
+	}
+	public String getCloseWarn() {
+		return closeWarn;
+	}
+	public void setCloseWarn(String closeWarn) {
+		this.closeWarn = closeWarn;
+	}
+	public String getChildHardwareId() {
+		return childHardwareId;
+	}
+	public void setChildHardwareId(String childHardwareId) {
+		this.childHardwareId = childHardwareId;
 	}
 	public String getDataType() {
 		return dataType;
@@ -116,11 +160,11 @@ public class WirelessMeterSaveParam implements Serializable {
 	public void setInitialYards(String initialYards) {
 		this.initialYards = initialYards;
 	}
-	public Long getSuitablePrice() {
-		return suitablePrice;
+	public Long getPrice() {
+		return price;
 	}
-	public void setSuitablePrice(Long suitablePrice) {
-		this.suitablePrice = suitablePrice;
+	public void setPrice(Long price) {
+		this.price = price;
 	}
 	public String getAlarmVolume() {
 		return alarmVolume;
@@ -133,5 +177,11 @@ public class WirelessMeterSaveParam implements Serializable {
 	}
 	public void setRadioFrequency(String radioFrequency) {
 		this.radioFrequency = radioFrequency;
+	}
+	public Short getType() {
+		return type;
+	}
+	public void setType(Short type) {
+		this.type = type;
 	}
 }
