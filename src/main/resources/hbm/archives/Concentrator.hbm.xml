@@ -1,0 +1,473 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.ymsino.esb.archives.model.Concentrator" table="ARCHIVES_CONCENTRATOR">
+    
+		<id name="hardwareId" type="java.lang.String">
+			<meta attribute="field-description">集中器ID</meta>
+			<meta attribute="use-in-equals">true</meta>
+			<column name="HARDWARE_ID">
+				<comment>集中器ID</comment>
+			</column>
+			<generator class="assigned"></generator>
+		</id>
+		
+		<!-- 集中器信息 -->
+		<property name="chargingUnitId" type="java.lang.String">
+			<meta attribute="field-description">收费单位编号</meta>
+			<column name="CHARGING_UNIT_ID">
+				<comment>收费单位编号</comment>
+			</column>
+		</property>
+		
+		<property name="parentUnits" type="org.springframework.orm.hibernate3.support.ClobStringType">
+			<meta attribute="field-description">上级收费单位编号，多个用"||"包住，如|123||456|,用于搜索</meta>
+			<column length="2147483647" name="PARENT_UNITS">
+				<comment>上级收费单位编号，多个用"||"包住，如|123||456|,用于搜索</comment>
+			</column>
+		</property>
+		
+		<property name="name" type="java.lang.String">
+			<meta attribute="field-description">集中器名称</meta>
+			<column name="NAME" length="300">
+				<comment>集中器名称</comment>
+			</column>
+		</property>
+		
+		<property name="password" type="java.lang.String">
+			<meta attribute="field-description">集中器密码</meta>
+			<column name="PASSWORD" length="300">
+				<comment>集中器密码</comment>
+			</column>
+		</property>
+		
+		<property name="meterType" type="java.lang.String">
+			<meta attribute="field-description">表类别</meta>
+			<column name="METER_TYPE" length="300">
+				<comment>表类别</comment>
+			</column>
+		</property>
+		
+		<property name="communication" type="java.lang.String">
+			<meta attribute="field-description">上行通讯方式</meta>
+			<column name="COMMUNICATION" length="300">
+				<comment>上行通讯方式</comment>
+			</column>
+		</property>
+		
+		<property name="serial" type="java.lang.String">
+			<meta attribute="field-description">工作串口</meta>
+			<column name="SERIAL" length="300">
+				<comment>工作串口</comment>
+			</column>
+		</property>
+		
+		<property name="relaySystem" type="java.lang.String">
+			<meta attribute="field-description">中继方式</meta>
+			<column name="RELAY_SYSTEM" length="300">
+				<comment>中继方式</comment>
+			</column>
+		</property>
+		
+		<property name="province" type="java.lang.String">
+			<meta attribute="field-description">省</meta>
+			<column name="PROVINCE" length="300">
+				<comment>省</comment>
+			</column>
+		</property>
+		
+		<property name="city" type="java.lang.String">
+			<meta attribute="field-description">市</meta>
+			<column name="CITY" length="300">
+				<comment>市</comment>
+			</column>
+		</property>
+		
+		<property name="district" type="java.lang.String">
+			<meta attribute="field-description">区县</meta>
+			<column name="DISTRICT" length="300">
+				<comment>区县</comment>
+			</column>
+		</property>
+		
+		<property name="street" type="java.lang.String">
+			<meta attribute="field-description">街道（乡镇）</meta>
+			<column name="STREET" length="300">
+				<comment>街道（乡镇）</comment>
+			</column>
+		</property>
+		
+		<property name="address" type="org.springframework.orm.hibernate3.support.ClobStringType">
+			<meta attribute="field-description">通讯地址</meta>
+			<column name="ADDRESS" length="2147483647">
+				<comment>通讯地址</comment>
+			</column>
+		</property>
+		
+		<property name="monthFreezeStartDate" type="java.lang.String">
+			<meta attribute="field-description">月冻结起始日</meta>
+			<column name="MONTH_FREEZE_START_DATE" length="300">
+				<comment>月冻结起始日</comment>
+			</column>
+		</property>
+		
+		<property name="monthFreezeStartHour" type="java.lang.String">
+			<meta attribute="field-description">月冻结起始时</meta>
+			<column name="MONTH_FREEZE_START_HOUR" length="300">
+				<comment>月冻结起始时</comment>
+			</column>
+		</property>
+		
+		<property name="dayFreezeStartHour" type="java.lang.String">
+			<meta attribute="field-description">日冻结起始时</meta>
+			<column name="DAY_FREEZE_START_HOUR" length="300">
+				<comment>日冻结起始时</comment>
+			</column>
+		</property>
+		
+		<property name="dayFreezeStartMinute" type="java.lang.String">
+			<meta attribute="field-description">日冻结起始分</meta>
+			<column name="DAY_FREEZE_START_MINUTE" length="300">
+				<comment>日冻结起始分</comment>
+			</column>
+		</property>
+		<!-- 集中器信息 -->
+		
+		<!-- SIM卡费用信息 -->
+		<property name="terminalId" type="java.lang.String">
+			<meta attribute="field-description">终端编号</meta>
+			<column name="TERMINAL_ID" length="300">
+				<comment>终端编号</comment>
+			</column>
+		</property>
+		
+		<property name="communicationCost" type="java.lang.Long">
+			<meta attribute="field-description">通讯费(单位：分)</meta>
+			<column name="COMMUNICATION_COST">
+				<comment>通讯费(单位：分)</comment>
+			</column>
+		</property>
+		
+		<property name="simSN" type="java.lang.String">
+			<meta attribute="field-description">SIM卡号</meta>
+			<column name="SIM_SN" length="300">
+				<comment>SIM卡号</comment>
+			</column>
+		</property>
+		
+		<property name="gprsNum" type="java.lang.String">
+			<meta attribute="field-description">GPRS号码</meta>
+			<column name="GPRS_NUM" length="300">
+				<comment>GPRS号码</comment>
+			</column>
+		</property>
+		
+		<property name="costTimestamp" type="java.lang.Long">
+			<meta attribute="field-description">费用日期</meta>
+			<column name="COST_TIMESTAMP">
+				<comment>费用日期</comment>
+			</column>
+		</property>
+		
+		<property name="exceedFlow" type="java.lang.String">
+			<meta attribute="field-description">超流量</meta>
+			<column name="EXCEED_FLOW" length="300">
+				<comment>超流量</comment>
+			</column>
+		</property>
+		
+		<property name="actualFlow" type="java.lang.String">
+			<meta attribute="field-description">实际流量</meta>
+			<column name="ACTUAL_FLOW" length="300">
+				<comment>实际流量</comment>
+			</column>
+		</property>
+		<!-- SIM卡费用信息 -->
+		
+		<!-- 采集点 -->
+		<property name="collectionId" type="java.lang.String">
+			<meta attribute="field-description">采集点编号</meta>
+			<column name="COLLECTION_ID" length="300">
+				<comment>采集点编号</comment>
+			</column>
+		</property>
+		
+		<property name="collectionName" type="java.lang.String">
+			<meta attribute="field-description">采集点名称</meta>
+			<column name="COLLECTION_NAME" length="300">
+				<comment>采集点名称</comment>
+			</column>
+		</property>
+		
+		<property name="collectionType" type="java.lang.Short">
+			<meta attribute="field-description">采集点类型</meta>
+			<column name="COLLECTION_TYPE">
+				<comment>采集点类型</comment>
+			</column>
+		</property>
+		
+		<property name="collectionStatus" type="java.lang.Short">
+			<meta attribute="field-description">采集点状态</meta>
+			<column name="COLLECTION_STATUS">
+				<comment>采集点状态</comment>
+			</column>
+		</property>
+		
+		<property name="gpsLongitude" type="java.lang.String">
+			<meta attribute="field-description">GPS经度</meta>
+			<column name="GPS_LONGITUDE" length="300">
+				<comment>GPS经度</comment>
+			</column>
+		</property>
+		
+		<property name="gpsLatitude" type="java.lang.String">
+			<meta attribute="field-description">GPS纬度</meta>
+			<column name="GPS_LATITUDE" length="300">
+				<comment>GPS纬度</comment>
+			</column>
+		</property>
+		
+		<property name="collectionAddress" type="org.springframework.orm.hibernate3.support.ClobStringType">
+			<meta attribute="field-description">采集点地址</meta>
+			<column name="COLLECTION_ADDRESS" length="2147483647">
+				<comment>采集点地址</comment>
+			</column>
+		</property>
+		<!-- 采集点 -->
+		
+		<!-- 采集点通信参数 -->
+		<property name="channelId" type="java.lang.String">
+			<meta attribute="field-description">信道编号</meta>
+			<column name="CHANNEL_ID" length="300">
+				<comment>信道编号</comment>
+			</column>
+		</property>
+		
+		<property name="rtsOpen" type="java.lang.String">
+			<meta attribute="field-description">RTS开</meta>
+			<column name="RTS_OPEN" length="300">
+				<comment>RTS开</comment>
+			</column>
+		</property>
+		
+		<property name="statuteType" type="java.lang.String">
+			<meta attribute="field-description">规约类型</meta>
+			<column name="STATUTE_TYPE" length="300">
+				<comment>规约类型</comment>
+			</column>
+		</property>
+		
+		<property name="relayType" type="java.lang.String">
+			<meta attribute="field-description">中继类型</meta>
+			<column name="RELAY_TYPE" length="300">
+				<comment>中继类型</comment>
+			</column>
+		</property>
+		
+		<property name="tel" type="java.lang.String">
+			<meta attribute="field-description">电话号码</meta>
+			<column name="TEL" length="300">
+				<comment>电话号码</comment>
+			</column>
+		</property>
+		
+		<property name="rtsClose" type="java.lang.String">
+			<meta attribute="field-description">RTS关</meta>
+			<column name="RTS_CLOSE" length="300">
+				<comment>RTS关</comment>
+			</column>
+		</property>
+		
+		<property name="transmissionDelay" type="java.lang.String">
+			<meta attribute="field-description">传输延时</meta>
+			<column name="TRANSMISSION_DELAY" length="300">
+				<comment>传输延时</comment>
+			</column>
+		</property>
+		
+		<property name="responseTimeout" type="java.lang.String">
+			<meta attribute="field-description">响应超时</meta>
+			<column name="RESPONSE_TIMEOUT" length="300">
+				<comment>响应超时</comment>
+			</column>
+		</property>
+		
+		<property name="primaryIp" type="java.lang.String">
+			<meta attribute="field-description">主用IP地址</meta>
+			<column name="PRIMARY_IP" length="300">
+				<comment>主用IP地址</comment>
+			</column>
+		</property>
+		
+		<property name="reserveIp" type="java.lang.String">
+			<meta attribute="field-description">备用IP地址</meta>
+			<column name="RESERVE_IP" length="300">
+				<comment>备用IP地址</comment>
+			</column>
+		</property>
+		
+		<property name="gatewayIp" type="java.lang.String">
+			<meta attribute="field-description">网关IP地址</meta>
+			<column name="GATEWAY_IP" length="300">
+				<comment>网关IP地址</comment>
+			</column>
+		</property>
+		
+		<property name="proXyIp" type="java.lang.String">
+			<meta attribute="field-description">代理IP地址</meta>
+			<column name="PROXY_IP" length="300">
+				<comment>代理IP地址</comment>
+			</column>
+		</property>
+		
+		<property name="primaryPort" type="java.lang.String">
+			<meta attribute="field-description">主用端口</meta>
+			<column name="PRIMARY_PORT" length="300">
+				<comment>主用端口</comment>
+			</column>
+		</property>
+		
+		<property name="reservePort" type="java.lang.String">
+			<meta attribute="field-description">备用端口</meta>
+			<column name="RESERVE_PORT" length="300">
+				<comment>备用端口</comment>
+			</column>
+		</property>
+		
+		<property name="gatewayPort" type="java.lang.String">
+			<meta attribute="field-description">网关端口</meta>
+			<column name="GATEWAY_PORT" length="300">
+				<comment>网关端口</comment>
+			</column>
+		</property>
+		
+		<property name="proXyPort" type="java.lang.String">
+			<meta attribute="field-description">代理端口</meta>
+			<column name="PROXY_PORT" length="300">
+				<comment>代理端口</comment>
+			</column>
+		</property>
+		
+		<property name="smsNum" type="java.lang.String">
+			<meta attribute="field-description">短信号码</meta>
+			<column name="SMS_NUM" length="300">
+				<comment>短信号码</comment>
+			</column>
+		</property>
+		
+		<property name="heartbeatCycle" type="java.lang.String">
+			<meta attribute="field-description">心跳周期</meta>
+			<column name="HEARTBEAT_CYCLE" length="300">
+				<comment>心跳周期</comment>
+			</column>
+		</property>
+		
+		<property name="startTimestamp" type="java.lang.Long">
+			<meta attribute="field-description">启用日期</meta>
+			<column name="START_TIMESTAMP" length="300">
+				<comment>启用日期</comment>
+			</column>
+		</property>
+		
+		<property name="algorithmNum" type="java.lang.String">
+			<meta attribute="field-description">算法编号</meta>
+			<column name="ALGORITHM_NUM" length="300">
+				<comment>算法编号</comment>
+			</column>
+		</property>
+		
+		<property name="algorithmKey" type="java.lang.String">
+			<meta attribute="field-description">算法密钥</meta>
+			<column name="ALGORITHM_KEY" length="300">
+				<comment>算法密钥</comment>
+			</column>
+		</property>
+		
+		<property name="terminalNoRespTimeout" type="java.lang.String">
+			<meta attribute="field-description">终端无回答超时</meta>
+			<column name="TERMINAL_NO_RESP_TIMEOUT" length="300">
+				<comment>终端无回答超时</comment>
+			</column>
+		</property>
+		
+		<property name="forwardTerminal" type="java.lang.String">
+			<meta attribute="field-description">经由转发的终端</meta>
+			<column name="FORWARD_TERMINAL" length="300">
+				<comment>经由转发的终端</comment>
+			</column>
+		</property>
+		
+		<property name="rtsTimeout" type="java.lang.String">
+			<meta attribute="field-description">RTS延时</meta>
+			<column name="RTS_TIMEOUT" length="300">
+				<comment>RTS延时</comment>
+			</column>
+		</property>
+		
+		<property name="startTimeout" type="java.lang.String">
+			<meta attribute="field-description">启动延迟时间</meta>
+			<column name="START_TIMEOUT" length="300">
+				<comment>启动延迟时间</comment>
+			</column>
+		</property>
+		
+		<property name="terminalLocationCode" type="java.lang.String">
+			<meta attribute="field-description">终端区位码</meta>
+			<column name="TERMINAL_LOCATION_CODE" length="300">
+				<comment>终端区位码</comment>
+			</column>
+		</property>
+		
+		<property name="terminalCommPassword" type="java.lang.String">
+			<meta attribute="field-description">终端通信密码</meta>
+			<column name="TERMINAL_COMM_PASSWORD" length="300">
+				<comment>终端通信密码</comment>
+			</column>
+		</property>
+		
+		<property name="terminalIp" type="java.lang.String">
+			<meta attribute="field-description">终端IP</meta>
+			<column name="TERMINAL_IP" length="300">
+				<comment>终端IP</comment>
+			</column>
+		</property>
+		
+		<property name="resendTime" type="java.lang.Integer">
+			<meta attribute="field-description">超时重发次数</meta>
+			<column name="RESEND_TIME">
+				<comment>超时重发次数</comment>
+			</column>
+		</property>
+		
+		<property name="terminalPost" type="java.lang.String">
+			<meta attribute="field-description">终端端口</meta>
+			<column name="TERMINAL_POST" length="300">
+				<comment>终端端口</comment>
+			</column>
+		</property>
+		
+		<property name="terminalNum" type="java.lang.String">
+			<meta attribute="field-description">终端地址码</meta>
+			<column name="TERMINAL_NUM" length="300">
+				<comment>终端地址码</comment>
+			</column>
+		</property>
+		
+		<property name="primaryCommPassword" type="java.lang.String">
+			<meta attribute="field-description">主站通信密码</meta>
+			<column name="PRIMARY_COMM_PASSWORD" length="300">
+				<comment>主站通信密码</comment>
+			</column>
+		</property>
+		<!-- 采集点通信参数 -->
+		
+		<property name="createTimestamp" type="java.lang.Long">
+			<meta attribute="field-description">创建时间</meta>
+			<column name="CREATE_TIMESTAMP">
+				<comment>创建时间</comment>
+			</column>
+		</property>
+    </class>
+</hibernate-mapping>
