@@ -64,6 +64,7 @@
 				<value>hbm/archives/User.hbm.xml</value>
 				<value>hbm/archives/Vat.hbm.xml</value>
 				<value>hbm/archives/WaterMeter.hbm.xml</value>
+				<value>hbm/archives/Concentrator.hbm.xml</value>
 			</list>
 		</property>
 	</bean>
