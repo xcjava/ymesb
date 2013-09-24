@@ -63,8 +63,7 @@
 				<value>hbm/archives/Contact.hbm.xml</value>
 				<value>hbm/archives/User.hbm.xml</value>
 				<value>hbm/archives/Vat.hbm.xml</value>
-				<value>hbm/archives/PrepaidMeter.hbm.xml</value>
-				<value>hbm/archives/WirelessMeter.hbm.xml</value>
+				<value>hbm/archives/WaterMeter.hbm.xml</value>
 			</list>
 		</property>
 	</bean>
