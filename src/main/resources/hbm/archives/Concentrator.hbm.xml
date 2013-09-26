@@ -366,7 +366,7 @@
 		
 		<property name="startTimestamp" type="java.lang.Long">
 			<meta attribute="field-description">启用日期</meta>
-			<column name="START_TIMESTAMP" length="300">
+			<column name="START_TIMESTAMP">
 				<comment>启用日期</comment>
 			</column>
 		</property>
