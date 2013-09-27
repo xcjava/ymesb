@@ -1,4 +1,6 @@
-package com.ymsino.esb.comm.service.impl;
+package com.ymsino.esb.comm.receive;
+
+import java.io.Serializable;
 
 import org.apache.camel.Body;
 import org.apache.camel.Consume;
@@ -38,7 +40,9 @@ import com.ymsino.esb.protocol.strutc.TestMeterCodeResp;
 
 public class ReceiveMsgConsume {
 
-	public void receive(Exchange exchange){
+	LoadWmRespProcess loadWmRespProcess;
+	
+	public Serializable receive(Exchange exchange){
 		//ConcentratorOnLine.checkAdd(i++ + "", exchange);
 		//System.out.println(exchange.getIn().getBody().getClass().getName());
 		byte[] bytes = (byte[]) exchange.getIn().getBody();
@@ -93,7 +97,7 @@ public class ReceiveMsgConsume {
 				message = new SetupClockResp(bytes);
 			}else if(AbstractMessage.getDataLength(bytes).equals("0005") &&
 					AbstractMessage.getDataSn(bytes, 13).equals("894D")){
-				message = new LoadWmResp(bytes);
+				return loadWmRespProcess.process(new LoadWmResp(bytes));
 			}else if(AbstractMessage.getDataLength(bytes).equals("0005") &&
 					AbstractMessage.getDataSn(bytes, 13).equals("7808")){
 				message = new DeleteDataResp(bytes);
@@ -124,6 +128,8 @@ public class ReceiveMsgConsume {
 			}
 			
 		}
+		
+		return "error";
 		
 	}
 	

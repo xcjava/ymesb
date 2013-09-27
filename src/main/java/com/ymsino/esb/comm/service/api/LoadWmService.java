@@ -17,8 +17,9 @@ public interface LoadWmService {
 	 * 加载集中器水表参数
 	 * @param concHardwareId	集中器逻辑地址
 	 * @param map				水表序号和水表号的键值对
+	 * @param optType			操作类型
 	 * @return
 	 */
-	public boolean writeWaterMeterSn(String concHardwareId, Map<String, String> map);
+	public boolean writeWaterMeterSn(String concHardwareId, Map<String, String> map, String optType);
 	
 }
