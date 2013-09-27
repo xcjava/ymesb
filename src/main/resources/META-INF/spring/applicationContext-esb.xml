@@ -49,12 +49,15 @@
 	     </list>
 	   </property>
 	 </bean>
-	 
+	  
+	 <bean class="com.ymsino.esb.comm.routers.Routes" id="commRoute"></bean>
 	 <camelContext id="camelContext" xmlns="http://camel.apache.org/schema/spring" autoStartup="false" trace="true">
 		<camel:template id="camelTemplate" />
+		<camel:routeBuilder id="route1" ref="commRoute"></camel:routeBuilder>
+		
 		<!-- <route id="checkOrderOutOfDateQuartz">
-	  		<from uri="quartz://myGroup/checkOrderOutOfDate?cron=0+*+*+*+*+?" />
-	  		<to uri="bean:orderManager?method=checkOrderOutOfDate" />
+	  		<from uri="quartz://myGroup/checkOrderOutOfDate?cron=0/10+*+*+*+*+?" />
+	  		<to uri="bean:loadWmManager?method=task" />
 	  	</route> -->
 	</camelContext>
 
