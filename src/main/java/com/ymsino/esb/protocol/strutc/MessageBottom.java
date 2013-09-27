@@ -50,7 +50,7 @@ public class MessageBottom {
 		return bytes;
 	}
 
-	protected String getString(){
+	public String toString(){
 		
 		String str = "";
 		str += AbstractMessage.getNioFieldString(this.checkCode) + "|";

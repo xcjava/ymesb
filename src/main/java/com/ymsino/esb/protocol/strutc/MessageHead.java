@@ -78,7 +78,7 @@ public class MessageHead {
 		return bytes;
 	}
 
-	protected String getString(){
+	public String toString(){
 		
 		String str = "";
 		str += AbstractMessage.getNioFieldString(this.startSign1) + "|";

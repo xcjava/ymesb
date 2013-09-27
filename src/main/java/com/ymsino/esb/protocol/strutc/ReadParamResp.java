@@ -36,7 +36,7 @@ public class ReadParamResp extends AbstractMessage {
 	/**
 	 * 消息尾
 	 */
-	private MessageBottom messageBottom;
+	private MessageBottom messageBottom = new MessageBottom();
 	
 	public ReadParamResp(){}
 	

@@ -25,7 +25,7 @@ public class Ping extends AbstractMessage {
 	/**
 	 * 消息尾
 	 */
-	private MessageBottom messageBottom;
+	private MessageBottom messageBottom = new MessageBottom();
 	
 	public Ping(){}
 	

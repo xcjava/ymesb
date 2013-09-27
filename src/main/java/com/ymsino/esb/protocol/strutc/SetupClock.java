@@ -67,7 +67,7 @@ public class SetupClock extends AbstractMessage {
 	/**
 	 * 消息尾
 	 */
-	private MessageBottom messageBottom;
+	private MessageBottom messageBottom = new MessageBottom();
 
 	public SetupClock(){}
 	
