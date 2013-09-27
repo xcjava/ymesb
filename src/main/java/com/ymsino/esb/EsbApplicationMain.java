@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.apache.camel.CamelContext;
 import org.apache.camel.Route;
+import org.apache.camel.model.RouteDefinition;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -22,6 +23,7 @@ public class EsbApplicationMain {
 		List<String> list = new ArrayList<String>();
 		list.add("/META-INF/spring/applicationContext.xml");
 		list.add("/META-INF/spring/applicationContext-esb.xml");
+		list.add("/META-INF/spring/applicationContext-comm.xml");
 		if(startDomain)
 			list.add("/META-INF/spring/applicationContext-domain.xml");
 		if(startService)
