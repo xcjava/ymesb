@@ -20,10 +20,14 @@
 	
 	<bean id="hyCodec" class="com.ymsino.esb.protocol.codec.BytesCodec"></bean>
 
+	<bean class="com.ymsino.esb.comm.routers.Routes" id="commRoute"></bean>
+	
+	<bean class="com.ymsino.esb.comm.task.CheckActTask" id="checkActTask"></bean>
+
 	<!-- <bean id="loadWmManager" class="com.ymsino.esb.comm.service.impl.LoadWmManager">
 		<property name="camelTemplate" ref="camelTemplate"></property>
 	</bean> -->
-	<bean id="sendMsgConsume" class="com.ymsino.esb.comm.service.impl.SendMsgConsume"></bean>
-	<bean id="receiveMsgConsume" class="com.ymsino.esb.comm.service.impl.ReceiveMsgConsume"></bean>
+	<bean id="sendMsgConsume" class="com.ymsino.esb.comm.ioprocess.SendMsgConsume"></bean>
+	<bean id="receiveMsgConsume" class="com.ymsino.esb.comm.ioprocess.ReceiveMsgConsume"></bean>
 
 </beans>
