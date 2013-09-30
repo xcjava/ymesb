@@ -13,11 +13,12 @@ import com.ymsino.esb.protocol.strutc.LoginResp;
 
 public class PingProcess {
 
-	private ProducerTemplate camelTemplate;
-	public void setCamelTemplate(ProducerTemplate camelTemplate) {
-		this.camelTemplate = camelTemplate;
+	private ProducerTemplate producerTemplate;
+	public void setProducerTemplate(ProducerTemplate producerTemplate) {
+		this.producerTemplate = producerTemplate;
 	}
-	
+
+
 	public void process(Login login){
 		
 		ConcentratorOnLine.setActTimestamp(AbstractMessage.getFieldString(login.head.rtua), new Date().getTime());
@@ -27,7 +28,7 @@ public class PingProcess {
 		
 		Map<String, Object> headers = new HashMap<String, Object>();
 		headers.put("concentratorId", AbstractMessage.getFieldString(resp.head.rtua));
-		camelTemplate.sendBodyAndHeaders("jms:queue:send", ExchangePattern.InOnly, resp.toBytes(), headers);
+		producerTemplate.sendBodyAndHeaders("jms:queue:send", ExchangePattern.InOnly, resp.toBytes(), headers);
 		
 	}
 	

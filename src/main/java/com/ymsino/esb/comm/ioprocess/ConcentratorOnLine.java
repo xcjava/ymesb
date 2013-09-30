@@ -37,6 +37,12 @@ public class ConcentratorOnLine {
 	 */
 	private static Map<String, Long> lastActTimestamp = new HashMap<String, Long>();
 	
+	/**
+	 * key:集中器逻辑地址
+	 * value:IO序列值
+	 */
+	private static Map<String, Long> seqMap = new HashMap<String, Long>();
+	
 	public static void checkAdd(String id, Exchange exchange){
 		
 		if(exchange == null || id == null)
@@ -61,6 +67,7 @@ public class ConcentratorOnLine {
 				addressMap.put(id, remoteAddress.getHostName() + ":" + remoteAddress.getPort());
 				idleMap.put(id, Boolean.TRUE);
 				lastActTimestamp.put(id, new Date().getTime());
+				seqMap.put(id, 0l);
 			}
 		}
 	}
@@ -77,6 +84,7 @@ public class ConcentratorOnLine {
 		addressMap.remove(id);
 		idleMap.remove(id);
 		lastActTimestamp.remove(id);
+		seqMap.remove(id);
 		
 	}
 	
@@ -126,5 +134,21 @@ public class ConcentratorOnLine {
 		}
 		
 		return lastActTimestamp.get(id);
+	}
+	
+	public static Long getCurrSeq(String id){
+		if(!seqMap.containsKey(id)){
+			return null;
+		}
+		
+		return seqMap.get(id);
+	}
+	
+	public static Long getNextSeq(String id){
+		if(seqMap.containsKey(id)){
+			seqMap.put(id, seqMap.get(id) + 1);
+		}
+		
+		return seqMap.get(id);
 	}
 }

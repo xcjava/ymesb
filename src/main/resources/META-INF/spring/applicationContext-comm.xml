@@ -25,7 +25,8 @@
 	<bean class="com.ymsino.esb.comm.task.CheckActTask" id="checkActTask"></bean>
 
 	<!-- <bean id="loadWmManager" class="com.ymsino.esb.comm.service.impl.LoadWmManager">
-		<property name="camelTemplate" ref="camelTemplate"></property>
+		<property name="producerTemplate" ref="producerTemplate"></property>
+		<property name="consumerTemplate" ref="consumerTemplate"></property>
 	</bean> -->
 	<bean id="sendMsgConsume" class="com.ymsino.esb.comm.ioprocess.SendMsgConsume"></bean>
 	<bean id="receiveMsgConsume" class="com.ymsino.esb.comm.ioprocess.ReceiveMsgConsume"></bean>

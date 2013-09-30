@@ -12,11 +12,12 @@ import com.ymsino.esb.protocol.strutc.LoginResp;
 
 public class LoginProcess {
 
-	private ProducerTemplate camelTemplate;
-	public void setCamelTemplate(ProducerTemplate camelTemplate) {
-		this.camelTemplate = camelTemplate;
+	private ProducerTemplate producerTemplate;
+	public void setProducerTemplate(ProducerTemplate producerTemplate) {
+		this.producerTemplate = producerTemplate;
 	}
-	
+
+
 	public void process(Login login){
 		
 		if(AbstractMessage.getFieldString(login.password).equals("000000")){
@@ -25,7 +26,7 @@ public class LoginProcess {
 			
 			Map<String, Object> headers = new HashMap<String, Object>();
 			headers.put("concentratorId", AbstractMessage.getFieldString(resp.head.rtua));
-			camelTemplate.sendBodyAndHeaders("jms:queue:send", ExchangePattern.InOnly, resp.toBytes(), headers);
+			producerTemplate.sendBodyAndHeaders("jms:queue:send", ExchangePattern.InOnly, resp.toBytes(), headers);
 		}
 		
 	}

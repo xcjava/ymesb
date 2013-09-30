@@ -52,9 +52,9 @@
 	  
 	 
 	 <camelContext id="camelContext" xmlns="http://camel.apache.org/schema/spring" autoStartup="false" trace="true">
-		<camel:template id="camelTemplate" />
+		<camel:template id="producerTemplate" />
+		<camel:template id="consumerTemplate" />
 		<camel:routeBuilder id="route1" ref="commRoute"></camel:routeBuilder>
-		
 		<route id="checkActTaskQuartz">
 	  		<from uri="quartz://comm/checkActTask?cron=0+*+*+*+*+?" />
 	  		<to uri="bean:checkActTask?method=checkAct" />

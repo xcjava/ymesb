@@ -6,6 +6,8 @@ import org.apache.camel.Body;
 import org.apache.camel.Consume;
 import org.apache.camel.Exchange;
 import org.apache.camel.Header;
+import org.apache.camel.ConsumerTemplate;
+import org.apache.camel.ProducerTemplate;
 import org.apache.mina.core.session.IoSession;
 
 import com.ymsino.esb.protocol.AbstractMessage;
@@ -40,6 +42,15 @@ import com.ymsino.esb.protocol.strutc.TestMeterCodeResp;
 
 public class ReceiveMsgConsume {
 
+	private ProducerTemplate producerTemplate;
+	private ConsumerTemplate consumerTemplate;
+	public void setConsumerTemplate(ConsumerTemplate consumerTemplate) {
+		this.consumerTemplate = consumerTemplate;
+	}
+	public void setLoadWmRespProcess(LoadWmRespProcess loadWmRespProcess) {
+		this.loadWmRespProcess = loadWmRespProcess;
+	}
+
 	LoadWmRespProcess loadWmRespProcess;
 	
 	public Serializable receive(Exchange exchange){
@@ -68,6 +79,10 @@ public class ReceiveMsgConsume {
 			message = new ReadParam(bytes);
 		}else if(AbstractMessage.getControlCode(bytes).equals("95")){
 			message = new ReadParamResp(bytes);
+			
+			//consumerTemplate.re
+			
+			
 		}else if(AbstractMessage.getControlCode(bytes).equals("12")){
 			message = new ReadData(bytes);
 		}else if(AbstractMessage.getControlCode(bytes).equals("92")){
