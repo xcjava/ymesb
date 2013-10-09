@@ -61,7 +61,7 @@ public class LoadWmServiceImpl implements LoadWmService {
 	}
 
 	@Override
-	public boolean writeWaterMeterSn(String concHardwareId,
+	public String writeWaterMeterSn(String concHardwareId,
 			Map<String, String> map, String optType) {
 		
 		LoadWm loadWm = new LoadWm();
@@ -82,7 +82,8 @@ public class LoadWmServiceImpl implements LoadWmService {
 		headers.put("concentratorId", AbstractMessage.getFieldString(loadWm.head.rtua));
 		producerTemplate.sendBodyAndHeaders("jms:queue:send", ExchangePattern.InOnly, loadWm.toBytes(), headers);
 		
-		return true;
+		String errorCode = (String) camelContext.createConsumerTemplate().receiveBody("jms:queue:loadWm:" + concHardwareId);
+		return errorCode;
 	}
 	
 	private int count = 0;
