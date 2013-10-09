@@ -18,7 +18,7 @@ public interface LoadWmService {
 	 * @param concHardwareId	集中器逻辑地址
 	 * @param map				水表序号和水表号的键值对
 	 * @param optType			操作类型
-	 * @return	错误代码
+	 * @return	错误代码,00表示成功
 	 */
 	public String writeWaterMeterSn(String concHardwareId, Map<String, String> map, String optType);
 	
