@@ -24,11 +24,15 @@
 	
 	<bean class="com.ymsino.esb.comm.task.CheckActTask" id="checkActTask"></bean>
 
-	<!-- <bean id="loadWmManager" class="com.ymsino.esb.comm.service.impl.LoadWmManager">
+	<bean id="loadWmServiceImpl" class="com.ymsino.esb.comm.service.impl.LoadWmServiceImpl">
 		<property name="producerTemplate" ref="producerTemplate"></property>
 		<property name="consumerTemplate" ref="consumerTemplate"></property>
-	</bean> -->
+		<property name="camelContext" ref="camelContext"></property>
+	</bean>
+	
 	<bean id="sendMsgConsume" class="com.ymsino.esb.comm.ioprocess.SendMsgConsume"></bean>
-	<bean id="receiveMsgConsume" class="com.ymsino.esb.comm.ioprocess.ReceiveMsgConsume"></bean>
+	<bean id="receiveMsgConsume" class="com.ymsino.esb.comm.ioprocess.ReceiveMsgConsume">
+		<property name="producerTemplate" ref="producerTemplate"></property>
+	</bean>
 
 </beans>
