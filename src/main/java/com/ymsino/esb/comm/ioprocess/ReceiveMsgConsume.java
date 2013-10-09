@@ -5,6 +5,7 @@ import java.io.Serializable;
 import org.apache.camel.Body;
 import org.apache.camel.Consume;
 import org.apache.camel.Exchange;
+import org.apache.camel.ExchangePattern;
 import org.apache.camel.Header;
 import org.apache.camel.ConsumerTemplate;
 import org.apache.camel.ProducerTemplate;
@@ -44,11 +45,11 @@ public class ReceiveMsgConsume {
 
 	private ProducerTemplate producerTemplate;
 	private ConsumerTemplate consumerTemplate;
+	public void setProducerTemplate(ProducerTemplate producerTemplate) {
+		this.producerTemplate = producerTemplate;
+	}
 	public void setConsumerTemplate(ConsumerTemplate consumerTemplate) {
 		this.consumerTemplate = consumerTemplate;
-	}
-	public void setLoadWmRespProcess(LoadWmRespProcess loadWmRespProcess) {
-		this.loadWmRespProcess = loadWmRespProcess;
 	}
 
 	LoadWmRespProcess loadWmRespProcess;
@@ -78,15 +79,17 @@ public class ReceiveMsgConsume {
 		}else if(AbstractMessage.getControlCode(bytes).equals("15")){
 			message = new ReadParam(bytes);
 		}else if(AbstractMessage.getControlCode(bytes).equals("95")){
-			message = new ReadParamResp(bytes);
 			
-			//consumerTemplate.re
-			
+			ReadParamResp resp = new ReadParamResp(bytes);
+			String concHardwareId = AbstractMessage.getFieldString(resp.head.rtua);
+			producerTemplate.sendBody("jms:queue:readWaterMeterSn:" + concHardwareId, ExchangePattern.InOnly, resp.toBytes());
 			
 		}else if(AbstractMessage.getControlCode(bytes).equals("12")){
 			message = new ReadData(bytes);
 		}else if(AbstractMessage.getControlCode(bytes).equals("92")){
-			message = new ReadDataResp(bytes);
+			ReadDataResp resp = new ReadDataResp(bytes);
+			String concHardwareId = AbstractMessage.getFieldString(resp.head.rtua);
+			producerTemplate.sendBody("jms:queue:readData:" + concHardwareId, ExchangePattern.InOnly, resp.toBytes());
 		}
 
 		else if(AbstractMessage.getControlCode(bytes).equals("08")){
@@ -145,6 +148,15 @@ public class ReceiveMsgConsume {
 		}
 		
 		return "error";
+		
+	}
+	
+	
+	private int count = 0;
+	public void testResp(Exchange exchange) throws InterruptedException{
+		System.out.print(exchange.getIn().getBody());
+
+		producerTemplate.sendBody("jms:queue:test:2", "小葱:" + count++);
 		
 	}
 	

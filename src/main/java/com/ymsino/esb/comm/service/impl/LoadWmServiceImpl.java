@@ -3,25 +3,61 @@ package com.ymsino.esb.comm.service.impl;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.camel.CamelContext;
+import org.apache.camel.ConsumerTemplate;
 import org.apache.camel.ExchangePattern;
 import org.apache.camel.ProducerTemplate;
 
 import com.ymsino.esb.comm.service.api.LoadWmService;
 import com.ymsino.esb.protocol.AbstractMessage;
 import com.ymsino.esb.protocol.strutc.LoadWm;
+import com.ymsino.esb.protocol.strutc.ReadParam;
+import com.ymsino.esb.protocol.strutc.ReadParamResp;
+import com.ymsino.esb.protocol.strutc.ReadParamRespItem;
 
 public class LoadWmServiceImpl implements LoadWmService {
 
-	private ProducerTemplate camelTemplate;
-	public void setCamelTemplate(ProducerTemplate camelTemplate) {
-		this.camelTemplate = camelTemplate;
+	private CamelContext camelContext;
+	public void setCamelContext(CamelContext camelContext) {
+		this.camelContext = camelContext;
 	}
+	
+	private ProducerTemplate producerTemplate;
+	private ConsumerTemplate consumerTemplate;
+	public void setProducerTemplate(ProducerTemplate producerTemplate) {
+		this.producerTemplate = producerTemplate;
+	}
+	public void setConsumerTemplate(ConsumerTemplate consumerTemplate) {
+		this.consumerTemplate = consumerTemplate;
+	}
+
+	
 
 	@Override
 	public Map<String, String> readWaterMeterSn(String concHardwareId,
 			Integer wmSn, Integer count) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		ReadParam readParam = new ReadParam();
+		readParam.head.rtua = AbstractMessage.initField(concHardwareId, readParam.head.rtua.length);
+		readParam.startWaterMeterSn = AbstractMessage.initField(wmSn.toString(), readParam.startWaterMeterSn.length);
+		readParam.totalMeterNum = AbstractMessage.initField(count.toString(), readParam.totalMeterNum.length);
+		
+		
+		Map<String, Object> headers = new HashMap<String, Object>();
+		headers.put("concentratorId", AbstractMessage.getFieldString(readParam.head.rtua));
+		producerTemplate.sendBodyAndHeaders("jms:queue:send", ExchangePattern.InOnly, readParam.toBytes(), headers);
+		
+		byte[] bytes = (byte[]) camelContext.createConsumerTemplate().receiveBody("jms:queue:readWaterMeterSn:" + concHardwareId);
+		ReadParamResp resp = new ReadParamResp(bytes);
+		Map<String, String> map = new HashMap<String, String>();
+		
+		for(ReadParamRespItem item : resp.readParamRespItem){
+			if(!AbstractMessage.getFieldString(item.waterMeterSn).equals("FFFF")){
+				map.put(Integer.valueOf(AbstractMessage.getFieldString(item.waterMeterSn)).toString(), AbstractMessage.getFieldString(item.waterMeterId));
+			}
+		}
+		
+		return map;
 	}
 
 	@Override
@@ -44,9 +80,42 @@ public class LoadWmServiceImpl implements LoadWmService {
 		
 		Map<String, Object> headers = new HashMap<String, Object>();
 		headers.put("concentratorId", AbstractMessage.getFieldString(loadWm.head.rtua));
-		camelTemplate.sendBodyAndHeaders("jms:queue:send", ExchangePattern.InOnly, loadWm.toBytes(), headers);
+		producerTemplate.sendBodyAndHeaders("jms:queue:send", ExchangePattern.InOnly, loadWm.toBytes(), headers);
 		
 		return true;
+	}
+	
+	@Override
+	public void test() throws InterruptedException {
+		
+		/*System.out.print("生产1:");
+		
+		ConsumerTemplate consumerTemplate = camelContext.createConsumerTemplate();
+		try {
+			consumerTemplate.start();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return;
+		}*/
+		
+		
+		producerTemplate.sendBody("jms:queue:test:1", "你的名字叫啥?");
+		//Thread.sleep(2000);
+		
+		String name = (String) consumerTemplate.receiveBody("jms:queue:test:2");
+		System.out.println(name);
+		
+		/*String name = (String) consumerTemplate.receiveBody("jms:queue:test:2");
+		System.out.print(name);
+		
+		try {
+			consumerTemplate.stop();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return;
+		}*/
+		
+		
 	}
 
 }

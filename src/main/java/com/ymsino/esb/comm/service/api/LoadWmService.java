@@ -9,7 +9,7 @@ public interface LoadWmService {
 	 * @param concHardwareId	集中器逻辑地址
 	 * @param wmSn				开始水表编号
 	 * @param count				连续数量
-	 * @return
+	 * @return	水表序号和水表号的键值对
 	 */
 	public Map<String, String> readWaterMeterSn(String concHardwareId, Integer wmSn, Integer count);
 	
@@ -21,5 +21,7 @@ public interface LoadWmService {
 	 * @return
 	 */
 	public boolean writeWaterMeterSn(String concHardwareId, Map<String, String> map, String optType);
+	
+	public void test() throws InterruptedException;
 	
 }

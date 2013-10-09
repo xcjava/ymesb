@@ -10,6 +10,7 @@ public class Routes extends RouteBuilder {
     	int[] port = {8001, 8002, 8003};
 		for(int i = 0; i < port.length; i++){
 			from("mina2:tcp://0.0.0.0:" + port[i] + "?codec=#hyCodec").to("bean:receiveMsgConsume?method=receive");
+			from("jms:queue:test:1").to("bean:receiveMsgConsume?method=testResp");
 			//from("mina2:tcp://0.0.0.0:" + port[i]).to("bean:loadWmManager?method=test");
 			//from("mina2:tcp://0.0.0.0:" + port[i] + "?codec=#hyCodec&sync=true").to("bean:loadWmManager?method=test");
 			//from("jms:queue:send" + port[i]).to("mina2:tcp://localhost:" + port[i] + "?textline=true");
