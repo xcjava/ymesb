@@ -85,6 +85,7 @@ public class LoadWmServiceImpl implements LoadWmService {
 		return true;
 	}
 	
+	private int count = 0;
 	@Override
 	public void test() throws InterruptedException {
 		
@@ -100,10 +101,11 @@ public class LoadWmServiceImpl implements LoadWmService {
 		
 		
 		producerTemplate.sendBody("jms:queue:test:1", "你的名字叫啥?");
-		//Thread.sleep(2000);
+		Thread.sleep(10000);
 		
-		String name = (String) consumerTemplate.receiveBody("jms:queue:test:2");
-		System.out.println(name);
+		String name = (String) camelContext.createConsumerTemplate().receiveBody("jms:queue:test:2");
+		//String name = (String) consumerTemplate.receiveBody("jms:queue:test:2");
+		System.out.println(count++ + ":" + name);
 		
 		/*String name = (String) consumerTemplate.receiveBody("jms:queue:test:2");
 		System.out.print(name);

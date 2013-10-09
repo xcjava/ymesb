@@ -154,7 +154,7 @@ public class ReceiveMsgConsume {
 	
 	private int count = 0;
 	public void testResp(Exchange exchange) throws InterruptedException{
-		System.out.print(exchange.getIn().getBody());
+		//System.out.print(exchange.getIn().getBody());
 
 		producerTemplate.sendBody("jms:queue:test:2", "小葱:" + count++);
 		
