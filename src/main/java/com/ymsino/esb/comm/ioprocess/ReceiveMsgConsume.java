@@ -54,7 +54,6 @@ public class ReceiveMsgConsume {
 
 	LoginProcess loginProcess;
 	LogoutProcess logoutProcess;
-	LoadWmProcess loadWmProcess;
 	PingProcess pingProcess;
 	
 	public Serializable receive(Exchange exchange){
@@ -130,7 +129,9 @@ public class ReceiveMsgConsume {
 			}else if(AbstractMessage.getDataLength(bytes).equals("0005") &&
 					AbstractMessage.getDataSn(bytes, 13).equals("894D")){
 				
-				return loadWmProcess.process(new LoadWmResp(bytes));
+				LoadWmResp loadWmResp = new LoadWmResp(bytes);
+				String concHardwareId = AbstractMessage.getFieldString(loadWmResp.head.rtua);
+				producerTemplate.sendBody("jms:queue:loadWm:" + concHardwareId, ExchangePattern.InOnly, AbstractMessage.getFieldString(loadWmResp.errorCode));
 				
 			}else if(AbstractMessage.getDataLength(bytes).equals("0005") &&
 					AbstractMessage.getDataSn(bytes, 13).equals("7808")){
