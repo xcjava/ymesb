@@ -20,11 +20,11 @@
     <import resource="classpath:META-INF/cxf/cxf-extension-soap.xml"/> 
     <import resource="classpath:META-INF/cxf/cxf-servlet.xml"/>
 
-	<!-- <broker:broker id="jmsBroker" useJmx="false" persistent="false" brokerName="jmsBroker">
+	<broker:broker id="jmsBroker" useJmx="false" persistent="false" brokerName="jmsBroker">
 		<broker:transportConnectors>
 			<broker:transportConnector name="tcp" uri="${jms.tcp}" />
 		</broker:transportConnectors>
-	</broker:broker> -->
+	</broker:broker>
 	
 	<bean id="jms" class="org.apache.activemq.camel.component.ActiveMQComponent">
 		<property name="brokerURL" value="${jms.tcp}"/>
