@@ -60,6 +60,8 @@ public class ConcentratorOnLine {
 			sessionMap.put(id, ioSession);
 			addressMap.put(id, remoteAddress.getHostName() + ":" + remoteAddress.getPort());
 			idleMap.put(id, Boolean.TRUE);
+			lastActTimestamp.put(id, new Date().getTime());
+			seqMap.put(id, 0l);
 		}else{
 			if(!session.equals(ioSession)){
 				session.close(true);

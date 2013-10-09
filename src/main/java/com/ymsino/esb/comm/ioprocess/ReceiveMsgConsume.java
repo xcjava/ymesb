@@ -52,7 +52,10 @@ public class ReceiveMsgConsume {
 		this.consumerTemplate = consumerTemplate;
 	}
 
-	LoadWmRespProcess loadWmRespProcess;
+	LoginProcess loginProcess;
+	LogoutProcess logoutProcess;
+	LoadWmProcess loadWmProcess;
+	PingProcess pingProcess;
 	
 	public Serializable receive(Exchange exchange){
 		//ConcentratorOnLine.checkAdd(i++ + "", exchange);
@@ -61,38 +64,47 @@ public class ReceiveMsgConsume {
 
 		AbstractMessage message = null;
 		if(AbstractMessage.getControlCode(bytes).equals("A1")){
-			message = new Login(bytes);
-		}else if(AbstractMessage.getControlCode(bytes).equals("21")){
+			
+			Login req = new Login(bytes);
+			loginProcess.process(req, exchange);
+			
+		}/*else if(AbstractMessage.getControlCode(bytes).equals("21")){
 			message = new LoginResp(bytes);
-		}else if(AbstractMessage.getControlCode(bytes).equals("A2")){
-			message = new Logout(bytes);
-		}else if(AbstractMessage.getControlCode(bytes).equals("22")){
+		}*/else if(AbstractMessage.getControlCode(bytes).equals("A2")){
+			Logout logout = new Logout(bytes);
+			logoutProcess.process(logout);
+		}/*else if(AbstractMessage.getControlCode(bytes).equals("22")){
 			message = new LogoutResp(bytes);
-		}else if(AbstractMessage.getControlCode(bytes).equals("A4")){
-			message = new Ping(bytes);
-		}else if(AbstractMessage.getControlCode(bytes).equals("24")){
+		}*/else if(AbstractMessage.getControlCode(bytes).equals("A4")){
+			Ping ping = new Ping(bytes);
+			pingProcess.process(ping);
+		}/*else if(AbstractMessage.getControlCode(bytes).equals("24")){
 			message = new PingResp(bytes);
 		}else if(AbstractMessage.getControlCode(bytes).equals("01")){
 			message = new ReadClock(bytes);
-		}else if(AbstractMessage.getControlCode(bytes).equals("81")){
-			message = new ReadClockResp(bytes);
-		}else if(AbstractMessage.getControlCode(bytes).equals("15")){
+		}*/else if(AbstractMessage.getControlCode(bytes).equals("81")){
+			
+			ReadClockResp resp = new ReadClockResp(bytes);
+			String concHardwareId = AbstractMessage.getFieldString(resp.head.rtua);
+			producerTemplate.sendBody("jms:queue:readClock:" + concHardwareId, ExchangePattern.InOnly, resp.toBytes());
+			
+		}/*else if(AbstractMessage.getControlCode(bytes).equals("15")){
 			message = new ReadParam(bytes);
-		}else if(AbstractMessage.getControlCode(bytes).equals("95")){
+		}*/else if(AbstractMessage.getControlCode(bytes).equals("95")){
 			
 			ReadParamResp resp = new ReadParamResp(bytes);
 			String concHardwareId = AbstractMessage.getFieldString(resp.head.rtua);
 			producerTemplate.sendBody("jms:queue:readWaterMeterSn:" + concHardwareId, ExchangePattern.InOnly, resp.toBytes());
 			
-		}else if(AbstractMessage.getControlCode(bytes).equals("12")){
+		}/*else if(AbstractMessage.getControlCode(bytes).equals("12")){
 			message = new ReadData(bytes);
-		}else if(AbstractMessage.getControlCode(bytes).equals("92")){
+		}*/else if(AbstractMessage.getControlCode(bytes).equals("92")){
 			ReadDataResp resp = new ReadDataResp(bytes);
 			String concHardwareId = AbstractMessage.getFieldString(resp.head.rtua);
 			producerTemplate.sendBody("jms:queue:readData:" + concHardwareId, ExchangePattern.InOnly, resp.toBytes());
 		}
 
-		else if(AbstractMessage.getControlCode(bytes).equals("08")){
+		/*else if(AbstractMessage.getControlCode(bytes).equals("08")){
 			if(AbstractMessage.getDataLength(bytes).equals("000E")){
 				message = new SetupClock(bytes);
 			}else if(AbstractMessage.getDataLength(bytes).equals("0153")){
@@ -107,7 +119,9 @@ public class ReceiveMsgConsume {
 					AbstractMessage.getDataSn(bytes, 17).equals("780A")){
 				message = new DeleteSettings(bytes);
 			}
-		}else if(AbstractMessage.getControlCode(bytes).equals("88")){
+		}*/
+		
+		else if(AbstractMessage.getControlCode(bytes).equals("88")){
 			if(AbstractMessage.getDataLength(bytes).equals("0004")){
 				message = new RestoreSettingsResp(bytes);
 			}else if(AbstractMessage.getDataLength(bytes).equals("0005") &&
@@ -115,7 +129,9 @@ public class ReceiveMsgConsume {
 				message = new SetupClockResp(bytes);
 			}else if(AbstractMessage.getDataLength(bytes).equals("0005") &&
 					AbstractMessage.getDataSn(bytes, 13).equals("894D")){
-				return loadWmRespProcess.process(new LoadWmResp(bytes));
+				
+				return loadWmProcess.process(new LoadWmResp(bytes));
+				
 			}else if(AbstractMessage.getDataLength(bytes).equals("0005") &&
 					AbstractMessage.getDataSn(bytes, 13).equals("7808")){
 				message = new DeleteDataResp(bytes);

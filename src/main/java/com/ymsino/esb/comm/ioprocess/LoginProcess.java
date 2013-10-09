@@ -3,6 +3,7 @@ package com.ymsino.esb.comm.ioprocess;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.camel.Exchange;
 import org.apache.camel.ExchangePattern;
 import org.apache.camel.ProducerTemplate;
 
@@ -18,7 +19,7 @@ public class LoginProcess {
 	}
 
 
-	public void process(Login login){
+	public void process(Login login, Exchange exchange){
 		
 		if(AbstractMessage.getFieldString(login.password).equals("000000")){
 			LoginResp resp = new LoginResp();
@@ -27,6 +28,10 @@ public class LoginProcess {
 			Map<String, Object> headers = new HashMap<String, Object>();
 			headers.put("concentratorId", AbstractMessage.getFieldString(resp.head.rtua));
 			producerTemplate.sendBodyAndHeaders("jms:queue:send", ExchangePattern.InOnly, resp.toBytes(), headers);
+			
+			ConcentratorOnLine.checkAdd(AbstractMessage.getFieldString(login.head.rtua), exchange);
+		}else{
+			ConcentratorOnLine.close(AbstractMessage.getFieldString(login.head.rtua), true);
 		}
 		
 	}
