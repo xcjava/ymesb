@@ -8,6 +8,7 @@ import org.apache.camel.ConsumerTemplate;
 import org.apache.camel.ExchangePattern;
 import org.apache.camel.ProducerTemplate;
 
+import com.ymsino.esb.comm.ioprocess.ConcentratorOnLine;
 import com.ymsino.esb.comm.service.api.LoadWmService;
 import com.ymsino.esb.protocol.AbstractMessage;
 import com.ymsino.esb.protocol.strutc.LoadWm;
@@ -99,10 +100,14 @@ public class LoadWmServiceImpl implements LoadWmService {
 			e.printStackTrace();
 			return;
 		}*/
+		/*ConcentratorOnLine.add("AAA");
+		Long seq = ConcentratorOnLine.getNextSeq("AAA");
+		System.out.print("获取序号" + seq);*/
 		
 		
 		producerTemplate.sendBody("jms:queue:test:1", "你的名字叫啥?");
-		Thread.sleep(10000);
+		//Thread.sleep(10000);
+		
 		
 		String name = (String) camelContext.createConsumerTemplate().receiveBody("jms:queue:test:2");
 		//String name = (String) consumerTemplate.receiveBody("jms:queue:test:2");
