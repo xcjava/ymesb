@@ -2,6 +2,12 @@ package com.ymsino.esb.comm.service.api;
 
 import java.util.Map;
 
+import javax.jws.WebParam;
+import javax.jws.WebService;
+
+import org.apache.cxf.annotations.WSDLDocumentation;
+
+@WebService
 public interface LoadWmService {
 
 	/**
@@ -11,7 +17,10 @@ public interface LoadWmService {
 	 * @param count				连续数量
 	 * @return	水表序号和水表号的键值对
 	 */
-	public Map<String, String> readWaterMeterSn(String concHardwareId, Integer wmSn, Integer count);
+	@WSDLDocumentation("读取集中器水表参数")
+	public Map<String, String> readWaterMeterSn(@WebParam(name="concHardwareId")String concHardwareId, 
+			@WebParam(name="wmSn")Integer wmSn, 
+			@WebParam(name="count")Integer count);
 	
 	/**
 	 * 加载集中器水表参数
@@ -20,7 +29,10 @@ public interface LoadWmService {
 	 * @param optType			操作类型
 	 * @return	错误代码,00表示成功
 	 */
-	public String writeWaterMeterSn(String concHardwareId, Map<String, String> map, String optType);
+	@WSDLDocumentation("加载集中器水表参数")
+	public String writeWaterMeterSn(@WebParam(name="concHardwareId")String concHardwareId, 
+			@WebParam(name="map")Map<String, String> map, 
+			@WebParam(name="optType")String optType);
 	
 	public void test() throws InterruptedException;
 	

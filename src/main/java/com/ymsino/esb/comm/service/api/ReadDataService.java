@@ -2,6 +2,12 @@ package com.ymsino.esb.comm.service.api;
 
 import java.util.Map;
 
+import javax.jws.WebParam;
+import javax.jws.WebService;
+
+import org.apache.cxf.annotations.WSDLDocumentation;
+
+@WebService
 public interface ReadDataService {
 
 	/**
@@ -12,6 +18,10 @@ public interface ReadDataService {
 	 * @param dateStr			日期,格式YYMMDD
 	 * @return 水表号和水表度数的键值对
 	 */
-	public Map<String, String> readDataByDate(String concHardwareId, Integer wmSn, Integer count, String dateStr);
+	@WSDLDocumentation("读日冻结数据")
+	public Map<String, String> readDataByDate(@WebParam(name="concHardwareId")String concHardwareId, 
+			@WebParam(name="wmSn")Integer wmSn, 
+			@WebParam(name="count")Integer count, 
+			@WebParam(name="dateStr")String dateStr);
 	
 }

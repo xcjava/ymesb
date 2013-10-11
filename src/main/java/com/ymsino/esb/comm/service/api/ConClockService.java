@@ -1,9 +1,29 @@
 package com.ymsino.esb.comm.service.api;
 
+import javax.jws.WebParam;
+import javax.jws.WebService;
+
+import org.apache.cxf.annotations.WSDLDocumentation;
+
+@WebService
 public interface ConClockService {
 
-	public String readClock(String concHardwareId);
+	/**
+	 * 读取集中器时钟
+	 * @param concHardwareId
+	 * @return
+	 */
+	@WSDLDocumentation("读取集中器时钟")
+	public String readClock(@WebParam(name="concHardwareId")String concHardwareId);
 	
-	public String setupClock(String concHardwareId, String dateStr);
+	/**
+	 * 设置集中器时钟
+	 * @param concHardwareId
+	 * @param dateStr
+	 * @return
+	 */
+	@WSDLDocumentation("设置集中器时钟")
+	public String setupClock(@WebParam(name="concHardwareId")String concHardwareId, 
+			@WebParam(name="dateStr")String dateStr);
 	
 }
