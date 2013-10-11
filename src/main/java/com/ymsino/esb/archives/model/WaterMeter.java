@@ -68,6 +68,10 @@ public class WaterMeter  implements java.io.Serializable {
      */
      private String concHardwareId;
      /**
+      * 对应集中器的序号
+     */
+     private Integer wmSn;
+     /**
       * 初始表码
      */
      private String initialYards;
@@ -105,7 +109,7 @@ public class WaterMeter  implements java.io.Serializable {
     }
     
     /** full constructor */
-    public WaterMeter(String hardwareId, Long uid, String userId, String userName, String chargingUnitId, String parentUnits, String nature, String purcAmount, String showWarn, String closeWarn, String childHardwareId, String dataType, Integer constant, String concHardwareId, String initialYards, Long price, String alarmVolume, String radioFrequency, Short type, Long createTimestamp) {
+    public WaterMeter(String hardwareId, Long uid, String userId, String userName, String chargingUnitId, String parentUnits, String nature, String purcAmount, String showWarn, String closeWarn, String childHardwareId, String dataType, Integer constant, String concHardwareId, Integer wmSn, String initialYards, Long price, String alarmVolume, String radioFrequency, Short type, Long createTimestamp) {
         this.hardwareId = hardwareId;
         this.uid = uid;
         this.userId = userId;
@@ -120,6 +124,7 @@ public class WaterMeter  implements java.io.Serializable {
         this.dataType = dataType;
         this.constant = constant;
         this.concHardwareId = concHardwareId;
+        this.wmSn = wmSn;
         this.initialYards = initialYards;
         this.price = price;
         this.alarmVolume = alarmVolume;
@@ -283,6 +288,17 @@ public class WaterMeter  implements java.io.Serializable {
     
     public void setConcHardwareId(String concHardwareId) {
         this.concHardwareId = concHardwareId;
+    }
+    /**       
+     *      * 对应集中器的序号
+     */
+
+    public Integer getWmSn() {
+        return this.wmSn;
+    }
+    
+    public void setWmSn(Integer wmSn) {
+        this.wmSn = wmSn;
     }
     /**       
      *      * 初始表码

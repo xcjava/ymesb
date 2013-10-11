@@ -105,6 +105,13 @@
 			</column>
 		</property>
 		
+		<property name="wmSn" type="java.lang.Integer">
+			<meta attribute="field-description">对应集中器的序号</meta>
+			<column name="WM_SN">
+				<comment>对应集中器的序号</comment>
+			</column>
+		</property>
+		
 		<property name="initialYards" type="java.lang.String">
 			<meta attribute="field-description">初始表码</meta>
 			<column name="INITIAL_YARDS">
