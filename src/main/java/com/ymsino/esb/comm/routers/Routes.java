@@ -1,15 +1,28 @@
 package com.ymsino.esb.comm.routers;
 
 import org.apache.camel.builder.RouteBuilder;
+import org.apache.commons.lang.StringUtils;
+import org.apache.log4j.Logger;
+
+import com.gmail.xcjava.base.io.PropertyReader;
 
 public class Routes extends RouteBuilder {
 
+	private Logger logger = Logger.getLogger(Routes.class);
+	
     @Override
     public void configure() throws Exception {
 
-    	int[] port = {8001, 8002, 8003};
+    	String ports = PropertyReader.getProperties("config.properties").getProperty("protocol.port");
+    	if(StringUtils.isEmpty(ports)){
+    		logger.info("没有启动集中器端口监听");
+    	}
+    	
+    	String[] port = ports.split(",");
+    	
 		for(int i = 0; i < port.length; i++){
 			from("mina2:tcp://0.0.0.0:" + port[i] + "?codec=#hyCodec").to("bean:receiveMsgConsume?method=receive");
+			logger.info("启动集中器端口监听:" + port[i]);
 			from("jms:queue:test:1").to("bean:receiveMsgConsume?method=testResp");
 			//from("mina2:tcp://0.0.0.0:" + port[i]).to("bean:loadWmManager?method=test");
 			//from("mina2:tcp://0.0.0.0:" + port[i] + "?codec=#hyCodec&sync=true").to("bean:loadWmManager?method=test");
