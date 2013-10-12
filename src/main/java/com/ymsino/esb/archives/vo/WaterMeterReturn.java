@@ -84,6 +84,17 @@ public class WaterMeterReturn implements Serializable {
      * 创建时间
     */
     private Long createTimestamp;
+    /**
+     * 对应集中器的序号
+    */
+    private Integer wmSn;
+    
+	public Integer getWmSn() {
+		return wmSn;
+	}
+	public void setWmSn(Integer wmSn) {
+		this.wmSn = wmSn;
+	}
 	public String getHardwareId() {
 		return hardwareId;
 	}
