@@ -24,15 +24,117 @@
 	
 	<bean class="com.ymsino.esb.comm.task.CheckActTask" id="checkActTask"></bean>
 
-	<bean id="loadWmServiceImpl" class="com.ymsino.esb.comm.service.impl.LoadWmServiceImpl">
-		<property name="producerTemplate" ref="producerTemplate"></property>
-		<property name="consumerTemplate" ref="consumerTemplate"></property>
-		<property name="camelContext" ref="camelContext"></property>
-	</bean>
-	
 	<bean id="sendMsgConsume" class="com.ymsino.esb.comm.ioprocess.SendMsgConsume"></bean>
 	<bean id="receiveMsgConsume" class="com.ymsino.esb.comm.ioprocess.ReceiveMsgConsume">
 		<property name="producerTemplate" ref="producerTemplate"></property>
 	</bean>
 
+
+	<jaxws:server id="conClockService" 
+		serviceClass="com.ymsino.esb.comm.service.api.ConClockService" 
+		address="camel://jetty:http://${ws.host}:${ws.port}/ws/conClockService">
+		<jaxws:serviceBean><ref bean="conClockServiceImpl"/></jaxws:serviceBean>
+	</jaxws:server>
+	<bean id="conClockServiceImpl" class="com.ymsino.esb.comm.service.impl.ConClockServiceImpl">
+		<property name="producerTemplate" ref="producerTemplate"></property>
+		<property name="consumerTemplate" ref="consumerTemplate"></property>
+		<property name="camelContext" ref="camelContext"></property>
+	</bean>
+	
+	<jaxws:server id="conDebugService" 
+		serviceClass="com.ymsino.esb.comm.service.api.ConDebugService" 
+		address="camel://jetty:http://${ws.host}:${ws.port}/ws/conDebugService">
+		<jaxws:serviceBean><ref bean="conDebugServiceImpl"/></jaxws:serviceBean>
+	</jaxws:server>
+	<bean id="conDebugServiceImpl" 
+		class="com.ymsino.esb.comm.service.impl.ConDebugServiceImpl">
+		<property name="producerTemplate" ref="producerTemplate"></property>
+		<property name="consumerTemplate" ref="consumerTemplate"></property>
+		<property name="camelContext" ref="camelContext"></property>
+	</bean>
+	
+	<jaxws:server id="deleteDataService" 
+		serviceClass="com.ymsino.esb.comm.service.api.DeleteDataService" 
+		address="camel://jetty:http://${ws.host}:${ws.port}/ws/deleteDataService">
+		<jaxws:serviceBean><ref bean="deleteDataServiceImpl"/></jaxws:serviceBean>
+	</jaxws:server>
+	<bean id="deleteDataServiceImpl" 
+		class="com.ymsino.esb.comm.service.impl.DeleteDataServiceImpl">
+		<property name="producerTemplate" ref="producerTemplate"></property>
+		<property name="consumerTemplate" ref="consumerTemplate"></property>
+		<property name="camelContext" ref="camelContext"></property>
+	</bean>
+	
+	<jaxws:server id="deleteSettingsService" 
+		serviceClass="com.ymsino.esb.comm.service.api.DeleteSettingsService" 
+		address="camel://jetty:http://${ws.host}:${ws.port}/ws/deleteSettingsService">
+		<jaxws:serviceBean><ref bean="deleteSettingsServiceImpl"/></jaxws:serviceBean>
+	</jaxws:server>
+	<bean id="deleteSettingsServiceImpl" 
+		class="com.ymsino.esb.comm.service.impl.DeleteSettingsServiceImpl">
+		<property name="producerTemplate" ref="producerTemplate"></property>
+		<property name="consumerTemplate" ref="consumerTemplate"></property>
+		<property name="camelContext" ref="camelContext"></property>
+	</bean>
+	
+	<jaxws:server id="loadWmService" 
+		serviceClass="com.ymsino.esb.comm.service.api.LoadWmService" 
+		address="camel://jetty:http://${ws.host}:${ws.port}/ws/loadWmService">
+		<jaxws:serviceBean><ref bean="loadWmServiceImpl"/></jaxws:serviceBean>
+	</jaxws:server>
+	<bean id="loadWmServiceImpl" 
+		class="com.ymsino.esb.comm.service.impl.LoadWmServiceImpl">
+		<property name="producerTemplate" ref="producerTemplate"></property>
+		<property name="consumerTemplate" ref="consumerTemplate"></property>
+		<property name="camelContext" ref="camelContext"></property>
+		<property name="commonHibernateDao" ref="commonHibernateDao"></property>
+	</bean>
+	
+	<jaxws:server id="readDataService" 
+		serviceClass="com.ymsino.esb.comm.service.api.ReadDataService" 
+		address="camel://jetty:http://${ws.host}:${ws.port}/ws/readDataService">
+		<jaxws:serviceBean><ref bean="readDataServiceImpl"/></jaxws:serviceBean>
+	</jaxws:server>
+	<bean id="readDataServiceImpl" 
+		class="com.ymsino.esb.comm.service.impl.ReadDataServiceImpl">
+		<property name="producerTemplate" ref="producerTemplate"></property>
+		<property name="consumerTemplate" ref="consumerTemplate"></property>
+		<property name="camelContext" ref="camelContext"></property>
+	</bean>
+	
+	<jaxws:server id="restoreSettingService" 
+		serviceClass="com.ymsino.esb.comm.service.api.RestoreSettingService" 
+		address="camel://jetty:http://${ws.host}:${ws.port}/ws/restoreSettingService">
+		<jaxws:serviceBean><ref bean="restoreSettingsServiceImpl"/></jaxws:serviceBean>
+	</jaxws:server>
+	<bean id="restoreSettingsServiceImpl" 
+		class="com.ymsino.esb.comm.service.impl.RestoreSettingsServiceImpl">
+		<property name="producerTemplate" ref="producerTemplate"></property>
+		<property name="consumerTemplate" ref="consumerTemplate"></property>
+		<property name="camelContext" ref="camelContext"></property>
+	</bean>
+	
+	<jaxws:server id="testDataService" 
+		serviceClass="com.ymsino.esb.comm.service.api.TestDataService" 
+		address="camel://jetty:http://${ws.host}:${ws.port}/ws/testDataService">
+		<jaxws:serviceBean><ref bean="testDataServiceImpl"/></jaxws:serviceBean>
+	</jaxws:server>
+	<bean id="testDataServiceImpl" 
+		class="com.ymsino.esb.comm.service.impl.TestDataServiceImpl">
+		<property name="producerTemplate" ref="producerTemplate"></property>
+		<property name="consumerTemplate" ref="consumerTemplate"></property>
+		<property name="camelContext" ref="camelContext"></property>
+	</bean>
+	
+	<jaxws:server id="testMeterCodeService" 
+		serviceClass="com.ymsino.esb.comm.service.api.TestMeterCodeService" 
+		address="camel://jetty:http://${ws.host}:${ws.port}/ws/testMeterCodeService">
+		<jaxws:serviceBean><ref bean="testMeterCodeServiceImpl"/></jaxws:serviceBean>
+	</jaxws:server>
+	<bean id="testMeterCodeServiceImpl" 
+		class="com.ymsino.esb.comm.service.impl.TestMeterCodeServiceImpl">
+		<property name="producerTemplate" ref="producerTemplate"></property>
+		<property name="consumerTemplate" ref="consumerTemplate"></property>
+		<property name="camelContext" ref="camelContext"></property>
+	</bean>
 </beans>
