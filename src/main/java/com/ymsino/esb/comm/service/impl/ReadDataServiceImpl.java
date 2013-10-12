@@ -3,6 +3,7 @@ package com.ymsino.esb.comm.service.impl;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.camel.CamelContext;
 import org.apache.camel.ConsumerTemplate;
 import org.apache.camel.ExchangePattern;
 import org.apache.camel.ProducerTemplate;
@@ -24,8 +25,13 @@ public class ReadDataServiceImpl implements ReadDataService {
 		this.consumerTemplate = consumerTemplate;
 	}
 	
+	private CamelContext camelContext;
+	public void setCamelContext(CamelContext camelContext) {
+		this.camelContext = camelContext;
+	}
+	
 	@Override
-	public Map<String, String> readDataByDate(String concHardwareId, Integer wmSn, Integer count, String dateStr) {
+	public HashMap<String, String> readDataByDate(String concHardwareId, Integer wmSn, Integer count, String dateStr) {
 		
 		ReadData req = new ReadData();
 		req.head.rtua = AbstractMessage.initField(concHardwareId, req.head.rtua.length);
@@ -42,7 +48,7 @@ public class ReadDataServiceImpl implements ReadDataService {
 		
 		byte[] bytes = (byte[]) consumerTemplate.receiveBody("jms:queue:readData:" + concHardwareId);
 		ReadDataResp resp = new ReadDataResp(bytes);
-		Map<String, String> map = new HashMap<String, String>();
+		HashMap<String, String> map = new HashMap<String, String>();
 		for(ReadDataRespItem item : resp.readDataRespItem){
 			if(!AbstractMessage.getFieldString(item.meterId).equals("FFFFFFFFFFFF")){
 				map.put(Integer.valueOf(AbstractMessage.getFieldString(item.meterId)).toString(), AbstractMessage.getFieldString(item.meterData));

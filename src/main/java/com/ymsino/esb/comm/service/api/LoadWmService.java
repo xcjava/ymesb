@@ -1,5 +1,6 @@
 package com.ymsino.esb.comm.service.api;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.jws.WebParam;
@@ -18,7 +19,7 @@ public interface LoadWmService {
 	 * @return	水表序号和水表号的键值对
 	 */
 	@WSDLDocumentation("读取集中器水表参数")
-	public Map<String, String> readWaterMeterSn(@WebParam(name="concHardwareId")String concHardwareId, 
+	public HashMap<String, String> readWaterMeterSn(@WebParam(name="concHardwareId")String concHardwareId, 
 			@WebParam(name="wmSn")Integer wmSn, 
 			@WebParam(name="count")Integer count);
 	

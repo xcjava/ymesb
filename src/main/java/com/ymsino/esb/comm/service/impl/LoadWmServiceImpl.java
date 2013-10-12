@@ -42,7 +42,7 @@ public class LoadWmServiceImpl implements LoadWmService {
 	}
 
 	@Override
-	public Map<String, String> readWaterMeterSn(String concHardwareId,
+	public HashMap<String, String> readWaterMeterSn(String concHardwareId,
 			Integer wmSn, Integer count) {
 		
 		ReadParam readParam = new ReadParam();
@@ -57,7 +57,7 @@ public class LoadWmServiceImpl implements LoadWmService {
 		
 		byte[] bytes = (byte[]) camelContext.createConsumerTemplate().receiveBody("jms:queue:readWaterMeterSn:" + concHardwareId);
 		ReadParamResp resp = new ReadParamResp(bytes);
-		Map<String, String> map = new HashMap<String, String>();
+		HashMap<String, String> map = new HashMap<String, String>();
 		
 		for(ReadParamRespItem item : resp.readParamRespItem){
 			if(!AbstractMessage.getFieldString(item.waterMeterSn).equals("FFFF")){
