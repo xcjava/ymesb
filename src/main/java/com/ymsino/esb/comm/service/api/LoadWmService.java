@@ -28,11 +28,20 @@ public interface LoadWmService {
 	 * @param map				水表序号和水表号的键值对
 	 * @param optType			操作类型
 	 * @return	错误代码,00表示成功
-	 */
+	
 	@WSDLDocumentation("加载集中器水表参数")
 	public String writeWaterMeterSn(@WebParam(name="concHardwareId")String concHardwareId, 
 			@WebParam(name="map")Map<String, String> map, 
 			@WebParam(name="optType")String optType);
+	 */
+	
+	/**
+	 * 加载集中器水表参数
+	 * @param concHardwareId	集中器逻辑地址
+	 * @return
+	 */
+	@WSDLDocumentation("加载集中器水表参数")
+	public Boolean loadWm(@WebParam(name="concHardwareId")String concHardwareId);
 	
 	public void test() throws InterruptedException;
 	
