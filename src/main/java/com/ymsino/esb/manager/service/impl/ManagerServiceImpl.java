@@ -170,7 +170,7 @@ public class ManagerServiceImpl implements ManagerService {
 		List<Object> paramList = new ArrayList<Object>();
 		paramList.add(MD5.getMD5(password.trim()));
 		paramList.add(mangerId.trim().toLowerCase());
-		String hql = "from Manager model where status = 1 and model.password = ? and model.userId = ?";
+		String hql = "from Manager model where status = 1 and model.password = ? and model.managerId = ?";
 		List<Manager> list = this.commonHibernateDao.findBy(hql, paramList.toArray());
 		if(list.size() != 1)
 			return null;
@@ -185,7 +185,7 @@ public class ManagerServiceImpl implements ManagerService {
 	public List<ManagerReturn> getListpager(QueryParam queryParam,
 			Integer startRow, Integer pageSize) {
 		
-		String hql = "from Manager model where 1=1 and model.userId != 'administrator' ";
+		String hql = "from Manager model where 1=1 and model.managerId != 'administrator' ";
 		List<Object> paramList = new ArrayList<Object>();
 		
 		if(queryParam != null && 
@@ -206,7 +206,7 @@ public class ManagerServiceImpl implements ManagerService {
 			OrderParamReader opr = new OrderParamReader(queryParam.getOrderParamStr(), queryParam.getCustomOrderParamStr());
 			hql += opr.getOrderString("model") + ",";
 		}
-		hql += " model.createTimestamp desc, model.userId desc";
+		hql += " model.createTimestamp desc, model.managerId desc";
 		
 		List<Manager> list = null;
 		if(paramList.size()>0){
@@ -229,7 +229,7 @@ public class ManagerServiceImpl implements ManagerService {
 	@Override
 	public Integer getCount(QueryParam queryParam) {
 		
-		String hql = "select count(*) from Manager model where 1=1 and model.userId != 'administrator' ";
+		String hql = "select count(*) from Manager model where 1=1 and model.managerId != 'administrator' ";
 		List<Object> paramList = new ArrayList<Object>();
 		
 		if(queryParam != null && 
