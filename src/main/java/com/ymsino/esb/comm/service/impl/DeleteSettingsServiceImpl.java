@@ -8,6 +8,7 @@ import org.apache.camel.ConsumerTemplate;
 import org.apache.camel.ExchangePattern;
 import org.apache.camel.ProducerTemplate;
 
+import com.ymsino.esb.comm.ioprocess.ConcentratorOnLine;
 import com.ymsino.esb.comm.service.api.DeleteSettingsService;
 import com.ymsino.esb.protocol.AbstractMessage;
 import com.ymsino.esb.protocol.strutc.DeleteSettings;
@@ -33,12 +34,14 @@ public class DeleteSettingsServiceImpl implements DeleteSettingsService {
 
 		DeleteSettings deleteSettings = new DeleteSettings();
 		deleteSettings.head.rtua = AbstractMessage.initField(concHardwareId, deleteSettings.head.rtua.length);
+		deleteSettings.head.mstaSeq = AbstractMessage.initField(ConcentratorOnLine.getNextMstaSeq(concHardwareId), deleteSettings.head.rtua.length);
 		
 		Map<String, Object> headers = new HashMap<String, Object>();
 		headers.put("concentratorId", AbstractMessage.getFieldString(deleteSettings.head.rtua));
 		producerTemplate.sendBodyAndHeaders("jms:queue:send", ExchangePattern.InOnly, deleteSettings.toBytes(), headers);
 		
-		String errorCode = (String) camelContext.createConsumerTemplate().receiveBody("jms:queue:deleteSettings:" + concHardwareId);
+		String errorCode = (String) camelContext.createConsumerTemplate().receiveBody("jms:queue:deleteSettings:" + concHardwareId + ":" +
+				AbstractMessage.getFieldString(deleteSettings.head.mstaSeq));
 		return errorCode;
 		
 	}

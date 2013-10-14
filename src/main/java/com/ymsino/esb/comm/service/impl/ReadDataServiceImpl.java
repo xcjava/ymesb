@@ -8,6 +8,7 @@ import org.apache.camel.ConsumerTemplate;
 import org.apache.camel.ExchangePattern;
 import org.apache.camel.ProducerTemplate;
 
+import com.ymsino.esb.comm.ioprocess.ConcentratorOnLine;
 import com.ymsino.esb.comm.service.api.ReadDataService;
 import com.ymsino.esb.protocol.AbstractMessage;
 import com.ymsino.esb.protocol.strutc.ReadData;
@@ -35,6 +36,7 @@ public class ReadDataServiceImpl implements ReadDataService {
 		
 		ReadData req = new ReadData();
 		req.head.rtua = AbstractMessage.initField(concHardwareId, req.head.rtua.length);
+		req.head.mstaSeq = AbstractMessage.initField(ConcentratorOnLine.getNextMstaSeq(concHardwareId), req.head.rtua.length);
 		req.options = AbstractMessage.initField("0140", req.options.length);//日冻结
 		req.startWaterMeterSn = AbstractMessage.initField(wmSn.toString(), req.startWaterMeterSn.length);
 		req.totalMeterNum = AbstractMessage.initField(count.toString(), req.totalMeterNum.length);
@@ -46,7 +48,8 @@ public class ReadDataServiceImpl implements ReadDataService {
 		headers.put("concentratorId", AbstractMessage.getFieldString(req.head.rtua));
 		producerTemplate.sendBodyAndHeaders("jms:queue:send", ExchangePattern.InOnly, req.toBytes(), headers);
 		
-		byte[] bytes = (byte[]) consumerTemplate.receiveBody("jms:queue:readData:" + concHardwareId);
+		byte[] bytes = (byte[]) consumerTemplate.receiveBody("jms:queue:readData:" + concHardwareId + ":" +
+				AbstractMessage.getFieldString(req.head.mstaSeq));
 		ReadDataResp resp = new ReadDataResp(bytes);
 		HashMap<String, String> map = new HashMap<String, String>();
 		for(ReadDataRespItem item : resp.readDataRespItem){

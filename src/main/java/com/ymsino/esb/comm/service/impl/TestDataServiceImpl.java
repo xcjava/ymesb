@@ -8,6 +8,7 @@ import org.apache.camel.ConsumerTemplate;
 import org.apache.camel.ExchangePattern;
 import org.apache.camel.ProducerTemplate;
 
+import com.ymsino.esb.comm.ioprocess.ConcentratorOnLine;
 import com.ymsino.esb.comm.service.api.TestDataService;
 import com.ymsino.esb.protocol.AbstractMessage;
 import com.ymsino.esb.protocol.strutc.TestData;
@@ -34,6 +35,7 @@ public class TestDataServiceImpl implements TestDataService {
 
 		TestData testData = new TestData();
 		testData.head.rtua = AbstractMessage.initField(concHardwareId, testData.head.rtua.length);
+		testData.head.mstaSeq = AbstractMessage.initField(ConcentratorOnLine.getNextMstaSeq(concHardwareId), testData.head.rtua.length);
 		testData.waterMeterId = AbstractMessage.initField(waterMeterId, testData.waterMeterId.length);
 		testData.waterMeterSn = AbstractMessage.initField(waterMeterSn.toString(), testData.waterMeterSn.length);
 		
@@ -41,7 +43,8 @@ public class TestDataServiceImpl implements TestDataService {
 		headers.put("concentratorId", AbstractMessage.getFieldString(testData.head.rtua));
 		producerTemplate.sendBodyAndHeaders("jms:queue:send", ExchangePattern.InOnly, testData.toBytes(), headers);
 		
-		byte[] bytes = (byte[]) camelContext.createConsumerTemplate().receiveBody("jms:queue:testData:" + concHardwareId);
+		byte[] bytes = (byte[]) camelContext.createConsumerTemplate().receiveBody("jms:queue:testData:" + concHardwareId + ":" +
+				AbstractMessage.getFieldString(testData.head.mstaSeq));
 		TestDataResp resp = new TestDataResp(bytes);
 		
 		return AbstractMessage.getFieldString(resp.dataContent);

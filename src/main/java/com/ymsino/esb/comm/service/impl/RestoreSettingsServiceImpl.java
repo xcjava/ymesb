@@ -8,6 +8,7 @@ import org.apache.camel.ConsumerTemplate;
 import org.apache.camel.ExchangePattern;
 import org.apache.camel.ProducerTemplate;
 
+import com.ymsino.esb.comm.ioprocess.ConcentratorOnLine;
 import com.ymsino.esb.comm.service.api.RestoreSettingService;
 import com.ymsino.esb.protocol.AbstractMessage;
 import com.ymsino.esb.protocol.strutc.RestoreSettings;
@@ -33,12 +34,14 @@ public class RestoreSettingsServiceImpl implements RestoreSettingService {
 		
 		RestoreSettings restoreSettings = new RestoreSettings();
 		restoreSettings.head.rtua = AbstractMessage.initField(concHardwareId, restoreSettings.head.rtua.length);
+		restoreSettings.head.mstaSeq = AbstractMessage.initField(ConcentratorOnLine.getNextMstaSeq(concHardwareId), restoreSettings.head.rtua.length);
 		
 		Map<String, Object> headers = new HashMap<String, Object>();
 		headers.put("concentratorId", AbstractMessage.getFieldString(restoreSettings.head.rtua));
 		producerTemplate.sendBodyAndHeaders("jms:queue:send", ExchangePattern.InOnly, restoreSettings.toBytes(), headers);
 		
-		String errorCode = (String) camelContext.createConsumerTemplate().receiveBody("jms:queue:restoreSettings:" + concHardwareId);
+		String errorCode = (String) camelContext.createConsumerTemplate().receiveBody("jms:queue:restoreSettings:" + concHardwareId + ":" +
+				AbstractMessage.getFieldString(restoreSettings.head.mstaSeq));
 		return errorCode;
 		
 	}

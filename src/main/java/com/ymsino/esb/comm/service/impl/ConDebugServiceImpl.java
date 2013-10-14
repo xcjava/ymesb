@@ -8,6 +8,7 @@ import org.apache.camel.ConsumerTemplate;
 import org.apache.camel.ExchangePattern;
 import org.apache.camel.ProducerTemplate;
 
+import com.ymsino.esb.comm.ioprocess.ConcentratorOnLine;
 import com.ymsino.esb.comm.service.api.ConDebugService;
 import com.ymsino.esb.protocol.AbstractMessage;
 import com.ymsino.esb.protocol.strutc.Debug;
@@ -34,6 +35,7 @@ public class ConDebugServiceImpl implements ConDebugService {
 
 		Debug debug = new Debug();
 		debug.head.rtua = AbstractMessage.initField(concHardwareId, debug.head.rtua.length);
+		debug.head.mstaSeq = AbstractMessage.initField(ConcentratorOnLine.getNextMstaSeq(concHardwareId), debug.head.rtua.length);
 		debug.waterMeterId = AbstractMessage.initField(waterMeterId, debug.waterMeterId.length);
 		debug.waterMeterSn = AbstractMessage.initField(waterMeterSn.toString(), debug.waterMeterSn.length);
 		
@@ -41,7 +43,8 @@ public class ConDebugServiceImpl implements ConDebugService {
 		headers.put("concentratorId", AbstractMessage.getFieldString(debug.head.rtua));
 		producerTemplate.sendBodyAndHeaders("jms:queue:send", ExchangePattern.InOnly, debug.toBytes(), headers);
 		
-		byte[] bytes = (byte[]) camelContext.createConsumerTemplate().receiveBody("jms:queue:debug:" + concHardwareId);
+		byte[] bytes = (byte[]) camelContext.createConsumerTemplate().receiveBody("jms:queue:debug:" + concHardwareId + ":" +
+				AbstractMessage.getFieldString(debug.head.mstaSeq));
 		DebugResp resp = new DebugResp(bytes);
 		
 		return AbstractMessage.getFieldString(resp.dataContent);

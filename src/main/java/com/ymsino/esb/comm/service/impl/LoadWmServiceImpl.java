@@ -47,6 +47,7 @@ public class LoadWmServiceImpl implements LoadWmService {
 		
 		ReadParam readParam = new ReadParam();
 		readParam.head.rtua = AbstractMessage.initField(concHardwareId, readParam.head.rtua.length);
+		readParam.head.mstaSeq = AbstractMessage.initField(ConcentratorOnLine.getNextMstaSeq(concHardwareId), readParam.head.rtua.length);
 		readParam.startWaterMeterSn = AbstractMessage.initField(wmSn.toString(), readParam.startWaterMeterSn.length);
 		readParam.totalMeterNum = AbstractMessage.initField(count.toString(), readParam.totalMeterNum.length);
 		
@@ -55,7 +56,8 @@ public class LoadWmServiceImpl implements LoadWmService {
 		headers.put("concentratorId", AbstractMessage.getFieldString(readParam.head.rtua));
 		producerTemplate.sendBodyAndHeaders("jms:queue:send", ExchangePattern.InOnly, readParam.toBytes(), headers);
 		
-		byte[] bytes = (byte[]) camelContext.createConsumerTemplate().receiveBody("jms:queue:readWaterMeterSn:" + concHardwareId);
+		byte[] bytes = (byte[]) camelContext.createConsumerTemplate().receiveBody("jms:queue:readWaterMeterSn:" + concHardwareId + ":" +
+				AbstractMessage.getFieldString(readParam.head.mstaSeq));
 		ReadParamResp resp = new ReadParamResp(bytes);
 		HashMap<String, String> map = new HashMap<String, String>();
 		
@@ -108,6 +110,7 @@ public class LoadWmServiceImpl implements LoadWmService {
 			
 			LoadWm loadWm = new LoadWm();
 			loadWm.head.rtua = AbstractMessage.initField(concHardwareId, loadWm.head.rtua.length);
+			loadWm.head.mstaSeq = AbstractMessage.initField(ConcentratorOnLine.getNextMstaSeq(concHardwareId), loadWm.head.rtua.length);
 			loadWm.password = AbstractMessage.initField("000000", loadWm.password.length);
 			loadWm.optType = AbstractMessage.initField("00", loadWm.optType.length);
 			
@@ -121,7 +124,8 @@ public class LoadWmServiceImpl implements LoadWmService {
 			headers.put("concentratorId", AbstractMessage.getFieldString(loadWm.head.rtua));
 			producerTemplate.sendBodyAndHeaders("jms:queue:send", ExchangePattern.InOnly, loadWm.toBytes(), headers);
 			
-			String errorCode = (String) camelContext.createConsumerTemplate().receiveBody("jms:queue:loadWm:" + concHardwareId);
+			String errorCode = (String) camelContext.createConsumerTemplate().receiveBody("jms:queue:loadWm:" + concHardwareId + ":" +
+					AbstractMessage.getFieldString(loadWm.head.mstaSeq));
 			if(!errorCode.equals("00")){
 				return Boolean.FALSE;
 			}

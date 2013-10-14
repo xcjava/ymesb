@@ -8,6 +8,7 @@ import org.apache.camel.ConsumerTemplate;
 import org.apache.camel.ExchangePattern;
 import org.apache.camel.ProducerTemplate;
 
+import com.ymsino.esb.comm.ioprocess.ConcentratorOnLine;
 import com.ymsino.esb.comm.service.api.TestMeterCodeService;
 import com.ymsino.esb.protocol.AbstractMessage;
 import com.ymsino.esb.protocol.strutc.TestMeterCode;
@@ -34,6 +35,7 @@ public class TestMeterCodeServiceImpl implements TestMeterCodeService {
 
 		TestMeterCode testMeterCode = new TestMeterCode();
 		testMeterCode.head.rtua = AbstractMessage.initField(concHardwareId, testMeterCode.head.rtua.length);
+		testMeterCode.head.mstaSeq = AbstractMessage.initField(ConcentratorOnLine.getNextMstaSeq(concHardwareId), testMeterCode.head.rtua.length);
 		testMeterCode.waterMeterId = AbstractMessage.initField(waterMeterId, testMeterCode.waterMeterId.length);
 		testMeterCode.waterMeterSn = AbstractMessage.initField(waterMeterSn.toString(), testMeterCode.waterMeterSn.length);
 		
@@ -41,7 +43,8 @@ public class TestMeterCodeServiceImpl implements TestMeterCodeService {
 		headers.put("concentratorId", AbstractMessage.getFieldString(testMeterCode.head.rtua));
 		producerTemplate.sendBodyAndHeaders("jms:queue:send", ExchangePattern.InOnly, testMeterCode.toBytes(), headers);
 		
-		byte[] bytes = (byte[]) camelContext.createConsumerTemplate().receiveBody("jms:queue:testMeterCode:" + concHardwareId);
+		byte[] bytes = (byte[]) camelContext.createConsumerTemplate().receiveBody("jms:queue:testMeterCode:" + concHardwareId + ":" +
+				AbstractMessage.getFieldString(testMeterCode.head.mstaSeq));
 		TestMeterCodeResp resp = new TestMeterCodeResp(bytes);
 		
 		return AbstractMessage.getFieldString(resp.dataContent);
