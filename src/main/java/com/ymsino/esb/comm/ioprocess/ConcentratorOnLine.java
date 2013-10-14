@@ -45,6 +45,9 @@ public class ConcentratorOnLine {
 	 */
 	private static Map<String, Integer> seqMap = new HashMap<String, Integer>();
 	
+	/**
+	 * 主站编号
+	 */
 	private static String mstaNum = PropertyReader.getProperties("config.properties").getProperty("protocol.mstaNum");
 	
 	public static void checkAdd(String id, Exchange exchange){
@@ -144,7 +147,7 @@ public class ConcentratorOnLine {
 	
 	public static String getNextMstaSeq(String id){
 		
-		if(seqMap.get(id) < 255){
+		if(seqMap.get(id) < 99){
 			seqMap.put(id, seqMap.get(id) + 1);
 		}else{
 			seqMap.put(id, 0);
