@@ -24,6 +24,7 @@ public class LoginProcess {
 		if(AbstractMessage.getFieldString(login.password).equals("000000")){
 			LoginResp resp = new LoginResp();
 			resp.head.rtua = AbstractMessage.initField(AbstractMessage.getFieldString(login.head.rtua), login.head.rtua.length);
+			resp.head.mstaSeq = AbstractMessage.initField(AbstractMessage.getFieldString(login.head.mstaSeq), login.head.mstaSeq.length);
 			
 			Map<String, Object> headers = new HashMap<String, Object>();
 			headers.put("concentratorId", AbstractMessage.getFieldString(resp.head.rtua));

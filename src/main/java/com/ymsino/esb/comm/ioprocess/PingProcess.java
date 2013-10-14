@@ -25,6 +25,7 @@ public class PingProcess {
 		
 		PingResp resp = new PingResp();
 		resp.head.rtua = AbstractMessage.initField(AbstractMessage.getFieldString(ping.head.rtua), ping.head.rtua.length);
+		resp.head.mstaSeq = AbstractMessage.initField(AbstractMessage.getFieldString(ping.head.mstaSeq), ping.head.mstaSeq.length);
 		
 		Map<String, Object> headers = new HashMap<String, Object>();
 		headers.put("concentratorId", AbstractMessage.getFieldString(resp.head.rtua));

@@ -21,6 +21,7 @@ public class LogoutProcess {
 		
 		LogoutResp resp = new LogoutResp();
 		resp.head.rtua = AbstractMessage.initField(AbstractMessage.getFieldString(logout.head.rtua), logout.head.rtua.length);
+		resp.head.mstaSeq = AbstractMessage.initField(AbstractMessage.getFieldString(logout.head.mstaSeq), logout.head.mstaSeq.length);
 		
 		Map<String, Object> headers = new HashMap<String, Object>();
 		headers.put("concentratorId", AbstractMessage.getFieldString(resp.head.rtua));
