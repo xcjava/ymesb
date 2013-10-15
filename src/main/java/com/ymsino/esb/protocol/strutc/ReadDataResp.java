@@ -20,7 +20,7 @@ public class ReadDataResp extends AbstractMessage {
 	 * 数据长度
 	 * 2字节
 	 */
-	private final String[] dataLength = {"00", "15"};
+	private final String[] dataLength = {"00", "AB"};
 	/**
 	 * 帧总数
 	 * 1字节
