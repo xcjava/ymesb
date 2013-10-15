@@ -16,11 +16,15 @@ public class ReadDataRespItem {
 	 * 6字节
 	 */
 	public String[] meterData = {"FF", "FF", "FF", "FF", "FF", "FF"};
+	/**
+	 * 读表日期HHDDMMYY
+	 */
+	public String[] readDate = {"FF", "FF", "FF", "FF"};
 	
 	/**
 	 * 字节数
 	 */
-	public static final int dataLength = 6 + 6;
+	public static final int dataLength = 6 + 6 + 4;
 	
 	public ReadDataRespItem(){}
 	
@@ -45,6 +49,13 @@ public class ReadDataRespItem {
 		this.meterData[4] = DataConverter.bytesToHexString(ByteTool.subByte(temp, 1, 1));
 		this.meterData[5] = DataConverter.bytesToHexString(ByteTool.subByte(temp, 0, 1));
 		
+		temp = ByteTool.subByte(bytes, offset, this.readDate.length);
+		offset += this.readDate.length;
+		this.readDate[0] = DataConverter.bytesToHexString(ByteTool.subByte(temp, 3, 1));
+		this.readDate[1] = DataConverter.bytesToHexString(ByteTool.subByte(temp, 2, 1));
+		this.readDate[2] = DataConverter.bytesToHexString(ByteTool.subByte(temp, 1, 1));
+		this.readDate[3] = DataConverter.bytesToHexString(ByteTool.subByte(temp, 0, 1));
+		
 	}
 
 	public byte[] toBytes() {
@@ -58,6 +69,9 @@ public class ReadDataRespItem {
 		System.arraycopy(ByteTool.reverse(DataConverter.hexStringToByte(AbstractMessage.getFieldString(this.meterData))), 0, bytes, offset, this.meterData.length);
 		offset += this.meterData.length;
 		
+		System.arraycopy(ByteTool.reverse(DataConverter.hexStringToByte(AbstractMessage.getFieldString(this.readDate))), 0, bytes, offset, this.readDate.length);
+		offset += this.readDate.length;
+		
 		return bytes;
 	}
 
@@ -65,7 +79,7 @@ public class ReadDataRespItem {
 		String str = "";
 		str += AbstractMessage.getNioFieldString(this.meterId) + "|";
 		str += AbstractMessage.getNioFieldString(this.meterData) + "|";
-		
+		str += AbstractMessage.getNioFieldString(this.readDate) + "|";
 		return str;
 	}
 	
