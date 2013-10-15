@@ -25,9 +25,9 @@ public class TestMeterCodeResp extends AbstractMessage {
 	/**
 	 * 数据长度
 	 * 2字节
-	 * 0E 00
+	 * 0F 00
 	 */
-	private final String[] dataLength = {"00", "0E"};
+	private final String[] dataLength = {"00", "0F"};
 
 	/**
 	 * 表号
@@ -42,6 +42,13 @@ public class TestMeterCodeResp extends AbstractMessage {
 	 * 77 78
 	 */
 	private final String[] dataSn = {"78", "77"};
+	
+	/**
+	 * 错误编码
+	 * 1字节
+	 * BCD
+	 */
+	public String[] errorCode = new String[1];
 	
 	/**
 	 * 数据项内容
