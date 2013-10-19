@@ -51,6 +51,7 @@ public class ReadDataServiceImpl implements ReadDataService {
 		headers.put("concentratorId", AbstractMessage.getFieldString(req.head.rtua));
 		
 		logger.debug("发送读日冻结消息:" + concHardwareId + ":" + AbstractMessage.getFieldString(req.head.mstaSeq));
+		logger.debug("发送:" + req.toString());
 		producerTemplate.sendBodyAndHeaders("jms:queue:send", ExchangePattern.InOnly, req.toBytes(), headers);
 		
 		byte[] bytes = (byte[]) consumerTemplate.receiveBody("jms:queue:readData:" + concHardwareId + ":" +

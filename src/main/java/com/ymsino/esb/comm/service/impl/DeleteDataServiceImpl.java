@@ -43,6 +43,7 @@ public class DeleteDataServiceImpl implements DeleteDataService {
 		headers.put("concentratorId", AbstractMessage.getFieldString(deleteData.head.rtua));
 		
 		logger.debug("发送删除历史数据消息:" + concHardwareId + ":" + AbstractMessage.getFieldString(deleteData.head.mstaSeq));
+		logger.debug("发送:" + deleteData.toString());
 		producerTemplate.sendBodyAndHeaders("jms:queue:send", ExchangePattern.InOnly, deleteData.toBytes(), headers);
 		
 		String errorCode = (String) camelContext.createConsumerTemplate().receiveBody("jms:queue:deleteData:" + 

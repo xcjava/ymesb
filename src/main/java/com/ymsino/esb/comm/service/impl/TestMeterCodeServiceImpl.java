@@ -46,6 +46,7 @@ public class TestMeterCodeServiceImpl implements TestMeterCodeService {
 		headers.put("concentratorId", AbstractMessage.getFieldString(testMeterCode.head.rtua));
 		
 		logger.debug("发送集中器实时召测表码消息:" + concHardwareId + ":" + AbstractMessage.getFieldString(testMeterCode.head.mstaSeq));
+		logger.debug("发送:" + testMeterCode.toString());
 		producerTemplate.sendBodyAndHeaders("jms:queue:send", ExchangePattern.InOnly, testMeterCode.toBytes(), headers);
 		
 		byte[] bytes = (byte[]) camelContext.createConsumerTemplate().receiveBody("jms:queue:testMeterCode:" + concHardwareId + ":" +

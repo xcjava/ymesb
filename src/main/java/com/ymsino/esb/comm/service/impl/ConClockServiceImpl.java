@@ -45,6 +45,7 @@ public class ConClockServiceImpl implements ConClockService {
 		headers.put("concentratorId", AbstractMessage.getFieldString(readClock.head.rtua));
 		
 		logger.debug("发送读取时钟消息:" + concHardwareId + ":" + AbstractMessage.getFieldString(readClock.head.mstaSeq));
+		logger.debug("发送:" + readClock.toString());
 		producerTemplate.sendBodyAndHeaders("jms:queue:send", ExchangePattern.InOnly, readClock.toBytes(), headers);
 		
 		byte[] bytes = (byte[]) camelContext.createConsumerTemplate().receiveBody("jms:queue:readClock:" + concHardwareId + ":" +
@@ -69,6 +70,7 @@ public class ConClockServiceImpl implements ConClockService {
 		headers.put("concentratorId", AbstractMessage.getFieldString(setupClock.head.rtua));
 		
 		logger.debug("发送设置时钟消息:" + concHardwareId + ":" + AbstractMessage.getFieldString(setupClock.head.mstaSeq));
+		logger.debug("发送:" + setupClock.toString());
 		producerTemplate.sendBodyAndHeaders("jms:queue:send", ExchangePattern.InOnly, setupClock.toBytes(), headers);
 		
 		String errorCode = (String) camelContext.createConsumerTemplate().receiveBody("jms:queue:setupClock:" + concHardwareId + ":" +

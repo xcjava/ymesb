@@ -43,6 +43,7 @@ public class DeleteSettingsServiceImpl implements DeleteSettingsService {
 		headers.put("concentratorId", AbstractMessage.getFieldString(deleteSettings.head.rtua));
 		
 		logger.debug("发送删除集中器设置消息:" + concHardwareId + ":" + AbstractMessage.getFieldString(deleteSettings.head.mstaSeq));
+		logger.debug("发送:" + deleteSettings.toString());
 		producerTemplate.sendBodyAndHeaders("jms:queue:send", ExchangePattern.InOnly, deleteSettings.toBytes(), headers);
 		
 		String errorCode = (String) camelContext.createConsumerTemplate().receiveBody("jms:queue:deleteSettings:" + concHardwareId + ":" +

@@ -43,6 +43,7 @@ public class RestoreSettingsServiceImpl implements RestoreSettingService {
 		headers.put("concentratorId", AbstractMessage.getFieldString(restoreSettings.head.rtua));
 		
 		logger.debug("发送复位集中器消息:" + concHardwareId + ":" + AbstractMessage.getFieldString(restoreSettings.head.mstaSeq));
+		logger.debug("发送:" + restoreSettings.toString());
 		producerTemplate.sendBodyAndHeaders("jms:queue:send", ExchangePattern.InOnly, restoreSettings.toBytes(), headers);
 		
 		String errorCode = (String) camelContext.createConsumerTemplate().receiveBody("jms:queue:restoreSettings:" + concHardwareId + ":" +

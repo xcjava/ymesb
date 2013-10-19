@@ -59,6 +59,7 @@ public class LoadWmServiceImpl implements LoadWmService {
 		headers.put("concentratorId", AbstractMessage.getFieldString(readParam.head.rtua));
 		
 		logger.debug("发送读取水表参数消息:" + concHardwareId + ":" + AbstractMessage.getFieldString(readParam.head.mstaSeq));
+		logger.debug("发送:" + readParam.toString());
 		producerTemplate.sendBodyAndHeaders("jms:queue:send", ExchangePattern.InOnly, readParam.toBytes(), headers);
 		
 		byte[] bytes = (byte[]) camelContext.createConsumerTemplate().receiveBody("jms:queue:readWaterMeterSn:" + concHardwareId + ":" +
@@ -131,6 +132,7 @@ public class LoadWmServiceImpl implements LoadWmService {
 			headers.put("concentratorId", AbstractMessage.getFieldString(loadWm.head.rtua));
 			
 			logger.debug("发送加载水表参数消息:" + concHardwareId + ":" + AbstractMessage.getFieldString(loadWm.head.mstaSeq));
+			logger.debug("发送:" + loadWm.toString());
 			producerTemplate.sendBodyAndHeaders("jms:queue:send", ExchangePattern.InOnly, loadWm.toBytes(), headers);
 			
 			String errorCode = (String) camelContext.createConsumerTemplate().receiveBody("jms:queue:loadWm:" + concHardwareId + ":" +
