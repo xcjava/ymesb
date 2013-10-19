@@ -30,6 +30,8 @@ public class LoginProcess {
 			
 			Map<String, Object> headers = new HashMap<String, Object>();
 			headers.put("concentratorId", AbstractMessage.getFieldString(resp.head.rtua));
+			
+			logger.debug("发送:" + resp.toString());
 			producerTemplate.sendBodyAndHeaders("jms:queue:send", ExchangePattern.InOnly, resp.toBytes(), headers);
 			
 			ConcentratorOnLine.checkAdd(AbstractMessage.getFieldString(login.head.rtua), exchange);

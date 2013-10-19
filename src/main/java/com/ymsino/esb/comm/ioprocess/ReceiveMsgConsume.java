@@ -9,6 +9,7 @@ import org.apache.camel.ExchangePattern;
 import org.apache.camel.Header;
 import org.apache.camel.ConsumerTemplate;
 import org.apache.camel.ProducerTemplate;
+import org.apache.log4j.Logger;
 import org.apache.mina.core.session.IoSession;
 
 import com.ymsino.esb.protocol.AbstractMessage;
@@ -42,6 +43,8 @@ import com.ymsino.esb.protocol.strutc.TestMeterCode;
 import com.ymsino.esb.protocol.strutc.TestMeterCodeResp;
 
 public class ReceiveMsgConsume {
+	
+	private Logger logger = Logger.getLogger(ReceiveMsgConsume.class);
 
 	private ProducerTemplate producerTemplate;
 	private ConsumerTemplate consumerTemplate;
@@ -65,17 +68,20 @@ public class ReceiveMsgConsume {
 		if(AbstractMessage.getControlCode(bytes).equals("A1")){
 			
 			Login req = new Login(bytes);
+			logger.debug("接收:" + req.toString());
 			loginProcess.process(req, exchange);
 			
 		}/*else if(AbstractMessage.getControlCode(bytes).equals("21")){
 			message = new LoginResp(bytes);
 		}*/else if(AbstractMessage.getControlCode(bytes).equals("A2")){
 			Logout logout = new Logout(bytes);
+			logger.debug("接收:" + logout.toString());
 			logoutProcess.process(logout);
 		}/*else if(AbstractMessage.getControlCode(bytes).equals("22")){
 			message = new LogoutResp(bytes);
 		}*/else if(AbstractMessage.getControlCode(bytes).equals("A4")){
 			Ping ping = new Ping(bytes);
+			logger.debug("接收:" + ping.toString());
 			pingProcess.process(ping);
 		}/*else if(AbstractMessage.getControlCode(bytes).equals("24")){
 			message = new PingResp(bytes);
@@ -84,6 +90,7 @@ public class ReceiveMsgConsume {
 		}*/else if(AbstractMessage.getControlCode(bytes).equals("81")){
 			
 			ReadClockResp resp = new ReadClockResp(bytes);
+			logger.debug("接收:" + resp.toString());
 			String concHardwareId = AbstractMessage.getFieldString(resp.head.rtua);
 			String mstaSeq = AbstractMessage.getFieldString(resp.head.mstaSeq);
 			producerTemplate.sendBody("jms:queue:readClock:" + concHardwareId + ":" + mstaSeq, ExchangePattern.InOnly, resp.toBytes());
@@ -93,6 +100,7 @@ public class ReceiveMsgConsume {
 		}*/else if(AbstractMessage.getControlCode(bytes).equals("95")){
 			
 			ReadParamResp resp = new ReadParamResp(bytes);
+			logger.debug("接收:" + resp.toString());
 			String concHardwareId = AbstractMessage.getFieldString(resp.head.rtua);
 			String mstaSeq = AbstractMessage.getFieldString(resp.head.mstaSeq);
 			producerTemplate.sendBody("jms:queue:readWaterMeterSn:" + concHardwareId + ":" + mstaSeq, ExchangePattern.InOnly, resp.toBytes());
@@ -101,6 +109,7 @@ public class ReceiveMsgConsume {
 			message = new ReadData(bytes);
 		}*/else if(AbstractMessage.getControlCode(bytes).equals("92")){
 			ReadDataResp resp = new ReadDataResp(bytes);
+			logger.debug("接收:" + resp.toString());
 			String concHardwareId = AbstractMessage.getFieldString(resp.head.rtua);
 			String mstaSeq = AbstractMessage.getFieldString(resp.head.mstaSeq);
 			producerTemplate.sendBody("jms:queue:readData:" + concHardwareId + ":" + mstaSeq, ExchangePattern.InOnly, resp.toBytes());
@@ -127,6 +136,7 @@ public class ReceiveMsgConsume {
 			if(AbstractMessage.getDataLength(bytes).equals("0004")){
 				
 				RestoreSettingsResp restoreSettingsResp = new RestoreSettingsResp(bytes);
+				logger.debug("接收:" + restoreSettingsResp.toString());
 				String concHardwareId = AbstractMessage.getFieldString(restoreSettingsResp.head.rtua);
 				String mstaSeq = AbstractMessage.getFieldString(restoreSettingsResp.head.mstaSeq);
 				producerTemplate.sendBody("jms:queue:restoreSettings:" + concHardwareId + ":" + mstaSeq, ExchangePattern.InOnly, AbstractMessage.getFieldString(restoreSettingsResp.errorCode));
@@ -135,6 +145,7 @@ public class ReceiveMsgConsume {
 					AbstractMessage.getDataSn(bytes, 13).equals("8030")){
 				
 				SetupClockResp setupClockResp = new SetupClockResp(bytes);
+				logger.debug("接收:" + setupClockResp.toString());
 				String concHardwareId = AbstractMessage.getFieldString(setupClockResp.head.rtua);
 				String mstaSeq = AbstractMessage.getFieldString(setupClockResp.head.mstaSeq);
 				producerTemplate.sendBody("jms:queue:setupClock:" + concHardwareId + ":" + mstaSeq, ExchangePattern.InOnly, AbstractMessage.getFieldString(setupClockResp.errorCode));
@@ -143,6 +154,7 @@ public class ReceiveMsgConsume {
 					AbstractMessage.getDataSn(bytes, 13).equals("894D")){
 				
 				LoadWmResp loadWmResp = new LoadWmResp(bytes);
+				logger.debug("接收:" + loadWmResp.toString());
 				String concHardwareId = AbstractMessage.getFieldString(loadWmResp.head.rtua);
 				String mstaSeq = AbstractMessage.getFieldString(loadWmResp.head.mstaSeq);
 				producerTemplate.sendBody("jms:queue:loadWm:" + concHardwareId + ":" + mstaSeq, ExchangePattern.InOnly, AbstractMessage.getFieldString(loadWmResp.errorCode));
@@ -151,6 +163,7 @@ public class ReceiveMsgConsume {
 					AbstractMessage.getDataSn(bytes, 13).equals("7808")){
 				
 				DeleteDataResp deleteDataResp = new DeleteDataResp(bytes);
+				logger.debug("接收:" + deleteDataResp.toString());
 				String concHardwareId = AbstractMessage.getFieldString(deleteDataResp.head.rtua);
 				String mstaSeq = AbstractMessage.getFieldString(deleteDataResp.head.mstaSeq);
 				producerTemplate.sendBody("jms:queue:deleteData:" + concHardwareId + ":" + mstaSeq, ExchangePattern.InOnly, AbstractMessage.getFieldString(deleteDataResp.errorCode));
@@ -159,6 +172,7 @@ public class ReceiveMsgConsume {
 					AbstractMessage.getDataSn(bytes, 13).equals("780A")){
 				
 				DeleteSettingsResp deleteSettingsResp = new DeleteSettingsResp(bytes);
+				logger.debug("接收:" + deleteSettingsResp.toString());
 				String concHardwareId = AbstractMessage.getFieldString(deleteSettingsResp.head.rtua);
 				String mstaSeq = AbstractMessage.getFieldString(deleteSettingsResp.head.mstaSeq);
 				producerTemplate.sendBody("jms:queue:deleteSettings:" + concHardwareId + ":" + mstaSeq, ExchangePattern.InOnly, AbstractMessage.getFieldString(deleteSettingsResp.errorCode));
@@ -183,6 +197,7 @@ public class ReceiveMsgConsume {
 			if(AbstractMessage.getDataLength(bytes).equals("0009")){
 				
 				DebugResp debugResp = new DebugResp(bytes);
+				logger.debug("接收:" + debugResp.toString());
 				String concHardwareId = AbstractMessage.getFieldString(debugResp.head.rtua);
 				String mstaSeq = AbstractMessage.getFieldString(debugResp.head.mstaSeq);
 				producerTemplate.sendBody("jms:queue:debug:" + concHardwareId + ":" + mstaSeq, ExchangePattern.InOnly, debugResp.toBytes());
@@ -190,6 +205,7 @@ public class ReceiveMsgConsume {
 			}else if(AbstractMessage.getDataLength(bytes).equals("000E")){
 				
 				TestMeterCodeResp testMeterCodeResp = new TestMeterCodeResp(bytes);
+				logger.debug("接收:" + testMeterCodeResp.toString());
 				String concHardwareId = AbstractMessage.getFieldString(testMeterCodeResp.head.rtua);
 				String mstaSeq = AbstractMessage.getFieldString(testMeterCodeResp.head.mstaSeq);
 				producerTemplate.sendBody("jms:queue:testMeterCode:" + concHardwareId + ":" + mstaSeq, ExchangePattern.InOnly, testMeterCodeResp.toBytes());
@@ -197,6 +213,7 @@ public class ReceiveMsgConsume {
 			}else if(AbstractMessage.getDataLength(bytes).equals("0012")){
 				
 				TestDataResp testDataResp = new TestDataResp(bytes);
+				logger.debug("接收:" + testDataResp.toString());
 				String concHardwareId = AbstractMessage.getFieldString(testDataResp.head.rtua);
 				String mstaSeq = AbstractMessage.getFieldString(testDataResp.head.mstaSeq);
 				producerTemplate.sendBody("jms:queue:testData:" + concHardwareId + ":" + mstaSeq, ExchangePattern.InOnly, testDataResp.toBytes());
