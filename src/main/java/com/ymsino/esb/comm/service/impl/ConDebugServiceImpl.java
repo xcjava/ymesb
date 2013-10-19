@@ -7,6 +7,7 @@ import org.apache.camel.CamelContext;
 import org.apache.camel.ConsumerTemplate;
 import org.apache.camel.ExchangePattern;
 import org.apache.camel.ProducerTemplate;
+import org.apache.log4j.Logger;
 
 import com.ymsino.esb.comm.ioprocess.ConcentratorOnLine;
 import com.ymsino.esb.comm.service.api.ConDebugService;
@@ -16,6 +17,8 @@ import com.ymsino.esb.protocol.strutc.DebugResp;
 
 public class ConDebugServiceImpl implements ConDebugService {
 
+	private Logger logger = Logger.getLogger(ConDebugServiceImpl.class);
+	
 	private CamelContext camelContext;
 	public void setCamelContext(CamelContext camelContext) {
 		this.camelContext = camelContext;
@@ -41,10 +44,13 @@ public class ConDebugServiceImpl implements ConDebugService {
 		
 		Map<String, Object> headers = new HashMap<String, Object>();
 		headers.put("concentratorId", AbstractMessage.getFieldString(debug.head.rtua));
+		
+		logger.debug("发送调试消息:" + concHardwareId + ":" + AbstractMessage.getFieldString(debug.head.mstaSeq));
 		producerTemplate.sendBodyAndHeaders("jms:queue:send", ExchangePattern.InOnly, debug.toBytes(), headers);
 		
 		byte[] bytes = (byte[]) camelContext.createConsumerTemplate().receiveBody("jms:queue:debug:" + concHardwareId + ":" +
 				AbstractMessage.getFieldString(debug.head.mstaSeq));
+		logger.debug("接收调试响应:" + concHardwareId + ":" + AbstractMessage.getFieldString(debug.head.mstaSeq));
 		DebugResp resp = new DebugResp(bytes);
 		
 		return AbstractMessage.getFieldString(resp.dataContent);

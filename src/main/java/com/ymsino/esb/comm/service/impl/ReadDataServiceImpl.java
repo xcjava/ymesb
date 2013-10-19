@@ -7,6 +7,7 @@ import org.apache.camel.CamelContext;
 import org.apache.camel.ConsumerTemplate;
 import org.apache.camel.ExchangePattern;
 import org.apache.camel.ProducerTemplate;
+import org.apache.log4j.Logger;
 
 import com.ymsino.esb.comm.ioprocess.ConcentratorOnLine;
 import com.ymsino.esb.comm.service.api.ReadDataService;
@@ -17,6 +18,8 @@ import com.ymsino.esb.protocol.strutc.ReadDataRespItem;
 
 public class ReadDataServiceImpl implements ReadDataService {
 
+	private Logger logger = Logger.getLogger(ReadDataServiceImpl.class);
+	
 	private ProducerTemplate producerTemplate;
 	private ConsumerTemplate consumerTemplate;
 	public void setProducerTemplate(ProducerTemplate producerTemplate) {
@@ -46,10 +49,14 @@ public class ReadDataServiceImpl implements ReadDataService {
 		
 		Map<String, Object> headers = new HashMap<String, Object>();
 		headers.put("concentratorId", AbstractMessage.getFieldString(req.head.rtua));
+		
+		logger.debug("发送读日冻结消息:" + concHardwareId + ":" + AbstractMessage.getFieldString(req.head.mstaSeq));
 		producerTemplate.sendBodyAndHeaders("jms:queue:send", ExchangePattern.InOnly, req.toBytes(), headers);
 		
 		byte[] bytes = (byte[]) consumerTemplate.receiveBody("jms:queue:readData:" + concHardwareId + ":" +
 				AbstractMessage.getFieldString(req.head.mstaSeq));
+		logger.debug("接收读日冻结响应:" + concHardwareId + ":" + AbstractMessage.getFieldString(req.head.mstaSeq));
+		
 		ReadDataResp resp = new ReadDataResp(bytes);
 		HashMap<String, String> map = new HashMap<String, String>();
 		for(ReadDataRespItem item : resp.readDataRespItem){

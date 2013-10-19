@@ -7,6 +7,7 @@ import org.apache.camel.CamelContext;
 import org.apache.camel.ConsumerTemplate;
 import org.apache.camel.ExchangePattern;
 import org.apache.camel.ProducerTemplate;
+import org.apache.log4j.Logger;
 
 import com.ymsino.esb.comm.ioprocess.ConcentratorOnLine;
 import com.ymsino.esb.comm.service.api.DeleteDataService;
@@ -15,6 +16,8 @@ import com.ymsino.esb.protocol.strutc.DeleteData;
 
 public class DeleteDataServiceImpl implements DeleteDataService {
 
+	private Logger logger = Logger.getLogger(DeleteDataServiceImpl.class);
+	
 	private CamelContext camelContext;
 	public void setCamelContext(CamelContext camelContext) {
 		this.camelContext = camelContext;
@@ -38,11 +41,14 @@ public class DeleteDataServiceImpl implements DeleteDataService {
 		
 		Map<String, Object> headers = new HashMap<String, Object>();
 		headers.put("concentratorId", AbstractMessage.getFieldString(deleteData.head.rtua));
+		
+		logger.debug("发送删除历史数据消息:" + concHardwareId + ":" + AbstractMessage.getFieldString(deleteData.head.mstaSeq));
 		producerTemplate.sendBodyAndHeaders("jms:queue:send", ExchangePattern.InOnly, deleteData.toBytes(), headers);
 		
 		String errorCode = (String) camelContext.createConsumerTemplate().receiveBody("jms:queue:deleteData:" + 
 								concHardwareId + ":" +
 								AbstractMessage.getFieldString(deleteData.head.mstaSeq));
+		logger.debug("接收删除历史数据响应:" + concHardwareId + ":" + AbstractMessage.getFieldString(deleteData.head.mstaSeq));
 		
 		return errorCode;
 	}

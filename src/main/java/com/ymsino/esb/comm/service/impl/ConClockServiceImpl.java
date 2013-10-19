@@ -7,6 +7,7 @@ import org.apache.camel.CamelContext;
 import org.apache.camel.ConsumerTemplate;
 import org.apache.camel.ExchangePattern;
 import org.apache.camel.ProducerTemplate;
+import org.apache.log4j.Logger;
 
 import com.ymsino.esb.comm.ioprocess.ConcentratorOnLine;
 import com.ymsino.esb.comm.service.api.ConClockService;
@@ -17,6 +18,8 @@ import com.ymsino.esb.protocol.strutc.SetupClock;
 
 public class ConClockServiceImpl implements ConClockService {
 
+	private Logger logger = Logger.getLogger(ConClockServiceImpl.class);
+	
 	private CamelContext camelContext;
 	public void setCamelContext(CamelContext camelContext) {
 		this.camelContext = camelContext;
@@ -40,10 +43,15 @@ public class ConClockServiceImpl implements ConClockService {
 		
 		Map<String, Object> headers = new HashMap<String, Object>();
 		headers.put("concentratorId", AbstractMessage.getFieldString(readClock.head.rtua));
+		
+		logger.debug("发送读取时钟消息:" + concHardwareId + ":" + AbstractMessage.getFieldString(readClock.head.mstaSeq));
 		producerTemplate.sendBodyAndHeaders("jms:queue:send", ExchangePattern.InOnly, readClock.toBytes(), headers);
 		
 		byte[] bytes = (byte[]) camelContext.createConsumerTemplate().receiveBody("jms:queue:readClock:" + concHardwareId + ":" +
 				AbstractMessage.getFieldString(readClock.head.mstaSeq));
+		
+		logger.debug("接收读取时钟响应:" + concHardwareId + ":" + AbstractMessage.getFieldString(readClock.head.mstaSeq));
+		
 		ReadClockResp resp = new ReadClockResp(bytes);
 		
 		return AbstractMessage.getFieldString(resp.dataContent);
@@ -59,10 +67,14 @@ public class ConClockServiceImpl implements ConClockService {
 		
 		Map<String, Object> headers = new HashMap<String, Object>();
 		headers.put("concentratorId", AbstractMessage.getFieldString(setupClock.head.rtua));
+		
+		logger.debug("发送设置时钟消息:" + concHardwareId + ":" + AbstractMessage.getFieldString(setupClock.head.mstaSeq));
 		producerTemplate.sendBodyAndHeaders("jms:queue:send", ExchangePattern.InOnly, setupClock.toBytes(), headers);
 		
 		String errorCode = (String) camelContext.createConsumerTemplate().receiveBody("jms:queue:setupClock:" + concHardwareId + ":" +
 				AbstractMessage.getFieldString(setupClock.head.mstaSeq));
+		logger.debug("接收设置时钟响应:" + concHardwareId + ":" + AbstractMessage.getFieldString(setupClock.head.mstaSeq));
+		
 		return errorCode;
 	}
 

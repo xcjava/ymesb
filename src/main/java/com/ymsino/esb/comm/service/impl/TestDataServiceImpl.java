@@ -7,6 +7,7 @@ import org.apache.camel.CamelContext;
 import org.apache.camel.ConsumerTemplate;
 import org.apache.camel.ExchangePattern;
 import org.apache.camel.ProducerTemplate;
+import org.apache.log4j.Logger;
 
 import com.ymsino.esb.comm.ioprocess.ConcentratorOnLine;
 import com.ymsino.esb.comm.service.api.TestDataService;
@@ -16,6 +17,8 @@ import com.ymsino.esb.protocol.strutc.TestDataResp;
 
 public class TestDataServiceImpl implements TestDataService {
 
+	private Logger logger = Logger.getLogger(TestDataServiceImpl.class);
+	
 	private CamelContext camelContext;
 	public void setCamelContext(CamelContext camelContext) {
 		this.camelContext = camelContext;
@@ -41,10 +44,14 @@ public class TestDataServiceImpl implements TestDataService {
 		
 		Map<String, Object> headers = new HashMap<String, Object>();
 		headers.put("concentratorId", AbstractMessage.getFieldString(testData.head.rtua));
+		
+		logger.debug("发送集中器召测本机动态数据消息:" + concHardwareId + ":" + AbstractMessage.getFieldString(testData.head.mstaSeq));
 		producerTemplate.sendBodyAndHeaders("jms:queue:send", ExchangePattern.InOnly, testData.toBytes(), headers);
 		
 		byte[] bytes = (byte[]) camelContext.createConsumerTemplate().receiveBody("jms:queue:testData:" + concHardwareId + ":" +
 				AbstractMessage.getFieldString(testData.head.mstaSeq));
+		logger.debug("接收集中器召测本机动态数据响应:" + concHardwareId + ":" + AbstractMessage.getFieldString(testData.head.mstaSeq));
+		
 		TestDataResp resp = new TestDataResp(bytes);
 		
 		return AbstractMessage.getFieldString(resp.dataContent);

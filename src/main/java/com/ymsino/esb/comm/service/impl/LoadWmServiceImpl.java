@@ -9,6 +9,7 @@ import org.apache.camel.CamelContext;
 import org.apache.camel.ConsumerTemplate;
 import org.apache.camel.ExchangePattern;
 import org.apache.camel.ProducerTemplate;
+import org.apache.log4j.Logger;
 
 import com.gmail.xcjava.base.spring.CommonHibernateDao;
 import com.ymsino.esb.archives.model.WaterMeter;
@@ -22,6 +23,8 @@ import com.ymsino.esb.protocol.strutc.ReadParamRespItem;
 
 public class LoadWmServiceImpl implements LoadWmService {
 
+	private Logger logger = Logger.getLogger(LoadWmServiceImpl.class);
+	
 	private CamelContext camelContext;
 	public void setCamelContext(CamelContext camelContext) {
 		this.camelContext = camelContext;
@@ -54,10 +57,14 @@ public class LoadWmServiceImpl implements LoadWmService {
 		
 		Map<String, Object> headers = new HashMap<String, Object>();
 		headers.put("concentratorId", AbstractMessage.getFieldString(readParam.head.rtua));
+		
+		logger.debug("发送读取水表参数消息:" + concHardwareId + ":" + AbstractMessage.getFieldString(readParam.head.mstaSeq));
 		producerTemplate.sendBodyAndHeaders("jms:queue:send", ExchangePattern.InOnly, readParam.toBytes(), headers);
 		
 		byte[] bytes = (byte[]) camelContext.createConsumerTemplate().receiveBody("jms:queue:readWaterMeterSn:" + concHardwareId + ":" +
 				AbstractMessage.getFieldString(readParam.head.mstaSeq));
+		logger.debug("接收读取水表参数响应:" + concHardwareId + ":" + AbstractMessage.getFieldString(readParam.head.mstaSeq));
+		
 		ReadParamResp resp = new ReadParamResp(bytes);
 		HashMap<String, String> map = new HashMap<String, String>();
 		
@@ -122,10 +129,14 @@ public class LoadWmServiceImpl implements LoadWmService {
 			
 			Map<String, Object> headers = new HashMap<String, Object>();
 			headers.put("concentratorId", AbstractMessage.getFieldString(loadWm.head.rtua));
+			
+			logger.debug("发送加载水表参数消息:" + concHardwareId + ":" + AbstractMessage.getFieldString(loadWm.head.mstaSeq));
 			producerTemplate.sendBodyAndHeaders("jms:queue:send", ExchangePattern.InOnly, loadWm.toBytes(), headers);
 			
 			String errorCode = (String) camelContext.createConsumerTemplate().receiveBody("jms:queue:loadWm:" + concHardwareId + ":" +
 					AbstractMessage.getFieldString(loadWm.head.mstaSeq));
+			logger.debug("接收加载水表参数响应:" + concHardwareId + ":" + AbstractMessage.getFieldString(loadWm.head.mstaSeq));
+			
 			if(!errorCode.equals("00")){
 				return Boolean.FALSE;
 			}
