@@ -6,6 +6,7 @@ import java.util.Map;
 import org.apache.camel.Exchange;
 import org.apache.camel.ExchangePattern;
 import org.apache.camel.ProducerTemplate;
+import org.apache.log4j.Logger;
 
 import com.ymsino.esb.protocol.AbstractMessage;
 import com.ymsino.esb.protocol.strutc.Login;
@@ -13,6 +14,7 @@ import com.ymsino.esb.protocol.strutc.LoginResp;
 
 public class LoginProcess {
 
+	private Logger logger = Logger.getLogger(LoginProcess.class);
 	private ProducerTemplate producerTemplate;
 	public void setProducerTemplate(ProducerTemplate producerTemplate) {
 		this.producerTemplate = producerTemplate;

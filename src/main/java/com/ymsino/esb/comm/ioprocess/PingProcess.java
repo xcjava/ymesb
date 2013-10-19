@@ -6,6 +6,7 @@ import java.util.Map;
 
 import org.apache.camel.ExchangePattern;
 import org.apache.camel.ProducerTemplate;
+import org.apache.log4j.Logger;
 
 import com.ymsino.esb.protocol.AbstractMessage;
 import com.ymsino.esb.protocol.strutc.Ping;
@@ -13,6 +14,7 @@ import com.ymsino.esb.protocol.strutc.PingResp;
 
 public class PingProcess {
 
+	private Logger logger = Logger.getLogger(PingProcess.class);
 	private ProducerTemplate producerTemplate;
 	public void setProducerTemplate(ProducerTemplate producerTemplate) {
 		this.producerTemplate = producerTemplate;

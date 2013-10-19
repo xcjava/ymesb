@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.apache.camel.ExchangePattern;
 import org.apache.camel.ProducerTemplate;
+import org.apache.log4j.Logger;
 
 import com.ymsino.esb.protocol.AbstractMessage;
 import com.ymsino.esb.protocol.strutc.Logout;
@@ -12,6 +13,7 @@ import com.ymsino.esb.protocol.strutc.LogoutResp;
 
 public class LogoutProcess {
 
+	private Logger logger = Logger.getLogger(LogoutProcess.class);
 	private ProducerTemplate producerTemplate;
 	public void setProducerTemplate(ProducerTemplate producerTemplate) {
 		this.producerTemplate = producerTemplate;
