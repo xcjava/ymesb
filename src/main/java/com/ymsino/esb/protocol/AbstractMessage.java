@@ -48,6 +48,11 @@ public abstract class AbstractMessage {
 		return code;
 	}
 	
+	/**
+	 * 从协议中获取数据长度
+	 * @param bytes
+	 * @return
+	 */
 	public static String getDataLength(byte[] bytes){
 		if(bytes.length < 12)
 			return null;
@@ -59,8 +64,13 @@ public abstract class AbstractMessage {
 		return dataLength[0] + dataLength[1];
 	}
 	
+	/**
+	 * 从协议获取数据项编号
+	 * @param bytes
+	 * @param startLength
+	 * @return
+	 */
 	public static String getDataSn(byte[] bytes, int startLength){
-		
 		byte[] bs = {bytes[startLength], bytes[startLength + 1]};
 		String[] dataSn = new String[2];
 		dataSn[0] = DataConverter.bytesToHexString(ByteTool.subByte(bs, 1, 1));
