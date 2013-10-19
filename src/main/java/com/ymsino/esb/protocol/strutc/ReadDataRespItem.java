@@ -2,6 +2,7 @@ package com.ymsino.esb.protocol.strutc;
 
 import com.gmail.xcjava.base.math.DataConverter;
 import com.gmail.xcjava.base.str.ByteTool;
+import com.gmail.xcjava.base.str.StringTool;
 import com.ymsino.esb.protocol.AbstractMessage;
 
 public class ReadDataRespItem {
@@ -21,6 +22,11 @@ public class ReadDataRespItem {
 	 */
 	public String[] readDate = {"FF", "FF", "FF", "FF"};
 	
+	private MeterDataVo meterDataVo;
+	public MeterDataVo getMeterDataVo() {
+		return meterDataVo;
+	}
+
 	/**
 	 * 字节数
 	 */
@@ -48,6 +54,8 @@ public class ReadDataRespItem {
 		this.meterData[3] = DataConverter.bytesToHexString(ByteTool.subByte(temp, 2, 1));
 		this.meterData[4] = DataConverter.bytesToHexString(ByteTool.subByte(temp, 1, 1));
 		this.meterData[5] = DataConverter.bytesToHexString(ByteTool.subByte(temp, 0, 1));
+		
+		meterDataVo = new MeterDataVo(this.meterData);
 		
 		temp = ByteTool.subByte(bytes, offset, this.readDate.length);
 		offset += this.readDate.length;
@@ -83,7 +91,5 @@ public class ReadDataRespItem {
 		return str;
 	}
 	
-	public static void main(String[] args){
-		
-	}
+	
 }

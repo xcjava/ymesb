@@ -62,6 +62,11 @@ public class TestDataResp extends AbstractMessage {
 	 * 消息尾
 	 */
 	private MessageBottom messageBottom = new MessageBottom();
+	
+	private MeterDataVo meterDataVo;
+	public MeterDataVo getMeterDataVo() {
+		return meterDataVo;
+	}
 
 	public TestDataResp(){}
 	
@@ -102,6 +107,8 @@ public class TestDataResp extends AbstractMessage {
 		this.dataContent[3] = DataConverter.bytesToHexString(ByteTool.subByte(temp, 2, 1));
 		this.dataContent[4] = DataConverter.bytesToHexString(ByteTool.subByte(temp, 1, 1));
 		this.dataContent[5] = DataConverter.bytesToHexString(ByteTool.subByte(temp, 0, 1));
+		
+		meterDataVo = new MeterDataVo(this.dataContent);
 		
 		temp = ByteTool.subByte(bytes, offset, this.dataDate.length);
 		offset += this.dataDate.length;
