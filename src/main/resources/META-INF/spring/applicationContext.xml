@@ -57,6 +57,7 @@
 				<value>hbm/manager/ChargingUnit.hbm.xml</value>
 				<value>hbm/manager/Department.hbm.xml</value>
 				<value>hbm/manager/Manager.hbm.xml</value>
+				<value>hbm/manager/PriceTemplate.hbm.xml</value>
 				
 				<value>hbm/archives/Bank.hbm.xml</value>
 				<value>hbm/archives/BusiAddress.hbm.xml</value>

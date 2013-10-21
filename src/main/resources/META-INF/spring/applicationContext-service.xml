@@ -29,6 +29,10 @@
 		<property name="commonHibernateDao" ref="commonHibernateDao"></property>
 		<property name="chargingUnitManager" ref="chargingUnitManager"></property>
 	</bean>
+	<bean id="priceTemplateServiceImpl" class="com.ymsino.esb.manager.service.impl.PriceTemplateServiceImpl">
+		<property name="commonHibernateDao" ref="commonHibernateDao"></property>
+		<property name="chargingUnitManager" ref="chargingUnitManager"></property>
+	</bean>
 	<!-- 系统管理 -->
 	<!-- 档案管理 -->
 	<bean id="userServiceImpl" class="com.ymsino.esb.archives.service.impl.UserServiceImpl">
@@ -70,6 +74,9 @@
 	</jaxws:server>
 	<jaxws:server id="departmentService" serviceClass="com.ymsino.esb.manager.service.api.DepartmentService" address="camel://jetty:http://${ws.host}:${ws.port}/ws/departmentService">
 		<jaxws:serviceBean><ref bean="departmentServiceImpl"/></jaxws:serviceBean>
+	</jaxws:server>
+	<jaxws:server id="priceTemplateService" serviceClass="com.ymsino.esb.manager.service.api.PriceTemplateService" address="camel://jetty:http://${ws.host}:${ws.port}/ws/priceTemplateService">
+		<jaxws:serviceBean><ref bean="priceTemplateServiceImpl"/></jaxws:serviceBean>
 	</jaxws:server>
 	<!-- 系统管理 -->
 	<!-- 档案管理 -->
