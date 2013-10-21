@@ -14,6 +14,20 @@
 			<generator class="assigned"></generator>
 		</id>
 		
+		<property name="logicCode" type="java.lang.String">
+			<meta attribute="field-description">逻辑地址</meta>
+			<column name="LOGIC_CODE" length="300">
+				<comment>逻辑地址</comment>
+			</column>
+		</property>
+		
+		<property name="areaCode" type="java.lang.String">
+			<meta attribute="field-description">区域码</meta>
+			<column name="AREA_CODE" length="300">
+				<comment>区域码</comment>
+			</column>
+		</property>
+		
 		<!-- 集中器信息 -->
 		<property name="chargingUnitId" type="java.lang.String">
 			<meta attribute="field-description">收费单位编号</meta>
