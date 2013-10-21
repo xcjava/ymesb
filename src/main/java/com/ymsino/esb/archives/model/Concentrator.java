@@ -16,6 +16,14 @@ public class Concentrator  implements java.io.Serializable {
      */
      private String hardwareId;
      /**
+      * 逻辑地址
+     */
+     private String logicCode;
+     /**
+      * 区域码
+     */
+     private String areaCode;
+     /**
       * 收费单位编号
      */
      private String chargingUnitId;
@@ -285,8 +293,10 @@ public class Concentrator  implements java.io.Serializable {
     }
     
     /** full constructor */
-    public Concentrator(String hardwareId, String chargingUnitId, String parentUnits, String name, String password, String meterType, String communication, String serial, String relaySystem, String province, String city, String district, String street, String address, String monthFreezeStartDate, String monthFreezeStartHour, String dayFreezeStartHour, String dayFreezeStartMinute, String terminalId, Long communicationCost, String simSN, String gprsNum, Long costTimestamp, String exceedFlow, String actualFlow, String collectionId, String collectionName, Short collectionType, Short collectionStatus, String gpsLongitude, String gpsLatitude, String collectionAddress, String channelId, String rtsOpen, String statuteType, String relayType, String tel, String rtsClose, String transmissionDelay, String responseTimeout, String primaryIp, String reserveIp, String gatewayIp, String proXyIp, String primaryPort, String reservePort, String gatewayPort, String proXyPort, String smsNum, String heartbeatCycle, Long startTimestamp, String algorithmNum, String algorithmKey, String terminalNoRespTimeout, String forwardTerminal, String rtsTimeout, String startTimeout, String terminalLocationCode, String terminalCommPassword, String terminalIp, Integer resendTime, String terminalPost, String terminalNum, String primaryCommPassword, Long createTimestamp) {
+    public Concentrator(String hardwareId, String logicCode, String areaCode, String chargingUnitId, String parentUnits, String name, String password, String meterType, String communication, String serial, String relaySystem, String province, String city, String district, String street, String address, String monthFreezeStartDate, String monthFreezeStartHour, String dayFreezeStartHour, String dayFreezeStartMinute, String terminalId, Long communicationCost, String simSN, String gprsNum, Long costTimestamp, String exceedFlow, String actualFlow, String collectionId, String collectionName, Short collectionType, Short collectionStatus, String gpsLongitude, String gpsLatitude, String collectionAddress, String channelId, String rtsOpen, String statuteType, String relayType, String tel, String rtsClose, String transmissionDelay, String responseTimeout, String primaryIp, String reserveIp, String gatewayIp, String proXyIp, String primaryPort, String reservePort, String gatewayPort, String proXyPort, String smsNum, String heartbeatCycle, Long startTimestamp, String algorithmNum, String algorithmKey, String terminalNoRespTimeout, String forwardTerminal, String rtsTimeout, String startTimeout, String terminalLocationCode, String terminalCommPassword, String terminalIp, Integer resendTime, String terminalPost, String terminalNum, String primaryCommPassword, Long createTimestamp) {
         this.hardwareId = hardwareId;
+        this.logicCode = logicCode;
+        this.areaCode = areaCode;
         this.chargingUnitId = chargingUnitId;
         this.parentUnits = parentUnits;
         this.name = name;
@@ -365,6 +375,28 @@ public class Concentrator  implements java.io.Serializable {
     
     public void setHardwareId(String hardwareId) {
         this.hardwareId = hardwareId;
+    }
+    /**       
+     *      * 逻辑地址
+     */
+
+    public String getLogicCode() {
+        return this.logicCode;
+    }
+    
+    public void setLogicCode(String logicCode) {
+        this.logicCode = logicCode;
+    }
+    /**       
+     *      * 区域码
+     */
+
+    public String getAreaCode() {
+        return this.areaCode;
+    }
+    
+    public void setAreaCode(String areaCode) {
+        this.areaCode = areaCode;
     }
     /**       
      *      * 收费单位编号
