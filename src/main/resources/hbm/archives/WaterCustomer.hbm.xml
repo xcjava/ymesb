@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.ymsino.esb.archives.model.WaterCustomer" table="ARCHIVES_WATERCUSTOMER">
+    
+		<id name="customerId" type="java.lang.String">
+			<meta attribute="field-description">用水用户编号</meta>
+			<meta attribute="use-in-equals">true</meta>
+			<column name="CUSTOMER_ID">
+				<comment>用水用户编号</comment>
+			</column>
+			<generator class="assigned"></generator>
+		</id>
+		
+		<property name="customerName" type="java.lang.String">
+			<meta attribute="field-description">用水用户名称</meta>
+			<column name="CUSTOMER_NAME" length="300">
+				<comment>用水用户名称</comment>
+			</column>
+		</property>
+		
+		<property name="customNum" type="java.lang.String">
+			<meta attribute="field-description">自定义查询号</meta>
+			<column name="CUSTOM_NUM" length="300">
+				<comment>自定义查询号</comment>
+			</column>
+		</property>
+		
+		<property name="uid" type="java.lang.Long">
+			<meta attribute="field-description">用户id</meta>
+			<column name="U_ID">
+				<comment>用户id</comment>
+			</column>
+		</property>
+		
+		<property name="userId" type="java.lang.String">
+			<meta attribute="field-description">客户编号</meta>
+			<column name="USER_ID" length="300">
+				<comment>客户编号</comment>
+			</column>
+		</property>
+		
+		<property name="userName" type="java.lang.String">
+			<meta attribute="field-description">客户名称</meta>
+			<column name="USER_NAME" length="300">
+				<comment>客户名称</comment>
+			</column>
+		</property>
+		
+		<property name="chargingUnitId" type="java.lang.String">
+			<meta attribute="field-description">收费单位编号</meta>
+			<column name="CHARGING_UNIT_ID">
+				<comment>收费单位编号</comment>
+			</column>
+		</property>
+		
+		<property name="parentUnits" type="org.springframework.orm.hibernate3.support.ClobStringType">
+			<meta attribute="field-description">上级收费单位编号，多个用"||"包住，如|123||456|,用于搜索</meta>
+			<column length="2147483647" name="PARENT_UNITS">
+				<comment>上级收费单位编号，多个用"||"包住，如|123||456|,用于搜索</comment>
+			</column>
+		</property>
+		
+		<property name="oldUserId" type="java.lang.String">
+			<meta attribute="field-description">原客户编号</meta>
+			<column name="OLD_USER_ID" length="300">
+				<comment>原客户编号</comment>
+			</column>
+		</property>
+		
+		<property name="customerType" type="java.lang.String">
+			<meta attribute="field-description">用户分类</meta>
+			<column name="CUSTOMER_TYPE" length="300">
+				<comment>用户分类</comment>
+			</column>
+		</property>
+		
+		<property name="customerStatus" type="java.lang.String">
+			<meta attribute="field-description">用户状态</meta>
+			<column name="CUSTOMER_STATUS" length="300">
+				<comment>用户状态</comment>
+			</column>
+		</property>
+		
+		<property name="category" type="java.lang.String">
+			<meta attribute="field-description">行业分类</meta>
+			<column name="CATEGORY" length="300">
+				<comment>行业分类</comment>
+			</column>
+		</property>
+		
+		<property name="businessType" type="java.lang.String">
+			<meta attribute="field-description">业务类别</meta>
+			<column name="BUSINESS_TYPE" length="300">
+				<comment>业务类别</comment>
+			</column>
+		</property>
+		
+		<property name="contractCapacity" type="java.lang.String">
+			<meta attribute="field-description">合同容量</meta>
+			<column name="CONTRACT_CAPACITY" length="300">
+				<comment>合同容量</comment>
+			</column>
+		</property>
+		
+		<property name="highEnergySectors" type="java.lang.String">
+			<meta attribute="field-description">高耗能行业类别</meta>
+			<column name="HIGH_ENERGY_SECTORS" length="300">
+				<comment>高耗能行业类别</comment>
+			</column>
+		</property>
+		
+		<property name="openTimestamp" type="java.lang.Long">
+			<meta attribute="field-description">开户日期</meta>
+			<column name="OPEN_TIMESTAMP">
+				<comment>开户日期</comment>
+			</column>
+		</property>
+		
+		<property name="closeTimestamp" type="java.lang.Long">
+			<meta attribute="field-description">销户日期</meta>
+			<column name="CLOSE_TIMESTAMP">
+				<comment>销户日期</comment>
+			</column>
+		</property>
+		
+		<property name="maturityTimestamp" type="java.lang.Long">
+			<meta attribute="field-description">到期日期</meta>
+			<column name="MATURITY_TIMESTAMP">
+				<comment>到期日期</comment>
+			</column>
+		</property>
+		
+		<property name="notifyType" type="java.lang.String">
+			<meta attribute="field-description">水费通知方式</meta>
+			<column name="NOTIFY_TYPE" length="300">
+				<comment>水费通知方式</comment>
+			</column>
+		</property>
+		
+		<property name="settlementType" type="java.lang.String">
+			<meta attribute="field-description">水费结算方式</meta>
+			<column name="SETTLEMENT_TYPE" length="300">
+				<comment>水费结算方式</comment>
+			</column>
+		</property>
+		
+		<property name="billType" type="java.lang.String">
+			<meta attribute="field-description">票据类型</meta>
+			<column name="BILL_TYPE" length="300">
+				<comment>票据类型</comment>
+			</column>
+		</property>
+		
+		<property name="withoutWaterMark" type="java.lang.String">
+			<meta attribute="field-description">停水标志</meta>
+			<column name="WITHOUT_WATER_MARK" length="300">
+				<comment>停水标志</comment>
+			</column>
+		</property>
+		
+		<property name="turnForMark" type="java.lang.String">
+			<meta attribute="field-description">转供标志</meta>
+			<column name="TURN_FOR_MARK" length="300">
+				<comment>转供标志</comment>
+			</column>
+		</property>
+		
+		<property name="meterSegmentNum" type="java.lang.String">
+			<meta attribute="field-description">抄表段编号</meta>
+			<column name="METER_SEGMENT_NUM" length="300">
+				<comment>抄表段编号</comment>
+			</column>
+		</property>
+		
+		<property name="busiAddress" type="org.springframework.orm.hibernate3.support.ClobStringType">
+			<meta attribute="field-description">业务地址</meta>
+			<column length="2147483647" name="BUSI_ADDRESS">
+				<comment>业务地址</comment>
+			</column>
+		</property>
+		
+		<property name="waterPointsName" type="java.lang.String">
+			<meta attribute="field-description">供水点名称</meta>
+			<column name="WATER_POINTS_NAME" length="300">
+				<comment>供水点名称</comment>
+			</column>
+		</property>
+		
+		<property name="waterPointsType" type="java.lang.String">
+			<meta attribute="field-description">供水点类型</meta>
+			<column name="WATER_POINTS_TYPE" length="300">
+				<comment>供水点类型</comment>
+			</column>
+		</property>
+		
+		<property name="workStatus" type="java.lang.String">
+			<meta attribute="field-description">运行状态</meta>
+			<column name="WORK_STATUS" length="300">
+				<comment>运行状态</comment>
+			</column>
+		</property>
+		
+		<property name="pricStrategyType" type="java.lang.String">
+			<meta attribute="field-description">定价策略类型</meta>
+			<column name="PRIC_STRATEGY_TYPE" length="300">
+				<comment>定价策略类型</comment>
+			</column>
+		</property>
+		
+		<property name="basicWaterPriceCalc" type="java.lang.String">
+			<meta attribute="field-description">基本水费计算方式</meta>
+			<column name="BASIC_WATER_PRICE_CALC" length="300">
+				<comment>基本水费计算方式</comment>
+			</column>
+		</property>
+		
+		<property name="waterPriceIndustry" type="java.lang.String">
+			<meta attribute="field-description">水价行业类别</meta>
+			<column name="WATER_PRICE_INDUSTRY" length="300">
+				<comment>水价行业类别</comment>
+			</column>
+		</property>
+		
+		<property name="waterNature" type="java.lang.String">
+			<meta attribute="field-description">用水性质</meta>
+			<column name="WATER_NATURE" length="300">
+				<comment>用水性质</comment>
+			</column>
+		</property>
+		
+		<property name="ladderFlag" type="java.lang.String">
+			<meta attribute="field-description">是否执行阶梯标志</meta>
+			<column name="LADDER_FLAG" length="300">
+				<comment>是否执行阶梯标志</comment>
+			</column>
+		</property>
+		
+		<property name="priceTemplateId" type="java.lang.Long">
+			<meta attribute="field-description">价目模版id</meta>
+			<column name="PRICE_TEMPLATE_ID">
+				<comment>价目模版id</comment>
+			</column>
+		</property>
+		
+		<property name="remark" type="org.springframework.orm.hibernate3.support.ClobStringType">
+			<meta attribute="field-description">供水点备注</meta>
+			<column length="2147483647" name="REMARK">
+				<comment>供水点备注</comment>
+			</column>
+		</property>
+		
+		<property name="createTimestamp" type="java.lang.Long">
+			<meta attribute="field-description">创建时间</meta>
+			<column name="CREATE_TIMESTAMP">
+				<comment>创建时间</comment>
+			</column>
+		</property>
+    </class>
+</hibernate-mapping>
