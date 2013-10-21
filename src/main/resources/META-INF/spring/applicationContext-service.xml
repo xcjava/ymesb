@@ -62,6 +62,10 @@
 		<property name="commonHibernateDao" ref="commonHibernateDao"></property>
 		<property name="chargingUnitManager" ref="chargingUnitManager"></property>
 	</bean>
+	<bean id="waterCustomerServiceImpl" class="com.ymsino.esb.archives.service.impl.WaterCustomerServiceImpl">
+		<property name="commonHibernateDao" ref="commonHibernateDao"></property>
+		<property name="chargingUnitManager" ref="chargingUnitManager"></property>
+	</bean>
 	<!-- 档案管理 -->
 	
 	
@@ -100,6 +104,9 @@
 	</jaxws:server>
 	<jaxws:server id="concentratorService" serviceClass="com.ymsino.esb.archives.service.api.ConcentratorService" address="camel://jetty:http://${ws.host}:${ws.port}/ws/concentratorService">
 		<jaxws:serviceBean><ref bean="concentratorServiceImpl"/></jaxws:serviceBean>
+	</jaxws:server>
+	<jaxws:server id="waterCustomerService" serviceClass="com.ymsino.esb.archives.service.api.WaterCustomerService" address="camel://jetty:http://${ws.host}:${ws.port}/ws/waterCustomerService">
+		<jaxws:serviceBean><ref bean="waterCustomerServiceImpl"/></jaxws:serviceBean>
 	</jaxws:server>
 	<!-- 档案管理 -->
 </beans>
