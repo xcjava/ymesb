@@ -9,6 +9,14 @@ public class ConcentratorReturn implements Serializable {
     */
     private String hardwareId;
     /**
+     * 逻辑地址
+    */
+    private String logicCode;
+    /**
+     * 区域码
+    */
+    private String areaCode;
+    /**
      * 收费单位编号
     */
     private String chargingUnitId;
@@ -269,6 +277,18 @@ public class ConcentratorReturn implements Serializable {
 	}
 	public void setHardwareId(String hardwareId) {
 		this.hardwareId = hardwareId;
+	}
+	public String getLogicCode() {
+		return logicCode;
+	}
+	public void setLogicCode(String logicCode) {
+		this.logicCode = logicCode;
+	}
+	public String getAreaCode() {
+		return areaCode;
+	}
+	public void setAreaCode(String areaCode) {
+		this.areaCode = areaCode;
 	}
 	public String getChargingUnitId() {
 		return chargingUnitId;

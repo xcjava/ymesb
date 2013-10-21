@@ -5,9 +5,13 @@ import java.io.Serializable;
 public class ConcentratorSaveParam implements Serializable {
 
 	/**
-     * 集中器ID
+     * 逻辑地址
     */
-    private String hardwareId;
+    private String logicCode;
+    /**
+     * 区域码
+    */
+    private String areaCode;
     /**
      * 收费单位编号
     */
@@ -256,11 +260,17 @@ public class ConcentratorSaveParam implements Serializable {
      * 主站通信密码
     */
     private String primaryCommPassword;
-	public String getHardwareId() {
-		return hardwareId;
+	public String getLogicCode() {
+		return logicCode;
 	}
-	public void setHardwareId(String hardwareId) {
-		this.hardwareId = hardwareId;
+	public void setLogicCode(String logicCode) {
+		this.logicCode = logicCode;
+	}
+	public String getAreaCode() {
+		return areaCode;
+	}
+	public void setAreaCode(String areaCode) {
+		this.areaCode = areaCode;
 	}
 	public String getChargingUnitId() {
 		return chargingUnitId;
