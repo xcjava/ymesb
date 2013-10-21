@@ -151,7 +151,7 @@
 		
 		<property name="address" type="org.springframework.orm.hibernate3.support.ClobStringType">
 			<meta attribute="field-description">客户地址</meta>
-			<column name="ADDRESS">
+			<column length="2147483647" name="ADDRESS">
 				<comment>客户地址</comment>
 			</column>
 		</property>
