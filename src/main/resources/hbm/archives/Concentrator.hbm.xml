@@ -16,14 +16,14 @@
 		
 		<property name="logicCode" type="java.lang.String">
 			<meta attribute="field-description">逻辑地址</meta>
-			<column name="LOGIC_CODE" length="300">
+			<column name="LOGIC_CODE" length="100">
 				<comment>逻辑地址</comment>
 			</column>
 		</property>
 		
 		<property name="areaCode" type="java.lang.String">
 			<meta attribute="field-description">区域码</meta>
-			<column name="AREA_CODE" length="300">
+			<column name="AREA_CODE" length="100">
 				<comment>区域码</comment>
 			</column>
 		</property>
