@@ -58,11 +58,11 @@ public class PriceTemplate  implements java.io.Serializable {
      /**
       * 开始日期
      */
-     private String startDate;
+     private Long startTimestamp;
      /**
       * 结束日期
      */
-     private String endDate;
+     private Long endTimestamp;
      /**
       * 备注
      */
@@ -89,7 +89,7 @@ public class PriceTemplate  implements java.io.Serializable {
 
     
     /** full constructor */
-    public PriceTemplate(String name, String type, Long level1Num, Long level1Cost, Long level2Num, Long level2Cost, Long level3Num, Long level3Cost, Long level4Num, String billingPeriod, String startDate, String endDate, String remark, String chargingUnitId, String parentUnits, Long createTimestamp) {
+    public PriceTemplate(String name, String type, Long level1Num, Long level1Cost, Long level2Num, Long level2Cost, Long level3Num, Long level3Cost, Long level4Num, String billingPeriod, Long startTimestamp, Long endTimestamp, String remark, String chargingUnitId, String parentUnits, Long createTimestamp) {
         this.name = name;
         this.type = type;
         this.level1Num = level1Num;
@@ -100,8 +100,8 @@ public class PriceTemplate  implements java.io.Serializable {
         this.level3Cost = level3Cost;
         this.level4Num = level4Num;
         this.billingPeriod = billingPeriod;
-        this.startDate = startDate;
-        this.endDate = endDate;
+        this.startTimestamp = startTimestamp;
+        this.endTimestamp = endTimestamp;
         this.remark = remark;
         this.chargingUnitId = chargingUnitId;
         this.parentUnits = parentUnits;
@@ -235,23 +235,23 @@ public class PriceTemplate  implements java.io.Serializable {
      *      * 开始日期
      */
 
-    public String getStartDate() {
-        return this.startDate;
+    public Long getStartTimestamp() {
+        return this.startTimestamp;
     }
     
-    public void setStartDate(String startDate) {
-        this.startDate = startDate;
+    public void setStartTimestamp(Long startTimestamp) {
+        this.startTimestamp = startTimestamp;
     }
     /**       
      *      * 结束日期
      */
 
-    public String getEndDate() {
-        return this.endDate;
+    public Long getEndTimestamp() {
+        return this.endTimestamp;
     }
     
-    public void setEndDate(String endDate) {
-        this.endDate = endDate;
+    public void setEndTimestamp(Long endTimestamp) {
+        this.endTimestamp = endTimestamp;
     }
     /**       
      *      * 备注

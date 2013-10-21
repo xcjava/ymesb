@@ -51,11 +51,11 @@ public class PriceTemplateModifyParam implements Serializable {
     /**
      * 开始日期
     */
-    String startDate;
+    Long startTimestamp;
     /**
      * 结束日期
     */
-    String endDate;
+    private Long endTimestamp;
     /**
      * 备注
     */
@@ -130,17 +130,17 @@ public class PriceTemplateModifyParam implements Serializable {
 	public void setBillingPeriod(String billingPeriod) {
 		this.billingPeriod = billingPeriod;
 	}
-	public String getStartDate() {
-		return startDate;
+	public Long getStartTimestamp() {
+		return startTimestamp;
 	}
-	public void setStartDate(String startDate) {
-		this.startDate = startDate;
+	public void setStartTimestamp(Long startTimestamp) {
+		this.startTimestamp = startTimestamp;
 	}
-	public String getEndDate() {
-		return endDate;
+	public Long getEndTimestamp() {
+		return endTimestamp;
 	}
-	public void setEndDate(String endDate) {
-		this.endDate = endDate;
+	public void setEndTimestamp(Long endTimestamp) {
+		this.endTimestamp = endTimestamp;
 	}
 	public String getRemark() {
 		return remark;
