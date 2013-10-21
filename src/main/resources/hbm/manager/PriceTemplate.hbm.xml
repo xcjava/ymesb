@@ -84,16 +84,16 @@
 			</column>
 		</property>
 		
-		<property name="startDate" type="java.lang.String">
+		<property name="startTimestamp" type="java.lang.Long">
 			<meta attribute="field-description">开始日期</meta>
-			<column name="START_DATE" length="300">
+			<column name="START_TIMESTAMP">
 				<comment>开始日期</comment>
 			</column>
 		</property>
 		
-		<property name="endDate" type="java.lang.String">
+		<property name="endTimestamp" type="java.lang.Long">
 			<meta attribute="field-description">结束日期</meta>
-			<column name="END_DATE" length="300">
+			<column name="END_TIMESTAMP" length="300">
 				<comment>结束日期</comment>
 			</column>
 		</property>
