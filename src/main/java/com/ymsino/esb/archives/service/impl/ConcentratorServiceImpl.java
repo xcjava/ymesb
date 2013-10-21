@@ -3,6 +3,8 @@ package com.ymsino.esb.archives.service.impl;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
@@ -39,17 +41,39 @@ public class ConcentratorServiceImpl implements ConcentratorService {
 			throw new RuntimeException("参数对象为空");
 		}
 		
-		if(StringUtils.isEmpty(vo.getHardwareId())){
+		if(StringUtils.isEmpty(vo.getLogicCode()) ||
+				StringUtils.isEmpty(vo.getAreaCode())){
 			logger.error("save:缺少必要属性");
 			throw new RuntimeException("缺少必要属性");
 		}
 		
-		if(this.getById(vo.getHardwareId().trim()) != null){
+		String regex_area = "[0-9]{4}";
+		String regex_logic = "[0-9]{1,4}";
+		if(!this.isRegexValidate(vo.getAreaCode(), regex_area)){
+			logger.error("save:区域码格式不正确");
+			throw new RuntimeException("区域码格式不正确");
+		}
+		
+		if(!this.isRegexValidate(vo.getLogicCode(), regex_logic)){
+			logger.error("save:逻辑地址格式不正确");
+			throw new RuntimeException("逻辑地址格式不正确");
+		}
+		
+		String hardwareId = vo.getAreaCode();
+		String logicCode = vo.getLogicCode();
+		int length = logicCode.length();
+		for(int i = 0; i < 4 - length; i++){
+			logicCode = "0" + logicCode;
+		}
+		hardwareId = hardwareId + logicCode.substring(2, 4) + logicCode.substring(0, 2);
+		
+		if(this.getById(hardwareId) != null){
 			logger.error("save:集中器编码已经存在，不能重复添加");
 			throw new RuntimeException("集中器编码已经存在，不能重复添加");
 		}
 		
 		Concentrator model = (Concentrator) ObjectMapping.objMapping(vo, new Concentrator());
+		model.setHardwareId(hardwareId);
 		model.setCreateTimestamp(new Date().getTime());
 		if(!StringUtils.isEmpty(model.getChargingUnitId()))
 			model.setParentUnits(chargingUnitManager.getParentUnitIds(model.getChargingUnitId()));
@@ -170,4 +194,15 @@ public class ConcentratorServiceImpl implements ConcentratorService {
 		return count;
 	}
 
+	/**
+	 * 正则校验（内部使用）
+	 * @param source
+	 * @param regexp
+	 * @return
+	 */
+	public boolean isRegexValidate(String source, String regexp){
+		Pattern p = Pattern.compile(regexp);
+        Matcher m = p.matcher(source);
+        return m.matches();
+	}
 }
