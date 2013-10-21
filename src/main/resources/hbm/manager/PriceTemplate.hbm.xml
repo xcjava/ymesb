@@ -93,7 +93,7 @@
 		
 		<property name="endTimestamp" type="java.lang.Long">
 			<meta attribute="field-description">结束日期</meta>
-			<column name="END_TIMESTAMP" length="300">
+			<column name="END_TIMESTAMP">
 				<comment>结束日期</comment>
 			</column>
 		</property>
