@@ -3,13 +3,13 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-    <class name="com.ymsino.esb.data.model.FreezeData" table="DATA_FREEZEDATA">
+    <class name="com.ymsino.esb.data.model.TestMeterCodeData" table="DATA_TESTMETERCODEDATA">
     
 		<id name="id" type="java.lang.Long">
-			<meta attribute="field-description">水表冻结数据自增id</meta>
+			<meta attribute="field-description">集中器实时召测表码自增id</meta>
 			<meta attribute="use-in-equals">true</meta>
 			<column name="ID">
-				<comment>水表冻结数据自增id</comment>
+				<comment>召集中器实时召测表码自增id</comment>
 			</column>
 			<generator class="native"></generator>
 		</id>
@@ -85,13 +85,6 @@
 			</column>
 		</property>
 		
-		<property name="freezeDate" type="java.util.Date">
-			<meta attribute="field-description">冻结时间</meta>
-			<column name="FREEZE_DATE">
-				<comment>冻结时间</comment>
-			</column>
-		</property>
-		
         <property name="createDate" type="java.util.Date">
 			<meta attribute="field-description">创建时间</meta>
 			<column name="CREATE_DATE">
@@ -106,13 +99,6 @@
 			</column>
 		</property>
 		
-		<!-- <property name="userName" type="java.lang.String">
-			<meta attribute="field-description">用户姓名</meta>
-			<column name="USER_NAME" length="300">
-				<comment>用户姓名</comment>
-			</column>
-		</property> -->
-		
 		<property name="chargingUnitId" type="java.lang.String">
 			<meta attribute="field-description">收费单位编号</meta>
 			<column name="CHARGING_UNIT_ID">
@@ -126,97 +112,6 @@
 				<comment>上级收费单位编号，多个用"||"包住，如|123||456|,用于搜索</comment>
 			</column>
 		</property>
-		
-		<!-- <property name="districtId" type="java.lang.Long">
-			<meta attribute="field-description">所在区县ID</meta>
-			<column name="DISTRICT_ID">
-				<comment>所在区县ID</comment>
-			</column>
-		</property>
-		
-		<property name="districtName" type="java.lang.String">
-			<meta attribute="field-description">区县名称</meta>
-			<column name="DISTRICT_NAME" length="300">
-				<comment>区县名称</comment>
-			</column>
-		</property>
-		
-		<property name="streetId" type="java.lang.Long">
-			<meta attribute="field-description">所在街道ID</meta>
-			<column name="STREET_ID">
-				<comment>所在街道ID</comment>
-			</column>
-		</property>
-		
-		<property name="streetName" type="java.lang.String">
-			<meta attribute="field-description">街道名称</meta>
-			<column name="STREET_NAME" length="300">
-				<comment>街道名称</comment>
-			</column>
-		</property>
-		
-		<property name="residentialId" type="java.lang.Long">
-			<meta attribute="field-description">所在小区ID</meta>
-			<column name="RESIDENTIAL_ID">
-				<comment>所在小区ID</comment>
-			</column>
-		</property>
-		
-		<property name="residentialName" type="java.lang.String">
-			<meta attribute="field-description">小区名称</meta>
-			<column name="RESIDENTIAL_NAME" length="300">
-				<comment>小区名称</comment>
-			</column>
-		</property>
-		
-		<property name="stoBuiId" type="java.lang.Long">
-			<meta attribute="field-description">所在楼栋ID</meta>
-			<column name="STO_BUI_ID">
-				<comment>所在楼栋ID</comment>
-			</column>
-		</property>
-		
-		<property name="stoBuiName" type="java.lang.String">
-			<meta attribute="field-description">楼栋名称</meta>
-			<column name="STO_BUI_NAME" length="300">
-				<comment>楼栋名称</comment>
-			</column>
-		</property>
-		
-		<property name="deptId" type="java.lang.Long">
-			<meta attribute="field-description">所在部门ID</meta>
-			<column name="DEPT_ID">
-				<comment>所在部门ID</comment>
-			</column>
-		</property>
-		
-		<property name="deptName" type="java.lang.String">
-			<meta attribute="field-description">部门名称</meta>
-			<column name="DEPT_NAME" length="300">
-				<comment>部门名称</comment>
-			</column>
-		</property>
-		
-		<property name="unit" type="java.lang.String">
-			<meta attribute="field-description">所在单元</meta>
-			<column name="UNIT" length="300">
-				<comment>所在单元</comment>
-			</column>
-		</property>
-		
-		<property name="floor" type="java.lang.String">
-			<meta attribute="field-description">所在楼层</meta>
-			<column name="FLOOR" length="300">
-				<comment>所在楼层</comment>
-			</column>
-		</property>
-		
-		<property name="roomNo" type="java.lang.String">
-			<meta attribute="field-description">所在房号</meta>
-			<column name="ROOM_NO" length="300">
-				<comment>所在房号</comment>
-			</column>
-		</property> -->
 		
     </class>
 </hibernate-mapping>
