@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.ymsino.esb.manager.model.PriceTemplate" table="MANAGER_PRICE_TEMPLATE">
+    
+		<id name="id" type="java.lang.Long">
+			<meta attribute="field-description">价目id</meta>
+			<meta attribute="use-in-equals">true</meta>
+			<column name="ID">
+				<comment>价目id</comment>
+			</column>
+			<generator class="native"></generator>
+		</id>
+		
+		<property name="name" type="java.lang.String">
+			<meta attribute="field-description">价目名称</meta>
+			<column name="NAME" length="300">
+				<comment>价目名称</comment>
+			</column>
+		</property>
+		
+		<property name="type" type="java.lang.String">
+			<meta attribute="field-description">价目类型</meta>
+			<column name="TYPE" length="300">
+				<comment>价目类型</comment>
+			</column>
+		</property>
+		
+		<property name="level1Num" type="java.lang.Long">
+			<meta attribute="field-description">1阶最大值</meta>
+			<column name="LEVEL1_NUM">
+				<comment>1阶最大值</comment>
+			</column>
+		</property>
+		
+		<property name="level1Cost" type="java.lang.Long">
+			<meta attribute="field-description">1阶价格，单位分</meta>
+			<column name="LEVEL1_COST">
+				<comment>1阶价格，单位分</comment>
+			</column>
+		</property>
+		
+		<property name="level2Num" type="java.lang.Long">
+			<meta attribute="field-description">2阶最大值</meta>
+			<column name="LEVEL2_NUM">
+				<comment>2阶最大值</comment>
+			</column>
+		</property>
+		
+		<property name="level2Cost" type="java.lang.Long">
+			<meta attribute="field-description">2阶价格，单位分</meta>
+			<column name="LEVEL2_COST">
+				<comment>2阶价格，单位分</comment>
+			</column>
+		</property>
+		
+		<property name="level3Num" type="java.lang.Long">
+			<meta attribute="field-description">3阶最大值</meta>
+			<column name="LEVEL3_NUM">
+				<comment>3阶最大值</comment>
+			</column>
+		</property>
+		
+		<property name="level3Cost" type="java.lang.Long">
+			<meta attribute="field-description">3阶价格，单位分</meta>
+			<column name="LEVEL3_COST">
+				<comment>3阶价格，单位分</comment>
+			</column>
+		</property>
+		
+		<property name="level4Num" type="java.lang.Long">
+			<meta attribute="field-description">4阶最大值</meta>
+			<column name="LEVEL4_NUM">
+				<comment>4阶最大值</comment>
+			</column>
+		</property>
+		
+		<property name="billingPeriod" type="java.lang.String">
+			<meta attribute="field-description">结算周期</meta>
+			<column name="BILLING_PERIOD" length="300">
+				<comment>结算周期</comment>
+			</column>
+		</property>
+		
+		<property name="startDate" type="java.lang.String">
+			<meta attribute="field-description">开始日期</meta>
+			<column name="START_DATE" length="300">
+				<comment>开始日期</comment>
+			</column>
+		</property>
+		
+		<property name="endDate" type="java.lang.String">
+			<meta attribute="field-description">结束日期</meta>
+			<column name="END_DATE" length="300">
+				<comment>结束日期</comment>
+			</column>
+		</property>
+		
+		<property name="remark" type="org.springframework.orm.hibernate3.support.ClobStringType">
+			<meta attribute="field-description">备注</meta>
+        	<column name="REMARK">
+				<comment>备注</comment>
+			</column>
+        </property>
+        
+        <property name="chargingUnitId" type="java.lang.String">
+			<meta attribute="field-description">收费单位编号</meta>
+			<column name="CHARGING_UNIT_ID">
+				<comment>收费单位编号</comment>
+			</column>
+		</property>
+		
+		<property name="parentUnits" type="org.springframework.orm.hibernate3.support.ClobStringType">
+			<meta attribute="field-description">上级收费单位编号，多个用"||"包住，如|123||456|,用于搜索</meta>
+			<column length="2147483647" name="PARENT_UNITS">
+				<comment>上级收费单位编号，多个用"||"包住，如|123||456|,用于搜索</comment>
+			</column>
+		</property>
+        
+        <property name="createTimestamp" type="java.lang.Long">
+			<meta attribute="field-description">创建时间</meta>
+			<column name="CREATE_TIMESTAMP">
+				<comment>创建时间</comment>
+			</column>
+		</property>
+    </class>
+</hibernate-mapping>
