@@ -14,6 +14,13 @@
 			<generator class="assigned"></generator>
 		</id>
 		
+		<property name="waterCustomerId" type="java.lang.String">
+			<meta attribute="field-description">用水用户编号</meta>
+			<column name="WATER_CUSTOMER_ID" length="300">
+				<comment>用水用户编号</comment>
+			</column>
+		</property>
+		
 		<property name="uid" type="java.lang.Long">
 			<meta attribute="field-description">用户id</meta>
 			<column name="U_ID">
