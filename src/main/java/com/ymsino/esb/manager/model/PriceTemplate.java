@@ -52,6 +52,10 @@ public class PriceTemplate  implements java.io.Serializable {
      */
      private Long level4Num;
      /**
+      * 4阶价格，单位分
+     */
+     private Long level4Cost;
+     /**
       * 结算周期
      */
      private String billingPeriod;
@@ -89,7 +93,7 @@ public class PriceTemplate  implements java.io.Serializable {
 
     
     /** full constructor */
-    public PriceTemplate(String name, String type, Long level1Num, Long level1Cost, Long level2Num, Long level2Cost, Long level3Num, Long level3Cost, Long level4Num, String billingPeriod, Long startTimestamp, Long endTimestamp, String remark, String chargingUnitId, String parentUnits, Long createTimestamp) {
+    public PriceTemplate(String name, String type, Long level1Num, Long level1Cost, Long level2Num, Long level2Cost, Long level3Num, Long level3Cost, Long level4Num, Long level4Cost, String billingPeriod, Long startTimestamp, Long endTimestamp, String remark, String chargingUnitId, String parentUnits, Long createTimestamp) {
         this.name = name;
         this.type = type;
         this.level1Num = level1Num;
@@ -99,6 +103,7 @@ public class PriceTemplate  implements java.io.Serializable {
         this.level3Num = level3Num;
         this.level3Cost = level3Cost;
         this.level4Num = level4Num;
+        this.level4Cost = level4Cost;
         this.billingPeriod = billingPeriod;
         this.startTimestamp = startTimestamp;
         this.endTimestamp = endTimestamp;
@@ -219,6 +224,17 @@ public class PriceTemplate  implements java.io.Serializable {
     
     public void setLevel4Num(Long level4Num) {
         this.level4Num = level4Num;
+    }
+    /**       
+     *      * 4阶价格，单位分
+     */
+
+    public Long getLevel4Cost() {
+        return this.level4Cost;
+    }
+    
+    public void setLevel4Cost(Long level4Cost) {
+        this.level4Cost = level4Cost;
     }
     /**       
      *      * 结算周期
