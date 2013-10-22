@@ -1,6 +1,5 @@
 package com.ymsino.esb.data.model;
 
-import java.util.Date;
 
 
 /**
@@ -56,13 +55,13 @@ public class FreezeData  implements java.io.Serializable {
      */
      private String replyStatus;
      /**
-      * 冻结时间
+      * 冻结时间YYMMDD
      */
-     private Date freezeDate;
+     private String freezeDateStr;
      /**
-      * 创建时间
+      * 创建时间戳
      */
-     private Date createDate;
+     private Long createTimestamp;
      /**
       * 客户编号
      */
@@ -85,7 +84,7 @@ public class FreezeData  implements java.io.Serializable {
 
     
     /** full constructor */
-    public FreezeData(String concHardwareId, String meterHardwareId, Long meterReading, Float batteryVoltage, String valveStatus, String dataType, String magneticAttack, String errorStatus, String replyStatus, Date freezeDate, Date createDate, String userId, String chargingUnitId, String parentUnits) {
+    public FreezeData(String concHardwareId, String meterHardwareId, Long meterReading, Float batteryVoltage, String valveStatus, String dataType, String magneticAttack, String errorStatus, String replyStatus, String freezeDateStr, Long createTimestamp, String userId, String chargingUnitId, String parentUnits) {
         this.concHardwareId = concHardwareId;
         this.meterHardwareId = meterHardwareId;
         this.meterReading = meterReading;
@@ -95,8 +94,8 @@ public class FreezeData  implements java.io.Serializable {
         this.magneticAttack = magneticAttack;
         this.errorStatus = errorStatus;
         this.replyStatus = replyStatus;
-        this.freezeDate = freezeDate;
-        this.createDate = createDate;
+        this.freezeDateStr = freezeDateStr;
+        this.createTimestamp = createTimestamp;
         this.userId = userId;
         this.chargingUnitId = chargingUnitId;
         this.parentUnits = parentUnits;
@@ -218,26 +217,26 @@ public class FreezeData  implements java.io.Serializable {
         this.replyStatus = replyStatus;
     }
     /**       
-     *      * 冻结时间
+     *      * 冻结时间YYMMDD
      */
 
-    public Date getFreezeDate() {
-        return this.freezeDate;
+    public String getFreezeDateStr() {
+        return this.freezeDateStr;
     }
     
-    public void setFreezeDate(Date freezeDate) {
-        this.freezeDate = freezeDate;
+    public void setFreezeDateStr(String freezeDateStr) {
+        this.freezeDateStr = freezeDateStr;
     }
     /**       
-     *      * 创建时间
+     *      * 创建时间戳
      */
 
-    public Date getCreateDate() {
-        return this.createDate;
+    public Long getCreateTimestamp() {
+        return this.createTimestamp;
     }
     
-    public void setCreateDate(Date createDate) {
-        this.createDate = createDate;
+    public void setCreateTimestamp(Long createTimestamp) {
+        this.createTimestamp = createTimestamp;
     }
     /**       
      *      * 客户编号

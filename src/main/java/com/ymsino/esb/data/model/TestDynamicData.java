@@ -1,6 +1,5 @@
 package com.ymsino.esb.data.model;
 
-import java.util.Date;
 
 
 /**
@@ -56,9 +55,9 @@ public class TestDynamicData  implements java.io.Serializable {
      */
      private String replyStatus;
      /**
-      * 创建时间
+      * 创建时间戳
      */
-     private Date createDate;
+     private Long createTimestamp;
      /**
       * 客户编号
      */
@@ -81,7 +80,7 @@ public class TestDynamicData  implements java.io.Serializable {
 
     
     /** full constructor */
-    public TestDynamicData(String concHardwareId, String meterHardwareId, Long meterReading, Float batteryVoltage, String valveStatus, String dataType, String magneticAttack, String errorStatus, String replyStatus, Date createDate, String userId, String chargingUnitId, String parentUnits) {
+    public TestDynamicData(String concHardwareId, String meterHardwareId, Long meterReading, Float batteryVoltage, String valveStatus, String dataType, String magneticAttack, String errorStatus, String replyStatus, Long createTimestamp, String userId, String chargingUnitId, String parentUnits) {
         this.concHardwareId = concHardwareId;
         this.meterHardwareId = meterHardwareId;
         this.meterReading = meterReading;
@@ -91,7 +90,7 @@ public class TestDynamicData  implements java.io.Serializable {
         this.magneticAttack = magneticAttack;
         this.errorStatus = errorStatus;
         this.replyStatus = replyStatus;
-        this.createDate = createDate;
+        this.createTimestamp = createTimestamp;
         this.userId = userId;
         this.chargingUnitId = chargingUnitId;
         this.parentUnits = parentUnits;
@@ -213,15 +212,15 @@ public class TestDynamicData  implements java.io.Serializable {
         this.replyStatus = replyStatus;
     }
     /**       
-     *      * 创建时间
+     *      * 创建时间戳
      */
 
-    public Date getCreateDate() {
-        return this.createDate;
+    public Long getCreateTimestamp() {
+        return this.createTimestamp;
     }
     
-    public void setCreateDate(Date createDate) {
-        this.createDate = createDate;
+    public void setCreateTimestamp(Long createTimestamp) {
+        this.createTimestamp = createTimestamp;
     }
     /**       
      *      * 客户编号
