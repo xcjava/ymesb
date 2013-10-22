@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.ymsino.esb.freesettle.model.UserWalletLog" table="FREESETTLE_WALLET_LOG">
+		
+		<id name="id" type="java.lang.Long">
+			<meta attribute="field-description">用户余额日志自增id</meta>
+			<meta attribute="use-in-equals">true</meta>
+			<column name="ID" />
+			<generator class="native" />
+		</id>
+		
+		<property name="sysRemark" type="java.lang.String">
+			<meta attribute="field-description">系统备注</meta>
+        	<column name="SYS_REMARK" length="300" />
+        </property>
+        
+        <property name="logType" type="java.lang.Short">
+        	<meta attribute="field-description">类型: -1:支出, 1收入</meta>
+        	<column name="LOG_TYPE" />
+        </property>
+        
+        <property name="createTimestamp" type="java.lang.Long">
+        	<meta attribute="field-description">创建时间戳</meta>
+			<column name="CREATE_TIMESTAMP">
+				<comment>创建时间戳</comment>
+			</column>
+		</property>
+		
+		<property name="usePrice" type="java.lang.Long">
+			<meta attribute="field-description">使用金额(分),正数为收入,负数为支出</meta>
+			<column name="USE_PRICE" />
+		</property>
+		
+		<property name="uid" type="java.lang.Long">
+			<meta attribute="field-description">用户ID</meta>
+            <column name="USER_UID" />
+        </property>
+		
+    </class>
+</hibernate-mapping>

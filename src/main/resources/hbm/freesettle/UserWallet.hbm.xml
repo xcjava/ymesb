@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.ymsino.esb.freesettle.model.UserWallet" table="FREESETTLE_WALLET">
+		
+		<id name="signId" type="java.lang.String">
+			<meta attribute="field-description">用户uid的MD5</meta>
+			<meta attribute="use-in-equals">true</meta>
+			<column name="SIGN_ID" length="100">
+				<comment>用户uid的MD5</comment>
+			</column>
+			<generator class="assigned" />
+		</id>
+
+		<property name="modifyTimestamp" type="java.lang.Long">
+        	<meta attribute="field-description">账户上一次变动时间戳</meta>
+			<column name="MODIFY_TIMESTAMP">
+				<comment>账户上一次变动时间戳</comment>
+			</column>
+		</property>
+		
+		<property name="cashAmount" type="java.lang.Long">
+        	<meta attribute="field-description">账户余额,单位为分</meta>
+			<column name="CASH_AMOUNT">
+				<comment>账户余额,单位为分</comment>
+			</column>
+		</property>
+		
+		<property name="healthSign" type="java.lang.String">
+        	<meta attribute="field-description">账户签名</meta>
+			<column length="100" name="HEALTH_SIGN">
+				<comment>账户签名</comment>
+			</column>
+		</property>
+		
+		<property name="healthStatus" type="java.lang.Short">
+			<meta attribute="field-description">健康状态:1正常;-1警告</meta>
+			<column name="HEALTH_STATUS">
+				<comment>健康状态:1正常;-1警告</comment>
+			</column>
+		</property>
+		
+    </class>
+</hibernate-mapping>
