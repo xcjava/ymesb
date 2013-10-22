@@ -9,6 +9,10 @@ public class WaterMeterSaveParam implements Serializable {
     */
     private String hardwareId;
     /**
+     * 用水用户编号
+    */
+    private String waterCustomerId;
+    /**
      * 用户id
     */
     private Long uid;
@@ -81,6 +85,12 @@ public class WaterMeterSaveParam implements Serializable {
 	}
 	public void setHardwareId(String hardwareId) {
 		this.hardwareId = hardwareId;
+	}
+	public String getWaterCustomerId() {
+		return waterCustomerId;
+	}
+	public void setWaterCustomerId(String waterCustomerId) {
+		this.waterCustomerId = waterCustomerId;
 	}
 	public Long getUid() {
 		return uid;
