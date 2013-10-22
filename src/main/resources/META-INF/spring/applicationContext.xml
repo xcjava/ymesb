@@ -70,6 +70,10 @@
 				
 				<value>hbm/freesettle/UserWallet.hbm.xml</value>
 				<value>hbm/freesettle/UserWalletLog.hbm.xml</value>
+				
+				<value>hbm/data/FreezeData.hbm.xml</value>
+				<value>hbm/data/TestDynamicData.hbm.xml</value>
+				<value>hbm/data/TestMeterCodeData.hbm.xml</value>
 			</list>
 		</property>
 	</bean>
