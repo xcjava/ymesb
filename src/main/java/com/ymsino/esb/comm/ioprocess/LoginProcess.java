@@ -35,6 +35,7 @@ public class LoginProcess {
 			Map<String, Object> headers = new HashMap<String, Object>();
 			headers.put("concentratorId", AbstractMessage.getFieldString(resp.head.rtua));
 			
+			logger.debug("发送登录响应:" + AbstractMessage.getFieldString(resp.head.rtua) + ":" + AbstractMessage.getFieldString(resp.head.mstaSeq));
 			logger.debug("发送:" + resp.toString());
 			producerTemplate.sendBodyAndHeaders("direct:send", ExchangePattern.InOnly, resp.toBytes(), headers);
 			//producerTemplate.sendBodyAndHeaders("jms:queue:send", ExchangePattern.InOnly, resp.toBytes(), headers);

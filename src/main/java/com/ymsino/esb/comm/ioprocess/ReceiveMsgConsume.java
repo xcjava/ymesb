@@ -80,7 +80,7 @@ public class ReceiveMsgConsume {
 			
 			Login req = new Login(bytes);
 			logger.debug("接收:" + req.toString());
-			logger.debug("接收登录消息:" + AbstractMessage.getFieldString(req.head.mstaSeq));
+			logger.debug("接收登录消息:" + AbstractMessage.getFieldString(req.head.rtua) + ":" + AbstractMessage.getFieldString(req.head.mstaSeq));
 			loginProcess.process(req, exchange);
 			
 		}/*else if(AbstractMessage.getControlCode(bytes).equals("21")){
@@ -88,14 +88,14 @@ public class ReceiveMsgConsume {
 		}*/else if(AbstractMessage.getControlCode(bytes).equals("A2")){
 			Logout logout = new Logout(bytes);
 			logger.debug("接收:" + logout.toString());
-			logger.debug("接收登出消息:" + AbstractMessage.getFieldString(logout.head.mstaSeq));
+			logger.debug("接收登出消息:" + AbstractMessage.getFieldString(logout.head.rtua) + ":" + AbstractMessage.getFieldString(logout.head.mstaSeq));
 			logoutProcess.process(logout);
 		}/*else if(AbstractMessage.getControlCode(bytes).equals("22")){
 			message = new LogoutResp(bytes);
 		}*/else if(AbstractMessage.getControlCode(bytes).equals("A4")){
 			Ping ping = new Ping(bytes);
 			logger.debug("接收:" + ping.toString());
-			logger.debug("接收心跳消息:" + AbstractMessage.getFieldString(ping.head.mstaSeq));
+			logger.debug("接收心跳消息:" + AbstractMessage.getFieldString(ping.head.rtua) + ":" + AbstractMessage.getFieldString(ping.head.mstaSeq));
 			pingProcess.process(ping);
 		}/*else if(AbstractMessage.getControlCode(bytes).equals("24")){
 			message = new PingResp(bytes);
