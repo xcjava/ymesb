@@ -45,6 +45,10 @@ public class PriceTemplateReturn implements Serializable {
     */
     Long level4Num;
     /**
+     * 4阶价格，单位分
+    */
+    Long level4Cost;
+    /**
      * 结算周期
     */
     String billingPeriod;
@@ -131,6 +135,12 @@ public class PriceTemplateReturn implements Serializable {
 	}
 	public void setLevel4Num(Long level4Num) {
 		this.level4Num = level4Num;
+	}
+	public Long getLevel4Cost() {
+		return level4Cost;
+	}
+	public void setLevel4Cost(Long level4Cost) {
+		this.level4Cost = level4Cost;
 	}
 	public String getBillingPeriod() {
 		return billingPeriod;
