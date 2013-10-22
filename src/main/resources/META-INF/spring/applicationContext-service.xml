@@ -71,6 +71,9 @@
 	<bean id="userWalletLogServiceImpl" class="com.ymsino.esb.freesettle.service.impl.UserWalletLogServiceImpl">
 		<property name="commonHibernateDao" ref="commonHibernateDao"></property>
 	</bean>
+	<bean id="userWalletServiceImpl" class="com.ymsino.esb.freesettle.service.impl.UserWalletServiceImpl">
+		<property name="commonHibernateDao" ref="commonHibernateDao"></property>
+	</bean>
 	<!-- 费用结算 -->
 	
 	
@@ -117,6 +120,9 @@
 	<!-- 费用结算 -->
 	<jaxws:server id="userWalletLogService" serviceClass="com.ymsino.esb.freesettle.service.api.UserWalletLogService" address="camel://jetty:http://${ws.host}:${ws.port}/ws/userWalletLogService">
 		<jaxws:serviceBean><ref bean="userWalletLogServiceImpl"/></jaxws:serviceBean>
+	</jaxws:server>
+	<jaxws:server id="userWalletService" serviceClass="com.ymsino.esb.freesettle.service.api.UserWalletService" address="camel://jetty:http://${ws.host}:${ws.port}/ws/userWalletService">
+		<jaxws:serviceBean><ref bean="userWalletServiceImpl"/></jaxws:serviceBean>
 	</jaxws:server>
 	<!-- 费用结算 -->
 </beans>
