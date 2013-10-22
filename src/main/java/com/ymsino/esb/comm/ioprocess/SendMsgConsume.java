@@ -7,12 +7,15 @@ import org.apache.mina.core.session.IoSession;
 
 public class SendMsgConsume {
 
-	@Consume(uri = "jms:queue:send")
-	public void send(@Body Object vo, @Header("concentratorId") String id) {
+	//jms:queue:
+	@Consume(uri = "direct:send")
+	public void send(@Body byte[] vo, @Header("concentratorId") String id) {
 		
 		IoSession session = ConcentratorOnLine.getIoSession(id);
-		if(session == null)
+		if(session == null){
+			System.out.println("集中器会话中断,无法发送");
 			return;
+		}
 		session.write(vo);
 		
 	}

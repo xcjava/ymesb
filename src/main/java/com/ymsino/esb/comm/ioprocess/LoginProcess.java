@@ -22,19 +22,23 @@ public class LoginProcess {
 
 
 	public void process(Login login, Exchange exchange){
-		
+
 		if(AbstractMessage.getFieldString(login.password).equals("000000")){
+			ConcentratorOnLine.checkAdd(AbstractMessage.getFieldString(login.head.rtua), exchange);
+			
 			LoginResp resp = new LoginResp();
 			resp.head.rtua = AbstractMessage.initField(AbstractMessage.getFieldString(login.head.rtua), login.head.rtua.length);
 			resp.head.mstaSeq = AbstractMessage.initField(AbstractMessage.getFieldString(login.head.mstaSeq), login.head.mstaSeq.length);
+			
+			//exchange.getOut().setBody(resp.toBytes());
 			
 			Map<String, Object> headers = new HashMap<String, Object>();
 			headers.put("concentratorId", AbstractMessage.getFieldString(resp.head.rtua));
 			
 			logger.debug("发送:" + resp.toString());
-			producerTemplate.sendBodyAndHeaders("jms:queue:send", ExchangePattern.InOnly, resp.toBytes(), headers);
+			producerTemplate.sendBodyAndHeaders("direct:send", ExchangePattern.InOnly, resp.toBytes(), headers);
+			//producerTemplate.sendBodyAndHeaders("jms:queue:send", ExchangePattern.InOnly, resp.toBytes(), headers);
 			
-			ConcentratorOnLine.checkAdd(AbstractMessage.getFieldString(login.head.rtua), exchange);
 		}else{
 			ConcentratorOnLine.close(AbstractMessage.getFieldString(login.head.rtua), true);
 		}

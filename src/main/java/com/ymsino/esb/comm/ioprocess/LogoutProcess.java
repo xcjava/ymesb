@@ -29,7 +29,8 @@ public class LogoutProcess {
 		headers.put("concentratorId", AbstractMessage.getFieldString(resp.head.rtua));
 		
 		logger.debug("发送:" + resp.toString());
-		producerTemplate.sendBodyAndHeaders("jms:queue:send", ExchangePattern.InOnly, resp.toBytes(), headers);
+		producerTemplate.sendBodyAndHeaders("direct:send", ExchangePattern.InOnly, resp.toBytes(), headers);
+		//producerTemplate.sendBodyAndHeaders("jms:queue:send", ExchangePattern.InOnly, resp.toBytes(), headers);
 		
 		ConcentratorOnLine.close(AbstractMessage.getFieldString(resp.head.rtua), true);
 		
