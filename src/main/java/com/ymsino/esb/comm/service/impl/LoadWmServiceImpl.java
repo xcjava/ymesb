@@ -60,7 +60,7 @@ public class LoadWmServiceImpl implements LoadWmService {
 		
 		logger.debug("发送读取水表参数消息:" + concHardwareId + ":" + AbstractMessage.getFieldString(readParam.head.mstaSeq));
 		logger.debug("发送:" + readParam.toString());
-		producerTemplate.sendBodyAndHeaders("jms:queue:send", ExchangePattern.InOnly, readParam.toBytes(), headers);
+		producerTemplate.sendBodyAndHeaders("direct:send", ExchangePattern.InOnly, readParam.toBytes(), headers);
 		
 		byte[] bytes = (byte[]) camelContext.createConsumerTemplate().receiveBody("jms:queue:readWaterMeterSn:" + concHardwareId + ":" +
 				AbstractMessage.getFieldString(readParam.head.mstaSeq));
@@ -133,9 +133,9 @@ public class LoadWmServiceImpl implements LoadWmService {
 			
 			logger.debug("发送加载水表参数消息:" + concHardwareId + ":" + AbstractMessage.getFieldString(loadWm.head.mstaSeq));
 			logger.debug("发送:" + loadWm.toString());
-			producerTemplate.sendBodyAndHeaders("jms:queue:send", ExchangePattern.InOnly, loadWm.toBytes(), headers);
+			producerTemplate.sendBodyAndHeaders("direct:send", ExchangePattern.InOnly, loadWm.toBytes(), headers);
 			
-			String errorCode = (String) camelContext.createConsumerTemplate().receiveBody("jms:queue:loadWm:" + concHardwareId + ":" +
+			String errorCode = (String) camelContext.createConsumerTemplate().receiveBody("direct:loadWm:" + concHardwareId + ":" +
 					AbstractMessage.getFieldString(loadWm.head.mstaSeq));
 			logger.debug("接收加载水表参数响应:" + concHardwareId + ":" + AbstractMessage.getFieldString(loadWm.head.mstaSeq));
 			
