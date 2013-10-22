@@ -77,6 +77,13 @@
 			</column>
 		</property>
 		
+		<property name="level4Cost" type="java.lang.Long">
+			<meta attribute="field-description">4阶价格，单位分</meta>
+			<column name="LEVEL4_COST">
+				<comment>4阶价格，单位分</comment>
+			</column>
+		</property>
+		
 		<property name="billingPeriod" type="java.lang.String">
 			<meta attribute="field-description">结算周期</meta>
 			<column name="BILLING_PERIOD" length="300">
