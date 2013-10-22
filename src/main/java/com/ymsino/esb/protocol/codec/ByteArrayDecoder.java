@@ -14,7 +14,6 @@ public class ByteArrayDecoder extends ProtocolDecoderAdapter {
 	    byte[] bytes = new byte[limit];
 	    
 	    in.get(bytes);
-	    
 	    out.write(bytes);
 	}
 		

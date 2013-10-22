@@ -12,7 +12,7 @@ public class ByteArrayEncoder extends ProtocolEncoderAdapter {
 			ProtocolEncoderOutput out) throws Exception {
 		
 		byte[] bytes = (byte[])message;
-	    
+
 		IoBuffer buffer = IoBuffer.allocate(256);
 	    buffer.setAutoExpand(true);
 	    
