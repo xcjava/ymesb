@@ -85,17 +85,17 @@
 			</column>
 		</property>
 		
-		<property name="freezeDate" type="java.util.Date">
-			<meta attribute="field-description">冻结时间</meta>
-			<column name="FREEZE_DATE">
-				<comment>冻结时间</comment>
+		<property name="freezeDateStr" type="java.lang.String">
+			<meta attribute="field-description">冻结时间YYMMDD</meta>
+			<column name="FREEZE_DATE_STR">
+				<comment>冻结时间YYMMDD</comment>
 			</column>
 		</property>
 		
-        <property name="createDate" type="java.util.Date">
-			<meta attribute="field-description">创建时间</meta>
-			<column name="CREATE_DATE">
-				<comment>创建时间</comment>
+        <property name="createTimestamp" type="java.lang.Long">
+			<meta attribute="field-description">创建时间戳</meta>
+			<column name="CREATE_TIMESTAMP">
+				<comment>创建时间戳</comment>
 			</column>
 		</property>
 		

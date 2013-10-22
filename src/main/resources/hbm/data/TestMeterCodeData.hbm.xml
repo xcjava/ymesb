@@ -85,10 +85,10 @@
 			</column>
 		</property>
 		
-        <property name="createDate" type="java.util.Date">
-			<meta attribute="field-description">创建时间</meta>
-			<column name="CREATE_DATE">
-				<comment>创建时间</comment>
+        <property name="createTimestamp" type="java.lang.Long">
+			<meta attribute="field-description">创建时间戳</meta>
+			<column name="CREATE_TIMESTAMP">
+				<comment>创建时间戳</comment>
 			</column>
 		</property>
 		
