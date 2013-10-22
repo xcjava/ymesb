@@ -20,7 +20,7 @@
     <import resource="classpath:META-INF/cxf/cxf-extension-soap.xml"/> 
     <import resource="classpath:META-INF/cxf/cxf-servlet.xml"/>
 
-	<broker:broker id="jmsBroker" useJmx="false" persistent="false" brokerName="jmsBroker">
+	<!-- <broker:broker id="jmsBroker" useJmx="false" persistent="false" brokerName="jmsBroker">
 		<broker:transportConnectors>
 			<broker:transportConnector name="tcp" uri="${jms.tcp}" />
 		</broker:transportConnectors>
@@ -28,8 +28,8 @@
 	
 	<bean id="jms" class="org.apache.activemq.camel.component.ActiveMQComponent">
 		<property name="brokerURL" value="${jms.tcp}"/>
-		<!-- <property name="transacted" value="true" />
-		<property name="transactionManager" ref="txJMSManager" /> -->
+		<property name="transacted" value="true" />
+		<property name="transactionManager" ref="txJMSManager" />
 	</bean>
 
 	<bean id="txJMSManager" class="org.springframework.jms.connection.JmsTransactionManager">
@@ -38,7 +38,7 @@
 	
 	<bean id="jmsConnectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory">
 		<property name="brokerURL" value="${jms.tcp}"/>
-	</bean>
+	</bean> -->
 
 	<bean class="org.apache.camel.component.cxf.transport.CamelTransportFactory" lazy-init="false">
 	   <property name="bus" ref="cxf"/>
@@ -55,14 +55,14 @@
 		<camel:template id="producerTemplate" />
 		<camel:consumerTemplate id="consumerTemplate" />
 		<camel:routeBuilder id="route1" ref="commRoute"></camel:routeBuilder>
-		<route id="checkActTaskQuartz">
+		<!-- <route id="checkActTaskQuartz">
 	  		<from uri="quartz://comm/checkActTask?cron=0+*+*+*+*+?" />
 	  		<to uri="bean:checkActTask?method=checkAct" />
-	  	</route>
-	  	<route id="tesstaaaaaaaa0">
+	  	</route> -->
+	  	<!-- <route id="tesstaaaaaaaa0">
 	  		<from uri="quartz://comm/tesstaaaaaaaa0?cron=0/1+*+*+*+*+?" />
 	  		<to uri="bean:loadWmServiceImpl?method=test" />
-	  	</route>
+	  	</route> -->
 	  	
 	</camelContext>
 

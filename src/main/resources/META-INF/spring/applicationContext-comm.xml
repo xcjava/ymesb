@@ -18,17 +18,31 @@
 
 
 	
-	<bean id="hyCodec" class="com.ymsino.esb.protocol.codec.BytesCodec"></bean>
+	<bean id="bytesCodec" class="com.ymsino.esb.protocol.codec.BytesCodec"></bean>
 
 	<bean class="com.ymsino.esb.comm.routers.Routes" id="commRoute"></bean>
 	
 	<bean class="com.ymsino.esb.comm.task.CheckActTask" id="checkActTask"></bean>
 
 	<bean id="sendMsgConsume" class="com.ymsino.esb.comm.ioprocess.SendMsgConsume"></bean>
+	
 	<bean id="receiveMsgConsume" class="com.ymsino.esb.comm.ioprocess.ReceiveMsgConsume">
 		<property name="producerTemplate" ref="producerTemplate"></property>
+		<property name="consumerTemplate" ref="consumerTemplate"></property>
+		<property name="loginProcess" ref="loginProcess"></property>
+		<property name="logoutProcess" ref="logoutProcess"></property>
+		<property name="pingProcess" ref="pingProcess"></property>
 	</bean>
 
+	<bean id="loginProcess" class="com.ymsino.esb.comm.ioprocess.LoginProcess">
+		<property name="producerTemplate" ref="producerTemplate"></property>
+	</bean>
+	<bean id="logoutProcess" class="com.ymsino.esb.comm.ioprocess.LogoutProcess">
+		<property name="producerTemplate" ref="producerTemplate"></property>
+	</bean>
+	<bean id="pingProcess" class="com.ymsino.esb.comm.ioprocess.PingProcess">
+		<property name="producerTemplate" ref="producerTemplate"></property>
+	</bean>
 
 	<jaxws:server id="conClockService" 
 		serviceClass="com.ymsino.esb.comm.service.api.ConClockService" 
