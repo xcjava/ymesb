@@ -67,6 +67,11 @@
 		<property name="chargingUnitManager" ref="chargingUnitManager"></property>
 	</bean>
 	<!-- 档案管理 -->
+	<!-- 费用结算 -->
+	<bean id="userWalletLogServiceImpl" class="com.ymsino.esb.freesettle.service.impl.UserWalletLogServiceImpl">
+		<property name="commonHibernateDao" ref="commonHibernateDao"></property>
+	</bean>
+	<!-- 费用结算 -->
 	
 	
 	<!-- 系统管理 -->
@@ -109,4 +114,9 @@
 		<jaxws:serviceBean><ref bean="waterCustomerServiceImpl"/></jaxws:serviceBean>
 	</jaxws:server>
 	<!-- 档案管理 -->
+	<!-- 费用结算 -->
+	<jaxws:server id="userWalletLogService" serviceClass="com.ymsino.esb.freesettle.service.api.UserWalletLogService" address="camel://jetty:http://${ws.host}:${ws.port}/ws/userWalletLogService">
+		<jaxws:serviceBean><ref bean="userWalletLogServiceImpl"/></jaxws:serviceBean>
+	</jaxws:server>
+	<!-- 费用结算 -->
 </beans>
