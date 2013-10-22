@@ -15,7 +15,8 @@ public class DomainConsume implements ApplicationContextAware {
 
 	private ApplicationContext applicationContext;  
 	
-	@Consume(uri = "jms:queue:com.gdcct.ec.manager.domain?concurrentConsumers=1&maxConcurrentConsumers=30")
+	//@Consume(uri = "jms:queue:com.gdcct.ec.manager.domain?concurrentConsumers=1&maxConcurrentConsumers=30")
+	@Consume(uri = "direct:com.gdcct.ec.manager.domain")
 	public Serializable doManagerExecute(@Body Object vo, @Header("method") String method, @Header("beanName") String beanName) throws IllegalArgumentException, IllegalAccessException, InvocationTargetException {
 		if(!beanName.endsWith("Manager"))
 			return null;
