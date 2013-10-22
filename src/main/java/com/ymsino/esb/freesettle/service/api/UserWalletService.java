@@ -37,10 +37,10 @@ public interface UserWalletService {
 			@WebParam(name="sysRemark")String sysRemark);
 	
 	/**
-	 * 根据用户id获取余额帐号
+	 * 根据用户id获取用户钱包
 	 * @param uid
 	 * @return
 	 */
-	@WSDLDocumentation("根据用户id获取余额帐号")
+	@WSDLDocumentation("根据用户id获取用户钱包")
 	public UserWalletReturn getByUid(@WebParam(name="uid")Long uid);
 }
