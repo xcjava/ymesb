@@ -1,6 +1,9 @@
 package com.ymsino.esb.comm.service.impl;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.camel.CamelContext;
@@ -9,8 +12,11 @@ import org.apache.camel.ExchangePattern;
 import org.apache.camel.ProducerTemplate;
 import org.apache.log4j.Logger;
 
+import com.gmail.xcjava.base.spring.CommonHibernateDao;
+import com.ymsino.esb.archives.model.WaterMeter;
 import com.ymsino.esb.comm.ioprocess.ConcentratorOnLine;
 import com.ymsino.esb.comm.service.api.ReadDataService;
+import com.ymsino.esb.data.model.FreezeData;
 import com.ymsino.esb.protocol.AbstractMessage;
 import com.ymsino.esb.protocol.strutc.ReadData;
 import com.ymsino.esb.protocol.strutc.ReadDataResp;
@@ -32,6 +38,11 @@ public class ReadDataServiceImpl implements ReadDataService {
 	private CamelContext camelContext;
 	public void setCamelContext(CamelContext camelContext) {
 		this.camelContext = camelContext;
+	}
+	
+	private CommonHibernateDao commonHibernateDao;
+	public void setCommonHibernateDao(CommonHibernateDao commonHibernateDao) {
+		this.commonHibernateDao = commonHibernateDao;
 	}
 	
 	@Override
@@ -63,6 +74,53 @@ public class ReadDataServiceImpl implements ReadDataService {
 		for(ReadDataRespItem item : resp.readDataRespItem){
 			if(!AbstractMessage.getFieldString(item.meterId).equals("FFFFFFFFFFFF")){
 				map.put(Integer.valueOf(AbstractMessage.getFieldString(item.meterId)).toString(), AbstractMessage.getFieldString(item.meterData));
+				
+				WaterMeter wm = (WaterMeter) this.commonHibernateDao.get(WaterMeter.class, AbstractMessage.getFieldString(item.meterId));
+				if(wm == null)
+					continue;
+				
+				FreezeData freezeData;
+				String hql = "from FreezeData model where model.meterHardwareId = ? and model.freezeDateStr = ?";
+				List<Object> paramList = new ArrayList<Object>();
+				List<FreezeData> list = this.commonHibernateDao.findBy(hql, paramList.toArray());
+				if(list == null || list.size() < 1){
+					freezeData = new FreezeData();
+					freezeData.setBatteryVoltage(item.getMeterDataVo().getBatteryVoltage());
+					freezeData.setChargingUnitId(wm.getChargingUnitId());
+					freezeData.setConcHardwareId(concHardwareId);
+					freezeData.setCreateTimestamp(new Date().getTime());
+					freezeData.setDataType(item.getMeterDataVo().getDataType());
+					freezeData.setErrorStatus(item.getMeterDataVo().getErrorStatus());
+					freezeData.setFreezeDateStr(AbstractMessage.getFieldString(item.readDate));
+					freezeData.setMagneticAttack(item.getMeterDataVo().getMagneticAttack());
+					freezeData.setMeterHardwareId(AbstractMessage.getFieldString(item.meterId));
+					freezeData.setMeterReading(item.getMeterDataVo().getMeasure());
+					freezeData.setParentUnits(wm.getParentUnits());
+					freezeData.setReplyStatus(item.getMeterDataVo().getReplyStatus());
+					freezeData.setUserId(wm.getUserId());
+					freezeData.setValveStatus(item.getMeterDataVo().getValveStatus());
+					
+					this.commonHibernateDao.save(freezeData);
+					
+				}else{
+					freezeData = list.get(0);
+					freezeData = new FreezeData();
+					freezeData.setBatteryVoltage(item.getMeterDataVo().getBatteryVoltage());
+					freezeData.setChargingUnitId(wm.getChargingUnitId());
+					freezeData.setConcHardwareId(concHardwareId);
+					freezeData.setCreateTimestamp(new Date().getTime());
+					freezeData.setDataType(item.getMeterDataVo().getDataType());
+					freezeData.setErrorStatus(item.getMeterDataVo().getErrorStatus());
+					freezeData.setFreezeDateStr(AbstractMessage.getFieldString(item.readDate));
+					freezeData.setMagneticAttack(item.getMeterDataVo().getMagneticAttack());
+					freezeData.setMeterHardwareId(AbstractMessage.getFieldString(item.meterId));
+					freezeData.setMeterReading(item.getMeterDataVo().getMeasure());
+					freezeData.setParentUnits(wm.getParentUnits());
+					freezeData.setReplyStatus(item.getMeterDataVo().getReplyStatus());
+					freezeData.setUserId(wm.getUserId());
+					freezeData.setValveStatus(item.getMeterDataVo().getValveStatus());
+				}
+				
 			}
 		}
 		

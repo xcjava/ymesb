@@ -1,5 +1,6 @@
 package com.ymsino.esb.comm.service.impl;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -9,8 +10,11 @@ import org.apache.camel.ExchangePattern;
 import org.apache.camel.ProducerTemplate;
 import org.apache.log4j.Logger;
 
+import com.gmail.xcjava.base.spring.CommonHibernateDao;
+import com.ymsino.esb.archives.model.WaterMeter;
 import com.ymsino.esb.comm.ioprocess.ConcentratorOnLine;
 import com.ymsino.esb.comm.service.api.TestDataService;
+import com.ymsino.esb.data.model.TestDynamicData;
 import com.ymsino.esb.protocol.AbstractMessage;
 import com.ymsino.esb.protocol.strutc.TestData;
 import com.ymsino.esb.protocol.strutc.TestDataResp;
@@ -33,9 +37,19 @@ public class TestDataServiceImpl implements TestDataService {
 		this.consumerTemplate = consumerTemplate;
 	}
 	
+	private CommonHibernateDao commonHibernateDao;
+	public void setCommonHibernateDao(CommonHibernateDao commonHibernateDao) {
+		this.commonHibernateDao = commonHibernateDao;
+	}
+	
 	@Override
 	public String testData(String concHardwareId, String waterMeterId, Integer waterMeterSn) {
 
+		WaterMeter wm = (WaterMeter) this.commonHibernateDao.get(WaterMeter.class, waterMeterId);
+		if(wm == null){
+			logger.info(waterMeterId + "水表不存在");
+		}
+		
 		TestData testData = new TestData();
 		testData.head.rtua = AbstractMessage.initField(concHardwareId, testData.head.rtua.length);
 		testData.head.mstaSeq = AbstractMessage.initField(ConcentratorOnLine.getNextMstaSeq(concHardwareId), testData.head.rtua.length);
@@ -54,6 +68,22 @@ public class TestDataServiceImpl implements TestDataService {
 		logger.debug("接收集中器召测本机动态数据响应:" + concHardwareId + ":" + AbstractMessage.getFieldString(testData.head.mstaSeq));
 		
 		TestDataResp resp = new TestDataResp(bytes);
+		
+		TestDynamicData tdd = new TestDynamicData();
+		tdd.setBatteryVoltage(resp.getMeterDataVo().getBatteryVoltage());
+		tdd.setChargingUnitId(wm.getChargingUnitId());
+		tdd.setConcHardwareId(concHardwareId);
+		tdd.setCreateTimestamp(new Date().getTime());
+		tdd.setDataType(resp.getMeterDataVo().getDataType());
+		tdd.setErrorStatus(resp.getMeterDataVo().getErrorStatus());
+		tdd.setMagneticAttack(resp.getMeterDataVo().getMagneticAttack());
+		tdd.setMeterHardwareId(waterMeterId);
+		tdd.setMeterReading(resp.getMeterDataVo().getMeasure());
+		tdd.setParentUnits(wm.getParentUnits());
+		tdd.setReplyStatus(resp.getMeterDataVo().getReplyStatus());
+		tdd.setUserId(wm.getUserId());
+		tdd.setValveStatus(resp.getMeterDataVo().getValveStatus());
+		this.commonHibernateDao.save(tdd);
 		
 		return AbstractMessage.getFieldString(resp.dataContent);
 		
