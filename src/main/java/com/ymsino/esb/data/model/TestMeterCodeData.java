@@ -4,16 +4,16 @@ import java.util.Date;
 
 
 /**
- * FreezeData entity. @author MyEclipse Persistence Tools
+ * TestMeterCodeData entity. @author MyEclipse Persistence Tools
  */
 
-public class FreezeData  implements java.io.Serializable {
+public class TestMeterCodeData  implements java.io.Serializable {
 
 
     // Fields    
 
      /**
-      * 水表冻结数据自增id
+      * 集中器实时召测表码自增id
      */
      private Long id;
      /**
@@ -56,10 +56,6 @@ public class FreezeData  implements java.io.Serializable {
      */
      private String replyStatus;
      /**
-      * 冻结时间
-     */
-     private Date freezeDate;
-     /**
       * 创建时间
      */
      private Date createDate;
@@ -80,12 +76,12 @@ public class FreezeData  implements java.io.Serializable {
     // Constructors
 
     /** default constructor */
-    public FreezeData() {
+    public TestMeterCodeData() {
     }
 
     
     /** full constructor */
-    public FreezeData(String concHardwareId, String meterHardwareId, Long meterReading, Float batteryVoltage, String valveStatus, String dataType, String magneticAttack, String errorStatus, String replyStatus, Date freezeDate, Date createDate, String userId, String chargingUnitId, String parentUnits) {
+    public TestMeterCodeData(String concHardwareId, String meterHardwareId, Long meterReading, Float batteryVoltage, String valveStatus, String dataType, String magneticAttack, String errorStatus, String replyStatus, Date createDate, String userId, String chargingUnitId, String parentUnits) {
         this.concHardwareId = concHardwareId;
         this.meterHardwareId = meterHardwareId;
         this.meterReading = meterReading;
@@ -95,7 +91,6 @@ public class FreezeData  implements java.io.Serializable {
         this.magneticAttack = magneticAttack;
         this.errorStatus = errorStatus;
         this.replyStatus = replyStatus;
-        this.freezeDate = freezeDate;
         this.createDate = createDate;
         this.userId = userId;
         this.chargingUnitId = chargingUnitId;
@@ -105,7 +100,7 @@ public class FreezeData  implements java.io.Serializable {
    
     // Property accessors
     /**       
-     *      * 水表冻结数据自增id
+     *      * 集中器实时召测表码自增id
      */
 
     public Long getId() {
@@ -218,17 +213,6 @@ public class FreezeData  implements java.io.Serializable {
         this.replyStatus = replyStatus;
     }
     /**       
-     *      * 冻结时间
-     */
-
-    public Date getFreezeDate() {
-        return this.freezeDate;
-    }
-    
-    public void setFreezeDate(Date freezeDate) {
-        this.freezeDate = freezeDate;
-    }
-    /**       
      *      * 创建时间
      */
 
@@ -279,8 +263,8 @@ public class FreezeData  implements java.io.Serializable {
 	public boolean equals(Object other) {
 		if ( (this == other ) ) return true;
 		if ( (other == null ) ) return false;
-		if ( !(other instanceof FreezeData) ) return false;
-		FreezeData castOther = ( FreezeData ) other;
+		if ( !(other instanceof TestMeterCodeData) ) return false;
+		TestMeterCodeData castOther = ( TestMeterCodeData ) other;
 		if( this.getId() == null || castOther.getId() == null){
 			return false;
 		}
