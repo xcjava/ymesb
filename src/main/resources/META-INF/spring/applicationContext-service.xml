@@ -83,6 +83,21 @@
 		<property name="commonHibernateDao" ref="commonHibernateDao"></property>
 		<property name="chargingUnitManager" ref="chargingUnitManager"></property>
 	</bean>
+	<bean id="freezeDataServiceImpl" class="com.ymsino.esb.data.service.impl.FreezeDataServiceImpl">
+		<property name="commonHibernateDao" ref="commonHibernateDao"></property>
+	</bean>
+	<bean id="testDynamicDataServiceImpl" class="com.ymsino.esb.data.service.impl.TestDynamicDataServiceImpl">
+		<property name="commonHibernateDao" ref="commonHibernateDao"></property>
+	</bean>
+	<bean id="testMeterCodeDataServiceImpl" class="com.ymsino.esb.data.service.impl.TestMeterCodeDataServiceImpl">
+		<property name="commonHibernateDao" ref="commonHibernateDao"></property>
+	</bean>
+	<bean id="waterDayUsageAmountServiceImpl" class="com.ymsino.esb.data.service.impl.WaterDayUsageAmountServiceImpl">
+		<property name="commonHibernateDao" ref="commonHibernateDao"></property>
+	</bean>
+	<bean id="waterMonthUsageAmountServiceImpl" class="com.ymsino.esb.data.service.impl.WaterMonthUsageAmountServiceImpl">
+		<property name="commonHibernateDao" ref="commonHibernateDao"></property>
+	</bean>
 	<!-- 数据 -->
 	
 	
@@ -140,6 +155,21 @@
 	</jaxws:server>
 	<jaxws:server id="collectTaskService" serviceClass="com.ymsino.esb.data.service.api.CollectTaskService" address="camel://jetty:http://${ws.host}:${ws.port}/ws/collectTaskService">
 		<jaxws:serviceBean><ref bean="collectTaskServiceImpl"/></jaxws:serviceBean>
+	</jaxws:server>
+	<jaxws:server id="freezeDataService" serviceClass="com.ymsino.esb.data.service.api.FreezeDataService" address="camel://jetty:http://${ws.host}:${ws.port}/ws/freezeDataService">
+		<jaxws:serviceBean><ref bean="freezeDataServiceImpl"/></jaxws:serviceBean>
+	</jaxws:server>
+	<jaxws:server id="testDynamicDataService" serviceClass="com.ymsino.esb.data.service.api.TestDynamicDataService" address="camel://jetty:http://${ws.host}:${ws.port}/ws/testDynamicDataService">
+		<jaxws:serviceBean><ref bean="testDynamicDataServiceImpl"/></jaxws:serviceBean>
+	</jaxws:server>
+	<jaxws:server id="testMeterCodeDataService" serviceClass="com.ymsino.esb.data.service.api.TestMeterCodeDataService" address="camel://jetty:http://${ws.host}:${ws.port}/ws/testMeterCodeDataService">
+		<jaxws:serviceBean><ref bean="testMeterCodeDataServiceImpl"/></jaxws:serviceBean>
+	</jaxws:server>
+	<jaxws:server id="waterDayUsageAmountService" serviceClass="com.ymsino.esb.data.service.api.WaterDayUsageAmountService" address="camel://jetty:http://${ws.host}:${ws.port}/ws/waterDayUsageAmountService">
+		<jaxws:serviceBean><ref bean="waterDayUsageAmountServiceImpl"/></jaxws:serviceBean>
+	</jaxws:server>
+	<jaxws:server id="waterMonthUsageAmountService" serviceClass="com.ymsino.esb.data.service.api.WaterMonthUsageAmountService" address="camel://jetty:http://${ws.host}:${ws.port}/ws/waterMonthUsageAmountService">
+		<jaxws:serviceBean><ref bean="waterMonthUsageAmountServiceImpl"/></jaxws:serviceBean>
 	</jaxws:server>
 	<!-- 数据 -->
 </beans>
