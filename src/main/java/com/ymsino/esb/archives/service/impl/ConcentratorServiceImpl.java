@@ -75,6 +75,7 @@ public class ConcentratorServiceImpl implements ConcentratorService {
 		Concentrator model = (Concentrator) ObjectMapping.objMapping(vo, new Concentrator());
 		model.setHardwareId(hardwareId);
 		model.setCreateTimestamp(new Date().getTime());
+		model.setStatus(Short.valueOf("-1"));
 		if(!StringUtils.isEmpty(model.getChargingUnitId()))
 			model.setParentUnits(chargingUnitManager.getParentUnitIds(model.getChargingUnitId()));
 		

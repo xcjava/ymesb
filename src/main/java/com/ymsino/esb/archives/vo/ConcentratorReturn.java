@@ -17,6 +17,10 @@ public class ConcentratorReturn implements Serializable {
     */
     private String areaCode;
     /**
+     * 状态 ：1在线，-1离线
+    */
+    private Short status;
+    /**
      * 收费单位编号
     */
     private String chargingUnitId;
@@ -289,6 +293,12 @@ public class ConcentratorReturn implements Serializable {
 	}
 	public void setAreaCode(String areaCode) {
 		this.areaCode = areaCode;
+	}
+	public Short getStatus() {
+		return status;
+	}
+	public void setStatus(Short status) {
+		this.status = status;
 	}
 	public String getChargingUnitId() {
 		return chargingUnitId;
