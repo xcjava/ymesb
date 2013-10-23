@@ -76,6 +76,9 @@
 	</bean>
 	<!-- 费用结算 -->
 	<!-- 数据 -->
+	<bean id="checkingFreezeDataServiceImpl" class="com.ymsino.esb.data.service.impl.CheckingFreezeDataServiceImpl">
+		<property name="commonHibernateDao" ref="commonHibernateDao"></property>
+	</bean>
 	<bean id="collectTaskServiceImpl" class="com.ymsino.esb.data.service.impl.CollectTaskServiceImpl">
 		<property name="commonHibernateDao" ref="commonHibernateDao"></property>
 		<property name="chargingUnitManager" ref="chargingUnitManager"></property>
@@ -132,6 +135,9 @@
 	</jaxws:server>
 	<!-- 费用结算 -->
 	<!-- 数据 -->
+	<jaxws:server id="checkingFreezeDataService" serviceClass="com.ymsino.esb.data.service.api.CheckingFreezeDataService" address="camel://jetty:http://${ws.host}:${ws.port}/ws/checkingFreezeDataService">
+		<jaxws:serviceBean><ref bean="checkingFreezeDataServiceImpl"/></jaxws:serviceBean>
+	</jaxws:server>
 	<jaxws:server id="collectTaskService" serviceClass="com.ymsino.esb.data.service.api.CollectTaskService" address="camel://jetty:http://${ws.host}:${ws.port}/ws/collectTaskService">
 		<jaxws:serviceBean><ref bean="collectTaskServiceImpl"/></jaxws:serviceBean>
 	</jaxws:server>
