@@ -63,6 +63,10 @@ public class TestMeterCodeData  implements java.io.Serializable {
      */
      private String userId;
      /**
+      * 用水用户编号
+     */
+     private String waterCustomerId;
+     /**
       * 收费单位编号
      */
      private String chargingUnitId;
@@ -80,7 +84,7 @@ public class TestMeterCodeData  implements java.io.Serializable {
 
     
     /** full constructor */
-    public TestMeterCodeData(String concHardwareId, String meterHardwareId, Long meterReading, Float batteryVoltage, String valveStatus, String dataType, String magneticAttack, String errorStatus, String replyStatus, Long createTimestamp, String userId, String chargingUnitId, String parentUnits) {
+    public TestMeterCodeData(String concHardwareId, String meterHardwareId, Long meterReading, Float batteryVoltage, String valveStatus, String dataType, String magneticAttack, String errorStatus, String replyStatus, Long createTimestamp, String userId, String waterCustomerId, String chargingUnitId, String parentUnits) {
         this.concHardwareId = concHardwareId;
         this.meterHardwareId = meterHardwareId;
         this.meterReading = meterReading;
@@ -92,6 +96,7 @@ public class TestMeterCodeData  implements java.io.Serializable {
         this.replyStatus = replyStatus;
         this.createTimestamp = createTimestamp;
         this.userId = userId;
+        this.waterCustomerId = waterCustomerId;
         this.chargingUnitId = chargingUnitId;
         this.parentUnits = parentUnits;
     }
@@ -232,6 +237,17 @@ public class TestMeterCodeData  implements java.io.Serializable {
     
     public void setUserId(String userId) {
         this.userId = userId;
+    }
+    /**       
+     *      * 用水用户编号
+     */
+
+    public String getWaterCustomerId() {
+        return this.waterCustomerId;
+    }
+    
+    public void setWaterCustomerId(String waterCustomerId) {
+        this.waterCustomerId = waterCustomerId;
     }
     /**       
      *      * 收费单位编号

@@ -67,6 +67,10 @@ public class FreezeData  implements java.io.Serializable {
      */
      private String userId;
      /**
+      * 用水用户编号
+     */
+     private String waterCustomerId;
+     /**
       * 收费单位编号
      */
      private String chargingUnitId;
@@ -84,7 +88,7 @@ public class FreezeData  implements java.io.Serializable {
 
     
     /** full constructor */
-    public FreezeData(String concHardwareId, String meterHardwareId, Long meterReading, Float batteryVoltage, String valveStatus, String dataType, String magneticAttack, String errorStatus, String replyStatus, String freezeDateStr, Long createTimestamp, String userId, String chargingUnitId, String parentUnits) {
+    public FreezeData(String concHardwareId, String meterHardwareId, Long meterReading, Float batteryVoltage, String valveStatus, String dataType, String magneticAttack, String errorStatus, String replyStatus, String freezeDateStr, Long createTimestamp, String userId, String waterCustomerId, String chargingUnitId, String parentUnits) {
         this.concHardwareId = concHardwareId;
         this.meterHardwareId = meterHardwareId;
         this.meterReading = meterReading;
@@ -97,6 +101,7 @@ public class FreezeData  implements java.io.Serializable {
         this.freezeDateStr = freezeDateStr;
         this.createTimestamp = createTimestamp;
         this.userId = userId;
+        this.waterCustomerId = waterCustomerId;
         this.chargingUnitId = chargingUnitId;
         this.parentUnits = parentUnits;
     }
@@ -248,6 +253,17 @@ public class FreezeData  implements java.io.Serializable {
     
     public void setUserId(String userId) {
         this.userId = userId;
+    }
+    /**       
+     *      * 用水用户编号
+     */
+
+    public String getWaterCustomerId() {
+        return this.waterCustomerId;
+    }
+    
+    public void setWaterCustomerId(String waterCustomerId) {
+        this.waterCustomerId = waterCustomerId;
     }
     /**       
      *      * 收费单位编号
