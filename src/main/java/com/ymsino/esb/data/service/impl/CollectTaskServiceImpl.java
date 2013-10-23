@@ -92,7 +92,7 @@ public class CollectTaskServiceImpl implements CollectTaskService {
 	public List<CollectTaskReturn> getListpager(QueryParam queryParam,
 			Integer startRow, Integer pageSize) {
 		
-		String hql = "from CollectTask where 1=1 ";
+		String hql = "from CollectTask model where 1=1 ";
 		List<Object> paramList = new ArrayList<Object>();
 		
 		if(queryParam != null && 
