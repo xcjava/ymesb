@@ -99,6 +99,13 @@
 			</column>
 		</property>
 		
+		<property name="waterCustomerId" type="java.lang.String">
+			<meta attribute="field-description">用水用户编号</meta>
+			<column name="WATER_CUSTOMER_ID" length="300">
+				<comment>用水用户编号</comment>
+			</column>
+		</property>
+		
 		<property name="chargingUnitId" type="java.lang.String">
 			<meta attribute="field-description">收费单位编号</meta>
 			<column name="CHARGING_UNIT_ID">

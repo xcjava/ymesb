@@ -106,6 +106,13 @@
 			</column>
 		</property>
 		
+		<property name="waterCustomerId" type="java.lang.String">
+			<meta attribute="field-description">用水用户编号</meta>
+			<column name="WATER_CUSTOMER_ID" length="300">
+				<comment>用水用户编号</comment>
+			</column>
+		</property>
+		
 		<!-- <property name="userName" type="java.lang.String">
 			<meta attribute="field-description">用户姓名</meta>
 			<column name="USER_NAME" length="300">
