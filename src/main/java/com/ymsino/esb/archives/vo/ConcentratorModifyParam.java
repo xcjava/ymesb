@@ -9,10 +9,6 @@ public class ConcentratorModifyParam implements Serializable {
     */
     private String hardwareId;
     /**
-     * 状态 ：1在线，-1离线
-    */
-    private Short status;
-    /**
      * 收费单位编号
     */
     private String chargingUnitId;
@@ -265,12 +261,6 @@ public class ConcentratorModifyParam implements Serializable {
 	}
 	public void setHardwareId(String hardwareId) {
 		this.hardwareId = hardwareId;
-	}
-	public Short getStatus() {
-		return status;
-	}
-	public void setStatus(Short status) {
-		this.status = status;
 	}
 	public String getChargingUnitId() {
 		return chargingUnitId;
