@@ -28,6 +28,13 @@
 			</column>
 		</property>
 		
+		<property name="status" type="java.lang.Short">
+			<meta attribute="field-description">状态 ：1在线，-1离线</meta>
+			<column name="STATUS">
+				<comment>状态 ：1在线，-1离线</comment>
+			</column>
+		</property>
+		
 		<!-- 集中器信息 -->
 		<property name="chargingUnitId" type="java.lang.String">
 			<meta attribute="field-description">收费单位编号</meta>
