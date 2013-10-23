@@ -75,6 +75,12 @@
 		<property name="commonHibernateDao" ref="commonHibernateDao"></property>
 	</bean>
 	<!-- 费用结算 -->
+	<!-- 数据 -->
+	<bean id="collectTaskServiceImpl" class="com.ymsino.esb.data.service.impl.CollectTaskServiceImpl">
+		<property name="commonHibernateDao" ref="commonHibernateDao"></property>
+		<property name="chargingUnitManager" ref="chargingUnitManager"></property>
+	</bean>
+	<!-- 数据 -->
 	
 	
 	<!-- 系统管理 -->
@@ -125,4 +131,9 @@
 		<jaxws:serviceBean><ref bean="userWalletServiceImpl"/></jaxws:serviceBean>
 	</jaxws:server>
 	<!-- 费用结算 -->
+	<!-- 数据 -->
+	<jaxws:server id="collectTaskService" serviceClass="com.ymsino.esb.data.service.api.CollectTaskService" address="camel://jetty:http://${ws.host}:${ws.port}/ws/collectTaskService">
+		<jaxws:serviceBean><ref bean="collectTaskServiceImpl"/></jaxws:serviceBean>
+	</jaxws:server>
+	<!-- 数据 -->
 </beans>
