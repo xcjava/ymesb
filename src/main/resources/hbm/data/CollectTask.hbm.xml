@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.ymsino.esb.data.model.CollectTask" table="DATA_COLLECTTASK">
+    
+		<id name="id" type="java.lang.Long">
+			<meta attribute="field-description">采集任务自增id</meta>
+			<meta attribute="use-in-equals">true</meta>
+			<column name="ID">
+				<comment>采集任务自增id</comment>
+			</column>
+			<generator class="native"></generator>
+		</id>
+
+		<property name="type" type="java.lang.String">
+			<meta attribute="field-description">任务类型</meta>
+			<column name="TYPE" length="300">
+				<comment>任务类型</comment>
+			</column>
+		</property>
+		
+		<property name="name" type="java.lang.String">
+			<meta attribute="field-description">任务名称</meta>
+			<column name="NAME" length="300">
+				<comment>任务名称</comment>
+			</column>
+		</property>
+		
+		<property name="priority" type="java.lang.String">
+			<meta attribute="field-description">优先级</meta>
+			<column name="PRIORITY" length="300">
+				<comment>优先级</comment>
+			</column>
+		</property>
+		
+		<property name="collectType" type="java.lang.String">
+			<meta attribute="field-description">采集点类型</meta>
+			<column name="COLLECT_TYPE" length="300">
+				<comment>采集点类型</comment>
+			</column>
+		</property>
+		
+		<property name="executeTag" type="java.lang.String">
+			<meta attribute="field-description">执行标志</meta>
+			<column name="EXECUTE_TAG" length="300">
+				<comment>执行标志</comment>
+			</column>
+		</property>
+		
+		<property name="suppCount" type="java.lang.Integer">
+			<meta attribute="field-description">补采次数</meta>
+			<column name="SUPP_COUNT">
+				<comment>补采次数</comment>
+			</column>
+		</property>
+		
+		<property name="startTimestamp" type="java.lang.Long">
+			<meta attribute="field-description">任务执行开始时间</meta>
+			<column name="START_TIMESTAMP">
+				<comment>任务执行开始时间</comment>
+			</column>
+		</property>
+		
+		<property name="endTimestamp" type="java.lang.Long">
+			<meta attribute="field-description">任务执行结束时间</meta>
+			<column name="END_TIMESTAMP">
+				<comment>任务执行结束时间</comment>
+			</column>
+		</property>
+		
+		<property name="startHour" type="java.lang.Integer">
+			<meta attribute="field-description">采集周期开始时</meta>
+			<column name="START_HOUR">
+				<comment>采集周期开始时</comment>
+			</column>
+		</property>
+		
+		<property name="startMinute" type="java.lang.Integer">
+			<meta attribute="field-description">采集周期开始分</meta>
+			<column name="START_MINUTE">
+				<comment>采集周期开始分</comment>
+			</column>
+		</property>
+		
+		<property name="endHour" type="java.lang.Integer">
+			<meta attribute="field-description">采集周期结束时</meta>
+			<column name="END_HOUR">
+				<comment>采集周期结束时</comment>
+			</column>
+		</property>
+		
+		<property name="endMinute" type="java.lang.Integer">
+			<meta attribute="field-description">采集周期结束分</meta>
+			<column name="END_MINUTE">
+				<comment>采集周期结束分</comment>
+			</column>
+		</property>
+
+		<property name="source" type="org.springframework.orm.hibernate3.support.ClobStringType">
+			<meta attribute="field-description">任务来源</meta>
+			<column name="SOURCE" length="2147483647">
+				<comment>任务来源</comment>
+			</column>
+		</property>
+		
+		<property name="concHardwareIds" type="org.springframework.orm.hibernate3.support.ClobStringType">
+			<meta attribute="field-description">集中器ID，多个用"||"包住，如|00811000||00820101|</meta>
+			<column name="CONC_HARDWARE_IDS" length="2147483647">
+				<comment>集中器ID，多个用"||"包住，如|00811000||00820101|</comment>
+			</column>
+		</property>
+		
+		<property name="chargingUnitId" type="java.lang.String">
+			<meta attribute="field-description">收费单位编号</meta>
+			<column name="CHARGING_UNIT_ID">
+				<comment>收费单位编号</comment>
+			</column>
+		</property>
+		
+		<property name="parentUnits" type="org.springframework.orm.hibernate3.support.ClobStringType">
+			<meta attribute="field-description">上级收费单位编号，多个用"||"包住，如|123||456|,用于搜索</meta>
+			<column length="2147483647" name="PARENT_UNITS">
+				<comment>上级收费单位编号，多个用"||"包住，如|123||456|,用于搜索</comment>
+			</column>
+		</property>
+		
+		<property name="createTimestamp" type="java.lang.Long">
+			<meta attribute="field-description">创建时间</meta>
+			<column name="CREATE_TIMESTAMP">
+				<comment>创建时间</comment>
+			</column>
+		</property>
+		
+    </class>
+</hibernate-mapping>
