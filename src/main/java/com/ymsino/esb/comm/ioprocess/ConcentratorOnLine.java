@@ -144,6 +144,9 @@ public class ConcentratorOnLine {
 	
 	public static String getNextMstaSeq(String id){
 		
+		if(seqMap.get(id) == null)
+			return "00" + mstaNum;
+		
 		if(seqMap.get(id) < 99){
 			seqMap.put(id, seqMap.get(id) + 1);
 		}else{
