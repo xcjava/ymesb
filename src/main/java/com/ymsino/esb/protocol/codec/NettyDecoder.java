@@ -32,7 +32,7 @@ public class NettyDecoder extends FrameDecoder {
         buffer.readBytes(decoded);
         //String msg = new String(decoded);//(4)
         
-        System.out.println(decoded);
+        //System.out.println(decoded);
         return decoded;
     }
 	
