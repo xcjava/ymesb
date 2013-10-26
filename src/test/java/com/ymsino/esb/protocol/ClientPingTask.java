@@ -1,4 +1,4 @@
-package com.ymsino.esb;
+package com.ymsino.esb.protocol;
 
 import java.util.Date;
 
@@ -23,8 +23,8 @@ public static Logger logger = Logger.getLogger(ClientPingTask.class);
 		JobDataMap dataMap = context.getJobDetail().getJobDataMap();
 		IoSession session = (IoSession) dataMap.get("session");
 		Ping ping = new Ping();
-		ping.head.mstaSeq[0] = "00";
-		ping.head.mstaSeq[1] = TestClient.getNextSeq();
+		ping.head.mstaSeq[0] = "12";
+		ping.head.mstaSeq[1] = "34";
 		ping.head.rtua = AbstractMessage.initField("00014180", ping.head.rtua.length);
 		session.write(ping);
 	}

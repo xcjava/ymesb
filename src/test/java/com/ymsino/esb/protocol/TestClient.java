@@ -1,4 +1,4 @@
-package com.ymsino.esb;
+package com.ymsino.esb.protocol;
 import java.net.InetSocketAddress;
 import java.nio.charset.Charset;
 
@@ -11,6 +11,7 @@ import org.apache.mina.transport.socket.nio.NioSocketConnector;
 import org.quartz.SchedulerException;
 
 import com.ymsino.esb.protocol.AbstractMessage;
+import com.ymsino.esb.protocol.codec.BytesCodec;
 import com.ymsino.esb.protocol.codec.HyMessageCodecFactory;
 import com.ymsino.esb.protocol.codec.HyMessageDecoder;
 import com.ymsino.esb.protocol.codec.HyMessageEncoder;
@@ -22,17 +23,6 @@ public class TestClient {
 
 	private static String HOST = "127.0.0.1";
 	private static int PORT = 8001;
-	
-	private static int seq = -1;
-	
-	public static String getNextSeq(){
-		seq = (seq == 255 ? 0 : seq + 1);
-		String result = Integer.toHexString(seq).toUpperCase();
-		if(result.length() < 2){
-			result = "0" + result;
-		}
-		return result;
-	}
 
 	public static void main(String[] args) throws SchedulerException {
 		// 创建一个非阻塞的客户端程序
@@ -42,9 +32,7 @@ public class TestClient {
 		// 添加过滤器
 		connector.getFilterChain().addLast(
 				"codec",
-				new ProtocolCodecFilter(new HyMessageCodecFactory(
-						new HyMessageDecoder(),
-						new HyMessageEncoder())));
+				new ProtocolCodecFilter(new BytesCodec()));
 		
 		// 添加业务逻辑处理器类
 		connector.setHandler(new TestClientHandler());
@@ -55,19 +43,19 @@ public class TestClient {
 			session = future.getSession();// 获得session
 			//session.setAttribute("isLogin", Boolean.FALSE);
 			
-			/*Login login = new Login(); 
+			Login login = new Login(); 
 			login.head.mstaSeq[0] = "41";
-			login.head.mstaSeq[1] = getNextSeq();
+			login.head.mstaSeq[1] = "00";
 			login.password = AbstractMessage.initField("000000", login.password.length);
-			login.head.rtua = AbstractMessage.initField("12345678", login.head.rtua.length);
-			session.write(login);*/
+			login.head.rtua = AbstractMessage.initField("80410003", login.head.rtua.length);
+			session.write(login.toBytes());
 			
-			Ping ping = new Ping();
+			/*Ping ping = new Ping();
 			//ping.head.mstaSeq = new String[]{"99", "88"};
 			ping.head.rtua = AbstractMessage.initField("12345678", ping.head.rtua.length);
 			System.out.println(ping.toString());
 			System.out.println(ping.toBytes().length);
-			session.write(ping);
+			session.write(ping);*/
 
 			
 			/*while(true){
