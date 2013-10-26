@@ -1,46 +1,28 @@
 package com.ymsino.esb.comm.ioprocess;
 
-import java.io.Serializable;
-
-import org.apache.camel.Body;
-import org.apache.camel.Consume;
 import org.apache.camel.Exchange;
 import org.apache.camel.ExchangePattern;
-import org.apache.camel.Header;
 import org.apache.camel.ConsumerTemplate;
 import org.apache.camel.ProducerTemplate;
+import org.apache.camel.component.netty.NettyConstants;
 import org.apache.log4j.Logger;
-import org.apache.mina.core.session.IoSession;
+import org.jboss.netty.channel.ChannelHandlerContext;
 
 import com.gmail.xcjava.base.math.DataConverter;
 import com.ymsino.esb.protocol.AbstractMessage;
-import com.ymsino.esb.protocol.strutc.Debug;
 import com.ymsino.esb.protocol.strutc.DebugResp;
-import com.ymsino.esb.protocol.strutc.DeleteData;
 import com.ymsino.esb.protocol.strutc.DeleteDataResp;
-import com.ymsino.esb.protocol.strutc.DeleteSettings;
 import com.ymsino.esb.protocol.strutc.DeleteSettingsResp;
-import com.ymsino.esb.protocol.strutc.LoadWm;
 import com.ymsino.esb.protocol.strutc.LoadWmResp;
 import com.ymsino.esb.protocol.strutc.Login;
-import com.ymsino.esb.protocol.strutc.LoginResp;
 import com.ymsino.esb.protocol.strutc.Logout;
-import com.ymsino.esb.protocol.strutc.LogoutResp;
 import com.ymsino.esb.protocol.strutc.Ping;
-import com.ymsino.esb.protocol.strutc.PingResp;
-import com.ymsino.esb.protocol.strutc.ReadClock;
 import com.ymsino.esb.protocol.strutc.ReadClockResp;
-import com.ymsino.esb.protocol.strutc.ReadData;
 import com.ymsino.esb.protocol.strutc.ReadDataResp;
-import com.ymsino.esb.protocol.strutc.ReadParam;
 import com.ymsino.esb.protocol.strutc.ReadParamResp;
-import com.ymsino.esb.protocol.strutc.RestoreSettings;
 import com.ymsino.esb.protocol.strutc.RestoreSettingsResp;
-import com.ymsino.esb.protocol.strutc.SetupClock;
 import com.ymsino.esb.protocol.strutc.SetupClockResp;
-import com.ymsino.esb.protocol.strutc.TestData;
 import com.ymsino.esb.protocol.strutc.TestDataResp;
-import com.ymsino.esb.protocol.strutc.TestMeterCode;
 import com.ymsino.esb.protocol.strutc.TestMeterCodeResp;
 
 public class ReceiveMsgConsume {
@@ -75,7 +57,7 @@ public class ReceiveMsgConsume {
 		//System.out.println(exchange.getIn().getBody().getClass().getName());
 		byte[] bytes = (byte[]) exchange.getIn().getBody();
 
-		AbstractMessage message = null;
+		//AbstractMessage message = null;
 		if(AbstractMessage.getControlCode(bytes).equals("A1")){
 			
 			Login req = new Login(bytes);
@@ -96,7 +78,7 @@ public class ReceiveMsgConsume {
 			Ping ping = new Ping(bytes);
 			logger.debug("接收:" + ping.toString());
 			logger.debug("接收心跳消息:" + AbstractMessage.getFieldString(ping.head.rtua) + ":" + AbstractMessage.getFieldString(ping.head.mstaSeq));
-			pingProcess.process(ping);
+			pingProcess.process(ping, exchange);
 		}/*else if(AbstractMessage.getControlCode(bytes).equals("24")){
 			message = new PingResp(bytes);
 		}else if(AbstractMessage.getControlCode(bytes).equals("01")){
@@ -251,10 +233,29 @@ public class ReceiveMsgConsume {
 	
 	
 	private int count = 0;
-	public void testResp(Exchange exchange) throws InterruptedException{
+	public void testResp(Exchange exchange){
 		//System.out.print(exchange.getIn().getBody());
 
-		producerTemplate.sendBody("jms:queue:test:2", "小葱:" + count++);
+		//producerTemplate.sendBody("jms:queue:test:2", "小葱:" + count++);
+		
+		String r = (String) exchange.getIn().getBody();
+		logger.debug("接收:" + r);
+		
+		
+		
+		//IoSession ioSession = (IoSession) exchange.getIn().getHeader(Mina2Constants.MINA_IOSESSION);
+		
+		ChannelHandlerContext channelHandlerContext = (ChannelHandlerContext) exchange.getIn().getHeader(NettyConstants.NETTY_CHANNEL_HANDLER_CONTEXT);
+		channelHandlerContext.getChannel().write("you send : " + r);
+		
+		System.out.println(channelHandlerContext.getChannel().getId());
+		
+		/*if(!r.equals("bye")){
+			exchange.getOut().setBody("you send : " + r);
+		}else{
+			exchange.getOut().setHeader(NettyConstants.NETTY_CLOSE_CHANNEL_WHEN_COMPLETE, true);
+			exchange.getOut().setBody("bye!!!");
+		}*/
 		
 	}
 	
