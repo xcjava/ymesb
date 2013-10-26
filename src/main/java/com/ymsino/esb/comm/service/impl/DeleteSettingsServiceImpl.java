@@ -37,7 +37,7 @@ public class DeleteSettingsServiceImpl implements DeleteSettingsService {
 
 		DeleteSettings deleteSettings = new DeleteSettings();
 		deleteSettings.head.rtua = AbstractMessage.initField(concHardwareId, deleteSettings.head.rtua.length);
-		deleteSettings.head.mstaSeq = AbstractMessage.initField(ConcentratorOnLine.getNextMstaSeq(concHardwareId), deleteSettings.head.rtua.length);
+		deleteSettings.head.mstaSeq = AbstractMessage.initField(ConcentratorOnLine.getNextMstaSeq(concHardwareId), deleteSettings.head.mstaSeq.length);
 		
 		Map<String, Object> headers = new HashMap<String, Object>();
 		headers.put("concentratorId", AbstractMessage.getFieldString(deleteSettings.head.rtua));

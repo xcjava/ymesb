@@ -11,7 +11,7 @@ import com.ymsino.esb.comm.ioprocess.ConcentratorOnLine;
 public class CheckActTask {
 
 	private Logger logger = Logger.getLogger(CheckActTask.class);
-	Long ACT_TIMEOUT = Long.valueOf(PropertyReader.getProperties("config.properties").getProperty("protocol.actTimeout"));
+	Long ACT_TIMEOUT = 1000 * 60 * Long.valueOf(PropertyReader.getProperties("config.properties").getProperty("protocol.actTimeout"));
 	
 	public void checkAct(){
 		

@@ -7,10 +7,14 @@ import java.util.List;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import com.gmail.xcjava.base.dataMapping.JsonMapping;
+import com.ymsino.esb.comm.service.api.DeleteDataService;
 import com.ymsino.esb.comm.service.api.LoadWmService;
+import com.ymsino.esb.comm.service.api.ReadDataService;
 import com.ymsino.esb.comm.service.impl.LoadWmServiceImpl;
+import com.ymsino.esb.comm.vo.MeterDataVo;
 
-public class LoadWmTest {
+public class DeleteDataTest {
 
 	public static void main(String[] args){
 		
@@ -18,12 +22,9 @@ public class LoadWmTest {
 		list.add("/META-INF/test/applicationContext_comm_ws.xml");
 		
 		ApplicationContext applicationContext = new ClassPathXmlApplicationContext(list.toArray(new String[list.size()]));
-		LoadWmService loadWmService = (LoadWmService) applicationContext.getBean("loadWmService");
-		System.out.println(loadWmService.loadWm("00014180"));
+		DeleteDataService deleteDataService = (DeleteDataService) applicationContext.getBean("deleteDataService");
 		
-		String[][] strs = loadWmService.readWaterMeterSn("00014180", 1, 10);
-		for(String[] item : strs){
-			System.out.println(item[0] + ":" + item[1]);
-		}
+		System.out.println(deleteDataService.deleteData("00014180"));
+		
 	}
 }

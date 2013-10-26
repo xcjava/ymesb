@@ -38,7 +38,7 @@ public class ConDebugServiceImpl implements ConDebugService {
 
 		Debug debug = new Debug();
 		debug.head.rtua = AbstractMessage.initField(concHardwareId, debug.head.rtua.length);
-		debug.head.mstaSeq = AbstractMessage.initField(ConcentratorOnLine.getNextMstaSeq(concHardwareId), debug.head.rtua.length);
+		debug.head.mstaSeq = AbstractMessage.initField(ConcentratorOnLine.getNextMstaSeq(concHardwareId), debug.head.mstaSeq.length);
 		debug.waterMeterId = AbstractMessage.initField(waterMeterId, debug.waterMeterId.length);
 		debug.waterMeterSn = AbstractMessage.initField(waterMeterSn.toString(), debug.waterMeterSn.length);
 		

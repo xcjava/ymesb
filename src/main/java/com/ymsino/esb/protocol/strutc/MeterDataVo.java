@@ -84,6 +84,9 @@ public class MeterDataVo {
 	
 	
 	public MeterDataVo(String[] strs){
+		if(AbstractMessage.getFieldString(strs).equals("FFFFFFFFFFFF"))
+			return;
+		
 		this.measure = Long.parseLong(AbstractMessage.getFieldString(strs).substring(4));
 		this.batteryVoltage = (Integer.parseInt(strs[5], 16) + 200) / 100f;
 		String b5data = Integer.toBinaryString(Integer.parseInt(strs[4], 16));

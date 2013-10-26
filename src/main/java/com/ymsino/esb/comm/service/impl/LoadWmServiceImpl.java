@@ -46,12 +46,15 @@ public class LoadWmServiceImpl implements LoadWmService {
 	}
 
 	@Override
-	public HashMap<String, String> readWaterMeterSn(String concHardwareId,
+	public String[][] readWaterMeterSn(String concHardwareId,
 			Integer wmSn, Integer count) {
+		
+		if(count > 10)
+			return null;
 		
 		ReadParam readParam = new ReadParam();
 		readParam.head.rtua = AbstractMessage.initField(concHardwareId, readParam.head.rtua.length);
-		readParam.head.mstaSeq = AbstractMessage.initField(ConcentratorOnLine.getNextMstaSeq(concHardwareId), readParam.head.rtua.length);
+		readParam.head.mstaSeq = AbstractMessage.initField(ConcentratorOnLine.getNextMstaSeq(concHardwareId), readParam.head.mstaSeq.length);
 		readParam.startWaterMeterSn = AbstractMessage.initField(wmSn.toString(), readParam.startWaterMeterSn.length);
 		readParam.totalMeterNum = AbstractMessage.initField(count.toString(), readParam.totalMeterNum.length);
 		
@@ -68,15 +71,26 @@ public class LoadWmServiceImpl implements LoadWmService {
 		logger.debug("接收读取水表参数响应:" + concHardwareId + ":" + AbstractMessage.getFieldString(readParam.head.mstaSeq));
 		
 		ReadParamResp resp = new ReadParamResp(bytes);
-		HashMap<String, String> map = new HashMap<String, String>();
-		
+
+		int i = 0;
 		for(ReadParamRespItem item : resp.readParamRespItem){
-			if(!AbstractMessage.getFieldString(item.waterMeterSn).equals("FFFF")){
-				map.put(Integer.valueOf(AbstractMessage.getFieldString(item.waterMeterSn)).toString(), AbstractMessage.getFieldString(item.waterMeterId));
+			if(!AbstractMessage.getFieldString(item.waterMeterId).equals("FFFFFFFFFFFF")){
+				i++;
+				//map.put(Integer.parseInt(AbstractMessage.getFieldString(item.waterMeterSn), 16) + "", AbstractMessage.getFieldString(item.waterMeterId));
 			}
 		}
 		
-		return map;
+		String[][] result = new String[i][2];
+		
+		i = 0;
+		for(ReadParamRespItem item : resp.readParamRespItem){
+			if(!AbstractMessage.getFieldString(item.waterMeterId).equals("FFFFFFFFFFFF")){
+				result[i][0] = Integer.parseInt(AbstractMessage.getFieldString(item.waterMeterSn), 16) + "";
+				result[i++][1] = AbstractMessage.getFieldString(item.waterMeterId);
+			}
+		}
+		
+		return result;
 	}
 
 	/*@Override

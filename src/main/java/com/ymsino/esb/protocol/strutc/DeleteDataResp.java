@@ -6,6 +6,7 @@ import com.ymsino.esb.protocol.AbstractMessage;
 
 /**
  * 删除集中器历史数据集中器应答
+ * 参数初始化集中器应答（删除表计配置和日冻结）
  * @author xcjava@gmail.com
  */
 public class DeleteDataResp extends AbstractMessage {

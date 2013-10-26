@@ -98,6 +98,9 @@ public class TestMeterCodeResp extends AbstractMessage {
 		this.dataSn[0] = DataConverter.bytesToHexString(ByteTool.subByte(temp, 1, 1));
 		this.dataSn[1] = DataConverter.bytesToHexString(ByteTool.subByte(temp, 0, 1));
 		
+		this.errorCode[0] = DataConverter.bytesToHexString(ByteTool.subByte(bytes, offset, 1));
+		offset += this.errorCode.length;
+		
 		temp = ByteTool.subByte(bytes, offset, this.dataContent.length);
 		offset += this.dataContent.length;
 		this.dataContent[0] = DataConverter.bytesToHexString(ByteTool.subByte(temp, 5, 1));
@@ -124,6 +127,7 @@ public class TestMeterCodeResp extends AbstractMessage {
 		str += getNioFieldString(this.dataLength) + "|";
 		str += getNioFieldString(this.waterMeterId) + "|";
 		str += getNioFieldString(this.dataSn) + "|";
+		str += getNioFieldString(this.errorCode) + "|";
 		str += getNioFieldString(this.dataContent) + "|";
 		str += this.messageBottom.toString();
 		
@@ -137,7 +141,10 @@ public class TestMeterCodeResp extends AbstractMessage {
 		this.bytes = new byte[MessageHead.dataLength + 
 	                         	this.controlCode.length +
 	                         	this.dataLength.length + 
+	                         	this.waterMeterId.length + 
 								this.dataSn.length + 
+								this.errorCode.length +
+								this.dataContent.length +
 								MessageBottom.dataLength];
 	
 		int offset = 0;
@@ -155,6 +162,9 @@ public class TestMeterCodeResp extends AbstractMessage {
 		
 		System.arraycopy(ByteTool.reverse(DataConverter.hexStringToByte(getFieldString(this.dataSn))), 0, this.bytes, offset, this.dataSn.length);
 		offset += this.dataSn.length;
+		
+		System.arraycopy(ByteTool.reverse(DataConverter.hexStringToByte(getFieldString(this.errorCode))), 0, this.bytes, offset, this.errorCode.length);
+		offset += this.errorCode.length;
 		
 		System.arraycopy(ByteTool.reverse(DataConverter.hexStringToByte(getFieldString(this.dataContent))), 0, this.bytes, offset, this.dataContent.length);
 		offset += this.dataContent.length;

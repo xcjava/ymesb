@@ -12,10 +12,12 @@ import org.apache.camel.ExchangePattern;
 import org.apache.camel.ProducerTemplate;
 import org.apache.log4j.Logger;
 
+import com.gmail.xcjava.base.dataMapping.ObjectMapping;
 import com.gmail.xcjava.base.spring.CommonHibernateDao;
 import com.ymsino.esb.archives.model.WaterMeter;
 import com.ymsino.esb.comm.ioprocess.ConcentratorOnLine;
 import com.ymsino.esb.comm.service.api.ReadDataService;
+import com.ymsino.esb.comm.vo.MeterDataVo;
 import com.ymsino.esb.data.model.FreezeData;
 import com.ymsino.esb.protocol.AbstractMessage;
 import com.ymsino.esb.protocol.strutc.ReadData;
@@ -46,11 +48,11 @@ public class ReadDataServiceImpl implements ReadDataService {
 	}
 	
 	@Override
-	public HashMap<String, String> readDataByDate(String concHardwareId, Integer wmSn, Integer count, String dateStr) {
+	public List<MeterDataVo> readDataByDate(String concHardwareId, Integer wmSn, Integer count, String dateStr) {
 		
 		ReadData req = new ReadData();
 		req.head.rtua = AbstractMessage.initField(concHardwareId, req.head.rtua.length);
-		req.head.mstaSeq = AbstractMessage.initField(ConcentratorOnLine.getNextMstaSeq(concHardwareId), req.head.rtua.length);
+		req.head.mstaSeq = AbstractMessage.initField(ConcentratorOnLine.getNextMstaSeq(concHardwareId), req.head.mstaSeq.length);
 		req.options = AbstractMessage.initField("0140", req.options.length);//日冻结
 		req.startWaterMeterSn = AbstractMessage.initField(wmSn.toString(), req.startWaterMeterSn.length);
 		req.totalMeterNum = AbstractMessage.initField(count.toString(), req.totalMeterNum.length);
@@ -70,10 +72,16 @@ public class ReadDataServiceImpl implements ReadDataService {
 		logger.debug("接收读日冻结响应:" + concHardwareId + ":" + AbstractMessage.getFieldString(req.head.mstaSeq));
 		
 		ReadDataResp resp = new ReadDataResp(bytes);
-		HashMap<String, String> map = new HashMap<String, String>();
+		List<MeterDataVo> resultList = new ArrayList<MeterDataVo>();
 		for(ReadDataRespItem item : resp.readDataRespItem){
 			if(!AbstractMessage.getFieldString(item.meterId).equals("FFFFFFFFFFFF")){
-				map.put(Integer.valueOf(AbstractMessage.getFieldString(item.meterId)).toString(), AbstractMessage.getFieldString(item.meterData));
+				//map.put(Integer.valueOf(AbstractMessage.getFieldString(item.meterId)).toString(), AbstractMessage.getFieldString(item.meterData));
+				
+				MeterDataVo vo = new MeterDataVo();
+				ObjectMapping.objMapping(item.getMeterDataVo(), vo);
+				vo.setReadDateStr(AbstractMessage.getFieldString(item.readDate));
+				vo.setMeterId(AbstractMessage.getFieldString(item.meterId));
+				resultList.add(vo);
 				
 				WaterMeter wm = (WaterMeter) this.commonHibernateDao.get(WaterMeter.class, AbstractMessage.getFieldString(item.meterId));
 				if(wm == null)
@@ -82,6 +90,10 @@ public class ReadDataServiceImpl implements ReadDataService {
 				FreezeData freezeData;
 				String hql = "from FreezeData model where model.meterHardwareId = ? and model.freezeDateStr = ?";
 				List<Object> paramList = new ArrayList<Object>();
+				
+				paramList.add(concHardwareId);
+				paramList.add(dateStr);
+				
 				List<FreezeData> list = this.commonHibernateDao.findBy(hql, paramList.toArray());
 				if(list == null || list.size() < 1){
 					freezeData = new FreezeData();
@@ -124,7 +136,7 @@ public class ReadDataServiceImpl implements ReadDataService {
 			}
 		}
 		
-		return map;
+		return resultList;
 	}
 
 }

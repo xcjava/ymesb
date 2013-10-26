@@ -118,6 +118,7 @@
 		<property name="producerTemplate" ref="producerTemplate"></property>
 		<property name="consumerTemplate" ref="consumerTemplate"></property>
 		<property name="camelContext" ref="camelContext"></property>
+		<property name="commonHibernateDao" ref="commonHibernateDao"></property>
 	</bean>
 	
 	<jaxws:server id="restoreSettingService" 

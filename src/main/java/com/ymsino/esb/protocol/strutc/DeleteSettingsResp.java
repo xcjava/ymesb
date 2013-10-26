@@ -6,6 +6,7 @@ import com.ymsino.esb.protocol.AbstractMessage;
 
 /**
  * 删除集中器历史数据集中器应答
+ * 系统初始化集中器应答（复位集中器参数）
  * @author xcjava@gmail.com
  */
 public class DeleteSettingsResp extends AbstractMessage {

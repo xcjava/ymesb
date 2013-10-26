@@ -52,7 +52,7 @@ public class TestMeterCodeServiceImpl implements TestMeterCodeService {
 		
 		TestMeterCode testMeterCode = new TestMeterCode();
 		testMeterCode.head.rtua = AbstractMessage.initField(concHardwareId, testMeterCode.head.rtua.length);
-		testMeterCode.head.mstaSeq = AbstractMessage.initField(ConcentratorOnLine.getNextMstaSeq(concHardwareId), testMeterCode.head.rtua.length);
+		testMeterCode.head.mstaSeq = AbstractMessage.initField(ConcentratorOnLine.getNextMstaSeq(concHardwareId), testMeterCode.head.mstaSeq.length);
 		testMeterCode.waterMeterId = AbstractMessage.initField(waterMeterId, testMeterCode.waterMeterId.length);
 		testMeterCode.waterMeterSn = AbstractMessage.initField(waterMeterSn.toString(), testMeterCode.waterMeterSn.length);
 		

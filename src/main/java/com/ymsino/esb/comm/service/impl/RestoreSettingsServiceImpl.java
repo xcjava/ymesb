@@ -37,7 +37,7 @@ public class RestoreSettingsServiceImpl implements RestoreSettingService {
 		
 		RestoreSettings restoreSettings = new RestoreSettings();
 		restoreSettings.head.rtua = AbstractMessage.initField(concHardwareId, restoreSettings.head.rtua.length);
-		restoreSettings.head.mstaSeq = AbstractMessage.initField(ConcentratorOnLine.getNextMstaSeq(concHardwareId), restoreSettings.head.rtua.length);
+		restoreSettings.head.mstaSeq = AbstractMessage.initField(ConcentratorOnLine.getNextMstaSeq(concHardwareId), restoreSettings.head.mstaSeq.length);
 		
 		Map<String, Object> headers = new HashMap<String, Object>();
 		headers.put("concentratorId", AbstractMessage.getFieldString(restoreSettings.head.rtua));

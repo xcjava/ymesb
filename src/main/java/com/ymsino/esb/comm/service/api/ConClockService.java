@@ -11,7 +11,7 @@ public interface ConClockService {
 	/**
 	 * 读取集中器时钟
 	 * @param concHardwareId
-	 * @return
+	 * @return YYMMDDHHMMSS
 	 */
 	@WSDLDocumentation("读取集中器时钟")
 	public String readClock(@WebParam(name="concHardwareId")String concHardwareId);

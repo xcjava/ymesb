@@ -1,12 +1,15 @@
 package com.ymsino.esb.comm.service.api;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.jws.WebParam;
 import javax.jws.WebService;
 
 import org.apache.cxf.annotations.WSDLDocumentation;
+
+import com.ymsino.esb.comm.vo.MeterDataVo;
 
 @WebService
 public interface ReadDataService {
@@ -20,7 +23,7 @@ public interface ReadDataService {
 	 * @return 水表号和水表度数的键值对
 	 */
 	@WSDLDocumentation("读日冻结数据")
-	public HashMap<String, String> readDataByDate(@WebParam(name="concHardwareId")String concHardwareId, 
+	public List<MeterDataVo> readDataByDate(@WebParam(name="concHardwareId")String concHardwareId, 
 			@WebParam(name="wmSn")Integer wmSn, 
 			@WebParam(name="count")Integer count, 
 			@WebParam(name="dateStr")String dateStr);

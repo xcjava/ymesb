@@ -52,7 +52,7 @@ public class TestDataServiceImpl implements TestDataService {
 		
 		TestData testData = new TestData();
 		testData.head.rtua = AbstractMessage.initField(concHardwareId, testData.head.rtua.length);
-		testData.head.mstaSeq = AbstractMessage.initField(ConcentratorOnLine.getNextMstaSeq(concHardwareId), testData.head.rtua.length);
+		testData.head.mstaSeq = AbstractMessage.initField(ConcentratorOnLine.getNextMstaSeq(concHardwareId), testData.head.mstaSeq.length);
 		testData.waterMeterId = AbstractMessage.initField(waterMeterId, testData.waterMeterId.length);
 		testData.waterMeterSn = AbstractMessage.initField(waterMeterSn.toString(), testData.waterMeterSn.length);
 		
