@@ -19,6 +19,10 @@
 
 	
 	<bean id="bytesCodec" class="com.ymsino.esb.protocol.codec.BytesCodec"></bean>
+	
+	<bean id="nettyDecoder" class="com.ymsino.esb.protocol.codec.NettyDecoder"></bean>
+	
+	<bean id="nettyEncoder" class="com.ymsino.esb.protocol.codec.NettyEncoder"></bean>
 
 	<bean class="com.ymsino.esb.comm.routers.Routes" id="commRoute"></bean>
 	
