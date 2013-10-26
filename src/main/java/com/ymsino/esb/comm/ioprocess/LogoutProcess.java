@@ -33,7 +33,7 @@ public class LogoutProcess {
 		producerTemplate.sendBodyAndHeaders("direct:send", ExchangePattern.InOnly, resp.toBytes(), headers);
 		//producerTemplate.sendBodyAndHeaders("jms:queue:send", ExchangePattern.InOnly, resp.toBytes(), headers);
 		
-		ConcentratorOnLine.close(AbstractMessage.getFieldString(resp.head.rtua), true);
+		ConcentratorOnLine.close(AbstractMessage.getFieldString(resp.head.rtua));
 		
 	}
 	
