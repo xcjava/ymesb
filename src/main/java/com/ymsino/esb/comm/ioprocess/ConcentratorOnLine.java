@@ -1,6 +1,5 @@
 package com.ymsino.esb.comm.ioprocess;
 
-import java.net.InetSocketAddress;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -8,8 +7,9 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.camel.Exchange;
-import org.apache.camel.component.mina2.Mina2Constants;
-import org.apache.mina.core.session.IoSession;
+import org.apache.camel.component.netty.NettyConstants;
+import org.jboss.netty.channel.Channel;
+import org.jboss.netty.channel.ChannelHandlerContext;
 
 import com.gmail.xcjava.base.io.PropertyReader;
 
@@ -19,13 +19,13 @@ public class ConcentratorOnLine {
 	 * key:集中器逻辑地址
 	 * value:在线会话
 	 */
-	private static Map<String, IoSession> sessionMap = new HashMap<String, IoSession>();
+	private static Map<String, Channel> sessionMap = new HashMap<String, Channel>();
 	
 	/**
 	 * key:集中器逻辑地址
 	 * value:主机:端口
-	 */
-	private static Map<String, String> addressMap = new HashMap<String, String>();
+	
+	private static Map<String, String> addressMap = new HashMap<String, String>(); */
 	
 	/**
 	 * key:集中器逻辑地址
@@ -55,25 +55,23 @@ public class ConcentratorOnLine {
 		if(exchange == null || id == null)
 			return;
 		
-		IoSession ioSession = (IoSession) exchange.getIn().getHeader(Mina2Constants.MINA_IOSESSION);
-		InetSocketAddress remoteAddress = (InetSocketAddress) exchange.getIn().getHeader(Mina2Constants.MINA_REMOTE_ADDRESS);
+		ChannelHandlerContext channelHandlerContext = (ChannelHandlerContext) exchange.getIn().getHeader(NettyConstants.NETTY_CHANNEL_HANDLER_CONTEXT);
+		Channel ioSession = channelHandlerContext.getChannel();
 		
-		if(ioSession == null || remoteAddress == null){
+		if(ioSession == null){
 			return;
 		}
 		
-		IoSession session = sessionMap.get(id);
+		Channel session = sessionMap.get(id);
 		if(session == null){
 			sessionMap.put(id, ioSession);
-			addressMap.put(id, remoteAddress.getHostName() + ":" + remoteAddress.getPort());
 			idleMap.put(id, Boolean.TRUE);
 			lastActTimestamp.put(id, new Date().getTime());
 			seqMap.put(id, 0);
 		}else{
-			if(!session.equals(ioSession)){
-				session.close(true);
+			if(!session.getId().equals(ioSession.getId())){
+				session.close();
 				sessionMap.put(id, ioSession);
-				addressMap.put(id, remoteAddress.getHostName() + ":" + remoteAddress.getPort());
 				idleMap.put(id, Boolean.TRUE);
 				lastActTimestamp.put(id, new Date().getTime());
 				seqMap.put(id, 0);
@@ -81,16 +79,15 @@ public class ConcentratorOnLine {
 		}
 	}
 	
-	public static IoSession getIoSession(String id){
+	public static Channel getIoSession(String id){
 		return sessionMap.get(id);
 	}
 	
-	public static void close(String id, boolean closeImmediately){
+	public static void close(String id){
 		
-		IoSession session = sessionMap.get(id);
-		session.close(closeImmediately);
+		Channel session = sessionMap.get(id);
+		session.close();
 		sessionMap.remove(id);
-		addressMap.remove(id);
 		idleMap.remove(id);
 		lastActTimestamp.remove(id);
 		seqMap.remove(id);
@@ -107,10 +104,10 @@ public class ConcentratorOnLine {
 		return list;
 	}
 	
-	public static List<IoSession> getAllIoSession(){
+	public static List<Channel> getAllIoSession(){
 		
-		List<IoSession> list = new ArrayList<IoSession>();
-		for(Map.Entry<String, IoSession> entry : sessionMap.entrySet())   
+		List<Channel> list = new ArrayList<Channel>();
+		for(Map.Entry<String, Channel> entry : sessionMap.entrySet())   
 		{   
 			list.add(entry.getValue());   
 		}
