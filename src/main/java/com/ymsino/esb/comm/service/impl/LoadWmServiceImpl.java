@@ -17,6 +17,7 @@ import com.ymsino.esb.comm.ioprocess.ConcentratorOnLine;
 import com.ymsino.esb.comm.service.api.LoadWmService;
 import com.ymsino.esb.protocol.AbstractMessage;
 import com.ymsino.esb.protocol.strutc.LoadWm;
+import com.ymsino.esb.protocol.strutc.LoadWmItem;
 import com.ymsino.esb.protocol.strutc.ReadParam;
 import com.ymsino.esb.protocol.strutc.ReadParamResp;
 import com.ymsino.esb.protocol.strutc.ReadParamRespItem;
@@ -62,7 +63,7 @@ public class LoadWmServiceImpl implements LoadWmService {
 		logger.debug("发送:" + readParam.toString());
 		producerTemplate.sendBodyAndHeaders("direct:send", ExchangePattern.InOnly, readParam.toBytes(), headers);
 		
-		byte[] bytes = (byte[]) camelContext.createConsumerTemplate().receiveBody("jms:queue:readWaterMeterSn:" + concHardwareId + ":" +
+		byte[] bytes = (byte[]) camelContext.createConsumerTemplate().receiveBody("direct:readWaterMeterSn:" + concHardwareId + ":" +
 				AbstractMessage.getFieldString(readParam.head.mstaSeq));
 		logger.debug("接收读取水表参数响应:" + concHardwareId + ":" + AbstractMessage.getFieldString(readParam.head.mstaSeq));
 		
@@ -110,7 +111,8 @@ public class LoadWmServiceImpl implements LoadWmService {
 		int sn = 1;
 		this.commonHibernateDao.bulkUpdateDelete("update WaterMeter model set model.wmSn = null where concHardwareId = ?", concHardwareId);
 		
-		while(this.commonHibernateDao.countBy("select count(*) from WaterMeter model where model.wmSn = null and concHardwareId = ?", concHardwareId) < 1){
+		while(this.commonHibernateDao.countBy("select count(*) from WaterMeter model where model.wmSn = null and concHardwareId = ?", concHardwareId) > 0){
+
 			String sql = "from WaterMeter model where model.concHardwareId = ?";
 			List<Object> paramList = new ArrayList<Object>();
 			paramList.add(concHardwareId);
@@ -118,12 +120,13 @@ public class LoadWmServiceImpl implements LoadWmService {
 			
 			LoadWm loadWm = new LoadWm();
 			loadWm.head.rtua = AbstractMessage.initField(concHardwareId, loadWm.head.rtua.length);
-			loadWm.head.mstaSeq = AbstractMessage.initField(ConcentratorOnLine.getNextMstaSeq(concHardwareId), loadWm.head.rtua.length);
+			loadWm.head.mstaSeq = AbstractMessage.initField(ConcentratorOnLine.getNextMstaSeq(concHardwareId), loadWm.head.mstaSeq.length);
 			loadWm.password = AbstractMessage.initField("000000", loadWm.password.length);
 			loadWm.optType = AbstractMessage.initField("00", loadWm.optType.length);
 			
 			for(int i = 0; i < list.size(); i++){
 				WaterMeter item = list.get(i);
+				loadWm.loadWmItem[i] = new LoadWmItem();
 				loadWm.loadWmItem[i].waterMeterSn = AbstractMessage.initField(sn++ + "", loadWm.loadWmItem[i].waterMeterSn.length);
 				loadWm.loadWmItem[i].waterMeterId = AbstractMessage.initField(item.getHardwareId(), loadWm.loadWmItem[i].waterMeterId.length);
 			}
