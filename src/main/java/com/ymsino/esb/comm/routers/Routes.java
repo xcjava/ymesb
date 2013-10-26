@@ -21,13 +21,18 @@ public class Routes extends RouteBuilder {
     	String[] port = ports.split(",");
     	
 		for(int i = 0; i < port.length; i++){
-			from("mina2:tcp://0.0.0.0:" + port[i] + "?codec=#bytesCodec").to("bean:receiveMsgConsume?method=receive");
+			//from("mina2:tcp://0.0.0.0:" + port[i] + "?codec=#bytesCodec").to("bean:receiveMsgConsume?method=receive");
+			//from("netty:tcp://0.0.0.0:" + port[i] + "?encoder=#nettyEncoder&decoder=#nettyDecoder&sync=true").to("bean:receiveMsgConsume?method=receive");
+			from("netty:tcp://0.0.0.0:" + port[i] + "?encoder=#nettyEncoder&decoder=#nettyDecoder&sync=false").to("bean:receiveMsgConsume?method=receive");
+			
+			//from("netty:tcp://0.0.0.0:" + port[i] + "?sync=true").to("bean:receiveMsgConsume?method=receive");
 			logger.info("启动集中器端口监听:" + port[i]);
 			//from("jms:queue:test:1").to("bean:receiveMsgConsume?method=testResp");
 			//from("mina2:tcp://0.0.0.0:" + port[i]).to("bean:loadWmManager?method=test");
 			//from("mina2:tcp://0.0.0.0:" + port[i] + "?codec=#hyCodec&sync=true").to("bean:loadWmManager?method=test");
 			//from("jms:queue:send" + port[i]).to("mina2:tcp://localhost:" + port[i] + "?textline=true");
 		}
+		//from("netty:tcp://0.0.0.0:8888?textline=true").to("bean:receiveMsgConsume?method=testResp");
 		//from("mina2:tcp://0.0.0.0:8004?sync=true,allowDefaultCodec=true").to("bean:loadWmManager?method=testObject");
 		//from("mina2:tcp://0.0.0.0:8005?textline=true").to("bean:loadWmManager?method=testText");
 		
