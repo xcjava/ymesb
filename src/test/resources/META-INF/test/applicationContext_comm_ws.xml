@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xmlns:context="http://www.springframework.org/schema/context"
+		xmlns:jaxws="http://cxf.apache.org/jaxws"
+		xsi:schemaLocation="http://www.springframework.org/schema/beans
+							http://www.springframework.org/schema/beans/spring-beans.xsd
+							http://www.springframework.org/schema/context
+							http://www.springframework.org/schema/context/spring-context.xsd
+							http://cxf.apache.org/jaxws 
+    						http://cxf.apache.org/schemas/jaxws.xsd">
+    
+
+    <!-- <bean id="loadWmServiceFactory" class="org.apache.cxf.jaxws.JaxWsProxyFactoryBean">
+		<property name="serviceClass" value="com.ymsino.esb.comm.service.api.LoadWmService" />
+		<property name="address" value="http://127.0.0.1:8882/ws/loadWmService?wsdl" />
+	</bean>
+	<bean id="loadWmService" class="com.ymsino.esb.comm.service.api.LoadWmService"
+		factory-bean="loadWmServiceFactory" factory-method="create" /> -->
+		
+	
+	 <bean id="conClockServiceFactory" class="org.apache.cxf.jaxws.JaxWsProxyFactoryBean">
+		<property name="serviceClass" value="com.ymsino.esb.comm.service.api.ConClockService" />
+		<property name="address" value="http://127.0.0.1:8882/ws/conClockService?wsdl" />
+	</bean>
+	<bean id="conClockService" class="com.ymsino.esb.comm.service.api.ConClockService"
+		factory-bean="conClockServiceFactory" factory-method="create" />
+		
+	
+	<bean id="conDebugServiceFactory" class="org.apache.cxf.jaxws.JaxWsProxyFactoryBean">
+		<property name="serviceClass" value="com.ymsino.esb.comm.service.api.ConDebugService" />
+		<property name="address" value="http://127.0.0.1:8882/ws/conDebugService?wsdl" />
+	</bean>
+	<bean id="conDebugService" class="com.ymsino.esb.comm.service.api.ConDebugService"
+		factory-bean="conDebugServiceFactory" factory-method="create" />
+		
+		
+	<bean id="deleteDataServiceFactory" class="org.apache.cxf.jaxws.JaxWsProxyFactoryBean">
+		<property name="serviceClass" value="com.ymsino.esb.comm.service.api.DeleteDataService" />
+		<property name="address" value="http://127.0.0.1:8882/ws/deleteDataService?wsdl" />
+	</bean>
+	<bean id="deleteDataService" class="com.ymsino.esb.comm.service.api.DeleteDataService"
+		factory-bean="deleteDataServiceFactory" factory-method="create" />
+		
+		
+	<bean id="deleteSettingsServiceFactory" class="org.apache.cxf.jaxws.JaxWsProxyFactoryBean">
+		<property name="serviceClass" value="com.ymsino.esb.comm.service.api.DeleteSettingsService" />
+		<property name="address" value="http://127.0.0.1:8882/ws/deleteSettingsService?wsdl" />
+	</bean>
+	<bean id="deleteSettingsService" class="com.ymsino.esb.comm.service.api.DeleteSettingsService"
+		factory-bean="deleteSettingsServiceFactory" factory-method="create" />
+		
+		
+	<bean id="loadWmServiceFactory" class="org.apache.cxf.jaxws.JaxWsProxyFactoryBean">
+		<property name="serviceClass" value="com.ymsino.esb.comm.service.api.LoadWmService" />
+		<property name="address" value="http://127.0.0.1:8882/ws/loadWmService?wsdl" />
+	</bean>
+	<bean id="loadWmService" class="com.ymsino.esb.comm.service.api.LoadWmService"
+		factory-bean="loadWmServiceFactory" factory-method="create" />
+		
+	
+	<bean id="readDataServiceFactory" class="org.apache.cxf.jaxws.JaxWsProxyFactoryBean">
+		<property name="serviceClass" value="com.ymsino.esb.comm.service.api.ReadDataService" />
+		<property name="address" value="http://127.0.0.1:8882/ws/readDataService?wsdl" />
+	</bean>
+	<bean id="readDataService" class="com.ymsino.esb.comm.service.api.ReadDataService"
+		factory-bean="readDataServiceFactory" factory-method="create" />
+		
+		
+	<bean id="restoreSettingServiceFactory" class="org.apache.cxf.jaxws.JaxWsProxyFactoryBean">
+		<property name="serviceClass" value="com.ymsino.esb.comm.service.api.RestoreSettingService" />
+		<property name="address" value="http://127.0.0.1:8882/ws/restoreSettingService?wsdl" />
+	</bean>
+	<bean id="readDataService" class="com.ymsino.esb.comm.service.api.RestoreSettingService"
+		factory-bean="restoreSettingServiceFactory" factory-method="create" />
+	
+	
+	<bean id="testDataServiceFactory" class="org.apache.cxf.jaxws.JaxWsProxyFactoryBean">
+		<property name="serviceClass" value="com.ymsino.esb.comm.service.api.TestDataService" />
+		<property name="address" value="http://127.0.0.1:8882/ws/testDataService?wsdl" />
+	</bean>
+	<bean id="testDataService" class="com.ymsino.esb.comm.service.api.TestDataService"
+		factory-bean="testDataServiceFactory" factory-method="create" />
+	
+	
+	<bean id="testMeterCodeServiceFactory" class="org.apache.cxf.jaxws.JaxWsProxyFactoryBean">
+		<property name="serviceClass" value="com.ymsino.esb.comm.service.api.TestMeterCodeService" />
+		<property name="address" value="http://127.0.0.1:8882/ws/testMeterCodeService?wsdl" />
+	</bean>
+	<bean id="testMeterCodeService" class="com.ymsino.esb.comm.service.api.TestMeterCodeService"
+		factory-bean="testMeterCodeServiceFactory" factory-method="create" />
+		
+		
+</beans>
