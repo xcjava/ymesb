@@ -3,11 +3,15 @@ package com.ymsino.esb.comm.task;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
+import com.gmail.xcjava.base.io.PropertyReader;
 import com.ymsino.esb.comm.ioprocess.ConcentratorOnLine;
 
 public class CheckActTask {
 
-	private static final long ACT_TIMEOUT = 1000 * 60 * 3;
+	private Logger logger = Logger.getLogger(CheckActTask.class);
+	Long ACT_TIMEOUT = Long.valueOf(PropertyReader.getProperties("config.properties").getProperty("protocol.actTimeout"));
 	
 	public void checkAct(){
 		
@@ -19,7 +23,10 @@ public class CheckActTask {
 		for(String id : idList){
 			Long actTimestamp = ConcentratorOnLine.getActTimestamp(id);
 			if(new Date().getTime() - actTimestamp > ACT_TIMEOUT){
-				ConcentratorOnLine.close(id, true);
+				logger.info("长时间无收到心跳,断开连接:" + id);
+				ConcentratorOnLine.close(id);
+			}else{
+				logger.debug("链路检查,未超时:" + id);
 			}
 		}
 	}
