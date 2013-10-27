@@ -28,17 +28,17 @@
 	
 	<bean id="jms" class="org.apache.activemq.camel.component.ActiveMQComponent">
 		<property name="brokerURL" value="${jms.tcp}"/>
-		<property name="transacted" value="true" />
-		<property name="transactionManager" ref="txJMSManager" />
+		<!-- <property name="transacted" value="true" />
+		<property name="transactionManager" ref="txJMSManager" /> -->
 	</bean>
 
-	<bean id="txJMSManager" class="org.springframework.jms.connection.JmsTransactionManager">
+	<!-- <bean id="txJMSManager" class="org.springframework.jms.connection.JmsTransactionManager">
 		<property name="connectionFactory" ref="jmsConnectionFactory" />
-	</bean> 
+	</bean>  -->
 	
-	<bean id="jmsConnectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory">
+	<!-- <bean id="jmsConnectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory">
 		<property name="brokerURL" value="${jms.tcp}"/>
-	</bean>
+	</bean> -->
 
 	<bean class="org.apache.camel.component.cxf.transport.CamelTransportFactory" lazy-init="false">
 	   <property name="bus" ref="cxf"/>
