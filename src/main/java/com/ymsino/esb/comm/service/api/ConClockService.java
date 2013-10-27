@@ -19,7 +19,7 @@ public interface ConClockService {
 	/**
 	 * 设置集中器时钟
 	 * @param concHardwareId
-	 * @param dateStr
+	 * @param dateStr	格式:YYMMDDHHMMSS
 	 * @return
 	 */
 	@WSDLDocumentation("设置集中器时钟")
