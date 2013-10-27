@@ -21,4 +21,16 @@
 	<bean id="chargingUnitManager" class="com.ymsino.esb.manager.domain.ChargingUnitManager">
 		<property name="commonHibernateDao" ref="commonHibernateDao"></property>
 	</bean>
+	
+	
+	<bean id="freezeDataManager" class="com.ymsino.esb.data.domain.FreezeDataManager">
+		<property name="commonHibernateDao" ref="commonHibernateDao"></property>
+	</bean>
+	<bean id="testDynamicDataManager" class="com.ymsino.esb.data.domain.TestDynamicDataManager">
+		<property name="commonHibernateDao" ref="commonHibernateDao"></property>
+	</bean>
+	<bean id="testMeterCodeDataManager" class="com.ymsino.esb.data.domain.TestMeterCodeDataManager">
+		<property name="commonHibernateDao" ref="commonHibernateDao"></property>
+	</bean>
+	
 </beans>

@@ -119,6 +119,7 @@
 		<property name="consumerTemplate" ref="consumerTemplate"></property>
 		<property name="camelContext" ref="camelContext"></property>
 		<property name="commonHibernateDao" ref="commonHibernateDao"></property>
+		<property name="freezeDataManager" ref="freezeDataManager"></property>
 	</bean>
 	
 	<jaxws:server id="restoreSettingService" 
@@ -143,6 +144,8 @@
 		<property name="producerTemplate" ref="producerTemplate"></property>
 		<property name="consumerTemplate" ref="consumerTemplate"></property>
 		<property name="camelContext" ref="camelContext"></property>
+		<property name="testDynamicDataManager" ref="testDynamicDataManager"></property>
+		<property name="commonHibernateDao" ref="commonHibernateDao"></property>
 	</bean>
 	
 	<jaxws:server id="testMeterCodeService" 
@@ -155,5 +158,7 @@
 		<property name="producerTemplate" ref="producerTemplate"></property>
 		<property name="consumerTemplate" ref="consumerTemplate"></property>
 		<property name="camelContext" ref="camelContext"></property>
+		<property name="testMeterCodeDataManager" ref="testMeterCodeDataManager"></property>
+		<property name="commonHibernateDao" ref="commonHibernateDao"></property>
 	</bean>
 </beans>
