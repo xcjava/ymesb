@@ -24,7 +24,7 @@ public class ConClockTest {
 		ApplicationContext applicationContext = new ClassPathXmlApplicationContext(list.toArray(new String[list.size()]));
 		ConClockService conClockService = (ConClockService) applicationContext.getBean("conClockService");
 		
-		System.out.println(conClockService.setupClock("00014180", "131026203156"));
+		//System.out.println(conClockService.setupClock("00014180", "131026203156"));
 		
 		System.out.println(conClockService.readClock("00014180"));
 

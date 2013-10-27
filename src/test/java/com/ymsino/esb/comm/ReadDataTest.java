@@ -22,7 +22,7 @@ public class ReadDataTest {
 		
 		ApplicationContext applicationContext = new ClassPathXmlApplicationContext(list.toArray(new String[list.size()]));
 		ReadDataService readDataService = (ReadDataService) applicationContext.getBean("readDataService");
-		List<MeterDataVo> rs = readDataService.readDataByDate("00014180", 1, 1, "131026");
+		List<MeterDataVo> rs = readDataService.readDataByDate("00014180", 1, 11, "131026");
 		
 		for(MeterDataVo item : rs){
 			System.out.println(JsonMapping.obj2json(item));
