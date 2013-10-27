@@ -18,6 +18,7 @@ import com.ymsino.esb.archives.model.WaterMeter;
 import com.ymsino.esb.comm.ioprocess.ConcentratorOnLine;
 import com.ymsino.esb.comm.service.api.ReadDataService;
 import com.ymsino.esb.comm.vo.MeterDataVo;
+import com.ymsino.esb.data.domain.FreezeDataManager;
 import com.ymsino.esb.data.model.FreezeData;
 import com.ymsino.esb.protocol.AbstractMessage;
 import com.ymsino.esb.protocol.strutc.ReadData;
@@ -45,6 +46,11 @@ public class ReadDataServiceImpl implements ReadDataService {
 	private CommonHibernateDao commonHibernateDao;
 	public void setCommonHibernateDao(CommonHibernateDao commonHibernateDao) {
 		this.commonHibernateDao = commonHibernateDao;
+	}
+	
+	FreezeDataManager freezeDataManager;
+	public void setFreezeDataManager(FreezeDataManager freezeDataManager) {
+		this.freezeDataManager = freezeDataManager;
 	}
 	
 	@Override
@@ -87,51 +93,23 @@ public class ReadDataServiceImpl implements ReadDataService {
 				if(wm == null)
 					continue;
 				
-				FreezeData freezeData;
-				String hql = "from FreezeData model where model.meterHardwareId = ? and model.freezeDateStr = ?";
-				List<Object> paramList = new ArrayList<Object>();
-				
-				paramList.add(concHardwareId);
-				paramList.add(dateStr);
-				
-				List<FreezeData> list = this.commonHibernateDao.findBy(hql, paramList.toArray());
-				if(list == null || list.size() < 1){
-					freezeData = new FreezeData();
-					freezeData.setBatteryVoltage(item.getMeterDataVo().getBatteryVoltage());
-					freezeData.setChargingUnitId(wm.getChargingUnitId());
-					freezeData.setConcHardwareId(concHardwareId);
-					freezeData.setCreateTimestamp(new Date().getTime());
-					freezeData.setDataType(item.getMeterDataVo().getDataType());
-					freezeData.setErrorStatus(item.getMeterDataVo().getErrorStatus());
-					freezeData.setFreezeDateStr(AbstractMessage.getFieldString(item.readDate));
-					freezeData.setMagneticAttack(item.getMeterDataVo().getMagneticAttack());
-					freezeData.setMeterHardwareId(AbstractMessage.getFieldString(item.meterId));
-					freezeData.setMeterReading(item.getMeterDataVo().getMeasure());
-					freezeData.setParentUnits(wm.getParentUnits());
-					freezeData.setReplyStatus(item.getMeterDataVo().getReplyStatus());
-					freezeData.setUserId(wm.getUserId());
-					freezeData.setValveStatus(item.getMeterDataVo().getValveStatus());
-					
-					this.commonHibernateDao.save(freezeData);
-					
-				}else{
-					freezeData = list.get(0);
-					freezeData = new FreezeData();
-					freezeData.setBatteryVoltage(item.getMeterDataVo().getBatteryVoltage());
-					freezeData.setChargingUnitId(wm.getChargingUnitId());
-					freezeData.setConcHardwareId(concHardwareId);
-					freezeData.setCreateTimestamp(new Date().getTime());
-					freezeData.setDataType(item.getMeterDataVo().getDataType());
-					freezeData.setErrorStatus(item.getMeterDataVo().getErrorStatus());
-					freezeData.setFreezeDateStr(AbstractMessage.getFieldString(item.readDate));
-					freezeData.setMagneticAttack(item.getMeterDataVo().getMagneticAttack());
-					freezeData.setMeterHardwareId(AbstractMessage.getFieldString(item.meterId));
-					freezeData.setMeterReading(item.getMeterDataVo().getMeasure());
-					freezeData.setParentUnits(wm.getParentUnits());
-					freezeData.setReplyStatus(item.getMeterDataVo().getReplyStatus());
-					freezeData.setUserId(wm.getUserId());
-					freezeData.setValveStatus(item.getMeterDataVo().getValveStatus());
-				}
+				FreezeData freezeData = new FreezeData();
+				freezeData = new FreezeData();
+				freezeData.setBatteryVoltage(item.getMeterDataVo().getBatteryVoltage());
+				freezeData.setChargingUnitId(wm.getChargingUnitId());
+				freezeData.setConcHardwareId(concHardwareId);
+				freezeData.setCreateTimestamp(new Date().getTime());
+				freezeData.setDataType(item.getMeterDataVo().getDataType());
+				freezeData.setErrorStatus(item.getMeterDataVo().getErrorStatus());
+				freezeData.setFreezeDateStr(AbstractMessage.getFieldString(item.readDate));
+				freezeData.setMagneticAttack(item.getMeterDataVo().getMagneticAttack());
+				freezeData.setMeterHardwareId(AbstractMessage.getFieldString(item.meterId));
+				freezeData.setMeterReading(item.getMeterDataVo().getMeasure());
+				freezeData.setParentUnits(wm.getParentUnits());
+				freezeData.setReplyStatus(item.getMeterDataVo().getReplyStatus());
+				freezeData.setUserId(wm.getUserId());
+				freezeData.setValveStatus(item.getMeterDataVo().getValveStatus());
+				this.freezeDataManager.insertOrUpdate(freezeData);
 				
 			}
 		}

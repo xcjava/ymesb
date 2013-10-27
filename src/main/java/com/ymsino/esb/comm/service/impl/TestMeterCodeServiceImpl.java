@@ -10,10 +10,14 @@ import org.apache.camel.ExchangePattern;
 import org.apache.camel.ProducerTemplate;
 import org.apache.log4j.Logger;
 
+import com.gmail.xcjava.base.dataMapping.ObjectMapping;
+import com.gmail.xcjava.base.date.DateUtil;
 import com.gmail.xcjava.base.spring.CommonHibernateDao;
 import com.ymsino.esb.archives.model.WaterMeter;
 import com.ymsino.esb.comm.ioprocess.ConcentratorOnLine;
 import com.ymsino.esb.comm.service.api.TestMeterCodeService;
+import com.ymsino.esb.comm.vo.MeterDataVo;
+import com.ymsino.esb.data.domain.TestMeterCodeDataManager;
 import com.ymsino.esb.data.model.TestMeterCodeData;
 import com.ymsino.esb.protocol.AbstractMessage;
 import com.ymsino.esb.protocol.strutc.TestMeterCode;
@@ -42,8 +46,14 @@ public class TestMeterCodeServiceImpl implements TestMeterCodeService {
 		this.commonHibernateDao = commonHibernateDao;
 	}
 	
+	private TestMeterCodeDataManager testMeterCodeDataManager;
+	public void setTestMeterCodeDataManager(
+			TestMeterCodeDataManager testMeterCodeDataManager) {
+		this.testMeterCodeDataManager = testMeterCodeDataManager;
+	}
+	
 	@Override
-	public String testMeterCode(String concHardwareId, String waterMeterId, Integer waterMeterSn) {
+	public MeterDataVo testMeterCode(String concHardwareId, String waterMeterId, Integer waterMeterSn) {
 
 		WaterMeter wm = (WaterMeter) this.commonHibernateDao.get(WaterMeter.class, waterMeterId);
 		if(wm == null){
@@ -83,9 +93,13 @@ public class TestMeterCodeServiceImpl implements TestMeterCodeService {
 		tmcd.setReplyStatus(resp.getMeterDataVo().getReplyStatus());
 		tmcd.setUserId(wm.getUserId());
 		tmcd.setValveStatus(resp.getMeterDataVo().getValveStatus());
-		this.commonHibernateDao.save(tmcd);
+		this.testMeterCodeDataManager.save(tmcd);
 		
-		return AbstractMessage.getFieldString(resp.dataContent);
+		MeterDataVo vo = new MeterDataVo();
+		ObjectMapping.objMapping(resp.getMeterDataVo(), vo);
+		vo.setReadDateStr(DateUtil.format(new Date(), "yymmdd"));
+		vo.setMeterId(AbstractMessage.getFieldString(resp.waterMeterId));
+		return vo;
 		
 	}
 

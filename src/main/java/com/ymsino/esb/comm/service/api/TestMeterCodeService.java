@@ -5,6 +5,8 @@ import javax.jws.WebService;
 
 import org.apache.cxf.annotations.WSDLDocumentation;
 
+import com.ymsino.esb.comm.vo.MeterDataVo;
+
 @WebService
 public interface TestMeterCodeService {
 
@@ -16,7 +18,7 @@ public interface TestMeterCodeService {
 	 * @return
 	 */
 	@WSDLDocumentation("集中器实时召测表码")
-	public String testMeterCode(
+	public MeterDataVo testMeterCode(
 			@WebParam(name="concHardwareId")String concHardwareId, 
 			@WebParam(name="waterMeterId")String waterMeterId, 
 			@WebParam(name="waterMeterSn")Integer waterMeterSn);
