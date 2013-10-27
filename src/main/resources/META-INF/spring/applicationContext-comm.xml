@@ -26,9 +26,13 @@
 
 	<bean class="com.ymsino.esb.comm.routers.Routes" id="commRoute"></bean>
 	
-	<bean class="com.ymsino.esb.comm.task.CheckActTask" id="checkActTask"></bean>
+	<bean class="com.ymsino.esb.comm.task.CheckActTask" id="checkActTask">
+		<property name="concentratorOnLine" ref="concentratorOnLine"></property>
+	</bean>
 
-	<bean id="sendMsgConsume" class="com.ymsino.esb.comm.ioprocess.SendMsgConsume"></bean>
+	<bean id="sendMsgConsume" class="com.ymsino.esb.comm.ioprocess.SendMsgConsume">
+		<property name="concentratorOnLine" ref="concentratorOnLine"></property>
+	</bean>
 	
 	<bean id="receiveMsgConsume" class="com.ymsino.esb.comm.ioprocess.ReceiveMsgConsume">
 		<property name="producerTemplate" ref="producerTemplate"></property>
@@ -40,9 +44,11 @@
 
 	<bean id="loginProcess" class="com.ymsino.esb.comm.ioprocess.LoginProcess">
 		<property name="producerTemplate" ref="producerTemplate"></property>
+		<property name="concentratorOnLine" ref="concentratorOnLine"></property>
 	</bean>
 	<bean id="logoutProcess" class="com.ymsino.esb.comm.ioprocess.LogoutProcess">
 		<property name="producerTemplate" ref="producerTemplate"></property>
+		<property name="concentratorOnLine" ref="concentratorOnLine"></property>
 	</bean>
 	<bean id="pingProcess" class="com.ymsino.esb.comm.ioprocess.PingProcess">
 		<property name="producerTemplate" ref="producerTemplate"></property>
@@ -57,6 +63,7 @@
 		<property name="producerTemplate" ref="producerTemplate"></property>
 		<property name="consumerTemplate" ref="consumerTemplate"></property>
 		<property name="camelContext" ref="camelContext"></property>
+		<property name="concentratorOnLine" ref="concentratorOnLine"></property>
 	</bean>
 	
 	<jaxws:server id="conDebugService" 
@@ -69,6 +76,7 @@
 		<property name="producerTemplate" ref="producerTemplate"></property>
 		<property name="consumerTemplate" ref="consumerTemplate"></property>
 		<property name="camelContext" ref="camelContext"></property>
+		<property name="concentratorOnLine" ref="concentratorOnLine"></property>
 	</bean>
 	
 	<jaxws:server id="deleteDataService" 
@@ -81,6 +89,7 @@
 		<property name="producerTemplate" ref="producerTemplate"></property>
 		<property name="consumerTemplate" ref="consumerTemplate"></property>
 		<property name="camelContext" ref="camelContext"></property>
+		<property name="concentratorOnLine" ref="concentratorOnLine"></property>
 	</bean>
 	
 	<jaxws:server id="deleteSettingsService" 
@@ -93,6 +102,7 @@
 		<property name="producerTemplate" ref="producerTemplate"></property>
 		<property name="consumerTemplate" ref="consumerTemplate"></property>
 		<property name="camelContext" ref="camelContext"></property>
+		<property name="concentratorOnLine" ref="concentratorOnLine"></property>
 	</bean>
 	
 	<jaxws:server id="loadWmService" 
@@ -106,6 +116,7 @@
 		<property name="consumerTemplate" ref="consumerTemplate"></property>
 		<property name="camelContext" ref="camelContext"></property>
 		<property name="commonHibernateDao" ref="commonHibernateDao"></property>
+		<property name="concentratorOnLine" ref="concentratorOnLine"></property>
 	</bean>
 	
 	<jaxws:server id="readDataService" 
@@ -120,6 +131,7 @@
 		<property name="camelContext" ref="camelContext"></property>
 		<property name="commonHibernateDao" ref="commonHibernateDao"></property>
 		<property name="freezeDataManager" ref="freezeDataManager"></property>
+		<property name="concentratorOnLine" ref="concentratorOnLine"></property>
 	</bean>
 	
 	<jaxws:server id="restoreSettingService" 
@@ -132,6 +144,7 @@
 		<property name="producerTemplate" ref="producerTemplate"></property>
 		<property name="consumerTemplate" ref="consumerTemplate"></property>
 		<property name="camelContext" ref="camelContext"></property>
+		<property name="concentratorOnLine" ref="concentratorOnLine"></property>
 	</bean>
 	
 	<jaxws:server id="testDataService" 
@@ -146,6 +159,7 @@
 		<property name="camelContext" ref="camelContext"></property>
 		<property name="testDynamicDataManager" ref="testDynamicDataManager"></property>
 		<property name="commonHibernateDao" ref="commonHibernateDao"></property>
+		<property name="concentratorOnLine" ref="concentratorOnLine"></property>
 	</bean>
 	
 	<jaxws:server id="testMeterCodeService" 
@@ -160,5 +174,6 @@
 		<property name="camelContext" ref="camelContext"></property>
 		<property name="testMeterCodeDataManager" ref="testMeterCodeDataManager"></property>
 		<property name="commonHibernateDao" ref="commonHibernateDao"></property>
+		<property name="concentratorOnLine" ref="concentratorOnLine"></property>
 	</bean>
 </beans>

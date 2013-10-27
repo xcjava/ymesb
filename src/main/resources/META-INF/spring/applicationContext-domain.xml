@@ -33,4 +33,12 @@
 		<property name="commonHibernateDao" ref="commonHibernateDao"></property>
 	</bean>
 	
+	<bean id="concentratorManager" class="com.ymsino.esb.archives.domain.ConcentratorManager">
+		<property name="commonHibernateDao" ref="commonHibernateDao"></property>
+	</bean>
+	
+	<bean id="concentratorOnLine" class="com.ymsino.esb.comm.ioprocess.ConcentratorOnLine" destroy-method="shutdown">
+		<property name="concentratorManager" ref="concentratorManager"></property>
+	</bean>
+	
 </beans>
