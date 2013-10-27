@@ -12,6 +12,9 @@ import org.jboss.netty.channel.Channel;
 import org.jboss.netty.channel.ChannelHandlerContext;
 
 import com.gmail.xcjava.base.io.PropertyReader;
+import com.gmail.xcjava.base.spring.CommonHibernateDao;
+import com.ymsino.esb.archives.domain.ConcentratorManager;
+import com.ymsino.esb.archives.model.Concentrator;
 
 public class ConcentratorOnLine {
 	
@@ -19,7 +22,7 @@ public class ConcentratorOnLine {
 	 * key:集中器逻辑地址
 	 * value:在线会话
 	 */
-	private static Map<String, Channel> sessionMap = new HashMap<String, Channel>();
+	private Map<String, Channel> sessionMap = new HashMap<String, Channel>();
 	
 	/**
 	 * key:集中器逻辑地址
@@ -31,26 +34,31 @@ public class ConcentratorOnLine {
 	 * key:集中器逻辑地址
 	 * value:空闲状态
 	 */
-	private static Map<String, Boolean> idleMap = new HashMap<String, Boolean>();
+	private Map<String, Boolean> idleMap = new HashMap<String, Boolean>();
 	
 	/**
 	 * key:集中器逻辑地址
 	 * value:最后活动时间戳
 	 */
-	private static Map<String, Long> lastActTimestamp = new HashMap<String, Long>();
+	private Map<String, Long> lastActTimestamp = new HashMap<String, Long>();
 	
 	/**
 	 * key:集中器逻辑地址
 	 * value:IO序列值
 	 */
-	private static Map<String, Integer> seqMap = new HashMap<String, Integer>();
+	private Map<String, Integer> seqMap = new HashMap<String, Integer>();
 	
+	private ConcentratorManager concentratorManager;
+	public void setConcentratorManager(ConcentratorManager concentratorManager) {
+		this.concentratorManager = concentratorManager;
+	}
+
 	/**
 	 * 主站编号
 	 */
-	private static String mstaNum = PropertyReader.getProperties("config.properties").getProperty("protocol.mstaNum");
+	private String mstaNum = PropertyReader.getProperties("config.properties").getProperty("protocol.mstaNum");
 	
-	public static void checkAdd(String id, Exchange exchange){
+	public void checkAdd(String id, Exchange exchange){
 		
 		if(exchange == null || id == null)
 			return;
@@ -77,13 +85,16 @@ public class ConcentratorOnLine {
 				seqMap.put(id, 0);
 			}
 		}
+
+		concentratorManager.onLine(id);
+		
 	}
 	
-	public static Channel getIoSession(String id){
+	public Channel getIoSession(String id){
 		return sessionMap.get(id);
 	}
 	
-	public static void close(String id){
+	public void close(String id){
 		
 		Channel session = sessionMap.get(id);
 		session.close();
@@ -91,10 +102,10 @@ public class ConcentratorOnLine {
 		idleMap.remove(id);
 		lastActTimestamp.remove(id);
 		seqMap.remove(id);
-		
+		concentratorManager.offLine(id);
 	}
 	
-	public static List<String> getAllId(){
+	public List<String> getAllId(){
 		
 		List<String> list = new ArrayList<String>();
 		for(String key : sessionMap.keySet())
@@ -104,7 +115,7 @@ public class ConcentratorOnLine {
 		return list;
 	}
 	
-	public static List<Channel> getAllIoSession(){
+	public List<Channel> getAllIoSession(){
 		
 		List<Channel> list = new ArrayList<Channel>();
 		for(Map.Entry<String, Channel> entry : sessionMap.entrySet())   
@@ -114,13 +125,13 @@ public class ConcentratorOnLine {
 		return list;
 	}
 	
-	public static void setIdelStatus(String id, boolean status){
+	public void setIdelStatus(String id, boolean status){
 		if(idleMap.containsKey(id)){
 			idleMap.put(id, status);
 		}
 	}
 	
-	public static Boolean getIdelStatus(String id, boolean status){
+	public Boolean getIdelStatus(String id, boolean status){
 		if(!idleMap.containsKey(id)){
 			return null;
 		}
@@ -128,13 +139,13 @@ public class ConcentratorOnLine {
 		return idleMap.get(id);
 	}
 	
-	public static void setActTimestamp(String id, Long timestamp){
+	public void setActTimestamp(String id, Long timestamp){
 		if(lastActTimestamp.containsKey(id)){
 			lastActTimestamp.put(id, timestamp);
 		}
 	}
 	
-	public static Long getActTimestamp(String id){
+	public Long getActTimestamp(String id){
 		if(!lastActTimestamp.containsKey(id)){
 			return null;
 		}
@@ -142,7 +153,7 @@ public class ConcentratorOnLine {
 		return lastActTimestamp.get(id);
 	}
 	
-	public static String getNextMstaSeq(String id){
+	public String getNextMstaSeq(String id){
 		
 		if(seqMap.get(id) == null)
 			return "00" + mstaNum;
@@ -154,5 +165,16 @@ public class ConcentratorOnLine {
 		}
 
 		return seqMap.get(id) + mstaNum;
+	}
+	
+	private void shutdown(){
+		
+		List<String> strs = this.getAllId();
+		if(strs != null && strs.size() > 0){
+			for(String item : strs){
+				concentratorManager.offLine(item);
+			}
+		}
+		
 	}
 }

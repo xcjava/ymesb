@@ -20,11 +20,15 @@ public class LoginProcess {
 		this.producerTemplate = producerTemplate;
 	}
 
+	private ConcentratorOnLine concentratorOnLine;
+	public void setConcentratorOnLine(ConcentratorOnLine concentratorOnLine) {
+		this.concentratorOnLine = concentratorOnLine;
+	}
 
 	public void process(Login login, Exchange exchange){
 
 		if(AbstractMessage.getFieldString(login.password).equals("000000")){
-			ConcentratorOnLine.checkAdd(AbstractMessage.getFieldString(login.head.rtua), exchange);
+			concentratorOnLine.checkAdd(AbstractMessage.getFieldString(login.head.rtua), exchange);
 			
 			LoginResp resp = new LoginResp();
 			resp.head.rtua = AbstractMessage.initField(AbstractMessage.getFieldString(login.head.rtua), login.head.rtua.length);
@@ -42,7 +46,7 @@ public class LoginProcess {
 			//producerTemplate.sendBodyAndHeaders("direct:send", ExchangePattern.InOnly, resp.toBytes(), headers);
 			
 		}else{
-			ConcentratorOnLine.close(AbstractMessage.getFieldString(login.head.rtua));
+			concentratorOnLine.close(AbstractMessage.getFieldString(login.head.rtua));
 		}
 		
 	}

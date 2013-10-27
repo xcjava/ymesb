@@ -19,6 +19,11 @@ public class LogoutProcess {
 		this.producerTemplate = producerTemplate;
 	}
 	
+	private ConcentratorOnLine concentratorOnLine;
+	public void setConcentratorOnLine(ConcentratorOnLine concentratorOnLine) {
+		this.concentratorOnLine = concentratorOnLine;
+	}
+	
 	public void process(Logout logout){
 		
 		LogoutResp resp = new LogoutResp();
@@ -33,7 +38,7 @@ public class LogoutProcess {
 		producerTemplate.sendBodyAndHeaders("jms:queue:send", ExchangePattern.InOnly, resp.toBytes(), headers);
 		//producerTemplate.sendBodyAndHeaders("direct:send", ExchangePattern.InOnly, resp.toBytes(), headers);
 		
-		ConcentratorOnLine.close(AbstractMessage.getFieldString(resp.head.rtua));
+		concentratorOnLine.close(AbstractMessage.getFieldString(resp.head.rtua));
 		
 	}
 	
