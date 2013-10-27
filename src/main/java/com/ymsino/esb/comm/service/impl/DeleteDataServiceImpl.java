@@ -45,9 +45,9 @@ public class DeleteDataServiceImpl implements DeleteDataService {
 		logger.debug("发送删除历史数据消息:" + concHardwareId + ":" + AbstractMessage.getFieldString(deleteData.head.mstaSeq));
 		logger.debug("发送:" + deleteData.toString());
 		//producerTemplate.sendBodyAndHeaders("jms:queue:send", ExchangePattern.InOnly, deleteData.toBytes(), headers);
-		producerTemplate.sendBodyAndHeaders("direct:send", ExchangePattern.InOnly, deleteData.toBytes(), headers);
+		producerTemplate.sendBodyAndHeaders("jms:queue:send", ExchangePattern.InOnly, deleteData.toBytes(), headers);
 		
-		String errorCode = (String) camelContext.createConsumerTemplate().receiveBody("direct:deleteData:" + 
+		String errorCode = (String) camelContext.createConsumerTemplate().receiveBody("jms:queue:deleteData:" + 
 								concHardwareId + ":" +
 								AbstractMessage.getFieldString(deleteData.head.mstaSeq));
 		logger.debug("接收删除历史数据响应:" + concHardwareId + ":" + AbstractMessage.getFieldString(deleteData.head.mstaSeq));

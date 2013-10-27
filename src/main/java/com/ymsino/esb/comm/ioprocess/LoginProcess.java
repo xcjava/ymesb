@@ -38,8 +38,8 @@ public class LoginProcess {
 			logger.debug("发送登录响应:" + AbstractMessage.getFieldString(resp.head.rtua) + ":" + AbstractMessage.getFieldString(resp.head.mstaSeq));
 			logger.debug("发送:" + resp.toString());
 			//SendMsgConsume.sendMsg(resp.toBytes(), AbstractMessage.getFieldString(resp.head.rtua));
-			producerTemplate.sendBodyAndHeaders("direct:send", ExchangePattern.InOnly, resp.toBytes(), headers);
-			//producerTemplate.sendBodyAndHeaders("jms:queue:send", ExchangePattern.InOnly, resp.toBytes(), headers);
+			producerTemplate.sendBodyAndHeaders("jms:queue:send", ExchangePattern.InOnly, resp.toBytes(), headers);
+			//producerTemplate.sendBodyAndHeaders("direct:send", ExchangePattern.InOnly, resp.toBytes(), headers);
 			
 		}else{
 			ConcentratorOnLine.close(AbstractMessage.getFieldString(login.head.rtua));

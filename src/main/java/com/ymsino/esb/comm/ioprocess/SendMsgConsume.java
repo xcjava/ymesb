@@ -7,8 +7,8 @@ import org.jboss.netty.channel.Channel;
 
 public class SendMsgConsume {
 
-	//jms:queue:
-	@Consume(uri = "direct:send")
+	//direct:
+	@Consume(uri = "jms:queue:send")
 	public void send(@Body byte[] vo, @Header("concentratorId") String id) {
 		
 		Channel session = ConcentratorOnLine.getIoSession(id);

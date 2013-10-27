@@ -47,9 +47,9 @@ public class ConDebugServiceImpl implements ConDebugService {
 		
 		logger.debug("发送调试消息:" + concHardwareId + ":" + AbstractMessage.getFieldString(debug.head.mstaSeq));
 		logger.debug("发送:" + debug.toString());
-		producerTemplate.sendBodyAndHeaders("direct:send", ExchangePattern.InOnly, debug.toBytes(), headers);
+		producerTemplate.sendBodyAndHeaders("jms:queue:send", ExchangePattern.InOnly, debug.toBytes(), headers);
 		
-		byte[] bytes = (byte[]) camelContext.createConsumerTemplate().receiveBody("direct:debug:" + concHardwareId + ":" +
+		byte[] bytes = (byte[]) camelContext.createConsumerTemplate().receiveBody("jms:queue:debug:" + concHardwareId + ":" +
 				AbstractMessage.getFieldString(debug.head.mstaSeq));
 		logger.debug("接收调试响应:" + concHardwareId + ":" + AbstractMessage.getFieldString(debug.head.mstaSeq));
 		DebugResp resp = new DebugResp(bytes);

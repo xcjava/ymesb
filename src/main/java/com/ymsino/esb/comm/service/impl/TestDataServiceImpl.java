@@ -70,9 +70,9 @@ public class TestDataServiceImpl implements TestDataService {
 		
 		logger.debug("发送集中器召测本机动态数据消息:" + concHardwareId + ":" + AbstractMessage.getFieldString(testData.head.mstaSeq));
 		logger.debug("发送:" + testData.toString());
-		producerTemplate.sendBodyAndHeaders("direct:send", ExchangePattern.InOnly, testData.toBytes(), headers);
+		producerTemplate.sendBodyAndHeaders("jms:queue:send", ExchangePattern.InOnly, testData.toBytes(), headers);
 		
-		byte[] bytes = (byte[]) camelContext.createConsumerTemplate().receiveBody("direct:testData:" + concHardwareId + ":" +
+		byte[] bytes = (byte[]) camelContext.createConsumerTemplate().receiveBody("jms:queue:testData:" + concHardwareId + ":" +
 				AbstractMessage.getFieldString(testData.head.mstaSeq));
 		logger.debug("接收集中器召测本机动态数据响应:" + concHardwareId + ":" + AbstractMessage.getFieldString(testData.head.mstaSeq));
 		
