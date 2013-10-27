@@ -32,12 +32,17 @@ public class DeleteSettingsServiceImpl implements DeleteSettingsService {
 		this.consumerTemplate = consumerTemplate;
 	}
 	
+	private ConcentratorOnLine concentratorOnLine;
+	public void setConcentratorOnLine(ConcentratorOnLine concentratorOnLine) {
+		this.concentratorOnLine = concentratorOnLine;
+	}
+	
 	@Override
 	public String deleteSettings(String concHardwareId) {
 
 		DeleteSettings deleteSettings = new DeleteSettings();
 		deleteSettings.head.rtua = AbstractMessage.initField(concHardwareId, deleteSettings.head.rtua.length);
-		deleteSettings.head.mstaSeq = AbstractMessage.initField(ConcentratorOnLine.getNextMstaSeq(concHardwareId), deleteSettings.head.mstaSeq.length);
+		deleteSettings.head.mstaSeq = AbstractMessage.initField(concentratorOnLine.getNextMstaSeq(concHardwareId), deleteSettings.head.mstaSeq.length);
 		
 		Map<String, Object> headers = new HashMap<String, Object>();
 		headers.put("concentratorId", AbstractMessage.getFieldString(deleteSettings.head.rtua));

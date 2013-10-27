@@ -32,12 +32,17 @@ public class RestoreSettingsServiceImpl implements RestoreSettingService {
 		this.consumerTemplate = consumerTemplate;
 	}
 	
+	private ConcentratorOnLine concentratorOnLine;
+	public void setConcentratorOnLine(ConcentratorOnLine concentratorOnLine) {
+		this.concentratorOnLine = concentratorOnLine;
+	}
+	
 	@Override
 	public String restoreSettings(String concHardwareId) {
 		
 		RestoreSettings restoreSettings = new RestoreSettings();
 		restoreSettings.head.rtua = AbstractMessage.initField(concHardwareId, restoreSettings.head.rtua.length);
-		restoreSettings.head.mstaSeq = AbstractMessage.initField(ConcentratorOnLine.getNextMstaSeq(concHardwareId), restoreSettings.head.mstaSeq.length);
+		restoreSettings.head.mstaSeq = AbstractMessage.initField(concentratorOnLine.getNextMstaSeq(concHardwareId), restoreSettings.head.mstaSeq.length);
 		
 		Map<String, Object> headers = new HashMap<String, Object>();
 		headers.put("concentratorId", AbstractMessage.getFieldString(restoreSettings.head.rtua));

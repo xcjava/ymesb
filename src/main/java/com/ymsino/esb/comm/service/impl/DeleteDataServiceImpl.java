@@ -32,12 +32,17 @@ public class DeleteDataServiceImpl implements DeleteDataService {
 		this.consumerTemplate = consumerTemplate;
 	}
 	
+	private ConcentratorOnLine concentratorOnLine;
+	public void setConcentratorOnLine(ConcentratorOnLine concentratorOnLine) {
+		this.concentratorOnLine = concentratorOnLine;
+	}
+	
 	@Override
 	public String deleteData(String concHardwareId) {
 
 		DeleteData deleteData = new DeleteData();
 		deleteData.head.rtua = AbstractMessage.initField(concHardwareId, deleteData.head.rtua.length);
-		deleteData.head.mstaSeq = AbstractMessage.initField(ConcentratorOnLine.getNextMstaSeq(concHardwareId), deleteData.head.mstaSeq.length);
+		deleteData.head.mstaSeq = AbstractMessage.initField(concentratorOnLine.getNextMstaSeq(concHardwareId), deleteData.head.mstaSeq.length);
 		
 		Map<String, Object> headers = new HashMap<String, Object>();
 		headers.put("concentratorId", AbstractMessage.getFieldString(deleteData.head.rtua));

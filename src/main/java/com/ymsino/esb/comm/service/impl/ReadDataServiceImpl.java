@@ -53,12 +53,17 @@ public class ReadDataServiceImpl implements ReadDataService {
 		this.freezeDataManager = freezeDataManager;
 	}
 	
+	private ConcentratorOnLine concentratorOnLine;
+	public void setConcentratorOnLine(ConcentratorOnLine concentratorOnLine) {
+		this.concentratorOnLine = concentratorOnLine;
+	}
+	
 	@Override
 	public List<MeterDataVo> readDataByDate(String concHardwareId, Integer wmSn, Integer count, String dateStr) {
 		
 		ReadData req = new ReadData();
 		req.head.rtua = AbstractMessage.initField(concHardwareId, req.head.rtua.length);
-		req.head.mstaSeq = AbstractMessage.initField(ConcentratorOnLine.getNextMstaSeq(concHardwareId), req.head.mstaSeq.length);
+		req.head.mstaSeq = AbstractMessage.initField(concentratorOnLine.getNextMstaSeq(concHardwareId), req.head.mstaSeq.length);
 		req.options = AbstractMessage.initField("0140", req.options.length);//日冻结
 		req.startWaterMeterSn = AbstractMessage.initField(wmSn.toString(), req.startWaterMeterSn.length);
 		req.totalMeterNum = AbstractMessage.initField(count.toString(), req.totalMeterNum.length);

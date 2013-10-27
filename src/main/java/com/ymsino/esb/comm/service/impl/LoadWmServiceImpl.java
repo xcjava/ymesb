@@ -46,6 +46,11 @@ public class LoadWmServiceImpl implements LoadWmService {
 		this.commonHibernateDao = commonHibernateDao;
 	}
 
+	private ConcentratorOnLine concentratorOnLine;
+	public void setConcentratorOnLine(ConcentratorOnLine concentratorOnLine) {
+		this.concentratorOnLine = concentratorOnLine;
+	}
+	
 	@Override
 	public List<MeterSnVo> readWaterMeterSn(String concHardwareId,
 			Integer wmSn, Integer count) {
@@ -64,7 +69,7 @@ public class LoadWmServiceImpl implements LoadWmService {
 			
 			ReadParam readParam = new ReadParam();
 			readParam.head.rtua = AbstractMessage.initField(concHardwareId, readParam.head.rtua.length);
-			readParam.head.mstaSeq = AbstractMessage.initField(ConcentratorOnLine.getNextMstaSeq(concHardwareId), readParam.head.mstaSeq.length);
+			readParam.head.mstaSeq = AbstractMessage.initField(concentratorOnLine.getNextMstaSeq(concHardwareId), readParam.head.mstaSeq.length);
 			readParam.startWaterMeterSn = AbstractMessage.initField(Integer.toHexString(startWaterMeterSn), readParam.startWaterMeterSn.length);
 			readParam.totalMeterNum = AbstractMessage.initField(Integer.toHexString(totalMeterNum) + "", readParam.totalMeterNum.length);
 			
@@ -135,7 +140,7 @@ public class LoadWmServiceImpl implements LoadWmService {
 			
 			LoadWm loadWm = new LoadWm();
 			loadWm.head.rtua = AbstractMessage.initField(concHardwareId, loadWm.head.rtua.length);
-			loadWm.head.mstaSeq = AbstractMessage.initField(ConcentratorOnLine.getNextMstaSeq(concHardwareId), loadWm.head.mstaSeq.length);
+			loadWm.head.mstaSeq = AbstractMessage.initField(concentratorOnLine.getNextMstaSeq(concHardwareId), loadWm.head.mstaSeq.length);
 			loadWm.password = AbstractMessage.initField("000000", loadWm.password.length);
 			loadWm.optType = AbstractMessage.initField("00", loadWm.optType.length);
 			

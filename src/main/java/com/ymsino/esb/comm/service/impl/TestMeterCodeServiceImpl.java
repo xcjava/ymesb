@@ -52,6 +52,11 @@ public class TestMeterCodeServiceImpl implements TestMeterCodeService {
 		this.testMeterCodeDataManager = testMeterCodeDataManager;
 	}
 	
+	private ConcentratorOnLine concentratorOnLine;
+	public void setConcentratorOnLine(ConcentratorOnLine concentratorOnLine) {
+		this.concentratorOnLine = concentratorOnLine;
+	}
+	
 	@Override
 	public MeterDataVo testMeterCode(String concHardwareId, String waterMeterId, Integer waterMeterSn) {
 
@@ -62,7 +67,7 @@ public class TestMeterCodeServiceImpl implements TestMeterCodeService {
 		
 		TestMeterCode testMeterCode = new TestMeterCode();
 		testMeterCode.head.rtua = AbstractMessage.initField(concHardwareId, testMeterCode.head.rtua.length);
-		testMeterCode.head.mstaSeq = AbstractMessage.initField(ConcentratorOnLine.getNextMstaSeq(concHardwareId), testMeterCode.head.mstaSeq.length);
+		testMeterCode.head.mstaSeq = AbstractMessage.initField(concentratorOnLine.getNextMstaSeq(concHardwareId), testMeterCode.head.mstaSeq.length);
 		testMeterCode.waterMeterId = AbstractMessage.initField(waterMeterId, testMeterCode.waterMeterId.length);
 		testMeterCode.waterMeterSn = AbstractMessage.initField(waterMeterSn.toString(), testMeterCode.waterMeterSn.length);
 		

@@ -34,12 +34,17 @@ public class ConClockServiceImpl implements ConClockService {
 		this.consumerTemplate = consumerTemplate;
 	}
 	
+	private ConcentratorOnLine concentratorOnLine;
+	public void setConcentratorOnLine(ConcentratorOnLine concentratorOnLine) {
+		this.concentratorOnLine = concentratorOnLine;
+	}
+	
 	@Override
 	public String readClock(String concHardwareId) {
 		
 		ReadClock readClock = new ReadClock();
 		readClock.head.rtua = AbstractMessage.initField(concHardwareId, readClock.head.rtua.length);
-		readClock.head.mstaSeq = AbstractMessage.initField(ConcentratorOnLine.getNextMstaSeq(concHardwareId), readClock.head.mstaSeq.length);
+		readClock.head.mstaSeq = AbstractMessage.initField(concentratorOnLine.getNextMstaSeq(concHardwareId), readClock.head.mstaSeq.length);
 		
 		Map<String, Object> headers = new HashMap<String, Object>();
 		headers.put("concentratorId", AbstractMessage.getFieldString(readClock.head.rtua));
@@ -63,7 +68,7 @@ public class ConClockServiceImpl implements ConClockService {
 		
 		SetupClock setupClock = new SetupClock();
 		setupClock.head.rtua = AbstractMessage.initField(concHardwareId, setupClock.head.rtua.length);
-		setupClock.head.mstaSeq = AbstractMessage.initField(ConcentratorOnLine.getNextMstaSeq(concHardwareId), setupClock.head.mstaSeq.length);
+		setupClock.head.mstaSeq = AbstractMessage.initField(concentratorOnLine.getNextMstaSeq(concHardwareId), setupClock.head.mstaSeq.length);
 		setupClock.dataContent = AbstractMessage.initField(dateStr, setupClock.dataContent.length);
 		
 		Map<String, Object> headers = new HashMap<String, Object>();
