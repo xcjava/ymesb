@@ -9,6 +9,7 @@ import org.apache.log4j.Logger;
 import org.jboss.netty.channel.ChannelHandlerContext;
 
 import com.gmail.xcjava.base.math.DataConverter;
+import com.gmail.xcjava.base.str.ByteTool;
 import com.ymsino.esb.protocol.AbstractMessage;
 import com.ymsino.esb.protocol.strutc.DebugResp;
 import com.ymsino.esb.protocol.strutc.DeleteDataResp;
@@ -95,7 +96,9 @@ public class ReceiveMsgConsume {
 		}/*else if(AbstractMessage.getControlCode(bytes).equals("15")){
 			message = new ReadParam(bytes);
 		}*/else if(AbstractMessage.getControlCode(bytes).equals("95")){
-			
+			/*for(int i = 0; i < bytes.length; i++){
+				System.out.print(DataConverter.bytesToHexString(ByteTool.subByte(bytes, i, 1)) + "|");
+			}*/
 			ReadParamResp resp = new ReadParamResp(bytes);
 			logger.debug("接收:" + resp.toString());
 			String concHardwareId = AbstractMessage.getFieldString(resp.head.rtua);

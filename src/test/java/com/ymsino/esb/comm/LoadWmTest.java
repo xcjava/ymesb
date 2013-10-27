@@ -7,8 +7,10 @@ import java.util.List;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import com.gmail.xcjava.base.dataMapping.JsonMapping;
 import com.ymsino.esb.comm.service.api.LoadWmService;
 import com.ymsino.esb.comm.service.impl.LoadWmServiceImpl;
+import com.ymsino.esb.comm.vo.MeterSnVo;
 
 public class LoadWmTest {
 
@@ -19,11 +21,11 @@ public class LoadWmTest {
 		
 		ApplicationContext applicationContext = new ClassPathXmlApplicationContext(list.toArray(new String[list.size()]));
 		LoadWmService loadWmService = (LoadWmService) applicationContext.getBean("loadWmService");
-		System.out.println(loadWmService.loadWm("00014180"));
+		//System.out.println(loadWmService.loadWm("00014180"));
 		
-		String[][] strs = loadWmService.readWaterMeterSn("00014180", 1, 10);
-		for(String[] item : strs){
-			System.out.println(item[0] + ":" + item[1]);
+		List<MeterSnVo> result = loadWmService.readWaterMeterSn("00014180", 1, 10);
+		for(MeterSnVo item : result){
+			System.out.println(JsonMapping.obj2json(item));
 		}
 	}
 }

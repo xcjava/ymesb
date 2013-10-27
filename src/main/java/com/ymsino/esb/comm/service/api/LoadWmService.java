@@ -1,12 +1,12 @@
 package com.ymsino.esb.comm.service.api;
-
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 
 import javax.jws.WebParam;
 import javax.jws.WebService;
 
 import org.apache.cxf.annotations.WSDLDocumentation;
+
+import com.ymsino.esb.comm.vo.MeterSnVo;
 
 @WebService
 public interface LoadWmService {
@@ -15,11 +15,11 @@ public interface LoadWmService {
 	 * 读取集中器水表参数
 	 * @param concHardwareId	集中器逻辑地址
 	 * @param wmSn				开始水表编号
-	 * @param count				连续数量,不超过10
+	 * @param count				连续数量
 	 * @return	水表序号和水表号的键值对
 	 */
 	@WSDLDocumentation("读取集中器水表参数")
-	public String[][] readWaterMeterSn(@WebParam(name="concHardwareId")String concHardwareId, 
+	public List<MeterSnVo> readWaterMeterSn(@WebParam(name="concHardwareId")String concHardwareId, 
 			@WebParam(name="wmSn")Integer wmSn, 
 			@WebParam(name="count")Integer count);
 	
