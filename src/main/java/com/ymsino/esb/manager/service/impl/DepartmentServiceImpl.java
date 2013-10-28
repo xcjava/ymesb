@@ -15,7 +15,6 @@ import com.gmail.xcjava.base.spring.CommonHibernateDao;
 import com.ymsino.esb.manager.domain.ChargingUnitManager;
 import com.ymsino.esb.manager.model.Department;
 import com.ymsino.esb.manager.service.api.DepartmentService;
-import com.ymsino.esb.manager.vo.ChargingUnitReturn;
 import com.ymsino.esb.manager.vo.DepartmentModifyParam;
 import com.ymsino.esb.manager.vo.DepartmentReturn;
 import com.ymsino.esb.manager.vo.DepartmentSaveParam;
@@ -186,7 +185,7 @@ public class DepartmentServiceImpl implements DepartmentService {
 		List<DepartmentReturn> result = new ArrayList<DepartmentReturn> ();
 		if(list != null && list.size() > 0){
 			for(Department item : list){
-				DepartmentReturn dr = (DepartmentReturn) ObjectMapping.objMapping(item, new ChargingUnitReturn());
+				DepartmentReturn dr = (DepartmentReturn) ObjectMapping.objMapping(item, new DepartmentReturn());
 				result.add(dr);
 			}
 		}
