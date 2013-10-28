@@ -48,8 +48,8 @@ public class ChargingUnitManager {
 		this.unitIds.add(list.get(0).getUnitId());
 		
 		String parentUnitId = list.get(0).getParentUnitId();
-		if(StringUtils.isEmpty(parentUnitId)){
-			this.getParentUnitIds(parentUnitId);
+		if(!StringUtils.isEmpty(parentUnitId)){
+			this.getUnitIds(parentUnitId);
 		}
 		
 		return;
