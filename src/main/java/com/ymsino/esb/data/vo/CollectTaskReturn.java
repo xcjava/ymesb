@@ -29,6 +29,10 @@ public class CollectTaskReturn implements Serializable {
     */
     private String executeTag;
     /**
+     * 当前状态
+    */
+    private String status;
+    /**
      * 补采次数
     */
     private Integer suppCount;
@@ -183,5 +187,11 @@ public class CollectTaskReturn implements Serializable {
 	}
 	public void setCreateTimestamp(Long createTimestamp) {
 		this.createTimestamp = createTimestamp;
+	}
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
 	}
 }
