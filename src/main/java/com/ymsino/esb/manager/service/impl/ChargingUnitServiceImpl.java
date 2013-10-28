@@ -128,7 +128,7 @@ public class ChargingUnitServiceImpl implements ChargingUnitService {
 			throw new RuntimeException("收费单位有下级单位，不可删除");
 		}
 		
-		po.setStatus(Short.valueOf("1"));
+		po.setStatus(Short.valueOf("-1"));
 		
 		return Boolean.TRUE;
 	}
