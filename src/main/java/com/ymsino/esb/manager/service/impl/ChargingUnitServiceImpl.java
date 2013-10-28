@@ -147,7 +147,14 @@ public class ChargingUnitServiceImpl implements ChargingUnitService {
 			throw new RuntimeException("收费单位未持久化");
 		}
 		
-		if(Short.valueOf("0").equals(po.getStatus())){
+		String hql = "select count(*) from ChargingUnit model where model.parentUnitId = ?";
+		int count = this.commonHibernateDao.countBy(hql, unitId.trim());
+		if(count > 0){
+			logger.error("delete:收费单位有下级单位，不可删除");
+			throw new RuntimeException("收费单位有下级单位，不可删除");
+		}
+		
+		if(!Short.valueOf("0").equals(po.getStatus())){
 			logger.error("delete:非新建状态收费单位不可删除");
 			throw new RuntimeException("非新建状态收费单位不可删除");
 		}
