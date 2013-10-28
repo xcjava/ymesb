@@ -78,7 +78,7 @@ public class WaterMeter  implements java.io.Serializable {
      /**
       * 初始表码
      */
-     private String initialYards;
+     private Integer initialYards;
      /**
       * 适用水价、当前水价(单位：分)
      */
@@ -113,7 +113,7 @@ public class WaterMeter  implements java.io.Serializable {
     }
     
     /** full constructor */
-    public WaterMeter(String hardwareId, String waterCustomerId, Long uid, String userId, String userName, String chargingUnitId, String parentUnits, String nature, String purcAmount, String showWarn, String closeWarn, String childHardwareId, String dataType, Integer constant, String concHardwareId, Integer wmSn, String initialYards, Long price, String alarmVolume, String radioFrequency, Short type, Long createTimestamp) {
+    public WaterMeter(String hardwareId, String waterCustomerId, Long uid, String userId, String userName, String chargingUnitId, String parentUnits, String nature, String purcAmount, String showWarn, String closeWarn, String childHardwareId, String dataType, Integer constant, String concHardwareId, Integer wmSn, Integer initialYards, Long price, String alarmVolume, String radioFrequency, Short type, Long createTimestamp) {
         this.hardwareId = hardwareId;
         this.waterCustomerId = waterCustomerId;
         this.uid = uid;
@@ -320,11 +320,11 @@ public class WaterMeter  implements java.io.Serializable {
      *      * 初始表码
      */
 
-    public String getInitialYards() {
+    public Integer getInitialYards() {
         return this.initialYards;
     }
     
-    public void setInitialYards(String initialYards) {
+    public void setInitialYards(Integer initialYards) {
         this.initialYards = initialYards;
     }
     /**       

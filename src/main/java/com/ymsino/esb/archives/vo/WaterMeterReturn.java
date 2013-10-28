@@ -67,7 +67,7 @@ public class WaterMeterReturn implements Serializable {
     /**
      * 初始表码
     */
-    private String initialYards;
+    private Integer initialYards;
     /**
      * 适用水价、当前水价(单位：分)
     */
@@ -189,10 +189,10 @@ public class WaterMeterReturn implements Serializable {
 	public void setConcHardwareId(String concHardwareId) {
 		this.concHardwareId = concHardwareId;
 	}
-	public String getInitialYards() {
+	public Integer getInitialYards() {
 		return initialYards;
 	}
-	public void setInitialYards(String initialYards) {
+	public void setInitialYards(Integer initialYards) {
 		this.initialYards = initialYards;
 	}
 	public Long getPrice() {

@@ -39,7 +39,9 @@ public class WaterMeterServiceImpl implements WaterMeterService {
 			throw new RuntimeException("参数对象为空");
 		}
 		
-		if(StringUtils.isEmpty(vo.getHardwareId()) || vo.getType() == null){
+		if(StringUtils.isEmpty(vo.getHardwareId()) ||
+				vo.getType() == null ||
+				vo.getInitialYards() == null){
 			logger.error("save:缺少必要属性");
 			throw new RuntimeException("缺少必要属性");
 		}
