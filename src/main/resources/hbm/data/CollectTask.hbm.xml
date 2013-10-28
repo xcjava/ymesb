@@ -49,6 +49,13 @@
 			</column>
 		</property>
 		
+		<property name="status" type="java.lang.String">
+			<meta attribute="field-description">当前状态</meta>
+			<column name="STATUS" length="300">
+				<comment>当前状态</comment>
+			</column>
+		</property>
+		
 		<property name="suppCount" type="java.lang.Integer">
 			<meta attribute="field-description">补采次数</meta>
 			<column name="SUPP_COUNT">
