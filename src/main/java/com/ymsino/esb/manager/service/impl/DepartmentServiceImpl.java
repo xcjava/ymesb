@@ -131,7 +131,7 @@ public class DepartmentServiceImpl implements DepartmentService {
 			throw new RuntimeException("部门有下级部门，不可删除");
 		}
 		
-		po.setStatus(Short.valueOf("1"));
+		po.setStatus(Short.valueOf("-1"));
 		
 		return Boolean.TRUE;
 	}
