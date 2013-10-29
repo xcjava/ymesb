@@ -25,11 +25,11 @@ public class CollectTaskReturn implements Serializable {
     */
     private String collectType;
     /**
-     * 执行标志
+     * 执行标志:1执行,-1暂停
     */
     private String executeTag;
     /**
-     * 当前状态
+     * 当前状态:1忙,-1空闲
     */
     private String status;
     /**

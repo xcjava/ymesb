@@ -12,79 +12,79 @@ public class CollectTask  implements java.io.Serializable {
     // Fields    
 
      /**
-      * ²É¼¯ÈÎÎñ×ÔÔöid
+      * é‡‡é›†ä»»åŠ¡è‡ªå¢id
      */
      private Long id;
      /**
-      * ÈÎÎñÀàĞÍ
+      * ä»»åŠ¡ç±»å‹
      */
      private String type;
      /**
-      * ÈÎÎñÃû³Æ
+      * ä»»åŠ¡åç§°
      */
      private String name;
      /**
-      * ÓÅÏÈ¼¶
+      * ä¼˜å…ˆçº§
      */
      private String priority;
      /**
-      * ²É¼¯µãÀàĞÍ
+      * é‡‡é›†ç‚¹ç±»å‹
      */
      private String collectType;
      /**
-      * Ö´ĞĞ±êÖ¾
+      * æ‰§è¡Œæ ‡å¿—:1æ‰§è¡Œ,-1æš‚åœ
      */
      private String executeTag;
      /**
-      * µ±Ç°×´Ì¬
+      * å½“å‰çŠ¶æ€:1å¿™,-1ç©ºé—²
      */
      private String status;
      /**
-      * ²¹²É´ÎÊı
+      * è¡¥é‡‡æ¬¡æ•°
      */
      private Integer suppCount;
      /**
-      * ÈÎÎñÖ´ĞĞ¿ªÊ¼Ê±¼ä
+      * ä»»åŠ¡æ‰§è¡Œå¼€å§‹æ—¶é—´
      */
      private Long startTimestamp;
      /**
-      * ÈÎÎñÖ´ĞĞ½áÊøÊ±¼ä
+      * ä»»åŠ¡æ‰§è¡Œç»“æŸæ—¶é—´
      */
      private Long endTimestamp;
      /**
-      * ²É¼¯ÖÜÆÚ¿ªÊ¼Ê±
+      * é‡‡é›†å‘¨æœŸå¼€å§‹æ—¶
      */
      private Integer startHour;
      /**
-      * ²É¼¯ÖÜÆÚ¿ªÊ¼·Ö
+      * é‡‡é›†å‘¨æœŸå¼€å§‹åˆ†
      */
      private Integer startMinute;
      /**
-      * ²É¼¯ÖÜÆÚ½áÊøÊ±
+      * é‡‡é›†å‘¨æœŸç»“æŸæ—¶
      */
      private Integer endHour;
      /**
-      * ²É¼¯ÖÜÆÚ½áÊø·Ö
+      * é‡‡é›†å‘¨æœŸç»“æŸåˆ†
      */
      private Integer endMinute;
      /**
-      * ÈÎÎñÀ´Ô´
+      * ä»»åŠ¡æ¥æº
      */
      private String source;
      /**
-      * ¼¯ÖĞÆ÷ID£¬¶à¸öÓÃ"||"°ü×¡£¬Èç|00811000||00820101|
+      * é›†ä¸­å™¨IDï¼Œå¤šä¸ªç”¨"||"åŒ…ä½ï¼Œå¦‚|00811000||00820101|
      */
      private String concHardwareIds;
      /**
-      * ÊÕ·Ñµ¥Î»±àºÅ
+      * æ”¶è´¹å•ä½ç¼–å·
      */
      private String chargingUnitId;
      /**
-      * ÉÏ¼¶ÊÕ·Ñµ¥Î»±àºÅ£¬¶à¸öÓÃ"||"°ü×¡£¬Èç|123||456|,ÓÃÓÚËÑË÷
+      * ä¸Šçº§æ”¶è´¹å•ä½ç¼–å·ï¼Œå¤šä¸ªç”¨"||"åŒ…ä½ï¼Œå¦‚|123||456|,ç”¨äºæœç´¢
      */
      private String parentUnits;
      /**
-      * ´´½¨Ê±¼ä
+      * åˆ›å»ºæ—¶é—´
      */
      private Long createTimestamp;
 
@@ -121,7 +121,7 @@ public class CollectTask  implements java.io.Serializable {
    
     // Property accessors
     /**       
-     *      * ²É¼¯ÈÎÎñ×ÔÔöid
+     *      * é‡‡é›†ä»»åŠ¡è‡ªå¢id
      */
 
     public Long getId() {
@@ -132,7 +132,7 @@ public class CollectTask  implements java.io.Serializable {
         this.id = id;
     }
     /**       
-     *      * ÈÎÎñÀàĞÍ
+     *      * ä»»åŠ¡ç±»å‹
      */
 
     public String getType() {
@@ -143,7 +143,7 @@ public class CollectTask  implements java.io.Serializable {
         this.type = type;
     }
     /**       
-     *      * ÈÎÎñÃû³Æ
+     *      * ä»»åŠ¡åç§°
      */
 
     public String getName() {
@@ -154,7 +154,7 @@ public class CollectTask  implements java.io.Serializable {
         this.name = name;
     }
     /**       
-     *      * ÓÅÏÈ¼¶
+     *      * ä¼˜å…ˆçº§
      */
 
     public String getPriority() {
@@ -165,7 +165,7 @@ public class CollectTask  implements java.io.Serializable {
         this.priority = priority;
     }
     /**       
-     *      * ²É¼¯µãÀàĞÍ
+     *      * é‡‡é›†ç‚¹ç±»å‹
      */
 
     public String getCollectType() {
@@ -176,7 +176,7 @@ public class CollectTask  implements java.io.Serializable {
         this.collectType = collectType;
     }
     /**       
-     *      * Ö´ĞĞ±êÖ¾
+     *      * æ‰§è¡Œæ ‡å¿—:1æ‰§è¡Œ,-1æš‚åœ
      */
 
     public String getExecuteTag() {
@@ -187,7 +187,7 @@ public class CollectTask  implements java.io.Serializable {
         this.executeTag = executeTag;
     }
     /**       
-     *      * µ±Ç°×´Ì¬
+     *      * å½“å‰çŠ¶æ€:1å¿™,-1ç©ºé—²
      */
 
     public String getStatus() {
@@ -198,7 +198,7 @@ public class CollectTask  implements java.io.Serializable {
         this.status = status;
     }
     /**       
-     *      * ²¹²É´ÎÊı
+     *      * è¡¥é‡‡æ¬¡æ•°
      */
 
     public Integer getSuppCount() {
@@ -209,7 +209,7 @@ public class CollectTask  implements java.io.Serializable {
         this.suppCount = suppCount;
     }
     /**       
-     *      * ÈÎÎñÖ´ĞĞ¿ªÊ¼Ê±¼ä
+     *      * ä»»åŠ¡æ‰§è¡Œå¼€å§‹æ—¶é—´
      */
 
     public Long getStartTimestamp() {
@@ -220,7 +220,7 @@ public class CollectTask  implements java.io.Serializable {
         this.startTimestamp = startTimestamp;
     }
     /**       
-     *      * ÈÎÎñÖ´ĞĞ½áÊøÊ±¼ä
+     *      * ä»»åŠ¡æ‰§è¡Œç»“æŸæ—¶é—´
      */
 
     public Long getEndTimestamp() {
@@ -231,7 +231,7 @@ public class CollectTask  implements java.io.Serializable {
         this.endTimestamp = endTimestamp;
     }
     /**       
-     *      * ²É¼¯ÖÜÆÚ¿ªÊ¼Ê±
+     *      * é‡‡é›†å‘¨æœŸå¼€å§‹æ—¶
      */
 
     public Integer getStartHour() {
@@ -242,7 +242,7 @@ public class CollectTask  implements java.io.Serializable {
         this.startHour = startHour;
     }
     /**       
-     *      * ²É¼¯ÖÜÆÚ¿ªÊ¼·Ö
+     *      * é‡‡é›†å‘¨æœŸå¼€å§‹åˆ†
      */
 
     public Integer getStartMinute() {
@@ -253,7 +253,7 @@ public class CollectTask  implements java.io.Serializable {
         this.startMinute = startMinute;
     }
     /**       
-     *      * ²É¼¯ÖÜÆÚ½áÊøÊ±
+     *      * é‡‡é›†å‘¨æœŸç»“æŸæ—¶
      */
 
     public Integer getEndHour() {
@@ -264,7 +264,7 @@ public class CollectTask  implements java.io.Serializable {
         this.endHour = endHour;
     }
     /**       
-     *      * ²É¼¯ÖÜÆÚ½áÊø·Ö
+     *      * é‡‡é›†å‘¨æœŸç»“æŸåˆ†
      */
 
     public Integer getEndMinute() {
@@ -275,7 +275,7 @@ public class CollectTask  implements java.io.Serializable {
         this.endMinute = endMinute;
     }
     /**       
-     *      * ÈÎÎñÀ´Ô´
+     *      * ä»»åŠ¡æ¥æº
      */
 
     public String getSource() {
@@ -286,7 +286,7 @@ public class CollectTask  implements java.io.Serializable {
         this.source = source;
     }
     /**       
-     *      * ¼¯ÖĞÆ÷ID£¬¶à¸öÓÃ"||"°ü×¡£¬Èç|00811000||00820101|
+     *      * é›†ä¸­å™¨IDï¼Œå¤šä¸ªç”¨"||"åŒ…ä½ï¼Œå¦‚|00811000||00820101|
      */
 
     public String getConcHardwareIds() {
@@ -297,7 +297,7 @@ public class CollectTask  implements java.io.Serializable {
         this.concHardwareIds = concHardwareIds;
     }
     /**       
-     *      * ÊÕ·Ñµ¥Î»±àºÅ
+     *      * æ”¶è´¹å•ä½ç¼–å·
      */
 
     public String getChargingUnitId() {
@@ -308,7 +308,7 @@ public class CollectTask  implements java.io.Serializable {
         this.chargingUnitId = chargingUnitId;
     }
     /**       
-     *      * ÉÏ¼¶ÊÕ·Ñµ¥Î»±àºÅ£¬¶à¸öÓÃ"||"°ü×¡£¬Èç|123||456|,ÓÃÓÚËÑË÷
+     *      * ä¸Šçº§æ”¶è´¹å•ä½ç¼–å·ï¼Œå¤šä¸ªç”¨"||"åŒ…ä½ï¼Œå¦‚|123||456|,ç”¨äºæœç´¢
      */
 
     public String getParentUnits() {
@@ -319,7 +319,7 @@ public class CollectTask  implements java.io.Serializable {
         this.parentUnits = parentUnits;
     }
     /**       
-     *      * ´´½¨Ê±¼ä
+     *      * åˆ›å»ºæ—¶é—´
      */
 
     public Long getCreateTimestamp() {

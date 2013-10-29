@@ -25,7 +25,7 @@ public class CollectTaskModifyParam implements Serializable {
     */
     private String collectType;
     /**
-     * 执行标志
+     * 执行标志:1执行,-1暂停
     */
     private String executeTag;
     /**
