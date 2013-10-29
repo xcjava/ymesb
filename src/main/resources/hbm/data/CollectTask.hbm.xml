@@ -43,16 +43,16 @@
 		</property>
 		
 		<property name="executeTag" type="java.lang.String">
-			<meta attribute="field-description">执行标志</meta>
+			<meta attribute="field-description">执行标志:1执行,-1暂停</meta>
 			<column name="EXECUTE_TAG" length="300">
-				<comment>执行标志</comment>
+				<comment>执行标志:1执行,-1暂停</comment>
 			</column>
 		</property>
 		
 		<property name="status" type="java.lang.String">
-			<meta attribute="field-description">当前状态</meta>
+			<meta attribute="field-description">当前状态:1忙,-1空闲</meta>
 			<column name="STATUS" length="300">
-				<comment>当前状态</comment>
+				<comment>当前状态:1忙,-1空闲</comment>
 			</column>
 		</property>
 		
