@@ -47,7 +47,7 @@ public class ReadDataTask {
 					for(String id : ids){
 						QueryParamWriter qpw = new QueryParamWriter();
 						qpw.addQueryParam("wmSn", null, QueryCondition.QC_UNEQ);
-						qpw.addQueryParam("concHardwareId", item, QueryCondition.QC_EQ);
+						qpw.addQueryParam("concHardwareId", id, QueryCondition.QC_EQ);
 						
 						QueryParam qp = new QueryParam();
 						qp.setQueryLink(qpw.getQueryLink());
