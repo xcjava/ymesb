@@ -20,9 +20,9 @@ public class UserWallet  implements java.io.Serializable {
      */
      private Long modifyTimestamp;
      /**
-      * 账户余额,单位为分
+      * 账户余额
      */
-     private Long cashAmount;
+     private Float cashAmount;
      /**
       * 账户签名
      */
@@ -45,7 +45,7 @@ public class UserWallet  implements java.io.Serializable {
     }
     
     /** full constructor */
-    public UserWallet(String signId, Long modifyTimestamp, Long cashAmount, String healthSign, Short healthStatus) {
+    public UserWallet(String signId, Long modifyTimestamp, Float cashAmount, String healthSign, Short healthStatus) {
         this.signId = signId;
         this.modifyTimestamp = modifyTimestamp;
         this.cashAmount = cashAmount;
@@ -78,14 +78,14 @@ public class UserWallet  implements java.io.Serializable {
         this.modifyTimestamp = modifyTimestamp;
     }
     /**       
-     *      * 账户余额,单位为分
+     *      * 账户余额
      */
 
-    public Long getCashAmount() {
+    public Float getCashAmount() {
         return this.cashAmount;
     }
     
-    public void setCashAmount(Long cashAmount) {
+    public void setCashAmount(Float cashAmount) {
         this.cashAmount = cashAmount;
     }
     /**       

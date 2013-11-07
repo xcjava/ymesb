@@ -6,6 +6,7 @@ import org.apache.log4j.Logger;
 
 import com.amazonaws.services.identitymanagement.model.User;
 import com.gmail.xcjava.base.dataMapping.ObjectMapping;
+import com.gmail.xcjava.base.math.Arith;
 import com.gmail.xcjava.base.security.MD5;
 import com.gmail.xcjava.base.spring.CommonHibernateDao;
 import com.ymsino.esb.freesettle.model.UserWallet;
@@ -22,7 +23,7 @@ public class UserWalletServiceImpl implements UserWalletService {
 	}
 	
 	@Override
-	public Boolean recharge(Long uid, Long price, String sysRemark) {
+	public Boolean recharge(Long uid, Float price, String sysRemark) {
 		
 		if(uid == null){
 			logger.error("recharge:用户id为空");
@@ -45,7 +46,7 @@ public class UserWalletServiceImpl implements UserWalletService {
 		if(wallet == null){
 			wallet = new UserWallet();
 			wallet.setSignId(MD5.getMD5(uid.toString()));
-			wallet.setCashAmount(Long.valueOf(0));
+			wallet.setCashAmount(Float.valueOf(0));
 			wallet.setHealthStatus(Short.valueOf("1"));
 			wallet.setModifyTimestamp(new Date().getTime());
 			wallet.setHealthSign(MD5.getMD5(
@@ -62,7 +63,7 @@ public class UserWalletServiceImpl implements UserWalletService {
 			throw new RuntimeException("用户钱包为警告状态，不可充值");
 		}
 		
-		Long cashAmount = wallet.getCashAmount() + price;
+		Float cashAmount = Arith.add(wallet.getCashAmount(), price);
 		wallet.setCashAmount(cashAmount);
 		wallet.setModifyTimestamp(new Date().getTime());
 		wallet.setHealthSign(MD5.getMD5(
@@ -77,7 +78,7 @@ public class UserWalletServiceImpl implements UserWalletService {
 	}
 
 	@Override
-	public Boolean deduction(Long uid, Long price, String sysRemark) {
+	public Boolean deduction(Long uid, Float price, String sysRemark) {
 		
 		if(uid == null){
 			logger.error("deduction:用户id为空");
@@ -100,7 +101,7 @@ public class UserWalletServiceImpl implements UserWalletService {
 			throw new RuntimeException("用户钱包为警告状态，不可扣费");
 		}
 		
-		Long cashAmount = po.getCashAmount() - price;
+		Float cashAmount = Arith.sub(po.getCashAmount(), price);
 		if(cashAmount < 0){
 			logger.error("recharge:扣除金额超过帐号余额");
 			throw new RuntimeException("扣除金额超过帐号余额");
@@ -139,7 +140,7 @@ public class UserWalletServiceImpl implements UserWalletService {
 		return (UserWalletReturn) ObjectMapping.objMapping(po, new UserWalletReturn());
 	}
 
-	private void saveLog(Long uid, Short logType, Long usePrice, String sysRemark){
+	private void saveLog(Long uid, Short logType, Float usePrice, String sysRemark){
 		
 		UserWalletLog model = new UserWalletLog();
 		model.setLogType(logType);

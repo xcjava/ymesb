@@ -28,9 +28,9 @@ public class UserWalletLog  implements java.io.Serializable {
      */
      private Long createTimestamp;
      /**
-      * 使用金额(分),正数为收入,负数为支出
+      * 使用金额,正数为收入,负数为支出
      */
-     private Long usePrice;
+     private Float usePrice;
      /**
       * 用户ID
      */
@@ -45,7 +45,7 @@ public class UserWalletLog  implements java.io.Serializable {
 
     
     /** full constructor */
-    public UserWalletLog(String sysRemark, Short logType, Long createTimestamp, Long usePrice, Long uid) {
+    public UserWalletLog(String sysRemark, Short logType, Long createTimestamp, Float usePrice, Long uid) {
         this.sysRemark = sysRemark;
         this.logType = logType;
         this.createTimestamp = createTimestamp;
@@ -100,14 +100,14 @@ public class UserWalletLog  implements java.io.Serializable {
         this.createTimestamp = createTimestamp;
     }
     /**       
-     *      * 使用金额(分),正数为收入,负数为支出
+     *      * 使用金额,正数为收入,负数为支出
      */
 
-    public Long getUsePrice() {
+    public Float getUsePrice() {
         return this.usePrice;
     }
     
-    public void setUsePrice(Long usePrice) {
+    public void setUsePrice(Float usePrice) {
         this.usePrice = usePrice;
     }
     /**       
