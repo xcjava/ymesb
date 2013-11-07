@@ -29,8 +29,8 @@
 			</column>
 		</property>
 		
-		<property name="usePrice" type="java.lang.Long">
-			<meta attribute="field-description">使用金额(分),正数为收入,负数为支出</meta>
+		<property name="usePrice" type="java.lang.Float">
+			<meta attribute="field-description">使用金额,正数为收入,负数为支出</meta>
 			<column name="USE_PRICE" />
 		</property>
 		

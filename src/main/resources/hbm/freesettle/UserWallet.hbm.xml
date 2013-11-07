@@ -21,10 +21,10 @@
 			</column>
 		</property>
 		
-		<property name="cashAmount" type="java.lang.Long">
-        	<meta attribute="field-description">账户余额,单位为分</meta>
+		<property name="cashAmount" type="java.lang.Float">
+        	<meta attribute="field-description">账户余额</meta>
 			<column name="CASH_AMOUNT">
-				<comment>账户余额,单位为分</comment>
+				<comment>账户余额</comment>
 			</column>
 		</property>
 		
