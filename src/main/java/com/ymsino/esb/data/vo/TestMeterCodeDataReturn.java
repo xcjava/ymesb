@@ -19,7 +19,7 @@ public class TestMeterCodeDataReturn implements Serializable {
     /**
      * 表计读数
     */
-    private Long meterReading;
+    private Float meterReading;
     /**
      * 电池电压
     */
@@ -85,10 +85,10 @@ public class TestMeterCodeDataReturn implements Serializable {
 	public void setMeterHardwareId(String meterHardwareId) {
 		this.meterHardwareId = meterHardwareId;
 	}
-	public Long getMeterReading() {
+	public Float getMeterReading() {
 		return meterReading;
 	}
-	public void setMeterReading(Long meterReading) {
+	public void setMeterReading(Float meterReading) {
 		this.meterReading = meterReading;
 	}
 	public Float getBatteryVoltage() {

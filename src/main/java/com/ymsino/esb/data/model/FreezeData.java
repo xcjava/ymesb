@@ -26,7 +26,7 @@ public class FreezeData  implements java.io.Serializable {
      /**
       * 表计读数
      */
-     private Long meterReading;
+     private Float meterReading;
      /**
       * 电池电压
      */
@@ -88,7 +88,7 @@ public class FreezeData  implements java.io.Serializable {
 
     
     /** full constructor */
-    public FreezeData(String concHardwareId, String meterHardwareId, Long meterReading, Float batteryVoltage, String valveStatus, String dataType, String magneticAttack, String errorStatus, String replyStatus, String freezeDateStr, Long createTimestamp, String userId, String waterCustomerId, String chargingUnitId, String parentUnits) {
+    public FreezeData(String concHardwareId, String meterHardwareId, Float meterReading, Float batteryVoltage, String valveStatus, String dataType, String magneticAttack, String errorStatus, String replyStatus, String freezeDateStr, Long createTimestamp, String userId, String waterCustomerId, String chargingUnitId, String parentUnits) {
         this.concHardwareId = concHardwareId;
         this.meterHardwareId = meterHardwareId;
         this.meterReading = meterReading;
@@ -145,11 +145,11 @@ public class FreezeData  implements java.io.Serializable {
      *      * 表计读数
      */
 
-    public Long getMeterReading() {
+    public Float getMeterReading() {
         return this.meterReading;
     }
     
-    public void setMeterReading(Long meterReading) {
+    public void setMeterReading(Float meterReading) {
         this.meterReading = meterReading;
     }
     /**       

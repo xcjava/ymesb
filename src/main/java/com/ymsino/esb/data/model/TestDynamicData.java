@@ -26,7 +26,7 @@ public class TestDynamicData  implements java.io.Serializable {
      /**
       * 表计读数
      */
-     private Long meterReading;
+     private Float meterReading;
      /**
       * 电池电压
      */
@@ -84,7 +84,7 @@ public class TestDynamicData  implements java.io.Serializable {
 
     
     /** full constructor */
-    public TestDynamicData(String concHardwareId, String meterHardwareId, Long meterReading, Float batteryVoltage, String valveStatus, String dataType, String magneticAttack, String errorStatus, String replyStatus, Long createTimestamp, String userId, String waterCustomerId, String chargingUnitId, String parentUnits) {
+    public TestDynamicData(String concHardwareId, String meterHardwareId, Float meterReading, Float batteryVoltage, String valveStatus, String dataType, String magneticAttack, String errorStatus, String replyStatus, Long createTimestamp, String userId, String waterCustomerId, String chargingUnitId, String parentUnits) {
         this.concHardwareId = concHardwareId;
         this.meterHardwareId = meterHardwareId;
         this.meterReading = meterReading;
@@ -140,11 +140,11 @@ public class TestDynamicData  implements java.io.Serializable {
      *      * 表计读数
      */
 
-    public Long getMeterReading() {
+    public Float getMeterReading() {
         return this.meterReading;
     }
     
-    public void setMeterReading(Long meterReading) {
+    public void setMeterReading(Float meterReading) {
         this.meterReading = meterReading;
     }
     /**       

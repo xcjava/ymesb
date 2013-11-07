@@ -19,127 +19,127 @@ public class WaterDayUsageAmountReturn implements Serializable {
     /**
      * 1日水用量
     */
-    private Integer usageAmount1;
+    private Float usageAmount1;
     /**
      * 2日水用量
     */
-    private Integer usageAmount2;
+    private Float usageAmount2;
     /**
      * 3日水用量
     */
-    private Integer usageAmount3;
+    private Float usageAmount3;
     /**
      * 4日水用量
     */
-    private Integer usageAmount4;
+    private Float usageAmount4;
     /**
      * 5日水用量
     */
-    private Integer usageAmount5;
+    private Float usageAmount5;
     /**
      * 6日水用量
     */
-    private Integer usageAmount6;
+    private Float usageAmount6;
     /**
      * 7日水用量
     */
-    private Integer usageAmount7;
+    private Float usageAmount7;
     /**
      * 8日水用量
     */
-    private Integer usageAmount8;
+    private Float usageAmount8;
     /**
      * 9日水用量
     */
-    private Integer usageAmount9;
+    private Float usageAmount9;
     /**
      * 10日水用量
     */
-    private Integer usageAmount10;
+    private Float usageAmount10;
     /**
      * 11日水用量
     */
-    private Integer usageAmount11;
+    private Float usageAmount11;
     /**
      * 12日水用量
     */
-    private Integer usageAmount12;
+    private Float usageAmount12;
     /**
      * 13日水用量
     */
-    private Integer usageAmount13;
+    private Float usageAmount13;
     /**
      * 14日水用量
     */
-    private Integer usageAmount14;
+    private Float usageAmount14;
     /**
      * 15日水用量
     */
-    private Integer usageAmount15;
+    private Float usageAmount15;
     /**
      * 16日水用量
     */
-    private Integer usageAmount16;
+    private Float usageAmount16;
     /**
      * 17日水用量
     */
-    private Integer usageAmount17;
+    private Float usageAmount17;
     /**
      * 18日水用量
     */
-    private Integer usageAmount18;
+    private Float usageAmount18;
     /**
      * 19日水用量
     */
-    private Integer usageAmount19;
+    private Float usageAmount19;
     /**
      * 20日水用量
     */
-    private Integer usageAmount20;
+    private Float usageAmount20;
     /**
      * 21日水用量
     */
-    private Integer usageAmount21;
+    private Float usageAmount21;
     /**
      * 22日水用量
     */
-    private Integer usageAmount22;
+    private Float usageAmount22;
     /**
      * 23日水用量
     */
-    private Integer usageAmount23;
+    private Float usageAmount23;
     /**
      * 24日水用量
     */
-    private Integer usageAmount24;
+    private Float usageAmount24;
     /**
      * 25日水用量
     */
-    private Integer usageAmount25;
+    private Float usageAmount25;
     /**
      * 26日水用量
     */
-    private Integer usageAmount26;
+    private Float usageAmount26;
     /**
      * 27日水用量
     */
-    private Integer usageAmount27;
+    private Float usageAmount27;
     /**
      * 28日水用量
     */
-    private Integer usageAmount28;
+    private Float usageAmount28;
     /**
      * 29日水用量
     */
-    private Integer usageAmount29;
+    private Float usageAmount29;
     /**
      * 30日水用量
     */
-    private Integer usageAmount30;
+    private Float usageAmount30;
     /**
      * 31日水用量
     */
-    private Integer usageAmount31;
+    private Float usageAmount31;
     /**
      * 冻结时间(年)
     */
@@ -186,190 +186,190 @@ public class WaterDayUsageAmountReturn implements Serializable {
 	public void setMeterHardwareId(String meterHardwareId) {
 		this.meterHardwareId = meterHardwareId;
 	}
-	public Integer getUsageAmount1() {
+	public Float getUsageAmount1() {
 		return usageAmount1;
 	}
-	public void setUsageAmount1(Integer usageAmount1) {
+	public void setUsageAmount1(Float usageAmount1) {
 		this.usageAmount1 = usageAmount1;
 	}
-	public Integer getUsageAmount2() {
+	public Float getUsageAmount2() {
 		return usageAmount2;
 	}
-	public void setUsageAmount2(Integer usageAmount2) {
+	public void setUsageAmount2(Float usageAmount2) {
 		this.usageAmount2 = usageAmount2;
 	}
-	public Integer getUsageAmount3() {
+	public Float getUsageAmount3() {
 		return usageAmount3;
 	}
-	public void setUsageAmount3(Integer usageAmount3) {
+	public void setUsageAmount3(Float usageAmount3) {
 		this.usageAmount3 = usageAmount3;
 	}
-	public Integer getUsageAmount4() {
+	public Float getUsageAmount4() {
 		return usageAmount4;
 	}
-	public void setUsageAmount4(Integer usageAmount4) {
+	public void setUsageAmount4(Float usageAmount4) {
 		this.usageAmount4 = usageAmount4;
 	}
-	public Integer getUsageAmount5() {
+	public Float getUsageAmount5() {
 		return usageAmount5;
 	}
-	public void setUsageAmount5(Integer usageAmount5) {
+	public void setUsageAmount5(Float usageAmount5) {
 		this.usageAmount5 = usageAmount5;
 	}
-	public Integer getUsageAmount6() {
+	public Float getUsageAmount6() {
 		return usageAmount6;
 	}
-	public void setUsageAmount6(Integer usageAmount6) {
+	public void setUsageAmount6(Float usageAmount6) {
 		this.usageAmount6 = usageAmount6;
 	}
-	public Integer getUsageAmount7() {
+	public Float getUsageAmount7() {
 		return usageAmount7;
 	}
-	public void setUsageAmount7(Integer usageAmount7) {
+	public void setUsageAmount7(Float usageAmount7) {
 		this.usageAmount7 = usageAmount7;
 	}
-	public Integer getUsageAmount8() {
+	public Float getUsageAmount8() {
 		return usageAmount8;
 	}
-	public void setUsageAmount8(Integer usageAmount8) {
+	public void setUsageAmount8(Float usageAmount8) {
 		this.usageAmount8 = usageAmount8;
 	}
-	public Integer getUsageAmount9() {
+	public Float getUsageAmount9() {
 		return usageAmount9;
 	}
-	public void setUsageAmount9(Integer usageAmount9) {
+	public void setUsageAmount9(Float usageAmount9) {
 		this.usageAmount9 = usageAmount9;
 	}
-	public Integer getUsageAmount10() {
+	public Float getUsageAmount10() {
 		return usageAmount10;
 	}
-	public void setUsageAmount10(Integer usageAmount10) {
+	public void setUsageAmount10(Float usageAmount10) {
 		this.usageAmount10 = usageAmount10;
 	}
-	public Integer getUsageAmount11() {
+	public Float getUsageAmount11() {
 		return usageAmount11;
 	}
-	public void setUsageAmount11(Integer usageAmount11) {
+	public void setUsageAmount11(Float usageAmount11) {
 		this.usageAmount11 = usageAmount11;
 	}
-	public Integer getUsageAmount12() {
+	public Float getUsageAmount12() {
 		return usageAmount12;
 	}
-	public void setUsageAmount12(Integer usageAmount12) {
+	public void setUsageAmount12(Float usageAmount12) {
 		this.usageAmount12 = usageAmount12;
 	}
-	public Integer getUsageAmount13() {
+	public Float getUsageAmount13() {
 		return usageAmount13;
 	}
-	public void setUsageAmount13(Integer usageAmount13) {
+	public void setUsageAmount13(Float usageAmount13) {
 		this.usageAmount13 = usageAmount13;
 	}
-	public Integer getUsageAmount14() {
+	public Float getUsageAmount14() {
 		return usageAmount14;
 	}
-	public void setUsageAmount14(Integer usageAmount14) {
+	public void setUsageAmount14(Float usageAmount14) {
 		this.usageAmount14 = usageAmount14;
 	}
-	public Integer getUsageAmount15() {
+	public Float getUsageAmount15() {
 		return usageAmount15;
 	}
-	public void setUsageAmount15(Integer usageAmount15) {
+	public void setUsageAmount15(Float usageAmount15) {
 		this.usageAmount15 = usageAmount15;
 	}
-	public Integer getUsageAmount16() {
+	public Float getUsageAmount16() {
 		return usageAmount16;
 	}
-	public void setUsageAmount16(Integer usageAmount16) {
+	public void setUsageAmount16(Float usageAmount16) {
 		this.usageAmount16 = usageAmount16;
 	}
-	public Integer getUsageAmount17() {
+	public Float getUsageAmount17() {
 		return usageAmount17;
 	}
-	public void setUsageAmount17(Integer usageAmount17) {
+	public void setUsageAmount17(Float usageAmount17) {
 		this.usageAmount17 = usageAmount17;
 	}
-	public Integer getUsageAmount18() {
+	public Float getUsageAmount18() {
 		return usageAmount18;
 	}
-	public void setUsageAmount18(Integer usageAmount18) {
+	public void setUsageAmount18(Float usageAmount18) {
 		this.usageAmount18 = usageAmount18;
 	}
-	public Integer getUsageAmount19() {
+	public Float getUsageAmount19() {
 		return usageAmount19;
 	}
-	public void setUsageAmount19(Integer usageAmount19) {
+	public void setUsageAmount19(Float usageAmount19) {
 		this.usageAmount19 = usageAmount19;
 	}
-	public Integer getUsageAmount20() {
+	public Float getUsageAmount20() {
 		return usageAmount20;
 	}
-	public void setUsageAmount20(Integer usageAmount20) {
+	public void setUsageAmount20(Float usageAmount20) {
 		this.usageAmount20 = usageAmount20;
 	}
-	public Integer getUsageAmount21() {
+	public Float getUsageAmount21() {
 		return usageAmount21;
 	}
-	public void setUsageAmount21(Integer usageAmount21) {
+	public void setUsageAmount21(Float usageAmount21) {
 		this.usageAmount21 = usageAmount21;
 	}
-	public Integer getUsageAmount22() {
+	public Float getUsageAmount22() {
 		return usageAmount22;
 	}
-	public void setUsageAmount22(Integer usageAmount22) {
+	public void setUsageAmount22(Float usageAmount22) {
 		this.usageAmount22 = usageAmount22;
 	}
-	public Integer getUsageAmount23() {
+	public Float getUsageAmount23() {
 		return usageAmount23;
 	}
-	public void setUsageAmount23(Integer usageAmount23) {
+	public void setUsageAmount23(Float usageAmount23) {
 		this.usageAmount23 = usageAmount23;
 	}
-	public Integer getUsageAmount24() {
+	public Float getUsageAmount24() {
 		return usageAmount24;
 	}
-	public void setUsageAmount24(Integer usageAmount24) {
+	public void setUsageAmount24(Float usageAmount24) {
 		this.usageAmount24 = usageAmount24;
 	}
-	public Integer getUsageAmount25() {
+	public Float getUsageAmount25() {
 		return usageAmount25;
 	}
-	public void setUsageAmount25(Integer usageAmount25) {
+	public void setUsageAmount25(Float usageAmount25) {
 		this.usageAmount25 = usageAmount25;
 	}
-	public Integer getUsageAmount26() {
+	public Float getUsageAmount26() {
 		return usageAmount26;
 	}
-	public void setUsageAmount26(Integer usageAmount26) {
+	public void setUsageAmount26(Float usageAmount26) {
 		this.usageAmount26 = usageAmount26;
 	}
-	public Integer getUsageAmount27() {
+	public Float getUsageAmount27() {
 		return usageAmount27;
 	}
-	public void setUsageAmount27(Integer usageAmount27) {
+	public void setUsageAmount27(Float usageAmount27) {
 		this.usageAmount27 = usageAmount27;
 	}
-	public Integer getUsageAmount28() {
+	public Float getUsageAmount28() {
 		return usageAmount28;
 	}
-	public void setUsageAmount28(Integer usageAmount28) {
+	public void setUsageAmount28(Float usageAmount28) {
 		this.usageAmount28 = usageAmount28;
 	}
-	public Integer getUsageAmount29() {
+	public Float getUsageAmount29() {
 		return usageAmount29;
 	}
-	public void setUsageAmount29(Integer usageAmount29) {
+	public void setUsageAmount29(Float usageAmount29) {
 		this.usageAmount29 = usageAmount29;
 	}
-	public Integer getUsageAmount30() {
+	public Float getUsageAmount30() {
 		return usageAmount30;
 	}
-	public void setUsageAmount30(Integer usageAmount30) {
+	public void setUsageAmount30(Float usageAmount30) {
 		this.usageAmount30 = usageAmount30;
 	}
-	public Integer getUsageAmount31() {
+	public Float getUsageAmount31() {
 		return usageAmount31;
 	}
-	public void setUsageAmount31(Integer usageAmount31) {
+	public void setUsageAmount31(Float usageAmount31) {
 		this.usageAmount31 = usageAmount31;
 	}
 	public String getFreezeYear() {
@@ -414,4 +414,6 @@ public class WaterDayUsageAmountReturn implements Serializable {
 	public void setParentUnits(String parentUnits) {
 		this.parentUnits = parentUnits;
 	}
+    
+    
 }
