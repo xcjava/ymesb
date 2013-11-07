@@ -1,8 +1,5 @@
 package com.ymsino.esb.comm.vo;
 
-import com.gmail.xcjava.base.str.StringTool;
-import com.ymsino.esb.protocol.AbstractMessage;
-
 public class MeterDataVo {
 
 	/**
@@ -19,7 +16,7 @@ public class MeterDataVo {
 	 * 读数
 	 * 1-4字节：HEX，水表用量；
 	 */
-	private Long measure;
+	private Float measure;
 	
 	/**
 	 * 电池电压
@@ -82,7 +79,7 @@ public class MeterDataVo {
 		this.readDateStr = readDateStr;
 	}
 
-	public void setMeasure(Long measure) {
+	public void setMeasure(Float measure) {
 		this.measure = measure;
 	}
 
@@ -110,7 +107,7 @@ public class MeterDataVo {
 		this.replyStatus = replyStatus;
 	}
 
-	public Long getMeasure() {
+	public Float getMeasure() {
 		return measure;
 	}
 
