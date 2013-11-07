@@ -44,6 +44,7 @@ public class CheckingFreezeDataServiceImpl implements CheckingFreezeDataService 
 		
 		Date today = new Date();
 		Date freezeDate = DateUtil.parseDate("20" + po.getFreezeYear() + "-" + po.getFreezeMonth() + "-" + settleDate, "yyyy-MM-dd HH:mm:ss");
+		freezeDate = DateUtil.addMonth(freezeDate, 1);
 		if(today.getTime() > freezeDate.getTime()){
 			logger.error("modify:水表冻结审核数据进入结算流程，无法修改");
 			throw new RuntimeException("水表冻结审核数据进入结算流程，无法修改");
