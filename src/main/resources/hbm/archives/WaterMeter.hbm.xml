@@ -121,7 +121,7 @@
 			</column>
 		</property>
 		
-		<property name="initialYards" type="java.lang.Integer">
+		<property name="initialYards" type="java.lang.Float">
 			<meta attribute="field-description">初始表码</meta>
 			<column name="INITIAL_YARDS">
 				<comment>初始表码</comment>
