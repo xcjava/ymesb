@@ -165,9 +165,9 @@
 		</property>
 		
 		<property name="communicationCost" type="java.lang.Long">
-			<meta attribute="field-description">通讯费(单位：分)</meta>
+			<meta attribute="field-description">通讯费(单位：毫)</meta>
 			<column name="COMMUNICATION_COST">
-				<comment>通讯费(单位：分)</comment>
+				<comment>通讯费(单位：毫)</comment>
 			</column>
 		</property>
 		

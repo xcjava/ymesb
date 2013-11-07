@@ -129,9 +129,9 @@
 		</property>
 		
 		<property name="price" type="java.lang.Long">
-			<meta attribute="field-description">适用水价、当前水价(单位：分)</meta>
+			<meta attribute="field-description">适用水价、当前水价(单位：毫)</meta>
 			<column name="PRICE">
-				<comment>适用水价、当前水价(单位：分)</comment>
+				<comment>适用水价、当前水价(单位：毫)</comment>
 			</column>
 		</property>
 		
