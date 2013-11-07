@@ -14,6 +14,7 @@ import com.gmail.xcjava.base.hql.QueryParam;
 import com.gmail.xcjava.base.hql.QueryParamReader;
 import com.gmail.xcjava.base.io.PropertyReader;
 import com.gmail.xcjava.base.spring.CommonHibernateDao;
+import com.ymsino.esb.data.domain.WaterDayUsageAmountManager;
 import com.ymsino.esb.data.model.CheckingFreezeData;
 import com.ymsino.esb.data.service.api.CheckingFreezeDataService;
 import com.ymsino.esb.data.vo.CheckingFreezeDataModifyParam;
@@ -24,6 +25,12 @@ public class CheckingFreezeDataServiceImpl implements CheckingFreezeDataService 
 	private Logger logger = Logger.getLogger(CheckingFreezeDataServiceImpl.class);
 	private String settleDate = PropertyReader.getProperties("config.properties").getProperty("data.settleDate");
 	private CommonHibernateDao commonHibernateDao;
+	private WaterDayUsageAmountManager waterDayUsageAmountManager;
+	public void setWaterDayUsageAmountManager(
+			WaterDayUsageAmountManager waterDayUsageAmountManager) {
+		this.waterDayUsageAmountManager = waterDayUsageAmountManager;
+	}
+
 	public void setCommonHibernateDao(CommonHibernateDao commonHibernateDao) {
 		this.commonHibernateDao = commonHibernateDao;
 	}
@@ -52,6 +59,8 @@ public class CheckingFreezeDataServiceImpl implements CheckingFreezeDataService 
 		
 		vo.setId(null);
 		ObjectMapping.objMapping(vo, po, false);
+		
+		waterDayUsageAmountManager.saveByCheckingFreezeData(po);
 		
 		return Boolean.TRUE;
 	}
