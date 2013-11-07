@@ -25,6 +25,7 @@
 	
 	<bean id="freezeDataManager" class="com.ymsino.esb.data.domain.FreezeDataManager">
 		<property name="commonHibernateDao" ref="commonHibernateDao"></property>
+		<property name="producerTemplate" ref="producerTemplate"></property>
 	</bean>
 	<bean id="testDynamicDataManager" class="com.ymsino.esb.data.domain.TestDynamicDataManager">
 		<property name="commonHibernateDao" ref="commonHibernateDao"></property>
