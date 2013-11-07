@@ -12,6 +12,7 @@ import org.apache.log4j.Logger;
 
 import com.gmail.xcjava.base.dataMapping.ObjectMapping;
 import com.gmail.xcjava.base.date.DateUtil;
+import com.gmail.xcjava.base.math.Arith;
 import com.gmail.xcjava.base.spring.CommonHibernateDao;
 import com.ymsino.esb.archives.model.WaterMeter;
 import com.ymsino.esb.comm.ioprocess.ConcentratorOnLine;
@@ -84,6 +85,11 @@ public class TestMeterCodeServiceImpl implements TestMeterCodeService {
 		
 		TestMeterCodeResp resp = new TestMeterCodeResp(bytes);
 		
+		MeterDataVo vo = new MeterDataVo();
+		ObjectMapping.objMapping(resp.getMeterDataVo(), vo);
+		vo.setReadDateStr(DateUtil.format(new Date(), "yymmdd"));
+		vo.setMeterId(AbstractMessage.getFieldString(resp.waterMeterId));
+		
 		TestMeterCodeData tmcd = new TestMeterCodeData();
 		tmcd.setBatteryVoltage(resp.getMeterDataVo().getBatteryVoltage());
 		tmcd.setChargingUnitId(wm.getChargingUnitId());
@@ -93,17 +99,21 @@ public class TestMeterCodeServiceImpl implements TestMeterCodeService {
 		tmcd.setErrorStatus(resp.getMeterDataVo().getErrorStatus());
 		tmcd.setMagneticAttack(resp.getMeterDataVo().getMagneticAttack());
 		tmcd.setMeterHardwareId(waterMeterId);
-		tmcd.setMeterReading(resp.getMeterDataVo().getMeasure());
+		//tmcd.setMeterReading(resp.getMeterDataVo().getMeasure());
+		if(wm.getDataType().equals("1")){
+			tmcd.setMeterReading(Arith.div(resp.getMeterDataVo().getMeasure(), wm.getConstant(), 1));
+			vo.setMeasure(Arith.div(resp.getMeterDataVo().getMeasure(), wm.getConstant(), 1));
+		}else{
+			tmcd.setMeterReading((float) resp.getMeterDataVo().getMeasure());
+			vo.setMeasure((float) resp.getMeterDataVo().getMeasure());
+		}
 		tmcd.setParentUnits(wm.getParentUnits());
 		tmcd.setReplyStatus(resp.getMeterDataVo().getReplyStatus());
 		tmcd.setUserId(wm.getUserId());
 		tmcd.setValveStatus(resp.getMeterDataVo().getValveStatus());
 		this.testMeterCodeDataManager.save(tmcd);
 		
-		MeterDataVo vo = new MeterDataVo();
-		ObjectMapping.objMapping(resp.getMeterDataVo(), vo);
-		vo.setReadDateStr(DateUtil.format(new Date(), "yymmdd"));
-		vo.setMeterId(AbstractMessage.getFieldString(resp.waterMeterId));
+		
 		return vo;
 		
 	}

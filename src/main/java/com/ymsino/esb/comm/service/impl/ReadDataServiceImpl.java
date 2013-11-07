@@ -13,6 +13,7 @@ import org.apache.camel.ProducerTemplate;
 import org.apache.log4j.Logger;
 
 import com.gmail.xcjava.base.dataMapping.ObjectMapping;
+import com.gmail.xcjava.base.math.Arith;
 import com.gmail.xcjava.base.spring.CommonHibernateDao;
 import com.ymsino.esb.archives.model.WaterMeter;
 import com.ymsino.esb.comm.ioprocess.ConcentratorOnLine;
@@ -92,7 +93,6 @@ public class ReadDataServiceImpl implements ReadDataService {
 				ObjectMapping.objMapping(item.getMeterDataVo(), vo);
 				vo.setReadDateStr(AbstractMessage.getFieldString(item.readDate));
 				vo.setMeterId(AbstractMessage.getFieldString(item.meterId));
-				resultList.add(vo);
 				
 				WaterMeter wm = (WaterMeter) this.commonHibernateDao.get(WaterMeter.class, AbstractMessage.getFieldString(item.meterId));
 				if(wm == null)
@@ -109,13 +109,20 @@ public class ReadDataServiceImpl implements ReadDataService {
 				freezeData.setFreezeDateStr(AbstractMessage.getFieldString(item.readDate));
 				freezeData.setMagneticAttack(item.getMeterDataVo().getMagneticAttack());
 				freezeData.setMeterHardwareId(AbstractMessage.getFieldString(item.meterId));
-				freezeData.setMeterReading(item.getMeterDataVo().getMeasure());
+				if("1".equals(wm.getDataType())){
+					freezeData.setMeterReading(Arith.div(item.getMeterDataVo().getMeasure(), wm.getConstant(), 1));
+					vo.setMeasure(Arith.div(item.getMeterDataVo().getMeasure(), wm.getConstant(), 1));
+				}else{
+					freezeData.setMeterReading((float) item.getMeterDataVo().getMeasure());
+					vo.setMeasure((float) item.getMeterDataVo().getMeasure());
+				}
 				freezeData.setParentUnits(wm.getParentUnits());
 				freezeData.setReplyStatus(item.getMeterDataVo().getReplyStatus());
 				freezeData.setUserId(wm.getUserId());
 				freezeData.setValveStatus(item.getMeterDataVo().getValveStatus());
 				this.freezeDataManager.insertOrUpdate(freezeData);
 				
+				resultList.add(vo);
 			}
 		}
 		

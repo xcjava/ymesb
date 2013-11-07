@@ -11,6 +11,7 @@ import org.apache.camel.ProducerTemplate;
 import org.apache.log4j.Logger;
 
 import com.gmail.xcjava.base.dataMapping.ObjectMapping;
+import com.gmail.xcjava.base.math.Arith;
 import com.gmail.xcjava.base.spring.CommonHibernateDao;
 import com.ymsino.esb.archives.model.WaterMeter;
 import com.ymsino.esb.comm.ioprocess.ConcentratorOnLine;
@@ -68,7 +69,7 @@ public class TestDataServiceImpl implements TestDataService {
 		testData.head.rtua = AbstractMessage.initField(concHardwareId, testData.head.rtua.length);
 		testData.head.mstaSeq = AbstractMessage.initField(concentratorOnLine.getNextMstaSeq(concHardwareId), testData.head.mstaSeq.length);
 		testData.waterMeterId = AbstractMessage.initField(waterMeterId, testData.waterMeterId.length);
-		testData.waterMeterSn = AbstractMessage.initField(waterMeterSn.toString(), testData.waterMeterSn.length);
+		testData.waterMeterSn = AbstractMessage.initField(Integer.toHexString(waterMeterSn), testData.waterMeterSn.length);
 		
 		Map<String, Object> headers = new HashMap<String, Object>();
 		headers.put("concentratorId", AbstractMessage.getFieldString(testData.head.rtua));
@@ -83,6 +84,11 @@ public class TestDataServiceImpl implements TestDataService {
 		
 		TestDataResp resp = new TestDataResp(bytes);
 		
+		MeterDataVo vo = new MeterDataVo();
+		ObjectMapping.objMapping(resp.getMeterDataVo(), vo);
+		vo.setReadDateStr(AbstractMessage.getFieldString(resp.dataDate));
+		vo.setMeterId(AbstractMessage.getFieldString(resp.waterMeterId));
+		
 		TestDynamicData tdd = new TestDynamicData();
 		tdd.setBatteryVoltage(resp.getMeterDataVo().getBatteryVoltage());
 		tdd.setChargingUnitId(wm.getChargingUnitId());
@@ -92,18 +98,20 @@ public class TestDataServiceImpl implements TestDataService {
 		tdd.setErrorStatus(resp.getMeterDataVo().getErrorStatus());
 		tdd.setMagneticAttack(resp.getMeterDataVo().getMagneticAttack());
 		tdd.setMeterHardwareId(waterMeterId);
-		tdd.setMeterReading(resp.getMeterDataVo().getMeasure());
+		//tdd.setMeterReading(resp.getMeterDataVo().getMeasure());
+		if(wm.getDataType().equals("1")){
+			tdd.setMeterReading(Arith.div(resp.getMeterDataVo().getMeasure(), wm.getConstant(), 1));
+			vo.setMeasure(Arith.div(resp.getMeterDataVo().getMeasure(), wm.getConstant(), 1));
+		}else{
+			tdd.setMeterReading((float) resp.getMeterDataVo().getMeasure());
+			vo.setMeasure((float) resp.getMeterDataVo().getMeasure());
+		}
 		tdd.setParentUnits(wm.getParentUnits());
 		tdd.setReplyStatus(resp.getMeterDataVo().getReplyStatus());
 		tdd.setUserId(wm.getUserId());
 		tdd.setValveStatus(resp.getMeterDataVo().getValveStatus());
 		testDynamicDataManager.save(tdd);
 		
-		
-		MeterDataVo vo = new MeterDataVo();
-		ObjectMapping.objMapping(resp.getMeterDataVo(), vo);
-		vo.setReadDateStr(AbstractMessage.getFieldString(resp.dataDate));
-		vo.setMeterId(AbstractMessage.getFieldString(resp.waterMeterId));
 		return vo;
 		
 	}
