@@ -88,8 +88,8 @@ public class MeterDataVo {
 			return;
 		
 		this.measure = Long.parseLong(AbstractMessage.getFieldString(strs).substring(4));
-		this.batteryVoltage = (Integer.parseInt(strs[5], 16) + 200) / 100f;
-		String b5data = Integer.toBinaryString(Integer.parseInt(strs[4], 16));
+		this.batteryVoltage = (Integer.parseInt(strs[0], 16) + 200) / 100f;
+		String b5data = Integer.toBinaryString(Integer.parseInt(strs[1], 16));
 		b5data = StringTool.fromatNum(b5data, 8);
 		this.valveStatus = b5data.substring(6);
 		this.dataType = b5data.substring(3, 4);
