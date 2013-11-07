@@ -28,7 +28,7 @@
 			</column>
 		</property>
 		
-		<property name="meterReading" type="java.lang.Long">
+		<property name="meterReading" type="java.lang.Float">
 			<meta attribute="field-description">表计读数</meta>
 			<column name="METER_READING">
 				<comment>表计读数</comment>

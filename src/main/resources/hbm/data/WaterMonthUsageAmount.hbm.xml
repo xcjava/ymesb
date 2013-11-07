@@ -28,84 +28,84 @@
 			</column>
 		</property>
 		
-		<property name="usageAmount1" type="java.lang.Integer">
+		<property name="usageAmount1" type="java.lang.Float">
 			<meta attribute="field-description">1月水用量</meta>
 			<column name="USAGE_AMOUNT_1">
 				<comment>1月水用量</comment>
 			</column>
 		</property>
 		
-		<property name="usageAmount2" type="java.lang.Integer">
+		<property name="usageAmount2" type="java.lang.Float">
 			<meta attribute="field-description">2月水用量</meta>
 			<column name="USAGE_AMOUNT_2">
 				<comment>2月水用量</comment>
 			</column>
 		</property>
 		
-		<property name="usageAmount3" type="java.lang.Integer">
+		<property name="usageAmount3" type="java.lang.Float">
 			<meta attribute="field-description">3月水用量</meta>
 			<column name="USAGE_AMOUNT_3">
 				<comment>3月水用量</comment>
 			</column>
 		</property>
 		
-		<property name="usageAmount4" type="java.lang.Integer">
+		<property name="usageAmount4" type="java.lang.Float">
 			<meta attribute="field-description">4月水用量</meta>
 			<column name="USAGE_AMOUNT_4">
 				<comment>4月水用量</comment>
 			</column>
 		</property>
 		
-		<property name="usageAmount5" type="java.lang.Integer">
+		<property name="usageAmount5" type="java.lang.Float">
 			<meta attribute="field-description">5月水用量</meta>
 			<column name="USAGE_AMOUNT_5">
 				<comment>5月水用量</comment>
 			</column>
 		</property>
 		
-		<property name="usageAmount6" type="java.lang.Integer">
+		<property name="usageAmount6" type="java.lang.Float">
 			<meta attribute="field-description">6月水用量</meta>
 			<column name="USAGE_AMOUNT_6">
 				<comment>6月水用量</comment>
 			</column>
 		</property>
 		
-		<property name="usageAmount7" type="java.lang.Integer">
+		<property name="usageAmount7" type="java.lang.Float">
 			<meta attribute="field-description">7月水用量</meta>
 			<column name="USAGE_AMOUNT_7">
 				<comment>7月水用量</comment>
 			</column>
 		</property>
 		
-		<property name="usageAmount8" type="java.lang.Integer">
+		<property name="usageAmount8" type="java.lang.Float">
 			<meta attribute="field-description">8月水用量</meta>
 			<column name="USAGE_AMOUNT_8">
 				<comment>8月水用量</comment>
 			</column>
 		</property>
 		
-		<property name="usageAmount9" type="java.lang.Integer">
+		<property name="usageAmount9" type="java.lang.Float">
 			<meta attribute="field-description">9月水用量</meta>
 			<column name="USAGE_AMOUNT_9">
 				<comment>9月水用量</comment>
 			</column>
 		</property>
 		
-		<property name="usageAmount10" type="java.lang.Integer">
+		<property name="usageAmount10" type="java.lang.Float">
 			<meta attribute="field-description">10月水用量</meta>
 			<column name="USAGE_AMOUNT_10">
 				<comment>10月水用量</comment>
 			</column>
 		</property>
 		
-		<property name="usageAmount11" type="java.lang.Integer">
+		<property name="usageAmount11" type="java.lang.Float">
 			<meta attribute="field-description">11月水用量</meta>
 			<column name="USAGE_AMOUNT_11">
 				<comment>11月水用量</comment>
 			</column>
 		</property>
 		
-		<property name="usageAmount12" type="java.lang.Integer">
+		<property name="usageAmount12" type="java.lang.Float">
 			<meta attribute="field-description">12月水用量</meta>
 			<column name="USAGE_AMOUNT_12">
 				<comment>12月水用量</comment>

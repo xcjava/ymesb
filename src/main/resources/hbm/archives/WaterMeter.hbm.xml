@@ -94,7 +94,9 @@
 		<property name="dataType" type="java.lang.String">
 			<meta attribute="field-description">数据类别</meta>
 			<column name="DATA_TYPE" length="300">
-				<comment>数据类别</comment>
+				<comment>
+					数据类别 1脉冲 2直读
+				</comment>
 			</column>
 		</property>
 		
