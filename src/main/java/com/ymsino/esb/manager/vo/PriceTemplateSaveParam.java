@@ -17,7 +17,7 @@ public class PriceTemplateSaveParam implements Serializable {
     */
     Long level1Num;
     /**
-     * 1阶价格，单位分
+     * 1阶价格，单位毫
     */
     Long level1Cost;
     /**
@@ -25,7 +25,7 @@ public class PriceTemplateSaveParam implements Serializable {
     */
     Long level2Num;
     /**
-     * 2阶价格，单位分
+     * 2阶价格，单位毫
     */
     Long level2Cost;
     /**
@@ -33,7 +33,7 @@ public class PriceTemplateSaveParam implements Serializable {
     */
     Long level3Num;
     /**
-     * 3阶价格，单位分
+     * 3阶价格，单位毫
     */
     Long level3Cost;
     /**
@@ -41,7 +41,7 @@ public class PriceTemplateSaveParam implements Serializable {
     */
     Long level4Num;
     /**
-     * 4阶价格，单位分
+     * 4阶价格，单位毫
     */
     Long level4Cost;
     /**
