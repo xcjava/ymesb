@@ -1,15 +1,18 @@
 package com.ymsino.esb.data.service.impl;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 
 import com.gmail.xcjava.base.dataMapping.ObjectMapping;
+import com.gmail.xcjava.base.date.DateUtil;
 import com.gmail.xcjava.base.hql.OrderParamReader;
 import com.gmail.xcjava.base.hql.QueryParam;
 import com.gmail.xcjava.base.hql.QueryParamReader;
+import com.gmail.xcjava.base.io.PropertyReader;
 import com.gmail.xcjava.base.spring.CommonHibernateDao;
 import com.ymsino.esb.data.model.CheckingFreezeData;
 import com.ymsino.esb.data.service.api.CheckingFreezeDataService;
@@ -19,6 +22,7 @@ import com.ymsino.esb.data.vo.CheckingFreezeDataReturn;
 public class CheckingFreezeDataServiceImpl implements CheckingFreezeDataService {
 
 	private Logger logger = Logger.getLogger(CheckingFreezeDataServiceImpl.class);
+	private String settleDate = PropertyReader.getProperties("config.properties").getProperty("data.settleDate");
 	private CommonHibernateDao commonHibernateDao;
 	public void setCommonHibernateDao(CommonHibernateDao commonHibernateDao) {
 		this.commonHibernateDao = commonHibernateDao;
@@ -37,6 +41,14 @@ public class CheckingFreezeDataServiceImpl implements CheckingFreezeDataService 
 			logger.error("modify:水表冻结审核数据未持久化");
 			throw new RuntimeException("水表冻结审核数据未持久化");
 		}
+		
+		Date today = new Date();
+		Date freezeDate = DateUtil.parseDate("20" + po.getFreezeYear() + "-" + po.getFreezeMonth() + "-" + settleDate, "yyyy-MM-dd HH:mm:ss");
+		if(today.getTime() > freezeDate.getTime()){
+			logger.error("modify:水表冻结审核数据进入结算流程，无法修改");
+			throw new RuntimeException("水表冻结审核数据进入结算流程，无法修改");
+		}
+		
 		vo.setId(null);
 		ObjectMapping.objMapping(vo, po, false);
 		
