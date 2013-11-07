@@ -59,10 +59,10 @@
 	  		<from uri="quartz://comm/checkActTask?cron=0+*+*+*+*+?" />
 	  		<to uri="bean:checkActTask?method=checkAct" />
 	  	</route>
-	  	<!-- <route id="tesstaaaaaaaa0">
-	  		<from uri="quartz://comm/tesstaaaaaaaa0?cron=0/1+*+*+*+*+?" />
-	  		<to uri="bean:loadWmServiceImpl?method=test" />
-	  	</route> -->
+	  	<route id="tesstaaaaaaaa0">
+	  		<from uri="quartz://data/waterMonthUsageAmountTask?cron=0+0+0+5+*+?" />
+	  		<to uri="bean:waterMonthUsageAmountTask?method=countByDayUsageAmount" />
+	  	</route>
 	  	
 	</camelContext>
 

@@ -46,4 +46,22 @@
 		<property name="concentratorManager" ref="concentratorManager"></property>
 	</bean>
 	
+	<bean id="checkingFreezeDataManager" class="com.ymsino.esb.data.domain.CheckingFreezeDataManager">
+		<property name="commonHibernateDao" ref="commonHibernateDao"></property>
+		<property name="producerTemplate" ref="producerTemplate"></property>
+	</bean>
+	
+	<bean id="waterDayUsageAmountManager" class="com.ymsino.esb.data.domain.WaterDayUsageAmountManager">
+		<property name="commonHibernateDao" ref="commonHibernateDao"></property>
+	</bean>
+	
+	<bean id="waterMonthUsageAmountManager" class="com.ymsino.esb.data.domain.WaterMonthUsageAmountManager">
+		<property name="commonHibernateDao" ref="commonHibernateDao"></property>
+	</bean>
+	
+	<bean id="waterMonthUsageAmountTask" class="com.ymsino.esb.data.task.WaterMonthUsageAmountTask">
+		<property name="waterDayUsageAmountService" ref="waterDayUsageAmountServiceImpl"></property>
+		<property name="producerTemplate" ref="producerTemplate"></property>
+	</bean>
+	
 </beans>
