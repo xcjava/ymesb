@@ -28,7 +28,7 @@ public class PriceTemplate  implements java.io.Serializable {
      */
      private Long level1Num;
      /**
-      * 1阶价格，单位分
+      * 1阶价格，单位毫
      */
      private Long level1Cost;
      /**
@@ -36,7 +36,7 @@ public class PriceTemplate  implements java.io.Serializable {
      */
      private Long level2Num;
      /**
-      * 2阶价格，单位分
+      * 2阶价格，单位毫
      */
      private Long level2Cost;
      /**
@@ -44,7 +44,7 @@ public class PriceTemplate  implements java.io.Serializable {
      */
      private Long level3Num;
      /**
-      * 3阶价格，单位分
+      * 3阶价格，单位毫
      */
      private Long level3Cost;
      /**
@@ -52,7 +52,7 @@ public class PriceTemplate  implements java.io.Serializable {
      */
      private Long level4Num;
      /**
-      * 4阶价格，单位分
+      * 4阶价格，单位毫
      */
      private Long level4Cost;
      /**
@@ -160,7 +160,7 @@ public class PriceTemplate  implements java.io.Serializable {
         this.level1Num = level1Num;
     }
     /**       
-     *      * 1阶价格，单位分
+     *      * 1阶价格，单位毫
      */
 
     public Long getLevel1Cost() {
@@ -182,7 +182,7 @@ public class PriceTemplate  implements java.io.Serializable {
         this.level2Num = level2Num;
     }
     /**       
-     *      * 2阶价格，单位分
+     *      * 2阶价格，单位毫
      */
 
     public Long getLevel2Cost() {
@@ -204,7 +204,7 @@ public class PriceTemplate  implements java.io.Serializable {
         this.level3Num = level3Num;
     }
     /**       
-     *      * 3阶价格，单位分
+     *      * 3阶价格，单位毫
      */
 
     public Long getLevel3Cost() {
@@ -226,7 +226,7 @@ public class PriceTemplate  implements java.io.Serializable {
         this.level4Num = level4Num;
     }
     /**       
-     *      * 4阶价格，单位分
+     *      * 4阶价格，单位毫
      */
 
     public Long getLevel4Cost() {
