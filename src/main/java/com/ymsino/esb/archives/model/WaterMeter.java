@@ -80,7 +80,7 @@ public class WaterMeter  implements java.io.Serializable {
      */
      private Float initialYards;
      /**
-      * 适用水价、当前水价(单位：分)
+      * 适用水价、当前水价(单位：毫)
      */
      private Long price;
      /**
@@ -328,7 +328,7 @@ public class WaterMeter  implements java.io.Serializable {
         this.initialYards = initialYards;
     }
     /**       
-     *      * 适用水价、当前水价(单位：分)
+     *      * 适用水价、当前水价(单位：毫)
      */
 
     public Long getPrice() {
