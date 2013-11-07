@@ -93,7 +93,7 @@ public class ConcentratorReturn implements Serializable {
     */
     private String terminalId;
     /**
-     * 通讯费(单位：分)
+     * 通讯费(单位：毫)
     */
     private Long communicationCost;
     /**

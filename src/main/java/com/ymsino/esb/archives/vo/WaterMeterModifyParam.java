@@ -65,7 +65,7 @@ public class WaterMeterModifyParam implements Serializable {
     */
     private Float initialYards;
     /**
-     * 适用水价、当前水价(单位：分)
+     * 适用水价、当前水价(单位：毫)
     */
     private Long price;
     /**
