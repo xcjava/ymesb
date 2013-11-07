@@ -2,10 +2,15 @@ package com.ymsino.esb.data.domain;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import org.apache.camel.ExchangePattern;
+import org.apache.camel.ProducerTemplate;
 import org.apache.log4j.Logger;
 
+import com.gmail.xcjava.base.dataMapping.MapMapping;
 import com.gmail.xcjava.base.dataMapping.ObjectMapping;
 import com.gmail.xcjava.base.hql.QueryCondition;
 import com.gmail.xcjava.base.hql.QueryParam;
@@ -16,11 +21,16 @@ import com.ymsino.esb.data.model.FreezeData;
 
 public class CheckingFreezeDataManager {
 
-private Logger logger = Logger.getLogger(CheckingFreezeDataManager.class);
+	private Logger logger = Logger.getLogger(CheckingFreezeDataManager.class);
 	
 	private CommonHibernateDao commonHibernateDao;
 	public void setCommonHibernateDao(CommonHibernateDao commonHibernateDao) {
 		this.commonHibernateDao = commonHibernateDao;
+	}
+	
+	private ProducerTemplate producerTemplate;
+	public void setProducerTemplate(ProducerTemplate producerTemplate) {
+		this.producerTemplate = producerTemplate;
 	}
 	
 	public Boolean saveByFreezeData(FreezeData freezeData){
@@ -62,6 +72,11 @@ private Logger logger = Logger.getLogger(CheckingFreezeDataManager.class);
 		if(data.getId() == null){
 			this.commonHibernateDao.save(data);
 		}
+		
+		Map<String, Object> header = new HashMap<String, Object>();
+		header.put("method", "saveByCheckingFreezeData");
+		header.put("beanName", "waterDayUsageAmountManager");
+		producerTemplate.sendBodyAndHeaders("jms:queue:com.ymsino.esb.domain", ExchangePattern.InOnly, MapMapping.obj2map(data), header);
 		
 		return true;
 	}
