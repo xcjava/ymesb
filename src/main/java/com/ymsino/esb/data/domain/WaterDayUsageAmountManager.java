@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import com.gmail.xcjava.base.dataMapping.ObjectMapping;
+import com.gmail.xcjava.base.math.Arith;
 import com.gmail.xcjava.base.spring.CommonHibernateDao;
 import com.gmail.xcjava.base.str.StringTool;
 import com.ymsino.esb.archives.model.WaterMeter;
@@ -20,7 +21,7 @@ public class WaterDayUsageAmountManager {
 	
 	public Boolean saveByCheckingFreezeData(CheckingFreezeData data){
 		
-		Long initMeterReading = 0l;
+		float initMeterReading = 0f;
 		
 		int year = Integer.parseInt(data.getFreezeYear());
 		int month = Integer.parseInt(data.getFreezeMonth());
@@ -40,11 +41,11 @@ public class WaterDayUsageAmountManager {
 		List<CheckingFreezeData> list = this.commonHibernateDao.findBy(hql, paramList.toArray(), 0, 1);
 		if(list == null || list.size() < 0){
 			WaterMeter waterMeter = (WaterMeter) this.commonHibernateDao.get(WaterMeter.class, data.getMeterHardwareId());
-			initMeterReading = Long.valueOf(waterMeter.getInitialYards());
+			initMeterReading = waterMeter.getInitialYards();
 		}else{
 			for(int i = 31; i > 0; i--){
 				if(ObjectMapping.getFieldValue(data, "meterReading" + i) != null){
-					initMeterReading = (Long) ObjectMapping.getFieldValue(data, "meterReading" + i);
+					initMeterReading = (Float) ObjectMapping.getFieldValue(data, "meterReading" + i);
 				}
 			}
 		}
@@ -79,16 +80,16 @@ public class WaterDayUsageAmountManager {
 		for(int i = 1; i <= 31; i++){
 			if(ObjectMapping.getFieldValue(data, "meterReading" + i) != null){
 				
-				long lastMeterReading = 0;
-				long nowMeterReading = (Long) ObjectMapping.getFieldValue(data, "meterReading" + i);
+				float lastMeterReading = 0;
+				float nowMeterReading = (Float) ObjectMapping.getFieldValue(data, "meterReading" + i);
 				
 				if(i == 1){
 					lastMeterReading = initMeterReading;
 				}else{
-					lastMeterReading = (Long) ObjectMapping.getFieldValue(data, "meterReading" + (i - 1));
+					lastMeterReading = (Float) ObjectMapping.getFieldValue(data, "meterReading" + (i - 1));
 				}
 				
-				int amount = (int) (nowMeterReading - lastMeterReading);
+				float amount = Arith.sub(nowMeterReading, lastMeterReading);
 				ObjectMapping.setFieldValue(waterDayUsageAmount, "usageAmount" + i, amount);
 			}
 		}

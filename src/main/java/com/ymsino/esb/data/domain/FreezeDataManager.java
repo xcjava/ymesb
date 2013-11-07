@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.camel.ConsumerTemplate;
 import org.apache.camel.ExchangePattern;
 import org.apache.camel.ProducerTemplate;
 import org.apache.log4j.Logger;
@@ -23,9 +24,9 @@ public class FreezeDataManager {
 		this.commonHibernateDao = commonHibernateDao;
 	}
 	
-	private ProducerTemplate camelTemplate;
-	public void setCamelTemplate(ProducerTemplate camelTemplate) {
-		this.camelTemplate = camelTemplate;
+	private ProducerTemplate producerTemplate;
+	public void setProducerTemplate(ProducerTemplate producerTemplate) {
+		this.producerTemplate = producerTemplate;
 	}
 	
 	public Boolean insertOrUpdate(FreezeData model){
@@ -51,7 +52,7 @@ public class FreezeDataManager {
 			Map<String, Object> header = new HashMap<String, Object>();
 			header.put("method", "saveByFreezeData");
 			header.put("beanName", "checkingFreezeDataManager");
-			camelTemplate.sendBodyAndHeaders("jms:queue:com.ymsino.esb.domain", ExchangePattern.InOnly, MapMapping.obj2map(po), header);
+			producerTemplate.sendBodyAndHeaders("jms:queue:com.ymsino.esb.domain", ExchangePattern.InOnly, MapMapping.obj2map(po), header);
 		}
 		
 		return true;
