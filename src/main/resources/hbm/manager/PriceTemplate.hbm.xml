@@ -36,9 +36,9 @@
 		</property>
 		
 		<property name="level1Cost" type="java.lang.Long">
-			<meta attribute="field-description">1阶价格，单位分</meta>
+			<meta attribute="field-description">1阶价格，单位毫</meta>
 			<column name="LEVEL1_COST">
-				<comment>1阶价格，单位分</comment>
+				<comment>1阶价格，单位毫</comment>
 			</column>
 		</property>
 		
@@ -50,9 +50,9 @@
 		</property>
 		
 		<property name="level2Cost" type="java.lang.Long">
-			<meta attribute="field-description">2阶价格，单位分</meta>
+			<meta attribute="field-description">2阶价格，单位毫</meta>
 			<column name="LEVEL2_COST">
-				<comment>2阶价格，单位分</comment>
+				<comment>2阶价格，单位毫</comment>
 			</column>
 		</property>
 		
@@ -64,9 +64,9 @@
 		</property>
 		
 		<property name="level3Cost" type="java.lang.Long">
-			<meta attribute="field-description">3阶价格，单位分</meta>
+			<meta attribute="field-description">3阶价格，单位毫</meta>
 			<column name="LEVEL3_COST">
-				<comment>3阶价格，单位分</comment>
+				<comment>3阶价格，单位毫</comment>
 			</column>
 		</property>
 		
@@ -78,9 +78,9 @@
 		</property>
 		
 		<property name="level4Cost" type="java.lang.Long">
-			<meta attribute="field-description">4阶价格，单位分</meta>
+			<meta attribute="field-description">4阶价格，单位毫</meta>
 			<column name="LEVEL4_COST">
-				<comment>4阶价格，单位分</comment>
+				<comment>4阶价格，单位毫</comment>
 			</column>
 		</property>
 		
