@@ -12,91 +12,91 @@ public class WaterMeter  implements java.io.Serializable {
     // Fields    
 
      /**
-      * Ë®±í±àºÅ
+      * æ°´è¡¨ç¼–å·
      */
      private String hardwareId;
      /**
-      * ÓÃË®ÓÃ»§±àºÅ
+      * ç”¨æ°´ç”¨æˆ·ç¼–å·
      */
      private String waterCustomerId;
      /**
-      * ÓÃ»§id
+      * ç”¨æˆ·id
      */
      private Long uid;
      /**
-      * ¿Í»§±àºÅ
+      * å®¢æˆ·ç¼–å·
      */
      private String userId;
      /**
-      * ¿Í»§Ãû³Æ
+      * å®¢æˆ·åç§°
      */
      private String userName;
      /**
-      * ÊÕ·Ñµ¥Î»±àºÅ
+      * æ”¶è´¹å•ä½ç¼–å·
      */
      private String chargingUnitId;
      /**
-      * ÉÏ¼¶ÊÕ·Ñµ¥Î»±àºÅ£¬¶à¸öÓÃ"||"°ü×¡£¬Èç|123||456|,ÓÃÓÚËÑË÷
+      * ä¸Šçº§æ”¶è´¹å•ä½ç¼–å·ï¼Œå¤šä¸ªç”¨"||"åŒ…ä½ï¼Œå¦‚|123||456|,ç”¨äºæœç´¢
      */
      private String parentUnits;
      /**
-      * ÓÃË®ĞÔÖÊ
+      * ç”¨æ°´æ€§è´¨
      */
      private String nature;
      /**
-      * ÏŞ¹ºÁ¿
+      * é™è´­é‡
      */
      private String purcAmount;
      /**
-      * ÏÔÊ¾¸æ¾¯
+      * æ˜¾ç¤ºå‘Šè­¦
      */
      private String showWarn;
      /**
-      * ¹Ø·§¸æ¾¯
+      * å…³é˜€å‘Šè­¦
      */
      private String closeWarn;
      /**
-      * ×Ó±íºÅ
+      * å­è¡¨å·
      */
      private String childHardwareId;
      /**
-      * Êı¾İÀà±ğ
+      * æ•°æ®ç±»åˆ«
      */
      private String dataType;
      /**
-      * Âö³å³£Êı
+      * è„‰å†²å¸¸æ•°
      */
      private Integer constant;
      /**
-      * ¼¯ÖĞÆ÷ID
+      * é›†ä¸­å™¨ID
      */
      private String concHardwareId;
      /**
-      * ¶ÔÓ¦¼¯ÖĞÆ÷µÄĞòºÅ
+      * å¯¹åº”é›†ä¸­å™¨çš„åºå·
      */
      private Integer wmSn;
      /**
-      * ³õÊ¼±íÂë
+      * åˆå§‹è¡¨ç 
      */
      private Integer initialYards;
      /**
-      * ÊÊÓÃË®¼Û¡¢µ±Ç°Ë®¼Û(µ¥Î»£º·Ö)
+      * é€‚ç”¨æ°´ä»·ã€å½“å‰æ°´ä»·(å•ä½ï¼šåˆ†)
      */
      private Long price;
      /**
-      * ¸æ¾¯Á¿
+      * å‘Šè­¦é‡
      */
      private String alarmVolume;
      /**
-      * ÎŞÏßÆµÂÊ
+      * æ— çº¿é¢‘ç‡
      */
      private String radioFrequency;
      /**
-      * Ë®±íÀàĞÍ£º1,IC¿¨Ô¤¸¶·ÑË®±í;2,ºìÍâ¿¨Ô¤¸¶·ÑË®±í;3,ÎŞÏßÖÇÄÜË®±í
+      * æ°´è¡¨ç±»å‹ï¼š1,ICå¡é¢„ä»˜è´¹æ°´è¡¨;2,çº¢å¤–å¡é¢„ä»˜è´¹æ°´è¡¨;3,æ— çº¿æ™ºèƒ½æ°´è¡¨
      */
      private Short type;
      /**
-      * ´´½¨Ê±¼ä
+      * åˆ›å»ºæ—¶é—´
      */
      private Long createTimestamp;
 
@@ -141,7 +141,7 @@ public class WaterMeter  implements java.io.Serializable {
    
     // Property accessors
     /**       
-     *      * Ë®±í±àºÅ
+     *      * æ°´è¡¨ç¼–å·
      */
 
     public String getHardwareId() {
@@ -152,7 +152,7 @@ public class WaterMeter  implements java.io.Serializable {
         this.hardwareId = hardwareId;
     }
     /**       
-     *      * ÓÃË®ÓÃ»§±àºÅ
+     *      * ç”¨æ°´ç”¨æˆ·ç¼–å·
      */
 
     public String getWaterCustomerId() {
@@ -163,7 +163,7 @@ public class WaterMeter  implements java.io.Serializable {
         this.waterCustomerId = waterCustomerId;
     }
     /**       
-     *      * ÓÃ»§id
+     *      * ç”¨æˆ·id
      */
 
     public Long getUid() {
@@ -174,7 +174,7 @@ public class WaterMeter  implements java.io.Serializable {
         this.uid = uid;
     }
     /**       
-     *      * ¿Í»§±àºÅ
+     *      * å®¢æˆ·ç¼–å·
      */
 
     public String getUserId() {
@@ -185,7 +185,7 @@ public class WaterMeter  implements java.io.Serializable {
         this.userId = userId;
     }
     /**       
-     *      * ¿Í»§Ãû³Æ
+     *      * å®¢æˆ·åç§°
      */
 
     public String getUserName() {
@@ -196,7 +196,7 @@ public class WaterMeter  implements java.io.Serializable {
         this.userName = userName;
     }
     /**       
-     *      * ÊÕ·Ñµ¥Î»±àºÅ
+     *      * æ”¶è´¹å•ä½ç¼–å·
      */
 
     public String getChargingUnitId() {
@@ -207,7 +207,7 @@ public class WaterMeter  implements java.io.Serializable {
         this.chargingUnitId = chargingUnitId;
     }
     /**       
-     *      * ÉÏ¼¶ÊÕ·Ñµ¥Î»±àºÅ£¬¶à¸öÓÃ"||"°ü×¡£¬Èç|123||456|,ÓÃÓÚËÑË÷
+     *      * ä¸Šçº§æ”¶è´¹å•ä½ç¼–å·ï¼Œå¤šä¸ªç”¨"||"åŒ…ä½ï¼Œå¦‚|123||456|,ç”¨äºæœç´¢
      */
 
     public String getParentUnits() {
@@ -218,7 +218,7 @@ public class WaterMeter  implements java.io.Serializable {
         this.parentUnits = parentUnits;
     }
     /**       
-     *      * ÓÃË®ĞÔÖÊ
+     *      * ç”¨æ°´æ€§è´¨
      */
 
     public String getNature() {
@@ -229,7 +229,7 @@ public class WaterMeter  implements java.io.Serializable {
         this.nature = nature;
     }
     /**       
-     *      * ÏŞ¹ºÁ¿
+     *      * é™è´­é‡
      */
 
     public String getPurcAmount() {
@@ -240,7 +240,7 @@ public class WaterMeter  implements java.io.Serializable {
         this.purcAmount = purcAmount;
     }
     /**       
-     *      * ÏÔÊ¾¸æ¾¯
+     *      * æ˜¾ç¤ºå‘Šè­¦
      */
 
     public String getShowWarn() {
@@ -251,7 +251,7 @@ public class WaterMeter  implements java.io.Serializable {
         this.showWarn = showWarn;
     }
     /**       
-     *      * ¹Ø·§¸æ¾¯
+     *      * å…³é˜€å‘Šè­¦
      */
 
     public String getCloseWarn() {
@@ -262,7 +262,7 @@ public class WaterMeter  implements java.io.Serializable {
         this.closeWarn = closeWarn;
     }
     /**       
-     *      * ×Ó±íºÅ
+     *      * å­è¡¨å·
      */
 
     public String getChildHardwareId() {
@@ -273,7 +273,7 @@ public class WaterMeter  implements java.io.Serializable {
         this.childHardwareId = childHardwareId;
     }
     /**       
-     *      * Êı¾İÀà±ğ
+     *      * æ•°æ®ç±»åˆ«
      */
 
     public String getDataType() {
@@ -284,7 +284,7 @@ public class WaterMeter  implements java.io.Serializable {
         this.dataType = dataType;
     }
     /**       
-     *      * Âö³å³£Êı
+     *      * è„‰å†²å¸¸æ•°
      */
 
     public Integer getConstant() {
@@ -295,7 +295,7 @@ public class WaterMeter  implements java.io.Serializable {
         this.constant = constant;
     }
     /**       
-     *      * ¼¯ÖĞÆ÷ID
+     *      * é›†ä¸­å™¨ID
      */
 
     public String getConcHardwareId() {
@@ -306,7 +306,7 @@ public class WaterMeter  implements java.io.Serializable {
         this.concHardwareId = concHardwareId;
     }
     /**       
-     *      * ¶ÔÓ¦¼¯ÖĞÆ÷µÄĞòºÅ
+     *      * å¯¹åº”é›†ä¸­å™¨çš„åºå·
      */
 
     public Integer getWmSn() {
@@ -317,7 +317,7 @@ public class WaterMeter  implements java.io.Serializable {
         this.wmSn = wmSn;
     }
     /**       
-     *      * ³õÊ¼±íÂë
+     *      * åˆå§‹è¡¨ç 
      */
 
     public Integer getInitialYards() {
@@ -328,7 +328,7 @@ public class WaterMeter  implements java.io.Serializable {
         this.initialYards = initialYards;
     }
     /**       
-     *      * ÊÊÓÃË®¼Û¡¢µ±Ç°Ë®¼Û(µ¥Î»£º·Ö)
+     *      * é€‚ç”¨æ°´ä»·ã€å½“å‰æ°´ä»·(å•ä½ï¼šåˆ†)
      */
 
     public Long getPrice() {
@@ -339,7 +339,7 @@ public class WaterMeter  implements java.io.Serializable {
         this.price = price;
     }
     /**       
-     *      * ¸æ¾¯Á¿
+     *      * å‘Šè­¦é‡
      */
 
     public String getAlarmVolume() {
@@ -350,7 +350,7 @@ public class WaterMeter  implements java.io.Serializable {
         this.alarmVolume = alarmVolume;
     }
     /**       
-     *      * ÎŞÏßÆµÂÊ
+     *      * æ— çº¿é¢‘ç‡
      */
 
     public String getRadioFrequency() {
@@ -361,7 +361,7 @@ public class WaterMeter  implements java.io.Serializable {
         this.radioFrequency = radioFrequency;
     }
     /**       
-     *      * Ë®±íÀàĞÍ£º1,IC¿¨Ô¤¸¶·ÑË®±í;2,ºìÍâ¿¨Ô¤¸¶·ÑË®±í;3,ÎŞÏßÖÇÄÜË®±í
+     *      * æ°´è¡¨ç±»å‹ï¼š1,ICå¡é¢„ä»˜è´¹æ°´è¡¨;2,çº¢å¤–å¡é¢„ä»˜è´¹æ°´è¡¨;3,æ— çº¿æ™ºèƒ½æ°´è¡¨
      */
 
     public Short getType() {
@@ -372,7 +372,7 @@ public class WaterMeter  implements java.io.Serializable {
         this.type = type;
     }
     /**       
-     *      * ´´½¨Ê±¼ä
+     *      * åˆ›å»ºæ—¶é—´
      */
 
     public Long getCreateTimestamp() {
