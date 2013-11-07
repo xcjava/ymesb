@@ -9,7 +9,7 @@ public class UserWalletReturn implements Serializable {
     */
     Long modifyTimestamp;
     /**
-     * 账户余额,单位为分
+     * 账户余额
     */
     Float cashAmount;
     /**

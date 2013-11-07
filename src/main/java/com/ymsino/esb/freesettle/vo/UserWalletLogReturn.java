@@ -21,7 +21,7 @@ public class UserWalletLogReturn implements Serializable {
     */
     Long createTimestamp;
     /**
-     * 使用金额(分),正数为收入,负数为支出
+     * 使用金额,正数为收入,负数为支出
     */
     Float usePrice;
     /**
