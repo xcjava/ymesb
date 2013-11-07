@@ -78,6 +78,7 @@
 	<!-- 数据 -->
 	<bean id="checkingFreezeDataServiceImpl" class="com.ymsino.esb.data.service.impl.CheckingFreezeDataServiceImpl">
 		<property name="commonHibernateDao" ref="commonHibernateDao"></property>
+		<property name="waterDayUsageAmountManager" ref="waterDayUsageAmountManager"></property>
 	</bean>
 	<bean id="collectTaskServiceImpl" class="com.ymsino.esb.data.service.impl.CollectTaskServiceImpl">
 		<property name="commonHibernateDao" ref="commonHibernateDao"></property>
