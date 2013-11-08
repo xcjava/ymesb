@@ -20,7 +20,7 @@ public interface UserWalletService {
 	@WSDLDocumentation("充值")
 	public Boolean recharge(
 			@WebParam(name="uid")Long uid,
-			@WebParam(name="price")Float price,
+			@WebParam(name="price")Long price,
 			@WebParam(name="sysRemark")String sysRemark);
 	
 	/**
@@ -33,7 +33,7 @@ public interface UserWalletService {
 	@WSDLDocumentation("扣费")
 	public Boolean deduction(
 			@WebParam(name="uid")Long uid,
-			@WebParam(name="price")Float price,
+			@WebParam(name="price")Long price,
 			@WebParam(name="sysRemark")String sysRemark);
 	
 	/**

@@ -21,9 +21,9 @@ public class UserWalletLogReturn implements Serializable {
     */
     Long createTimestamp;
     /**
-     * 使用金额,正数为收入,负数为支出
+     * 使用金额(单位毫),正数为收入,负数为支出
     */
-    Float usePrice;
+    Long usePrice;
     /**
      * 用户ID
     */
@@ -52,10 +52,10 @@ public class UserWalletLogReturn implements Serializable {
 	public void setCreateTimestamp(Long createTimestamp) {
 		this.createTimestamp = createTimestamp;
 	}
-	public Float getUsePrice() {
+	public Long getUsePrice() {
 		return usePrice;
 	}
-	public void setUsePrice(Float usePrice) {
+	public void setUsePrice(Long usePrice) {
 		this.usePrice = usePrice;
 	}
 	public Long getUid() {

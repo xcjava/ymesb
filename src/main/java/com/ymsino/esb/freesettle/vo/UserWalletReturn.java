@@ -9,9 +9,9 @@ public class UserWalletReturn implements Serializable {
     */
     Long modifyTimestamp;
     /**
-     * 账户余额
+     * 账户余额,单位毫
     */
-    Float cashAmount;
+    Long cashAmount;
     /**
      * 账户签名
     */
@@ -26,10 +26,10 @@ public class UserWalletReturn implements Serializable {
 	public void setModifyTimestamp(Long modifyTimestamp) {
 		this.modifyTimestamp = modifyTimestamp;
 	}
-	public Float getCashAmount() {
+	public Long getCashAmount() {
 		return cashAmount;
 	}
-	public void setCashAmount(Float cashAmount) {
+	public void setCashAmount(Long cashAmount) {
 		this.cashAmount = cashAmount;
 	}
 	public String getHealthSign() {
