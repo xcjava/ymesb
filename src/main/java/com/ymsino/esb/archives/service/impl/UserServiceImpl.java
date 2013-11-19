@@ -38,7 +38,8 @@ public class UserServiceImpl implements UserService {
 			throw new RuntimeException("参数对象为空");
 		}
 		
-		if(StringUtils.isEmpty(vo.getUserId())){
+		if(StringUtils.isEmpty(vo.getUserId()) || 
+				vo.getWarnPrice() == null){
 			logger.error("save:缺少必要属性");
 			throw new RuntimeException("缺少必要属性");
 		}
