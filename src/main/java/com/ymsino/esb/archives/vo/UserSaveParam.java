@@ -104,6 +104,10 @@ public class UserSaveParam implements Serializable {
      * 扫描件存放位置索引
     */
     private String credFilePath;
+    /**
+     * 预警金额，单位毫
+    */
+    private Long warnPrice;
 	public String getUserId() {
 		return userId;
 	}
@@ -253,5 +257,11 @@ public class UserSaveParam implements Serializable {
 	}
 	public void setCredFilePath(String credFilePath) {
 		this.credFilePath = credFilePath;
+	}
+	public Long getWarnPrice() {
+		return warnPrice;
+	}
+	public void setWarnPrice(Long warnPrice) {
+		this.warnPrice = warnPrice;
 	}
 }

@@ -113,6 +113,10 @@ public class UserReturn implements Serializable {
     */
     private String credFilePath;
     /**
+     * 预警金额，单位毫
+    */
+    private Long warnPrice;
+    /**
      * 创建时间
     */
     private Long createTimestamp;
@@ -283,5 +287,11 @@ public class UserReturn implements Serializable {
 	}
 	public void setCreateTimestamp(Long createTimestamp) {
 		this.createTimestamp = createTimestamp;
+	}
+	public Long getWarnPrice() {
+		return warnPrice;
+	}
+	public void setWarnPrice(Long warnPrice) {
+		this.warnPrice = warnPrice;
 	}
 }
