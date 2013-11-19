@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.ymsino.esb.freesettle.model.WaterMonthCost" table="FREESETTLE_WATERMONTHCOST">
+    
+		<id name="id" type="java.lang.Long">
+			<meta attribute="field-description">水表月费用自增id</meta>
+			<meta attribute="use-in-equals">true</meta>
+			<column name="ID">
+				<comment>水表月费用自增id</comment>
+			</column>
+			<generator class="native"></generator>
+		</id>
+
+		<property name="concHardwareId" type="java.lang.String">
+			<meta attribute="field-description">集中器逻辑地址</meta>
+			<column name="CONC_HARDWARE_ID" length="100">
+				<comment>集中器ID</comment>
+			</column>
+		</property>
+		
+		<property name="meterHardwareId" type="java.lang.String">
+			<meta attribute="field-description">无线智能水表ID</meta>
+			<column name="METER_HARDWARE_ID" length="100">
+				<comment>无线智能水表ID</comment>
+			</column>
+		</property>
+		
+		<property name="cost1" type="java.lang.Long">
+			<meta attribute="field-description">1月费用</meta>
+			<column name="COST_1">
+				<comment>1月费用</comment>
+			</column>
+		</property>
+		
+		<property name="cost2" type="java.lang.Long">
+			<meta attribute="field-description">2月费用</meta>
+			<column name="COST_2">
+				<comment>2月费用</comment>
+			</column>
+		</property>
+		
+		<property name="cost3" type="java.lang.Long">
+			<meta attribute="field-description">3月费用</meta>
+			<column name="COST_3">
+				<comment>3月费用</comment>
+			</column>
+		</property>
+		
+		<property name="cost4" type="java.lang.Long">
+			<meta attribute="field-description">4月费用</meta>
+			<column name="COST_4">
+				<comment>4月费用</comment>
+			</column>
+		</property>
+		
+		<property name="cost5" type="java.lang.Long">
+			<meta attribute="field-description">5月费用</meta>
+			<column name="COST_5">
+				<comment>5月费用</comment>
+			</column>
+		</property>
+		
+		<property name="cost6" type="java.lang.Long">
+			<meta attribute="field-description">6月费用</meta>
+			<column name="COST_6">
+				<comment>6月费用</comment>
+			</column>
+		</property>
+		
+		<property name="cost7" type="java.lang.Long">
+			<meta attribute="field-description">7月费用</meta>
+			<column name="COST_7">
+				<comment>7月费用</comment>
+			</column>
+		</property>
+		
+		<property name="cost8" type="java.lang.Long">
+			<meta attribute="field-description">8月费用</meta>
+			<column name="COST_8">
+				<comment>8月费用</comment>
+			</column>
+		</property>
+		
+		<property name="cost9" type="java.lang.Long">
+			<meta attribute="field-description">9月费用</meta>
+			<column name="COST_9">
+				<comment>9月费用</comment>
+			</column>
+		</property>
+		
+		<property name="cost10" type="java.lang.Long">
+			<meta attribute="field-description">10月费用</meta>
+			<column name="COST_10">
+				<comment>10月费用</comment>
+			</column>
+		</property>
+		
+		<property name="cost11" type="java.lang.Long">
+			<meta attribute="field-description">11月费用</meta>
+			<column name="COST_11">
+				<comment>11月费用</comment>
+			</column>
+		</property>
+		
+		<property name="cost12" type="java.lang.Long">
+			<meta attribute="field-description">12月费用</meta>
+			<column name="COST_12">
+				<comment>12月费用</comment>
+			</column>
+		</property>
+		
+		<property name="freezeYear" type="java.lang.String">
+			<meta attribute="field-description">冻结时间(年)</meta>
+			<column name="FREEZE_YEAR">
+				<comment>冻结时间(年)</comment>
+			</column>
+		</property>
+		
+        <property name="createTimestamp" type="java.lang.Long">
+			<meta attribute="field-description">创建时间戳</meta>
+			<column name="CREATE_TIMESTAMP">
+				<comment>创建时间戳</comment>
+			</column>
+		</property>
+		
+		<property name="userId" type="java.lang.String">
+			<meta attribute="field-description">客户编号</meta>
+			<column name="USER_ID" length="300">
+				<comment>客户编号</comment>
+			</column>
+		</property>
+		
+		<property name="waterCustomerId" type="java.lang.String">
+			<meta attribute="field-description">用水用户编号</meta>
+			<column name="WATER_CUSTOMER_ID" length="300">
+				<comment>用水用户编号</comment>
+			</column>
+		</property>
+		
+		<property name="chargingUnitId" type="java.lang.String">
+			<meta attribute="field-description">收费单位编号</meta>
+			<column name="CHARGING_UNIT_ID">
+				<comment>收费单位编号</comment>
+			</column>
+		</property>
+		
+		<property name="parentUnits" type="org.springframework.orm.hibernate3.support.ClobStringType">
+			<meta attribute="field-description">上级收费单位编号，多个用"||"包住，如|123||456|,用于搜索</meta>
+			<column length="2147483647" name="PARENT_UNITS">
+				<comment>上级收费单位编号，多个用"||"包住，如|123||456|,用于搜索</comment>
+			</column>
+		</property>
+		
+    </class>
+</hibernate-mapping>
