@@ -2,10 +2,15 @@ package com.ymsino.esb.data.domain;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import org.apache.camel.ExchangePattern;
+import org.apache.camel.ProducerTemplate;
 import org.apache.log4j.Logger;
 
+import com.gmail.xcjava.base.dataMapping.MapMapping;
 import com.gmail.xcjava.base.dataMapping.ObjectMapping;
 import com.gmail.xcjava.base.date.DateUtil;
 import com.gmail.xcjava.base.io.PropertyReader;
@@ -21,6 +26,11 @@ public class WaterMonthUsageAmountManager {
 	private CommonHibernateDao commonHibernateDao;
 	public void setCommonHibernateDao(CommonHibernateDao commonHibernateDao) {
 		this.commonHibernateDao = commonHibernateDao;
+	}
+	
+	private ProducerTemplate producerTemplate;
+	public void setProducerTemplate(ProducerTemplate producerTemplate) {
+		this.producerTemplate = producerTemplate;
 	}
 	
 	public Boolean saveByWaterDayUsageAmount(WaterDayUsageAmount dayData){
@@ -68,14 +78,25 @@ public class WaterMonthUsageAmountManager {
 		
 		float amount = 0;
 		for(int i = 1; i <= 31; i++){
-			Float itemAmount = (Float) ObjectMapping.getFieldValue(dayData, "usageAmount" + 1);
-			amount = Arith.add(amount, itemAmount == null ? 0 : itemAmount);
+			Float itemAmount = (Float) ObjectMapping.getFieldValue(dayData, "usageAmount" + i);
+			if(itemAmount == null){
+				itemAmount = 0f;
+				ObjectMapping.setFieldValue(dayData, "usageAmount" + i, 0);
+			}
+			amount = Arith.add(amount, itemAmount);
 		}
 		
 		ObjectMapping.setFieldValue(model, "usageAmount" + Integer.parseInt(dayData.getFreezeMonth()), amount);
 		if(model.getId() == null){
 			this.commonHibernateDao.save(model);
 		}
+		
+		this.commonHibernateDao.update(dayData);
+		
+		Map<String, Object> header = new HashMap<String, Object>();
+		header.put("method", "calculateByWaterDayUsageAmount");
+		header.put("beanName", "waterDayCostManager");
+		producerTemplate.sendBodyAndHeaders("jms:queue:com.ymsino.esb.domain", ExchangePattern.InOnly, MapMapping.obj2map(dayData), header);
 		
 		return true;
 	}
