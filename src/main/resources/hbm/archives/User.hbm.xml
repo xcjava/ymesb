@@ -199,6 +199,14 @@
 			</column>
 		</property>
 		<!-- 证件 -->
+		
+		<property name="warnPrice" type="java.lang.Long">
+			<meta attribute="field-description">预警金额，单位毫</meta>
+			<column name="WARN_PRICE">
+				<comment>预警金额，单位毫</comment>
+			</column>
+		</property>
+		
 		<property name="createTimestamp" type="java.lang.Long">
 			<meta attribute="field-description">创建时间</meta>
 			<column name="CREATE_TIMESTAMP">
