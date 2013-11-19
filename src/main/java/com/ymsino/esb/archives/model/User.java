@@ -12,115 +12,119 @@ public class User  implements java.io.Serializable {
     // Fields    
 
      /**
-      * ¿Í»§±êÊ¶£¬×ÔÔöid
+      * å®¢æˆ·æ ‡è¯†ï¼Œè‡ªå¢id
      */
      private Long id;
      /**
-      * ¿Í»§±àºÅ
+      * å®¢æˆ·ç¼–å·
      */
      private String userId;
      /**
-      * ¿Í»§Ãû³Æ
+      * å®¢æˆ·åç§°
      */
      private String name;
      /**
-      * ¾­¼ÃÀàĞÍ
+      * ç»æµç±»å‹
      */
      private String economicType;
      /**
-      * ²úÒµ·ÖÀà
+      * äº§ä¸šåˆ†ç±»
      */
      private String industrial;
      /**
-      * ÊÕ·Ñµ¥Î»±àºÅ
+      * æ”¶è´¹å•ä½ç¼–å·
      */
      private String chargingUnitId;
      /**
-      * ÉÏ¼¶ÊÕ·Ñµ¥Î»±àºÅ£¬¶à¸öÓÃ"||"°ü×¡£¬Èç|123||456|,ÓÃÓÚËÑË÷
+      * ä¸Šçº§æ”¶è´¹å•ä½ç¼–å·ï¼Œå¤šä¸ªç”¨"||"åŒ…ä½ï¼Œå¦‚|123||456|,ç”¨äºæœç´¢
      */
      private String parentUnits;
      /**
-      * Ê¡Âë
+      * çœç 
      */
      private String province;
      /**
-      * ÊĞÂë
+      * å¸‚ç 
      */
      private String city;
      /**
-      * ÇøÏØÂë
+      * åŒºå¿ç 
      */
      private String district;
      /**
-      * ½ÖµÀÂë£¨ÏçÕò£©
+      * è¡—é“ç ï¼ˆä¹¡é•‡ï¼‰
      */
      private String street;
      /**
-      * ¾ÓÎ¯»áÂë£¨´å£©
+      * å±…å§”ä¼šç ï¼ˆæ‘ï¼‰
      */
      private String village;
      /**
-      * µÀÂ·Âë
+      * é“è·¯ç 
      */
      private String road;
      /**
-      * Ğ¡ÇøÂë
+      * å°åŒºç 
      */
      private String residential;
      /**
-      * Â¥¶°Âë
+      * æ¥¼æ ‹ç 
      */
      private String storiedBuilding;
      /**
-      * µ¥ÔªÂë
+      * å•å…ƒç 
      */
      private String unit;
      /**
-      * Â¥²ãÂë
+      * æ¥¼å±‚ç 
      */
      private String floor;
      /**
-      * ÃÅÅÆºÅ
+      * é—¨ç‰Œå·
      */
      private String roomNo;
      /**
-      * ÓÊ±à
+      * é‚®ç¼–
      */
      private String postcode;
      /**
-      * µØÖ·ÀàĞÍ
+      * åœ°å€ç±»å‹
      */
      private String addressType;
      /**
-      * ¿Í»§µØÖ·
+      * å®¢æˆ·åœ°å€
      */
      private String address;
      /**
-      * Ö¤¼şÀàĞÍ
+      * è¯ä»¶ç±»å‹
      */
      private String credType;
      /**
-      * Ö¤¼şÃû³Æ
+      * è¯ä»¶åç§°
      */
      private String credName;
      /**
-      * Ö¤¼şºÅÂë
+      * è¯ä»¶å·ç 
      */
      private String credNum;
      /**
-      * Ö¤¼şÉúĞ§Ê±¼ä
+      * è¯ä»¶ç”Ÿæ•ˆæ—¶é—´
      */
      private Long credValidTimestamp;
      /**
-      * Ö¤¼şÊ§Ğ§Ê±¼ä
+      * è¯ä»¶å¤±æ•ˆæ—¶é—´
      */
      private Long credInvalidTimestamp;
      /**
-      * É¨Ãè¼ş´æ·ÅÎ»ÖÃË÷Òı
+      * æ‰«æä»¶å­˜æ”¾ä½ç½®ç´¢å¼•
      */
      private String credFilePath;
      /**
-      * ´´½¨Ê±¼ä
+      * é¢„è­¦é‡‘é¢ï¼Œå•ä½æ¯«
+     */
+     private Long warnPrice;
+     /**
+      * åˆ›å»ºæ—¶é—´
      */
      private Long createTimestamp;
 
@@ -133,7 +137,7 @@ public class User  implements java.io.Serializable {
 
     
     /** full constructor */
-    public User(String userId, String name, String economicType, String industrial, String chargingUnitId, String parentUnits, String province, String city, String district, String street, String village, String road, String residential, String storiedBuilding, String unit, String floor, String roomNo, String postcode, String addressType, String address, String credType, String credName, String credNum, Long credValidTimestamp, Long credInvalidTimestamp, String credFilePath, Long createTimestamp) {
+    public User(String userId, String name, String economicType, String industrial, String chargingUnitId, String parentUnits, String province, String city, String district, String street, String village, String road, String residential, String storiedBuilding, String unit, String floor, String roomNo, String postcode, String addressType, String address, String credType, String credName, String credNum, Long credValidTimestamp, Long credInvalidTimestamp, String credFilePath, Long warnPrice, Long createTimestamp) {
         this.userId = userId;
         this.name = name;
         this.economicType = economicType;
@@ -160,13 +164,14 @@ public class User  implements java.io.Serializable {
         this.credValidTimestamp = credValidTimestamp;
         this.credInvalidTimestamp = credInvalidTimestamp;
         this.credFilePath = credFilePath;
+        this.warnPrice = warnPrice;
         this.createTimestamp = createTimestamp;
     }
 
    
     // Property accessors
     /**       
-     *      * ¿Í»§±êÊ¶£¬×ÔÔöid
+     *      * å®¢æˆ·æ ‡è¯†ï¼Œè‡ªå¢id
      */
 
     public Long getId() {
@@ -177,7 +182,7 @@ public class User  implements java.io.Serializable {
         this.id = id;
     }
     /**       
-     *      * ¿Í»§±àºÅ
+     *      * å®¢æˆ·ç¼–å·
      */
 
     public String getUserId() {
@@ -188,7 +193,7 @@ public class User  implements java.io.Serializable {
         this.userId = userId;
     }
     /**       
-     *      * ¿Í»§Ãû³Æ
+     *      * å®¢æˆ·åç§°
      */
 
     public String getName() {
@@ -199,7 +204,7 @@ public class User  implements java.io.Serializable {
         this.name = name;
     }
     /**       
-     *      * ¾­¼ÃÀàĞÍ
+     *      * ç»æµç±»å‹
      */
 
     public String getEconomicType() {
@@ -210,7 +215,7 @@ public class User  implements java.io.Serializable {
         this.economicType = economicType;
     }
     /**       
-     *      * ²úÒµ·ÖÀà
+     *      * äº§ä¸šåˆ†ç±»
      */
 
     public String getIndustrial() {
@@ -221,7 +226,7 @@ public class User  implements java.io.Serializable {
         this.industrial = industrial;
     }
     /**       
-     *      * ÊÕ·Ñµ¥Î»±àºÅ
+     *      * æ”¶è´¹å•ä½ç¼–å·
      */
 
     public String getChargingUnitId() {
@@ -232,7 +237,7 @@ public class User  implements java.io.Serializable {
         this.chargingUnitId = chargingUnitId;
     }
     /**       
-     *      * ÉÏ¼¶ÊÕ·Ñµ¥Î»±àºÅ£¬¶à¸öÓÃ"||"°ü×¡£¬Èç|123||456|,ÓÃÓÚËÑË÷
+     *      * ä¸Šçº§æ”¶è´¹å•ä½ç¼–å·ï¼Œå¤šä¸ªç”¨"||"åŒ…ä½ï¼Œå¦‚|123||456|,ç”¨äºæœç´¢
      */
 
     public String getParentUnits() {
@@ -243,7 +248,7 @@ public class User  implements java.io.Serializable {
         this.parentUnits = parentUnits;
     }
     /**       
-     *      * Ê¡Âë
+     *      * çœç 
      */
 
     public String getProvince() {
@@ -254,7 +259,7 @@ public class User  implements java.io.Serializable {
         this.province = province;
     }
     /**       
-     *      * ÊĞÂë
+     *      * å¸‚ç 
      */
 
     public String getCity() {
@@ -265,7 +270,7 @@ public class User  implements java.io.Serializable {
         this.city = city;
     }
     /**       
-     *      * ÇøÏØÂë
+     *      * åŒºå¿ç 
      */
 
     public String getDistrict() {
@@ -276,7 +281,7 @@ public class User  implements java.io.Serializable {
         this.district = district;
     }
     /**       
-     *      * ½ÖµÀÂë£¨ÏçÕò£©
+     *      * è¡—é“ç ï¼ˆä¹¡é•‡ï¼‰
      */
 
     public String getStreet() {
@@ -287,7 +292,7 @@ public class User  implements java.io.Serializable {
         this.street = street;
     }
     /**       
-     *      * ¾ÓÎ¯»áÂë£¨´å£©
+     *      * å±…å§”ä¼šç ï¼ˆæ‘ï¼‰
      */
 
     public String getVillage() {
@@ -298,7 +303,7 @@ public class User  implements java.io.Serializable {
         this.village = village;
     }
     /**       
-     *      * µÀÂ·Âë
+     *      * é“è·¯ç 
      */
 
     public String getRoad() {
@@ -309,7 +314,7 @@ public class User  implements java.io.Serializable {
         this.road = road;
     }
     /**       
-     *      * Ğ¡ÇøÂë
+     *      * å°åŒºç 
      */
 
     public String getResidential() {
@@ -320,7 +325,7 @@ public class User  implements java.io.Serializable {
         this.residential = residential;
     }
     /**       
-     *      * Â¥¶°Âë
+     *      * æ¥¼æ ‹ç 
      */
 
     public String getStoriedBuilding() {
@@ -331,7 +336,7 @@ public class User  implements java.io.Serializable {
         this.storiedBuilding = storiedBuilding;
     }
     /**       
-     *      * µ¥ÔªÂë
+     *      * å•å…ƒç 
      */
 
     public String getUnit() {
@@ -342,7 +347,7 @@ public class User  implements java.io.Serializable {
         this.unit = unit;
     }
     /**       
-     *      * Â¥²ãÂë
+     *      * æ¥¼å±‚ç 
      */
 
     public String getFloor() {
@@ -353,7 +358,7 @@ public class User  implements java.io.Serializable {
         this.floor = floor;
     }
     /**       
-     *      * ÃÅÅÆºÅ
+     *      * é—¨ç‰Œå·
      */
 
     public String getRoomNo() {
@@ -364,7 +369,7 @@ public class User  implements java.io.Serializable {
         this.roomNo = roomNo;
     }
     /**       
-     *      * ÓÊ±à
+     *      * é‚®ç¼–
      */
 
     public String getPostcode() {
@@ -375,7 +380,7 @@ public class User  implements java.io.Serializable {
         this.postcode = postcode;
     }
     /**       
-     *      * µØÖ·ÀàĞÍ
+     *      * åœ°å€ç±»å‹
      */
 
     public String getAddressType() {
@@ -386,7 +391,7 @@ public class User  implements java.io.Serializable {
         this.addressType = addressType;
     }
     /**       
-     *      * ¿Í»§µØÖ·
+     *      * å®¢æˆ·åœ°å€
      */
 
     public String getAddress() {
@@ -397,7 +402,7 @@ public class User  implements java.io.Serializable {
         this.address = address;
     }
     /**       
-     *      * Ö¤¼şÀàĞÍ
+     *      * è¯ä»¶ç±»å‹
      */
 
     public String getCredType() {
@@ -408,7 +413,7 @@ public class User  implements java.io.Serializable {
         this.credType = credType;
     }
     /**       
-     *      * Ö¤¼şÃû³Æ
+     *      * è¯ä»¶åç§°
      */
 
     public String getCredName() {
@@ -419,7 +424,7 @@ public class User  implements java.io.Serializable {
         this.credName = credName;
     }
     /**       
-     *      * Ö¤¼şºÅÂë
+     *      * è¯ä»¶å·ç 
      */
 
     public String getCredNum() {
@@ -430,7 +435,7 @@ public class User  implements java.io.Serializable {
         this.credNum = credNum;
     }
     /**       
-     *      * Ö¤¼şÉúĞ§Ê±¼ä
+     *      * è¯ä»¶ç”Ÿæ•ˆæ—¶é—´
      */
 
     public Long getCredValidTimestamp() {
@@ -441,7 +446,7 @@ public class User  implements java.io.Serializable {
         this.credValidTimestamp = credValidTimestamp;
     }
     /**       
-     *      * Ö¤¼şÊ§Ğ§Ê±¼ä
+     *      * è¯ä»¶å¤±æ•ˆæ—¶é—´
      */
 
     public Long getCredInvalidTimestamp() {
@@ -452,7 +457,7 @@ public class User  implements java.io.Serializable {
         this.credInvalidTimestamp = credInvalidTimestamp;
     }
     /**       
-     *      * É¨Ãè¼ş´æ·ÅÎ»ÖÃË÷Òı
+     *      * æ‰«æä»¶å­˜æ”¾ä½ç½®ç´¢å¼•
      */
 
     public String getCredFilePath() {
@@ -463,7 +468,18 @@ public class User  implements java.io.Serializable {
         this.credFilePath = credFilePath;
     }
     /**       
-     *      * ´´½¨Ê±¼ä
+     *      * é¢„è­¦é‡‘é¢ï¼Œå•ä½æ¯«
+     */
+
+    public Long getWarnPrice() {
+        return this.warnPrice;
+    }
+    
+    public void setWarnPrice(Long warnPrice) {
+        this.warnPrice = warnPrice;
+    }
+    /**       
+     *      * åˆ›å»ºæ—¶é—´
      */
 
     public Long getCreateTimestamp() {
