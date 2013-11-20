@@ -65,7 +65,7 @@
 		<property name="producerTemplate" ref="producerTemplate"></property>
 	</bean>
 	
-	<bean id="waterMonthUsageAmountTask" class="com.ymsino.esb.freesettle.domain.WaterDayCostManager">
+	<bean id="waterDayCostManager" class="com.ymsino.esb.freesettle.domain.WaterDayCostManager">
 		<property name="commonHibernateDao" ref="commonHibernateDao"></property>
 		<property name="producerTemplate" ref="producerTemplate"></property>
 	</bean>
