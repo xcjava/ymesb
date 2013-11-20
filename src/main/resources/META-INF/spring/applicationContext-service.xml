@@ -72,6 +72,7 @@
 		<property name="commonHibernateDao" ref="commonHibernateDao"></property>
 	</bean>
 	<bean id="userWalletServiceImpl" class="com.ymsino.esb.freesettle.service.impl.UserWalletServiceImpl">
+		<property name="userWalletManager" ref="userWalletManager"></property>
 		<property name="commonHibernateDao" ref="commonHibernateDao"></property>
 	</bean>
 	<bean id="waterDayCostServiceImpl" class="com.ymsino.esb.freesettle.service.impl.WaterDayCostServiceImpl">

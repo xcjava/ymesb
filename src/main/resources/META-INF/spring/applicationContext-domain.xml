@@ -73,4 +73,8 @@
 	<bean id="waterMonthCostManager" class="com.ymsino.esb.freesettle.domain.WaterMonthCostManager">
 		<property name="commonHibernateDao" ref="commonHibernateDao"></property>
 	</bean>
+	
+	<bean id="userWalletManager" class="com.ymsino.esb.freesettle.domain.UserWalletManager">
+		<property name="commonHibernateDao" ref="commonHibernateDao"></property>
+	</bean>
 </beans>
