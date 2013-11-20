@@ -28,7 +28,7 @@
 			</column>
 		</property>
 		
-		<property name="level1Num" type="java.lang.Long">
+		<property name="level1Num" type="java.lang.Float">
 			<meta attribute="field-description">1阶最大值</meta>
 			<column name="LEVEL1_NUM">
 				<comment>1阶最大值</comment>
@@ -42,7 +42,7 @@
 			</column>
 		</property>
 		
-		<property name="level2Num" type="java.lang.Long">
+		<property name="level2Num" type="java.lang.Float">
 			<meta attribute="field-description">2阶最大值</meta>
 			<column name="LEVEL2_NUM">
 				<comment>2阶最大值</comment>
@@ -56,7 +56,7 @@
 			</column>
 		</property>
 		
-		<property name="level3Num" type="java.lang.Long">
+		<property name="level3Num" type="java.lang.Float">
 			<meta attribute="field-description">3阶最大值</meta>
 			<column name="LEVEL3_NUM">
 				<comment>3阶最大值</comment>
@@ -70,7 +70,7 @@
 			</column>
 		</property>
 		
-		<property name="level4Num" type="java.lang.Long">
+		<property name="level4Num" type="java.lang.Float">
 			<meta attribute="field-description">4阶最大值</meta>
 			<column name="LEVEL4_NUM">
 				<comment>4阶最大值</comment>
