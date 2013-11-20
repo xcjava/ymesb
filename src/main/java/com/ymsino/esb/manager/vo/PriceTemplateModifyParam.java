@@ -19,7 +19,7 @@ public class PriceTemplateModifyParam implements Serializable {
     /**
      * 1阶最大值
     */
-    Long level1Num;
+    Float level1Num;
     /**
      * 1阶价格，单位毫
     */
@@ -27,7 +27,7 @@ public class PriceTemplateModifyParam implements Serializable {
     /**
      * 2阶最大值
     */
-    Long level2Num;
+    Float level2Num;
     /**
      * 2阶价格，单位毫
     */
@@ -35,7 +35,7 @@ public class PriceTemplateModifyParam implements Serializable {
     /**
      * 3阶最大值
     */
-    Long level3Num;
+    Float level3Num;
     /**
      * 3阶价格，单位毫
     */
@@ -43,7 +43,7 @@ public class PriceTemplateModifyParam implements Serializable {
     /**
      * 4阶最大值
     */
-    Long level4Num;
+    Float level4Num;
     /**
      * 4阶价格，单位毫
     */
@@ -59,7 +59,7 @@ public class PriceTemplateModifyParam implements Serializable {
     /**
      * 结束日期
     */
-    private Long endTimestamp;
+    Long endTimestamp;
     /**
      * 备注
     */
@@ -86,10 +86,10 @@ public class PriceTemplateModifyParam implements Serializable {
 	public void setType(String type) {
 		this.type = type;
 	}
-	public Long getLevel1Num() {
+	public Float getLevel1Num() {
 		return level1Num;
 	}
-	public void setLevel1Num(Long level1Num) {
+	public void setLevel1Num(Float level1Num) {
 		this.level1Num = level1Num;
 	}
 	public Long getLevel1Cost() {
@@ -98,10 +98,10 @@ public class PriceTemplateModifyParam implements Serializable {
 	public void setLevel1Cost(Long level1Cost) {
 		this.level1Cost = level1Cost;
 	}
-	public Long getLevel2Num() {
+	public Float getLevel2Num() {
 		return level2Num;
 	}
-	public void setLevel2Num(Long level2Num) {
+	public void setLevel2Num(Float level2Num) {
 		this.level2Num = level2Num;
 	}
 	public Long getLevel2Cost() {
@@ -110,10 +110,10 @@ public class PriceTemplateModifyParam implements Serializable {
 	public void setLevel2Cost(Long level2Cost) {
 		this.level2Cost = level2Cost;
 	}
-	public Long getLevel3Num() {
+	public Float getLevel3Num() {
 		return level3Num;
 	}
-	public void setLevel3Num(Long level3Num) {
+	public void setLevel3Num(Float level3Num) {
 		this.level3Num = level3Num;
 	}
 	public Long getLevel3Cost() {
@@ -122,10 +122,10 @@ public class PriceTemplateModifyParam implements Serializable {
 	public void setLevel3Cost(Long level3Cost) {
 		this.level3Cost = level3Cost;
 	}
-	public Long getLevel4Num() {
+	public Float getLevel4Num() {
 		return level4Num;
 	}
-	public void setLevel4Num(Long level4Num) {
+	public void setLevel4Num(Float level4Num) {
 		this.level4Num = level4Num;
 	}
 	public Long getLevel4Cost() {

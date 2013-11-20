@@ -26,7 +26,7 @@ public class PriceTemplate  implements java.io.Serializable {
      /**
       * 1阶最大值
      */
-     private Long level1Num;
+     private Float level1Num;
      /**
       * 1阶价格，单位毫
      */
@@ -34,7 +34,7 @@ public class PriceTemplate  implements java.io.Serializable {
      /**
       * 2阶最大值
      */
-     private Long level2Num;
+     private Float level2Num;
      /**
       * 2阶价格，单位毫
      */
@@ -42,7 +42,7 @@ public class PriceTemplate  implements java.io.Serializable {
      /**
       * 3阶最大值
      */
-     private Long level3Num;
+     private Float level3Num;
      /**
       * 3阶价格，单位毫
      */
@@ -50,7 +50,7 @@ public class PriceTemplate  implements java.io.Serializable {
      /**
       * 4阶最大值
      */
-     private Long level4Num;
+     private Float level4Num;
      /**
       * 4阶价格，单位毫
      */
@@ -93,7 +93,7 @@ public class PriceTemplate  implements java.io.Serializable {
 
     
     /** full constructor */
-    public PriceTemplate(String name, String type, Long level1Num, Long level1Cost, Long level2Num, Long level2Cost, Long level3Num, Long level3Cost, Long level4Num, Long level4Cost, String billingPeriod, Long startTimestamp, Long endTimestamp, String remark, String chargingUnitId, String parentUnits, Long createTimestamp) {
+    public PriceTemplate(String name, String type, Float level1Num, Long level1Cost, Float level2Num, Long level2Cost, Float level3Num, Long level3Cost, Float level4Num, Long level4Cost, String billingPeriod, Long startTimestamp, Long endTimestamp, String remark, String chargingUnitId, String parentUnits, Long createTimestamp) {
         this.name = name;
         this.type = type;
         this.level1Num = level1Num;
@@ -152,11 +152,11 @@ public class PriceTemplate  implements java.io.Serializable {
      *      * 1阶最大值
      */
 
-    public Long getLevel1Num() {
+    public Float getLevel1Num() {
         return this.level1Num;
     }
     
-    public void setLevel1Num(Long level1Num) {
+    public void setLevel1Num(Float level1Num) {
         this.level1Num = level1Num;
     }
     /**       
@@ -174,11 +174,11 @@ public class PriceTemplate  implements java.io.Serializable {
      *      * 2阶最大值
      */
 
-    public Long getLevel2Num() {
+    public Float getLevel2Num() {
         return this.level2Num;
     }
     
-    public void setLevel2Num(Long level2Num) {
+    public void setLevel2Num(Float level2Num) {
         this.level2Num = level2Num;
     }
     /**       
@@ -196,11 +196,11 @@ public class PriceTemplate  implements java.io.Serializable {
      *      * 3阶最大值
      */
 
-    public Long getLevel3Num() {
+    public Float getLevel3Num() {
         return this.level3Num;
     }
     
-    public void setLevel3Num(Long level3Num) {
+    public void setLevel3Num(Float level3Num) {
         this.level3Num = level3Num;
     }
     /**       
@@ -218,11 +218,11 @@ public class PriceTemplate  implements java.io.Serializable {
      *      * 4阶最大值
      */
 
-    public Long getLevel4Num() {
+    public Float getLevel4Num() {
         return this.level4Num;
     }
     
-    public void setLevel4Num(Long level4Num) {
+    public void setLevel4Num(Float level4Num) {
         this.level4Num = level4Num;
     }
     /**       
