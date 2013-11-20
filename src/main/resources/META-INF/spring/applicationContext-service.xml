@@ -74,6 +74,12 @@
 	<bean id="userWalletServiceImpl" class="com.ymsino.esb.freesettle.service.impl.UserWalletServiceImpl">
 		<property name="commonHibernateDao" ref="commonHibernateDao"></property>
 	</bean>
+	<bean id="waterDayCostServiceImpl" class="com.ymsino.esb.freesettle.service.impl.WaterDayCostServiceImpl">
+		<property name="commonHibernateDao" ref="commonHibernateDao"></property>
+	</bean>
+	<bean id="waterMonthCostServiceImpl" class="com.ymsino.esb.freesettle.service.impl.WaterMonthCostServiceImpl">
+		<property name="commonHibernateDao" ref="commonHibernateDao"></property>
+	</bean>
 	<!-- 费用结算 -->
 	<!-- 数据 -->
 	<bean id="checkingFreezeDataServiceImpl" class="com.ymsino.esb.data.service.impl.CheckingFreezeDataServiceImpl">
@@ -148,6 +154,12 @@
 	</jaxws:server>
 	<jaxws:server id="userWalletService" serviceClass="com.ymsino.esb.freesettle.service.api.UserWalletService" address="camel://jetty:http://${ws.host}:${ws.port}/ws/userWalletService">
 		<jaxws:serviceBean><ref bean="userWalletServiceImpl"/></jaxws:serviceBean>
+	</jaxws:server>
+	<jaxws:server id="waterDayCostService" serviceClass="com.ymsino.esb.freesettle.service.api.WaterDayCostService" address="camel://jetty:http://${ws.host}:${ws.port}/ws/waterDayCostService">
+		<jaxws:serviceBean><ref bean="waterDayCostServiceImpl"/></jaxws:serviceBean>
+	</jaxws:server>
+	<jaxws:server id="waterMonthCostService" serviceClass="com.ymsino.esb.freesettle.service.api.WaterMonthCostService" address="camel://jetty:http://${ws.host}:${ws.port}/ws/waterMonthCostService">
+		<jaxws:serviceBean><ref bean="waterMonthCostServiceImpl"/></jaxws:serviceBean>
 	</jaxws:server>
 	<!-- 费用结算 -->
 	<!-- 数据 -->
