@@ -96,7 +96,7 @@ public class WaterMonthUsageAmountManager {
 		Map<String, Object> header = new HashMap<String, Object>();
 		header.put("method", "calculateByWaterDayUsageAmount");
 		header.put("beanName", "waterDayCostManager");
-		producerTemplate.sendBodyAndHeaders("jms:queue:com.ymsino.esb.domain", ExchangePattern.InOnly, MapMapping.obj2map(dayData), header);
+		producerTemplate.sendBodyAndHeaders("jms:queue:com.ymsino.esb.domain", ExchangePattern.InOnly, dayData, header);
 		
 		return true;
 	}

@@ -76,7 +76,7 @@ public class CheckingFreezeDataManager {
 		Map<String, Object> header = new HashMap<String, Object>();
 		header.put("method", "saveByCheckingFreezeData");
 		header.put("beanName", "waterDayUsageAmountManager");
-		producerTemplate.sendBodyAndHeaders("jms:queue:com.ymsino.esb.domain", ExchangePattern.InOnly, MapMapping.obj2map(data), header);
+		producerTemplate.sendBodyAndHeaders("jms:queue:com.ymsino.esb.domain", ExchangePattern.InOnly, data, header);
 		
 		return true;
 	}

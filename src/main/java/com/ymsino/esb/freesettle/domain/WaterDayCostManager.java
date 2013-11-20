@@ -6,9 +6,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.camel.ExchangePattern;
 import org.apache.camel.ProducerTemplate;
 import org.apache.log4j.Logger;
 
+import com.gmail.xcjava.base.dataMapping.MapMapping;
 import com.gmail.xcjava.base.dataMapping.ObjectMapping;
 import com.gmail.xcjava.base.math.Arith;
 import com.gmail.xcjava.base.spring.CommonHibernateDao;
@@ -31,9 +33,14 @@ public class WaterDayCostManager {
 	
 	public void calculateByWaterDayUsageAmount(WaterDayUsageAmount model){
 		
+		if(model.getId() == null || model.getMeterHardwareId() == null || model.getWaterCustomerId() == null){
+			logger.warn("日用量数据错误,无法计算水价");
+			return;
+		}
+		
 		String hql = "from PriceTemplate pt where pt.id = (select wc.priceTemplateId from WaterCustomer wc where wc.customerId = ?)";
 		List<Object> paramList = new ArrayList<Object>();
-		paramList.add(model.getMeterHardwareId());
+		paramList.add(model.getWaterCustomerId());
 		List<PriceTemplate> priceTemplatelist = this.commonHibernateDao.findBy(hql, paramList.toArray(), 0, 1);
 		PriceTemplate pt;
 		if(priceTemplatelist != null && priceTemplatelist.size() > 0){
@@ -47,8 +54,8 @@ public class WaterDayCostManager {
 		Map<Integer, Float> numMap = new HashMap<Integer, Float>();
 		int priceLevel = 1;
 		for(int i = 1; i < 5; i++){
-			Float num = (Float) ObjectMapping.getFieldValue(model, "level" + i + "Num");
-			Long cost = (Long) ObjectMapping.getFieldValue(model, "level" + i + "Cost");
+			Float num = (Float) ObjectMapping.getFieldValue(pt, "level" + i + "Num");
+			Long cost = (Long) ObjectMapping.getFieldValue(pt, "level" + i + "Cost");
 			if(num == null || cost == null){
 				break;
 			}
@@ -66,7 +73,9 @@ public class WaterDayCostManager {
 		
 		WaterDayCost dayCost;
 		if(waterDayCostlist != null && waterDayCostlist.size() > 0){
-			dayCost = waterDayCostlist.get(0);
+			//dayCost = waterDayCostlist.get(0);
+			logger.warn("用水用户:" + model.getWaterCustomerId() + "," + model.getFreezeYear() + "-" + model.getFreezeMonth() + "的费用数据已经统计过,无需再次统计");
+			return;
 		}else{
 			dayCost = new WaterDayCost();
 			dayCost.setChargingUnitId(model.getChargingUnitId());
@@ -103,10 +112,14 @@ public class WaterDayCostManager {
 			lastTotalPrice = totalPrice;
 		}
 		
-		if(dayCost.getId() == null){
-			this.commonHibernateDao.save(dayCost);
-		}
+		this.commonHibernateDao.save(dayCost);
 		
+		Map<String, Object> header = new HashMap<String, Object>();
+		header.put("method", "calculateByWaterDayCost");
+		header.put("beanName", "waterMonthCostManager");
+		producerTemplate.sendBodyAndHeaders("jms:queue:com.ymsino.esb.domain", ExchangePattern.InOnly, dayCost, header);
+		
+
 	}
 	
 }

@@ -52,7 +52,7 @@ public class FreezeDataManager {
 			Map<String, Object> header = new HashMap<String, Object>();
 			header.put("method", "saveByFreezeData");
 			header.put("beanName", "checkingFreezeDataManager");
-			producerTemplate.sendBodyAndHeaders("jms:queue:com.ymsino.esb.domain", ExchangePattern.InOnly, MapMapping.obj2map(po), header);
+			producerTemplate.sendBodyAndHeaders("jms:queue:com.ymsino.esb.domain", ExchangePattern.InOnly, po, header);
 		}
 		
 		return true;
