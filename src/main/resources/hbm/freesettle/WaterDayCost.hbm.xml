@@ -261,7 +261,7 @@
 		
 		<property name="checkPayStatus" type="java.lang.Short">
 			<meta attribute="field-description">扣费检查状态-1:未检查;1已检查</meta>
-			<column name="PAY_STATUS">
+			<column name="CHECK_PAY_STATUS">
 				<comment>扣费检查状态-1:未检查;1已检查</comment>
 			</column>
 		</property>
