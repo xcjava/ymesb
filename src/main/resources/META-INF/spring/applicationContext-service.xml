@@ -77,6 +77,7 @@
 	</bean>
 	<bean id="waterDayCostServiceImpl" class="com.ymsino.esb.freesettle.service.impl.WaterDayCostServiceImpl">
 		<property name="commonHibernateDao" ref="commonHibernateDao"></property>
+		<property name="waterDayCostManager" ref="waterDayCostManager"></property>
 	</bean>
 	<bean id="waterMonthCostServiceImpl" class="com.ymsino.esb.freesettle.service.impl.WaterMonthCostServiceImpl">
 		<property name="commonHibernateDao" ref="commonHibernateDao"></property>

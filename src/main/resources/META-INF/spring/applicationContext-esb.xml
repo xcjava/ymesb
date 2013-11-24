@@ -59,9 +59,13 @@
 	  		<from uri="quartz://comm/checkActTask?cron=0+*+*+*+*+?" />
 	  		<to uri="bean:checkActTask?method=checkAct" />
 	  	</route>
-	  	<route id="tesstaaaaaaaa0">
-	  		<from uri="quartz://data/waterMonthUsageAmountTask?cron=0+0+0+5+*+?" />
+	  	<route id="waterMonthUsageAmountTaskQuartz">
+	  		<from uri="quartz://data/waterMonthUsageAmountTask?cron=0+*+*+*+*+?" />
 	  		<to uri="bean:waterMonthUsageAmountTask?method=countByDayUsageAmount" />
+	  	</route>
+	  	<route id="waterCostSettleTaskQuartz">
+	  		<from uri="quartz://freesettle/waterCostSettleTask?cron=0+*+*+*+*+?" />
+	  		<to uri="bean:waterCostSettleTask?method=settleWaterDayCost" />
 	  	</route>
 	  	
 	</camelContext>

@@ -77,4 +77,9 @@
 	<bean id="userWalletManager" class="com.ymsino.esb.freesettle.domain.UserWalletManager">
 		<property name="commonHibernateDao" ref="commonHibernateDao"></property>
 	</bean>
+	
+	<bean id="waterCostSettleTask" class="com.ymsino.esb.freesettle.task.WaterCostSettleTask">
+		<property name="waterDayCostService" ref="waterDayCostServiceImpl"></property>
+		<property name="producerTemplate" ref="producerTemplate"></property>
+	</bean>
 </beans>

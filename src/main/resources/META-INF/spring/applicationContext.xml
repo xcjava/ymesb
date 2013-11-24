@@ -70,11 +70,17 @@
 				
 				<value>hbm/freesettle/UserWallet.hbm.xml</value>
 				<value>hbm/freesettle/UserWalletLog.hbm.xml</value>
+				<value>hbm/freesettle/WaterDayCost.hbm.xml</value>
+				<value>hbm/freesettle/WaterMonthCost.hbm.xml</value>
 				
 				<value>hbm/data/CollectTask.hbm.xml</value>
 				<value>hbm/data/FreezeData.hbm.xml</value>
 				<value>hbm/data/TestDynamicData.hbm.xml</value>
 				<value>hbm/data/TestMeterCodeData.hbm.xml</value>
+				<value>hbm/data/CheckingFreezeData.hbm.xml</value>
+				<value>hbm/data/WaterDayUsageAmount.hbm.xml</value>
+				<value>hbm/data/WaterMonthUsageAmount.hbm.xml</value>
+				
 			</list>
 		</property>
 	</bean>
