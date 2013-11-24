@@ -68,9 +68,9 @@ public class WaterMonthUsageAmountTask {
 		header.put("beanName", "waterMonthUsageAmountManager");
 
 		for (int i = 0; i < count; i++) {
-			List<WaterDayUsageAmountReturn> WaterDayUsageAmountList = waterDayUsageAmountService.getListpager(qp, i, 1);
+			List<WaterDayUsageAmountReturn> waterDayUsageAmountList = waterDayUsageAmountService.getListpager(qp, i, 1);
 			WaterDayUsageAmount amount = new WaterDayUsageAmount();
-			ObjectMapping.objMapping(WaterDayUsageAmountList.get(0), amount);
+			ObjectMapping.objMapping(waterDayUsageAmountList.get(0), amount);
 			producerTemplate.sendBodyAndHeaders("jms:queue:com.ymsino.esb.domain", ExchangePattern.InOnly, amount, header);
 		}
 
