@@ -10,6 +10,7 @@ import com.gmail.xcjava.base.hql.OrderParamReader;
 import com.gmail.xcjava.base.hql.QueryParam;
 import com.gmail.xcjava.base.hql.QueryParamReader;
 import com.gmail.xcjava.base.spring.CommonHibernateDao;
+import com.ymsino.esb.freesettle.domain.WaterDayCostManager;
 import com.ymsino.esb.freesettle.model.WaterDayCost;
 import com.ymsino.esb.freesettle.service.api.WaterDayCostService;
 import com.ymsino.esb.freesettle.vo.WaterDayCostReturn;
@@ -21,6 +22,11 @@ public class WaterDayCostServiceImpl implements WaterDayCostService {
 		this.commonHibernateDao = commonHibernateDao;
 	}
 	
+	private WaterDayCostManager waterDayCostManager;
+	public void setWaterDayCostManager(WaterDayCostManager waterDayCostManager) {
+		this.waterDayCostManager = waterDayCostManager;
+	}
+
 	@Override
 	public WaterDayCostReturn getById(Long id) {
 		
@@ -104,6 +110,11 @@ public class WaterDayCostServiceImpl implements WaterDayCostService {
 			count = this.commonHibernateDao.count(hql);
 		
 		return count;
+	}
+
+	@Override
+	public Boolean settleCost(Long dayCostId) {
+		return waterDayCostManager.settleCost(dayCostId);
 	}
 
 }

@@ -41,4 +41,12 @@ public interface WaterDayCostService {
 	 */
 	@WSDLDocumentation("根据查询参数获取水表日费用总记录数")
 	public Integer getCount(@WebParam(name="queryParam")QueryParam queryParam);
+	
+	/**
+	 * 结算本月水费
+	 * @param dayCostId		本月水费id
+	 * @return
+	 */
+	@WSDLDocumentation("结算本月水费")
+	public Boolean settleCost(@WebParam(name="dayCostId")Long dayCostId);
 }
