@@ -54,6 +54,8 @@ public class WaterCustomerServiceImpl implements WaterCustomerService {
 		if(!StringUtils.isEmpty(model.getChargingUnitId()))
 			model.setParentUnits(chargingUnitManager.getParentUnitIds(model.getChargingUnitId()));
 		
+		this.commonHibernateDao.save(model);
+		
 		return Boolean.TRUE;
 	}
 
