@@ -59,13 +59,14 @@ public class ConcentratorServiceImpl implements ConcentratorService {
 			throw new RuntimeException("逻辑地址格式不正确");
 		}
 		
-		String hardwareId = vo.getAreaCode();
+		//String hardwareId = vo.getAreaCode();
 		String logicCode = vo.getLogicCode();
 		int length = logicCode.length();
 		for(int i = 0; i < 4 - length; i++){
 			logicCode = "0" + logicCode;
 		}
-		hardwareId = hardwareId + logicCode.substring(2, 4) + logicCode.substring(0, 2);
+		//hardwareId = hardwareId + logicCode.substring(2, 4) + logicCode.substring(0, 2);
+		String hardwareId = logicCode + vo.getAreaCode().substring(2, 4) + vo.getAreaCode().substring(0, 2);
 		
 		if(this.getById(hardwareId) != null){
 			logger.error("save:集中器编码已经存在，不能重复添加");
