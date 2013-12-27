@@ -3,23 +3,23 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.ymsino</groupId>
-	<artifactId>esb</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<artifactId>ymesb</artifactId>
+	<version>2013.12.27-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>esb</name>
+	<name>ymesb</name>
 	<url>http://maven.apache.org</url>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<activemq.version>5.7.0</activemq.version>
+		<activemq.version>5.9.0</activemq.version>
 		<hibernate.version>3.4.0.GA</hibernate.version>
 		<spring.version>3.2.2.RELEASE</spring.version>
 		<jetty.version>8.1.10.v20130312</jetty.version>
 		<struts2.version>2.2.1</struts2.version>
 		<ibatis.version>2.3.4.726</ibatis.version>
-		<cxf.version>2.7.3</cxf.version>
-		<camel.version>2.10.4</camel.version>
+		<cxf.version>2.7.7</cxf.version>
+		<camel.version>2.12.2</camel.version>
 	</properties>
 
 	<dependencies>
@@ -427,6 +427,12 @@
 			<groupId>com.gmail.xcjava</groupId>
 			<artifactId>base_tool</artifactId>
 			<version>13.11.7-SNAPSHOT</version>
+		</dependency>
+		
+		<dependency>
+		    <groupId>xml-apis</groupId>
+		    <artifactId>xml-apis</artifactId>
+		    <version>1.4.01</version>
 		</dependency>
 
 	</dependencies>
