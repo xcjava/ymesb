@@ -183,6 +183,8 @@ public class ReceiveMsgConsume {
 				String mstaSeq = AbstractMessage.getFieldString(deleteSettingsResp.head.mstaSeq);
 				producerTemplate.sendBody("jms:queue:deleteSettings:" + concHardwareId + ":" + mstaSeq, ExchangePattern.InOnly, AbstractMessage.getFieldString(deleteSettingsResp.errorCode));
 				//producerTemplate.sendBody("direct:deleteSettings:" + concHardwareId + ":" + mstaSeq, ExchangePattern.InOnly, AbstractMessage.getFieldString(deleteSettingsResp.errorCode));
+			}else{
+				logger.warn("无法解析收到消息:" + DataConverter.bytesToHexString(bytes));
 			}
 		}
 		
@@ -209,7 +211,7 @@ public class ReceiveMsgConsume {
 				producerTemplate.sendBody("jms:queue:debug:" + concHardwareId + ":" + mstaSeq, ExchangePattern.InOnly, debugResp.toBytes());
 				//producerTemplate.sendBody("direct:debug:" + concHardwareId + ":" + mstaSeq, ExchangePattern.InOnly, debugResp.toBytes());
 				
-			}else if(AbstractMessage.getDataLength(bytes).equals("000E")){
+			}else if(AbstractMessage.getDataLength(bytes).equals("000F")){
 				
 				TestMeterCodeResp testMeterCodeResp = new TestMeterCodeResp(bytes);
 				logger.debug("接收:" + testMeterCodeResp.toString());
@@ -226,8 +228,9 @@ public class ReceiveMsgConsume {
 				String mstaSeq = AbstractMessage.getFieldString(testDataResp.head.mstaSeq);
 				producerTemplate.sendBody("jms:queue:testData:" + concHardwareId + ":" + mstaSeq, ExchangePattern.InOnly, testDataResp.toBytes());
 				//producerTemplate.sendBody("direct:testData:" + concHardwareId + ":" + mstaSeq, ExchangePattern.InOnly, testDataResp.toBytes());
+			}else{
+				logger.warn("无法解析收到消息:" + DataConverter.bytesToHexString(bytes));
 			}
-			
 		}
 		else{
 			logger.warn("无法解析收到消息:" + DataConverter.bytesToHexString(bytes));
