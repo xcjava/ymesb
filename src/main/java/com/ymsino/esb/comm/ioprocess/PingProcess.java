@@ -1,5 +1,6 @@
 package com.ymsino.esb.comm.ioprocess;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -20,10 +21,14 @@ public class PingProcess {
 		this.producerTemplate = producerTemplate;
 	}
 
+	private ConcentratorOnLine concentratorOnLine;
+	public void setConcentratorOnLine(ConcentratorOnLine concentratorOnLine) {
+		this.concentratorOnLine = concentratorOnLine;
+	}
 
 	public void process(Ping ping, Exchange exchange){
 		
-		//ConcentratorOnLine.setActTimestamp(AbstractMessage.getFieldString(ping.head.rtua), new Date().getTime());
+		concentratorOnLine.setActTimestamp(AbstractMessage.getFieldString(ping.head.rtua), new Date().getTime());
 		
 		PingResp resp = new PingResp();
 		resp.head.rtua = AbstractMessage.initField(AbstractMessage.getFieldString(ping.head.rtua), ping.head.rtua.length);
