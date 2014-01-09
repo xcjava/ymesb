@@ -96,9 +96,9 @@ public class ReceiveMsgConsume {
 		}/*else if(AbstractMessage.getControlCode(bytes).equals("15")){
 			message = new ReadParam(bytes);
 		}*/else if(AbstractMessage.getControlCode(bytes).equals("95")){
-			/*for(int i = 0; i < bytes.length; i++){
+			for(int i = 0; i < bytes.length; i++){
 				System.out.print(DataConverter.bytesToHexString(ByteTool.subByte(bytes, i, 1)) + "|");
-			}*/
+			}
 			ReadParamResp resp = new ReadParamResp(bytes);
 			logger.debug("接收:" + resp.toString());
 			String concHardwareId = AbstractMessage.getFieldString(resp.head.rtua);
@@ -203,7 +203,9 @@ public class ReceiveMsgConsume {
 		else if(AbstractMessage.getControlCode(bytes).equals("91")){
 			
 			if(AbstractMessage.getDataLength(bytes).equals("0009")){
-				
+				/*for(int i = 0; i < bytes.length; i++){
+					System.out.print(DataConverter.bytesToHexString(ByteTool.subByte(bytes, i, 1)) + "|");
+				}*/
 				DebugResp debugResp = new DebugResp(bytes);
 				logger.debug("接收:" + debugResp.toString());
 				String concHardwareId = AbstractMessage.getFieldString(debugResp.head.rtua);

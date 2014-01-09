@@ -65,7 +65,8 @@ public class LoadWmServiceImpl implements LoadWmService {
 		while(start < sendTime){
 		
 			int startWaterMeterSn = wmSn + start * 10;
-			int totalMeterNum = start + 1 == sendTime ? wmSn % 10 : 10;
+			//int totalMeterNum = start + 1 == sendTime ? wmSn % 10 : 10;
+			int totalMeterNum = 10;
 			
 			ReadParam readParam = new ReadParam();
 			readParam.head.rtua = AbstractMessage.initField(concHardwareId, readParam.head.rtua.length);
