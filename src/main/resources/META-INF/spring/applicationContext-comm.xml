@@ -52,6 +52,7 @@
 	</bean>
 	<bean id="pingProcess" class="com.ymsino.esb.comm.ioprocess.PingProcess">
 		<property name="producerTemplate" ref="producerTemplate"></property>
+		<property name="concentratorOnLine" ref="concentratorOnLine"></property>
 	</bean>
 
 	<jaxws:server id="conClockService" 
