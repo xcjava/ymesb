@@ -29,4 +29,8 @@ public class ConcentratorManager {
 		po.setStatus(Short.valueOf("-1"));
 	}
 	
+	public void resetAllOffLine(){
+		this.commonHibernateDao.bulkUpdateDelete("update Concentrator model set model.status = -1");
+	}
+	
 }
