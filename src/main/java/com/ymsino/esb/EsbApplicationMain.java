@@ -11,6 +11,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.gmail.xcjava.base.io.PropertyReader;
+import com.ymsino.esb.archives.domain.ConcentratorManager;
 
 public class EsbApplicationMain {
 
@@ -41,6 +42,10 @@ public class EsbApplicationMain {
 			}
 		}
 		camelContext.start();
+		
+		ConcentratorManager concentratorManager = applicationContext.getBean("concentratorManager", ConcentratorManager.class);
+		concentratorManager.resetAllOffLine();
+		System.out.println("初始化集中器离线状态完成");
 		
 		Date endDate = new Date();
 	    System.out.println("启动完成,耗时:" + (endDate.getTime() - startDate.getTime()) + "ms");

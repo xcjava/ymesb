@@ -118,7 +118,9 @@ public class DebugResp extends AbstractMessage {
 		this.bytes = new byte[MessageHead.dataLength + 
 	                         	this.controlCode.length +
 	                         	this.dataLength.length + 
+	                         	this.waterMeterId.length +
 								this.dataSn.length + 
+								this.dataContent.length + 
 								MessageBottom.dataLength];
 	
 		int offset = 0;
