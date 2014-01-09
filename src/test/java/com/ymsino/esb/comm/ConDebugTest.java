@@ -20,7 +20,7 @@ public static void main(String[] args){
 		
 		//System.out.println(conClockService.setupClock("00014180", "131026203156"));
 		
-		System.out.println(conDebugService.debug("00014180", "000000000001", 1));
+		System.out.println(conDebugService.debug("30014180", "000012079665", 1));
 
 	}
 	

@@ -23,7 +23,7 @@ public class LoadWmTest {
 		LoadWmService loadWmService = (LoadWmService) applicationContext.getBean("loadWmService");
 		//System.out.println(loadWmService.loadWm("00014180"));
 		
-		List<MeterSnVo> result = loadWmService.readWaterMeterSn("00014180", 1, 10);
+		List<MeterSnVo> result = loadWmService.readWaterMeterSn("30014180", 1, 1);
 		for(MeterSnVo item : result){
 			System.out.println(JsonMapping.obj2json(item));
 		}

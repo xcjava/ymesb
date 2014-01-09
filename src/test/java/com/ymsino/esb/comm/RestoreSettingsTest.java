@@ -20,7 +20,7 @@ public class RestoreSettingsTest {
 		
 		//System.out.println(conClockService.setupClock("00014180", "131026203156"));
 		
-		System.out.println(restoreSettingService.restoreSettings("00014180"));
+		System.out.println(restoreSettingService.restoreSettings("30014180"));
 
 	}
 	
