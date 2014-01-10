@@ -45,7 +45,7 @@ public class EsbApplicationMain {
 		
 		ConcentratorManager concentratorManager = applicationContext.getBean("concentratorManager", ConcentratorManager.class);
 		concentratorManager.resetAllOffLine();
-		System.out.println("初始化集中器离线状态完成");
+		System.out.println("系统版本:2014.1.9");
 		
 		Date endDate = new Date();
 	    System.out.println("启动完成,耗时:" + (endDate.getTime() - startDate.getTime()) + "ms");
