@@ -32,6 +32,10 @@ public class EsbApplicationMain {
 		
 		Date startDate = new Date();
 		ApplicationContext applicationContext = new ClassPathXmlApplicationContext(list.toArray(new String[list.size()]));
+		
+		ConcentratorManager concentratorManager = applicationContext.getBean("concentratorManager", ConcentratorManager.class);
+		concentratorManager.resetAllOffLine();
+		
 		CamelContext camelContext = (CamelContext) applicationContext.getBean("camelContext");
 		if(!startTask){
 			List<Route> routes = camelContext.getRoutes();
@@ -43,12 +47,9 @@ public class EsbApplicationMain {
 		}
 		camelContext.start();
 		
-		ConcentratorManager concentratorManager = applicationContext.getBean("concentratorManager", ConcentratorManager.class);
-		concentratorManager.resetAllOffLine();
-		System.out.println("系统版本:2014.1.9");
-		
 		Date endDate = new Date();
 	    System.out.println("启动完成,耗时:" + (endDate.getTime() - startDate.getTime()) + "ms");
+	    System.out.println("系统版本:2014.1.11");
 	    
 	}  
 	
