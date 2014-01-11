@@ -59,7 +59,7 @@ public class LoadWmServiceImpl implements LoadWmService {
 			return null;
 		
 		List<MeterSnVo> list = new ArrayList<MeterSnVo>();
-		int sendTime = wmSn/10 + 1;
+		int sendTime = count % 10 == 0 ? count / 10 : count / 10 + 1;
 		int start = 0;
 		
 		while(start < sendTime){
@@ -71,8 +71,8 @@ public class LoadWmServiceImpl implements LoadWmService {
 			ReadParam readParam = new ReadParam();
 			readParam.head.rtua = AbstractMessage.initField(concHardwareId, readParam.head.rtua.length);
 			readParam.head.mstaSeq = AbstractMessage.initField(concentratorOnLine.getNextMstaSeq(concHardwareId), readParam.head.mstaSeq.length);
-			readParam.startWaterMeterSn = AbstractMessage.initField(Integer.toHexString(startWaterMeterSn), readParam.startWaterMeterSn.length);
-			readParam.totalMeterNum = AbstractMessage.initField(Integer.toHexString(totalMeterNum) + "", readParam.totalMeterNum.length);
+			readParam.startWaterMeterSn = AbstractMessage.initField(Integer.toHexString(startWaterMeterSn).toUpperCase(), readParam.startWaterMeterSn.length);
+			readParam.totalMeterNum = AbstractMessage.initField(Integer.toHexString(totalMeterNum).toUpperCase() + "", readParam.totalMeterNum.length);
 			
 			
 			Map<String, Object> headers = new HashMap<String, Object>();

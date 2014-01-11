@@ -45,7 +45,7 @@ public class ConDebugServiceImpl implements ConDebugService {
 		debug.head.rtua = AbstractMessage.initField(concHardwareId, debug.head.rtua.length);
 		debug.head.mstaSeq = AbstractMessage.initField(concentratorOnLine.getNextMstaSeq(concHardwareId), debug.head.mstaSeq.length);
 		debug.waterMeterId = AbstractMessage.initField(waterMeterId, debug.waterMeterId.length);
-		debug.waterMeterSn = AbstractMessage.initField(Integer.toHexString(waterMeterSn), debug.waterMeterSn.length);
+		debug.waterMeterSn = AbstractMessage.initField(Integer.toHexString(waterMeterSn).toUpperCase(), debug.waterMeterSn.length);
 		
 		Map<String, Object> headers = new HashMap<String, Object>();
 		headers.put("concentratorId", AbstractMessage.getFieldString(debug.head.rtua));

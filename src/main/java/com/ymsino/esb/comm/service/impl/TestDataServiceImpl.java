@@ -69,7 +69,7 @@ public class TestDataServiceImpl implements TestDataService {
 		testData.head.rtua = AbstractMessage.initField(concHardwareId, testData.head.rtua.length);
 		testData.head.mstaSeq = AbstractMessage.initField(concentratorOnLine.getNextMstaSeq(concHardwareId), testData.head.mstaSeq.length);
 		testData.waterMeterId = AbstractMessage.initField(waterMeterId, testData.waterMeterId.length);
-		testData.waterMeterSn = AbstractMessage.initField(Integer.toHexString(waterMeterSn), testData.waterMeterSn.length);
+		testData.waterMeterSn = AbstractMessage.initField(Integer.toHexString(waterMeterSn).toUpperCase(), testData.waterMeterSn.length);
 		
 		Map<String, Object> headers = new HashMap<String, Object>();
 		headers.put("concentratorId", AbstractMessage.getFieldString(testData.head.rtua));

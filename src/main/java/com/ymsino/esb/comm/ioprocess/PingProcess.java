@@ -28,6 +28,7 @@ public class PingProcess {
 
 	public void process(Ping ping, Exchange exchange){
 		
+		concentratorOnLine.checkAdd(AbstractMessage.getFieldString(ping.head.rtua), exchange);
 		concentratorOnLine.setActTimestamp(AbstractMessage.getFieldString(ping.head.rtua), new Date().getTime());
 		
 		PingResp resp = new PingResp();
