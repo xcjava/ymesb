@@ -20,7 +20,8 @@ public class TestMeterCodeTest {
 		
 		//System.out.println(conClockService.setupClock("00014180", "131026203156"));
 		
-		System.out.println(testMeterCodeService.testMeterCode("00014180", "000000000001", 1));
+		System.out.println(testMeterCodeService.testMeterCode("30014180", "000012079869", 1));
+		//System.out.println(testMeterCodeService.testMeterCode(null, null, null));
 
 	}
 	

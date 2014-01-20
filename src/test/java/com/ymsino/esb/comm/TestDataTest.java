@@ -20,7 +20,7 @@ public class TestDataTest {
 		
 		//System.out.println(conClockService.setupClock("00014180", "131026203156"));
 		
-		System.out.println(testDataService.testData("00014180", "000000000001", 1));
+		System.out.println(testDataService.testData("30014180", "000012079869", 1));
 
 	}
 	
