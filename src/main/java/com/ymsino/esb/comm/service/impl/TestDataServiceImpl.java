@@ -63,6 +63,7 @@ public class TestDataServiceImpl implements TestDataService {
 		WaterMeter wm = (WaterMeter) this.commonHibernateDao.get(WaterMeter.class, waterMeterId);
 		if(wm == null){
 			logger.info(waterMeterId + "水表不存在");
+			throw new RuntimeException("水表不存在");
 		}
 		
 		TestData testData = new TestData();

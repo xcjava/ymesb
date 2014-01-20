@@ -64,6 +64,7 @@ public class TestMeterCodeServiceImpl implements TestMeterCodeService {
 		WaterMeter wm = (WaterMeter) this.commonHibernateDao.get(WaterMeter.class, waterMeterId);
 		if(wm == null){
 			logger.info(waterMeterId + "水表不存在");
+			throw new RuntimeException("水表不存在");
 		}
 		
 		TestMeterCode testMeterCode = new TestMeterCode();
@@ -84,6 +85,10 @@ public class TestMeterCodeServiceImpl implements TestMeterCodeService {
 		logger.debug("接收集中器实时召测表码响应:" + concHardwareId + ":" + AbstractMessage.getFieldString(testMeterCode.head.mstaSeq));
 		
 		TestMeterCodeResp resp = new TestMeterCodeResp(bytes);
+		
+		if(!AbstractMessage.getFieldString(resp.errorCode).equals("00")){
+			throw new RuntimeException("集中器返回错误代码:" + AbstractMessage.getFieldString(resp.errorCode));
+		}
 		
 		MeterDataVo vo = new MeterDataVo();
 		ObjectMapping.objMapping(resp.getMeterDataVo(), vo);

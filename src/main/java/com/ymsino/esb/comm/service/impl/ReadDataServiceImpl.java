@@ -95,8 +95,10 @@ public class ReadDataServiceImpl implements ReadDataService {
 				vo.setMeterId(AbstractMessage.getFieldString(item.meterId));
 				
 				WaterMeter wm = (WaterMeter) this.commonHibernateDao.get(WaterMeter.class, AbstractMessage.getFieldString(item.meterId));
-				if(wm == null)
+				if(wm == null){
+					logger.info(AbstractMessage.getFieldString(item.meterId) + "水表不存在");
 					continue;
+				}
 				
 				FreezeData freezeData = new FreezeData();
 				freezeData = new FreezeData();
