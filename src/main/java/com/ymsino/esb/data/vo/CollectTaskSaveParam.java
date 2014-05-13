@@ -29,6 +29,14 @@ public class CollectTaskSaveParam implements Serializable {
     */
     private Integer suppCount;
     /**
+     * 任务执行开始时间
+    */
+    private Long startTimestamp;
+    /**
+     * 任务执行结束时间
+    */
+    private Long endTimestamp;
+    /**
      * 采集周期开始时
     */
     private Integer startHour;
@@ -134,4 +142,17 @@ public class CollectTaskSaveParam implements Serializable {
 	public void setChargingUnitId(String chargingUnitId) {
 		this.chargingUnitId = chargingUnitId;
 	}
+	public Long getStartTimestamp() {
+		return startTimestamp;
+	}
+	public void setStartTimestamp(Long startTimestamp) {
+		this.startTimestamp = startTimestamp;
+	}
+	public Long getEndTimestamp() {
+		return endTimestamp;
+	}
+	public void setEndTimestamp(Long endTimestamp) {
+		this.endTimestamp = endTimestamp;
+	}
+	
 }
