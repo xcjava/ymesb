@@ -86,7 +86,8 @@ public class ReadDataServiceImpl implements ReadDataService {
 		ReadDataResp resp = new ReadDataResp(bytes);
 		List<MeterDataVo> resultList = new ArrayList<MeterDataVo>();
 		for(ReadDataRespItem item : resp.readDataRespItem){
-			if(!AbstractMessage.getFieldString(item.meterId).equals("FFFFFFFFFFFF")){
+			if(!AbstractMessage.getFieldString(item.meterId).equals("FFFFFFFFFFFF") &&
+					!AbstractMessage.getFieldString(item.meterData).equals("FFFFFFFFFFFF")){
 				//map.put(Integer.valueOf(AbstractMessage.getFieldString(item.meterId)).toString(), AbstractMessage.getFieldString(item.meterData));
 				
 				MeterDataVo vo = new MeterDataVo();

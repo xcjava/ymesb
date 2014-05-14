@@ -24,6 +24,7 @@ public class ReadDataTest {
 		ReadDataService readDataService = (ReadDataService) applicationContext.getBean("readDataService");
 		List<MeterDataVo> rs = readDataService.readDataByDate("30014180", 1, 3, "130101");
 		
+		System.out.println(rs);
 		System.out.println(rs.size());
 		
 		for(MeterDataVo item : rs){

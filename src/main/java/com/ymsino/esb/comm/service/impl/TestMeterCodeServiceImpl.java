@@ -90,6 +90,12 @@ public class TestMeterCodeServiceImpl implements TestMeterCodeService {
 			throw new RuntimeException("集中器返回错误代码:" + AbstractMessage.getFieldString(resp.errorCode));
 		}
 		
+		if(AbstractMessage.getFieldString(resp.waterMeterId).equals("FFFFFFFFFFFF") ||
+				AbstractMessage.getFieldString(resp.dataContent).equals("FFFFFFFFFFFF")){
+			logger.debug("集中器无数据返回");
+			return null;
+		}
+		
 		MeterDataVo vo = new MeterDataVo();
 		ObjectMapping.objMapping(resp.getMeterDataVo(), vo);
 		vo.setReadDateStr(DateUtil.format(new Date(), "yymmdd"));

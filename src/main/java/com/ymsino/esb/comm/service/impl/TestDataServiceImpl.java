@@ -85,6 +85,12 @@ public class TestDataServiceImpl implements TestDataService {
 		
 		TestDataResp resp = new TestDataResp(bytes);
 		
+		if(AbstractMessage.getFieldString(resp.waterMeterId).equals("FFFFFFFFFFFF") ||
+				AbstractMessage.getFieldString(resp.dataContent).equals("FFFFFFFFFFFF")){
+			logger.debug("集中器无数据返回");
+			return null;
+		}
+		
 		MeterDataVo vo = new MeterDataVo();
 		ObjectMapping.objMapping(resp.getMeterDataVo(), vo);
 		vo.setReadDateStr(AbstractMessage.getFieldString(resp.dataDate));
