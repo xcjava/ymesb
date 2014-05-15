@@ -3,7 +3,7 @@ package com.ymsino.esb.freesettle.domain;
 import java.util.Date;
 import java.util.Map;
 
-import com.amazonaws.services.identitymanagement.model.User;
+import com.ymsino.esb.archives.model.User;
 import com.gmail.xcjava.base.security.MD5;
 import com.gmail.xcjava.base.spring.CommonHibernateDao;
 import com.ymsino.esb.freesettle.model.UserWallet;
