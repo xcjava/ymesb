@@ -46,6 +46,7 @@ public class WaterDayUsageAmountManager {
 			for(int i = 31; i > 0; i--){
 				if(ObjectMapping.getFieldValue(data, "meterReading" + i) != null){
 					initMeterReading = (Float) ObjectMapping.getFieldValue(data, "meterReading" + i);
+					break;
 				}
 			}
 		}
@@ -61,9 +62,10 @@ public class WaterDayUsageAmountManager {
 		paramList.add(StringTool.fromatNum(lastYear, 2));
 		paramList.add(StringTool.fromatNum(lastMonth, 2));
 		
-		List<WaterDayUsageAmount> WaterDayUsageAmountList = this.commonHibernateDao.findBy(hql, paramList.toArray(), 0, 1);
-		if(WaterDayUsageAmountList == null || WaterDayUsageAmountList.size() < 0){
-			waterDayUsageAmount = (WaterDayUsageAmount) this.commonHibernateDao.get(WaterDayUsageAmount.class, data.getMeterHardwareId());
+		List<WaterDayUsageAmount> waterDayUsageAmountList = this.commonHibernateDao.findBy(hql, paramList.toArray(), 0, 1);
+		if(waterDayUsageAmountList == null || waterDayUsageAmountList.size() < 0){
+			//waterDayUsageAmount = (WaterDayUsageAmount) this.commonHibernateDao.get(WaterDayUsageAmount.class, data.getMeterHardwareId());
+			waterDayUsageAmount = waterDayUsageAmountList.get(0);
 		}else{
 			waterDayUsageAmount = new WaterDayUsageAmount();
 			waterDayUsageAmount.setChargingUnitId(data.getChargingUnitId());
@@ -95,7 +97,7 @@ public class WaterDayUsageAmountManager {
 		}
 		
 		if(waterDayUsageAmount.getId() == null){
-			this.commonHibernateDao.save(waterDayUsageAmount);
+			this.commonHibernateDao.saveOrUpdate(waterDayUsageAmount);
 		}
 		
 		return true;
