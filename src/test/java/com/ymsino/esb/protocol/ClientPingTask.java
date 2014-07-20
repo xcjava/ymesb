@@ -1,7 +1,5 @@
 package com.ymsino.esb.protocol;
 
-import java.util.Date;
-
 import org.apache.log4j.Logger;
 import org.apache.mina.core.session.IoSession;
 import org.quartz.Job;
