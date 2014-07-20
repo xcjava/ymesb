@@ -91,7 +91,7 @@ public class WaterMonthUsageAmountManager {
 			this.commonHibernateDao.save(model);
 		}
 		
-		this.commonHibernateDao.update(dayData);
+		//this.commonHibernateDao.update(dayData);
 		
 		Map<String, Object> header = new HashMap<String, Object>();
 		header.put("method", "calculateByWaterDayUsageAmount");
