@@ -52,6 +52,7 @@ public class WaterDayCostManager {
 			return;
 		}
 		
+		//计算总共有几阶水价，缓存阶梯量和价格
 		Map<Integer, Long> priceMap = new HashMap<Integer, Long>();
 		Map<Integer, Float> numMap = new HashMap<Integer, Float>();
 		int priceLevel = 1;
@@ -61,11 +62,12 @@ public class WaterDayCostManager {
 			if(num == null || cost == null){
 				break;
 			}
-			priceLevel = 1;
+			priceLevel = i;
 			priceMap.put(i, cost);
 			numMap.put(i, num);
 		}
 		
+		//检查是否已经结算过
 		hql = "from WaterDayCost model where model.meterHardwareId = ? and model.freezeYear = ? and model.freezeMonth = ?";
 		paramList = new ArrayList<Object>();
 		paramList.add(model.getMeterHardwareId());
@@ -102,7 +104,18 @@ public class WaterDayCostManager {
 			long totalPrice = 0l;
 			
 			for(int j = 1; j <= priceLevel; j++){
-				totalPrice = (long) Arith.add(totalPrice, Arith.mul(Arith.sub(totalAmount, numMap.get(j)), priceMap.get(j)));
+				
+				float lastLevelNum = 0f;
+				if(j > 1)
+					lastLevelNum = numMap.get(j - 1);
+				
+				//当当前总用量小于 该阶最大值的时候
+				if(totalAmount <= numMap.get(j)){
+					totalPrice = (long) Arith.add(totalPrice, Arith.mul(Arith.sub(totalAmount, lastLevelNum), priceMap.get(j)));
+				}else{
+					totalPrice = (long) Arith.add(totalPrice, Arith.mul(numMap.get(j), priceMap.get(j)));
+				}
+				
 				if(totalAmount <= numMap.get(j)){
 					break;
 				}
