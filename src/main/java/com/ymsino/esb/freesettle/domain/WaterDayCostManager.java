@@ -98,6 +98,7 @@ public class WaterDayCostManager {
 		float lastTotalAmount = 0f;
 		long lastTotalPrice = 0l;
 		for(int i = 1; i <= 31; i++){
+
 			Float itemAmount = (Float) ObjectMapping.getFieldValue(model, "usageAmount" + i);
 			if(itemAmount == null)
 				itemAmount = 0f;
@@ -110,12 +111,12 @@ public class WaterDayCostManager {
 				float lastLevelNum = 0f;
 				if(j > 1)
 					lastLevelNum = numMap.get(j - 1);
-				
+
 				//当当前总用量小于 该阶最大值的时候
-				if(totalAmount <= numMap.get(j)){
+				if(totalAmount <= numMap.get(j) || j == priceLevel){
 					totalPrice = (long) Arith.add(totalPrice, Arith.mul(Arith.sub(totalAmount, lastLevelNum), priceMap.get(j)));
 				}else{
-					totalPrice = (long) Arith.add(totalPrice, Arith.mul(numMap.get(j), priceMap.get(j)));
+					totalPrice = (long) Arith.add(totalPrice, Arith.mul(Arith.sub(numMap.get(j), lastLevelNum), priceMap.get(j)));
 				}
 				
 				if(totalAmount <= numMap.get(j)){
