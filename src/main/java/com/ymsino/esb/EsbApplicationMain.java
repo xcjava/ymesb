@@ -49,7 +49,7 @@ public class EsbApplicationMain {
 		
 		Date endDate = new Date();
 	    System.out.println("启动完成,耗时:" + (endDate.getTime() - startDate.getTime()) + "ms");
-	    System.out.println("系统版本:2014.1.19");
+	    System.out.println("系统版本:2014.7.20");
 	    
 	}  
 	

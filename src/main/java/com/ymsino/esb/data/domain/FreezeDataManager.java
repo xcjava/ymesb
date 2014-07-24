@@ -34,7 +34,7 @@ public class FreezeDataManager {
 		String hql = "from FreezeData model where model.meterHardwareId = ? and model.freezeDateStr = ?";
 		List<Object> paramList = new ArrayList<Object>();
 		
-		paramList.add(model.getConcHardwareId());
+		paramList.add(model.getMeterHardwareId());
 		paramList.add(model.getFreezeDateStr());
 		
 		FreezeData po;
@@ -44,17 +44,16 @@ public class FreezeDataManager {
 		}else{
 			po = new FreezeData();
 		}
-		
+
 		ObjectMapping.objMapping(model, po, false);
-		if(model.getId() == null){
-			this.commonHibernateDao.save(model);
-			
-			Map<String, Object> header = new HashMap<String, Object>();
-			header.put("method", "saveByFreezeData");
-			header.put("beanName", "checkingFreezeDataManager");
-			producerTemplate.sendBodyAndHeaders("jms:queue:com.ymsino.esb.domain", ExchangePattern.InOnly, po, header);
-		}
 		
+		this.commonHibernateDao.saveOrUpdate(po);
+		
+		Map<String, Object> header = new HashMap<String, Object>();
+		header.put("method", "saveByFreezeData");
+		header.put("beanName", "checkingFreezeDataManager");
+		producerTemplate.sendBodyAndHeaders("jms:queue:com.ymsino.esb.domain", ExchangePattern.InOnly, po, header);
+
 		return true;
 	}
 	

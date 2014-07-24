@@ -12,167 +12,167 @@ public class CheckingFreezeData  implements java.io.Serializable {
     // Fields    
 
      /**
-      * æ°´è¡¨å†»ç»“å®¡æ ¸æ•°æ®è‡ªå¢id
+      * Ë®±í¶³½áÉóºËÊı¾İ×ÔÔöid
      */
      private Long id;
      /**
-      * é›†ä¸­å™¨é€»è¾‘åœ°å€
+      * ¼¯ÖĞÆ÷Âß¼­µØÖ·
      */
      private String concHardwareId;
      /**
-      * æ— çº¿æ™ºèƒ½æ°´è¡¨ID
+      * ÎŞÏßÖÇÄÜË®±íID
      */
      private String meterHardwareId;
      /**
-      * 1æ—¥è¡¨è®¡è¯»æ•°
+      * 1ÈÕ±í¼Æ¶ÁÊı
      */
-     private Long meterReading1;
+     private Float meterReading1;
      /**
-      * 2æ—¥è¡¨è®¡è¯»æ•°
+      * 2ÈÕ±í¼Æ¶ÁÊı
      */
-     private Long meterReading2;
+     private Float meterReading2;
      /**
-      * 3æ—¥è¡¨è®¡è¯»æ•°
+      * 3ÈÕ±í¼Æ¶ÁÊı
      */
-     private Long meterReading3;
+     private Float meterReading3;
      /**
-      * 4æ—¥è¡¨è®¡è¯»æ•°
+      * 4ÈÕ±í¼Æ¶ÁÊı
      */
-     private Long meterReading4;
+     private Float meterReading4;
      /**
-      * 5æ—¥è¡¨è®¡è¯»æ•°
+      * 5ÈÕ±í¼Æ¶ÁÊı
      */
-     private Long meterReading5;
+     private Float meterReading5;
      /**
-      * 6æ—¥è¡¨è®¡è¯»æ•°
+      * 6ÈÕ±í¼Æ¶ÁÊı
      */
-     private Long meterReading6;
+     private Float meterReading6;
      /**
-      * 7æ—¥è¡¨è®¡è¯»æ•°
+      * 7ÈÕ±í¼Æ¶ÁÊı
      */
-     private Long meterReading7;
+     private Float meterReading7;
      /**
-      * 8æ—¥è¡¨è®¡è¯»æ•°
+      * 8ÈÕ±í¼Æ¶ÁÊı
      */
-     private Long meterReading8;
+     private Float meterReading8;
      /**
-      * 9æ—¥è¡¨è®¡è¯»æ•°
+      * 9ÈÕ±í¼Æ¶ÁÊı
      */
-     private Long meterReading9;
+     private Float meterReading9;
      /**
-      * 10æ—¥è¡¨è®¡è¯»æ•°
+      * 10ÈÕ±í¼Æ¶ÁÊı
      */
-     private Long meterReading10;
+     private Float meterReading10;
      /**
-      * 11æ—¥è¡¨è®¡è¯»æ•°
+      * 11ÈÕ±í¼Æ¶ÁÊı
      */
-     private Long meterReading11;
+     private Float meterReading11;
      /**
-      * 12æ—¥è¡¨è®¡è¯»æ•°
+      * 12ÈÕ±í¼Æ¶ÁÊı
      */
-     private Long meterReading12;
+     private Float meterReading12;
      /**
-      * 13æ—¥è¡¨è®¡è¯»æ•°
+      * 13ÈÕ±í¼Æ¶ÁÊı
      */
-     private Long meterReading13;
+     private Float meterReading13;
      /**
-      * 14æ—¥è¡¨è®¡è¯»æ•°
+      * 14ÈÕ±í¼Æ¶ÁÊı
      */
-     private Long meterReading14;
+     private Float meterReading14;
      /**
-      * 15æ—¥è¡¨è®¡è¯»æ•°
+      * 15ÈÕ±í¼Æ¶ÁÊı
      */
-     private Long meterReading15;
+     private Float meterReading15;
      /**
-      * 16æ—¥è¡¨è®¡è¯»æ•°
+      * 16ÈÕ±í¼Æ¶ÁÊı
      */
-     private Long meterReading16;
+     private Float meterReading16;
      /**
-      * 17æ—¥è¡¨è®¡è¯»æ•°
+      * 17ÈÕ±í¼Æ¶ÁÊı
      */
-     private Long meterReading17;
+     private Float meterReading17;
      /**
-      * 18æ—¥è¡¨è®¡è¯»æ•°
+      * 18ÈÕ±í¼Æ¶ÁÊı
      */
-     private Long meterReading18;
+     private Float meterReading18;
      /**
-      * 19æ—¥è¡¨è®¡è¯»æ•°
+      * 19ÈÕ±í¼Æ¶ÁÊı
      */
-     private Long meterReading19;
+     private Float meterReading19;
      /**
-      * 20æ—¥è¡¨è®¡è¯»æ•°
+      * 20ÈÕ±í¼Æ¶ÁÊı
      */
-     private Long meterReading20;
+     private Float meterReading20;
      /**
-      * 21æ—¥è¡¨è®¡è¯»æ•°
+      * 21ÈÕ±í¼Æ¶ÁÊı
      */
-     private Long meterReading21;
+     private Float meterReading21;
      /**
-      * 22æ—¥è¡¨è®¡è¯»æ•°
+      * 22ÈÕ±í¼Æ¶ÁÊı
      */
-     private Long meterReading22;
+     private Float meterReading22;
      /**
-      * 23æ—¥è¡¨è®¡è¯»æ•°
+      * 23ÈÕ±í¼Æ¶ÁÊı
      */
-     private Long meterReading23;
+     private Float meterReading23;
      /**
-      * 24æ—¥è¡¨è®¡è¯»æ•°
+      * 24ÈÕ±í¼Æ¶ÁÊı
      */
-     private Long meterReading24;
+     private Float meterReading24;
      /**
-      * 25æ—¥è¡¨è®¡è¯»æ•°
+      * 25ÈÕ±í¼Æ¶ÁÊı
      */
-     private Long meterReading25;
+     private Float meterReading25;
      /**
-      * 26æ—¥è¡¨è®¡è¯»æ•°
+      * 26ÈÕ±í¼Æ¶ÁÊı
      */
-     private Long meterReading26;
+     private Float meterReading26;
      /**
-      * 27æ—¥è¡¨è®¡è¯»æ•°
+      * 27ÈÕ±í¼Æ¶ÁÊı
      */
-     private Long meterReading27;
+     private Float meterReading27;
      /**
-      * 28æ—¥è¡¨è®¡è¯»æ•°
+      * 28ÈÕ±í¼Æ¶ÁÊı
      */
-     private Long meterReading28;
+     private Float meterReading28;
      /**
-      * 29æ—¥è¡¨è®¡è¯»æ•°
+      * 29ÈÕ±í¼Æ¶ÁÊı
      */
-     private Long meterReading29;
+     private Float meterReading29;
      /**
-      * 30æ—¥è¡¨è®¡è¯»æ•°
+      * 30ÈÕ±í¼Æ¶ÁÊı
      */
-     private Long meterReading30;
+     private Float meterReading30;
      /**
-      * 31æ—¥è¡¨è®¡è¯»æ•°
+      * 31ÈÕ±í¼Æ¶ÁÊı
      */
-     private Long meterReading31;
+     private Float meterReading31;
      /**
-      * å†»ç»“æ—¶é—´(å¹´)
+      * ¶³½áÊ±¼ä(Äê)
      */
      private String freezeYear;
      /**
-      * å†»ç»“æ—¶é—´(æœˆ)
+      * ¶³½áÊ±¼ä(ÔÂ)
      */
      private String freezeMonth;
      /**
-      * åˆ›å»ºæ—¶é—´æˆ³
+      * ´´½¨Ê±¼ä´Á
      */
      private Long createTimestamp;
      /**
-      * å®¢æˆ·ç¼–å·
+      * ¿Í»§±àºÅ
      */
      private String userId;
      /**
-      * ç”¨æ°´ç”¨æˆ·ç¼–å·
+      * ÓÃË®ÓÃ»§±àºÅ
      */
      private String waterCustomerId;
      /**
-      * æ”¶è´¹å•ä½ç¼–å·
+      * ÊÕ·Ñµ¥Î»±àºÅ
      */
      private String chargingUnitId;
      /**
-      * ä¸Šçº§æ”¶è´¹å•ä½ç¼–å·ï¼Œå¤šä¸ªç”¨"||"åŒ…ä½ï¼Œå¦‚|123||456|,ç”¨äºæœç´¢
+      * ÉÏ¼¶ÊÕ·Ñµ¥Î»±àºÅ£¬¶à¸öÓÃ"||"°ü×¡£¬Èç|123||456|,ÓÃÓÚËÑË÷
      */
      private String parentUnits;
 
@@ -185,7 +185,7 @@ public class CheckingFreezeData  implements java.io.Serializable {
 
     
     /** full constructor */
-    public CheckingFreezeData(String concHardwareId, String meterHardwareId, Long meterReading1, Long meterReading2, Long meterReading3, Long meterReading4, Long meterReading5, Long meterReading6, Long meterReading7, Long meterReading8, Long meterReading9, Long meterReading10, Long meterReading11, Long meterReading12, Long meterReading13, Long meterReading14, Long meterReading15, Long meterReading16, Long meterReading17, Long meterReading18, Long meterReading19, Long meterReading20, Long meterReading21, Long meterReading22, Long meterReading23, Long meterReading24, Long meterReading25, Long meterReading26, Long meterReading27, Long meterReading28, Long meterReading29, Long meterReading30, Long meterReading31, String freezeYear, String freezeMonth, Long createTimestamp, String userId, String waterCustomerId, String chargingUnitId, String parentUnits) {
+    public CheckingFreezeData(String concHardwareId, String meterHardwareId, Float meterReading1, Float meterReading2, Float meterReading3, Float meterReading4, Float meterReading5, Float meterReading6, Float meterReading7, Float meterReading8, Float meterReading9, Float meterReading10, Float meterReading11, Float meterReading12, Float meterReading13, Float meterReading14, Float meterReading15, Float meterReading16, Float meterReading17, Float meterReading18, Float meterReading19, Float meterReading20, Float meterReading21, Float meterReading22, Float meterReading23, Float meterReading24, Float meterReading25, Float meterReading26, Float meterReading27, Float meterReading28, Float meterReading29, Float meterReading30, Float meterReading31, String freezeYear, String freezeMonth, Long createTimestamp, String userId, String waterCustomerId, String chargingUnitId, String parentUnits) {
         this.concHardwareId = concHardwareId;
         this.meterHardwareId = meterHardwareId;
         this.meterReading1 = meterReading1;
@@ -231,7 +231,7 @@ public class CheckingFreezeData  implements java.io.Serializable {
    
     // Property accessors
     /**       
-     *      * æ°´è¡¨å†»ç»“å®¡æ ¸æ•°æ®è‡ªå¢id
+     *      * Ë®±í¶³½áÉóºËÊı¾İ×ÔÔöid
      */
 
     public Long getId() {
@@ -242,7 +242,7 @@ public class CheckingFreezeData  implements java.io.Serializable {
         this.id = id;
     }
     /**       
-     *      * é›†ä¸­å™¨é€»è¾‘åœ°å€
+     *      * ¼¯ÖĞÆ÷Âß¼­µØÖ·
      */
 
     public String getConcHardwareId() {
@@ -253,7 +253,7 @@ public class CheckingFreezeData  implements java.io.Serializable {
         this.concHardwareId = concHardwareId;
     }
     /**       
-     *      * æ— çº¿æ™ºèƒ½æ°´è¡¨ID
+     *      * ÎŞÏßÖÇÄÜË®±íID
      */
 
     public String getMeterHardwareId() {
@@ -264,348 +264,348 @@ public class CheckingFreezeData  implements java.io.Serializable {
         this.meterHardwareId = meterHardwareId;
     }
     /**       
-     *      * 1æ—¥è¡¨è®¡è¯»æ•°
+     *      * 1ÈÕ±í¼Æ¶ÁÊı
      */
 
-    public Long getMeterReading1() {
+    public Float getMeterReading1() {
         return this.meterReading1;
     }
     
-    public void setMeterReading1(Long meterReading1) {
+    public void setMeterReading1(Float meterReading1) {
         this.meterReading1 = meterReading1;
     }
     /**       
-     *      * 2æ—¥è¡¨è®¡è¯»æ•°
+     *      * 2ÈÕ±í¼Æ¶ÁÊı
      */
 
-    public Long getMeterReading2() {
+    public Float getMeterReading2() {
         return this.meterReading2;
     }
     
-    public void setMeterReading2(Long meterReading2) {
+    public void setMeterReading2(Float meterReading2) {
         this.meterReading2 = meterReading2;
     }
     /**       
-     *      * 3æ—¥è¡¨è®¡è¯»æ•°
+     *      * 3ÈÕ±í¼Æ¶ÁÊı
      */
 
-    public Long getMeterReading3() {
+    public Float getMeterReading3() {
         return this.meterReading3;
     }
     
-    public void setMeterReading3(Long meterReading3) {
+    public void setMeterReading3(Float meterReading3) {
         this.meterReading3 = meterReading3;
     }
     /**       
-     *      * 4æ—¥è¡¨è®¡è¯»æ•°
+     *      * 4ÈÕ±í¼Æ¶ÁÊı
      */
 
-    public Long getMeterReading4() {
+    public Float getMeterReading4() {
         return this.meterReading4;
     }
     
-    public void setMeterReading4(Long meterReading4) {
+    public void setMeterReading4(Float meterReading4) {
         this.meterReading4 = meterReading4;
     }
     /**       
-     *      * 5æ—¥è¡¨è®¡è¯»æ•°
+     *      * 5ÈÕ±í¼Æ¶ÁÊı
      */
 
-    public Long getMeterReading5() {
+    public Float getMeterReading5() {
         return this.meterReading5;
     }
     
-    public void setMeterReading5(Long meterReading5) {
+    public void setMeterReading5(Float meterReading5) {
         this.meterReading5 = meterReading5;
     }
     /**       
-     *      * 6æ—¥è¡¨è®¡è¯»æ•°
+     *      * 6ÈÕ±í¼Æ¶ÁÊı
      */
 
-    public Long getMeterReading6() {
+    public Float getMeterReading6() {
         return this.meterReading6;
     }
     
-    public void setMeterReading6(Long meterReading6) {
+    public void setMeterReading6(Float meterReading6) {
         this.meterReading6 = meterReading6;
     }
     /**       
-     *      * 7æ—¥è¡¨è®¡è¯»æ•°
+     *      * 7ÈÕ±í¼Æ¶ÁÊı
      */
 
-    public Long getMeterReading7() {
+    public Float getMeterReading7() {
         return this.meterReading7;
     }
     
-    public void setMeterReading7(Long meterReading7) {
+    public void setMeterReading7(Float meterReading7) {
         this.meterReading7 = meterReading7;
     }
     /**       
-     *      * 8æ—¥è¡¨è®¡è¯»æ•°
+     *      * 8ÈÕ±í¼Æ¶ÁÊı
      */
 
-    public Long getMeterReading8() {
+    public Float getMeterReading8() {
         return this.meterReading8;
     }
     
-    public void setMeterReading8(Long meterReading8) {
+    public void setMeterReading8(Float meterReading8) {
         this.meterReading8 = meterReading8;
     }
     /**       
-     *      * 9æ—¥è¡¨è®¡è¯»æ•°
+     *      * 9ÈÕ±í¼Æ¶ÁÊı
      */
 
-    public Long getMeterReading9() {
+    public Float getMeterReading9() {
         return this.meterReading9;
     }
     
-    public void setMeterReading9(Long meterReading9) {
+    public void setMeterReading9(Float meterReading9) {
         this.meterReading9 = meterReading9;
     }
     /**       
-     *      * 10æ—¥è¡¨è®¡è¯»æ•°
+     *      * 10ÈÕ±í¼Æ¶ÁÊı
      */
 
-    public Long getMeterReading10() {
+    public Float getMeterReading10() {
         return this.meterReading10;
     }
     
-    public void setMeterReading10(Long meterReading10) {
+    public void setMeterReading10(Float meterReading10) {
         this.meterReading10 = meterReading10;
     }
     /**       
-     *      * 11æ—¥è¡¨è®¡è¯»æ•°
+     *      * 11ÈÕ±í¼Æ¶ÁÊı
      */
 
-    public Long getMeterReading11() {
+    public Float getMeterReading11() {
         return this.meterReading11;
     }
     
-    public void setMeterReading11(Long meterReading11) {
+    public void setMeterReading11(Float meterReading11) {
         this.meterReading11 = meterReading11;
     }
     /**       
-     *      * 12æ—¥è¡¨è®¡è¯»æ•°
+     *      * 12ÈÕ±í¼Æ¶ÁÊı
      */
 
-    public Long getMeterReading12() {
+    public Float getMeterReading12() {
         return this.meterReading12;
     }
     
-    public void setMeterReading12(Long meterReading12) {
+    public void setMeterReading12(Float meterReading12) {
         this.meterReading12 = meterReading12;
     }
     /**       
-     *      * 13æ—¥è¡¨è®¡è¯»æ•°
+     *      * 13ÈÕ±í¼Æ¶ÁÊı
      */
 
-    public Long getMeterReading13() {
+    public Float getMeterReading13() {
         return this.meterReading13;
     }
     
-    public void setMeterReading13(Long meterReading13) {
+    public void setMeterReading13(Float meterReading13) {
         this.meterReading13 = meterReading13;
     }
     /**       
-     *      * 14æ—¥è¡¨è®¡è¯»æ•°
+     *      * 14ÈÕ±í¼Æ¶ÁÊı
      */
 
-    public Long getMeterReading14() {
+    public Float getMeterReading14() {
         return this.meterReading14;
     }
     
-    public void setMeterReading14(Long meterReading14) {
+    public void setMeterReading14(Float meterReading14) {
         this.meterReading14 = meterReading14;
     }
     /**       
-     *      * 15æ—¥è¡¨è®¡è¯»æ•°
+     *      * 15ÈÕ±í¼Æ¶ÁÊı
      */
 
-    public Long getMeterReading15() {
+    public Float getMeterReading15() {
         return this.meterReading15;
     }
     
-    public void setMeterReading15(Long meterReading15) {
+    public void setMeterReading15(Float meterReading15) {
         this.meterReading15 = meterReading15;
     }
     /**       
-     *      * 16æ—¥è¡¨è®¡è¯»æ•°
+     *      * 16ÈÕ±í¼Æ¶ÁÊı
      */
 
-    public Long getMeterReading16() {
+    public Float getMeterReading16() {
         return this.meterReading16;
     }
     
-    public void setMeterReading16(Long meterReading16) {
+    public void setMeterReading16(Float meterReading16) {
         this.meterReading16 = meterReading16;
     }
     /**       
-     *      * 17æ—¥è¡¨è®¡è¯»æ•°
+     *      * 17ÈÕ±í¼Æ¶ÁÊı
      */
 
-    public Long getMeterReading17() {
+    public Float getMeterReading17() {
         return this.meterReading17;
     }
     
-    public void setMeterReading17(Long meterReading17) {
+    public void setMeterReading17(Float meterReading17) {
         this.meterReading17 = meterReading17;
     }
     /**       
-     *      * 18æ—¥è¡¨è®¡è¯»æ•°
+     *      * 18ÈÕ±í¼Æ¶ÁÊı
      */
 
-    public Long getMeterReading18() {
+    public Float getMeterReading18() {
         return this.meterReading18;
     }
     
-    public void setMeterReading18(Long meterReading18) {
+    public void setMeterReading18(Float meterReading18) {
         this.meterReading18 = meterReading18;
     }
     /**       
-     *      * 19æ—¥è¡¨è®¡è¯»æ•°
+     *      * 19ÈÕ±í¼Æ¶ÁÊı
      */
 
-    public Long getMeterReading19() {
+    public Float getMeterReading19() {
         return this.meterReading19;
     }
     
-    public void setMeterReading19(Long meterReading19) {
+    public void setMeterReading19(Float meterReading19) {
         this.meterReading19 = meterReading19;
     }
     /**       
-     *      * 20æ—¥è¡¨è®¡è¯»æ•°
+     *      * 20ÈÕ±í¼Æ¶ÁÊı
      */
 
-    public Long getMeterReading20() {
+    public Float getMeterReading20() {
         return this.meterReading20;
     }
     
-    public void setMeterReading20(Long meterReading20) {
+    public void setMeterReading20(Float meterReading20) {
         this.meterReading20 = meterReading20;
     }
     /**       
-     *      * 21æ—¥è¡¨è®¡è¯»æ•°
+     *      * 21ÈÕ±í¼Æ¶ÁÊı
      */
 
-    public Long getMeterReading21() {
+    public Float getMeterReading21() {
         return this.meterReading21;
     }
     
-    public void setMeterReading21(Long meterReading21) {
+    public void setMeterReading21(Float meterReading21) {
         this.meterReading21 = meterReading21;
     }
     /**       
-     *      * 22æ—¥è¡¨è®¡è¯»æ•°
+     *      * 22ÈÕ±í¼Æ¶ÁÊı
      */
 
-    public Long getMeterReading22() {
+    public Float getMeterReading22() {
         return this.meterReading22;
     }
     
-    public void setMeterReading22(Long meterReading22) {
+    public void setMeterReading22(Float meterReading22) {
         this.meterReading22 = meterReading22;
     }
     /**       
-     *      * 23æ—¥è¡¨è®¡è¯»æ•°
+     *      * 23ÈÕ±í¼Æ¶ÁÊı
      */
 
-    public Long getMeterReading23() {
+    public Float getMeterReading23() {
         return this.meterReading23;
     }
     
-    public void setMeterReading23(Long meterReading23) {
+    public void setMeterReading23(Float meterReading23) {
         this.meterReading23 = meterReading23;
     }
     /**       
-     *      * 24æ—¥è¡¨è®¡è¯»æ•°
+     *      * 24ÈÕ±í¼Æ¶ÁÊı
      */
 
-    public Long getMeterReading24() {
+    public Float getMeterReading24() {
         return this.meterReading24;
     }
     
-    public void setMeterReading24(Long meterReading24) {
+    public void setMeterReading24(Float meterReading24) {
         this.meterReading24 = meterReading24;
     }
     /**       
-     *      * 25æ—¥è¡¨è®¡è¯»æ•°
+     *      * 25ÈÕ±í¼Æ¶ÁÊı
      */
 
-    public Long getMeterReading25() {
+    public Float getMeterReading25() {
         return this.meterReading25;
     }
     
-    public void setMeterReading25(Long meterReading25) {
+    public void setMeterReading25(Float meterReading25) {
         this.meterReading25 = meterReading25;
     }
     /**       
-     *      * 26æ—¥è¡¨è®¡è¯»æ•°
+     *      * 26ÈÕ±í¼Æ¶ÁÊı
      */
 
-    public Long getMeterReading26() {
+    public Float getMeterReading26() {
         return this.meterReading26;
     }
     
-    public void setMeterReading26(Long meterReading26) {
+    public void setMeterReading26(Float meterReading26) {
         this.meterReading26 = meterReading26;
     }
     /**       
-     *      * 27æ—¥è¡¨è®¡è¯»æ•°
+     *      * 27ÈÕ±í¼Æ¶ÁÊı
      */
 
-    public Long getMeterReading27() {
+    public Float getMeterReading27() {
         return this.meterReading27;
     }
     
-    public void setMeterReading27(Long meterReading27) {
+    public void setMeterReading27(Float meterReading27) {
         this.meterReading27 = meterReading27;
     }
     /**       
-     *      * 28æ—¥è¡¨è®¡è¯»æ•°
+     *      * 28ÈÕ±í¼Æ¶ÁÊı
      */
 
-    public Long getMeterReading28() {
+    public Float getMeterReading28() {
         return this.meterReading28;
     }
     
-    public void setMeterReading28(Long meterReading28) {
+    public void setMeterReading28(Float meterReading28) {
         this.meterReading28 = meterReading28;
     }
     /**       
-     *      * 29æ—¥è¡¨è®¡è¯»æ•°
+     *      * 29ÈÕ±í¼Æ¶ÁÊı
      */
 
-    public Long getMeterReading29() {
+    public Float getMeterReading29() {
         return this.meterReading29;
     }
     
-    public void setMeterReading29(Long meterReading29) {
+    public void setMeterReading29(Float meterReading29) {
         this.meterReading29 = meterReading29;
     }
     /**       
-     *      * 30æ—¥è¡¨è®¡è¯»æ•°
+     *      * 30ÈÕ±í¼Æ¶ÁÊı
      */
 
-    public Long getMeterReading30() {
+    public Float getMeterReading30() {
         return this.meterReading30;
     }
     
-    public void setMeterReading30(Long meterReading30) {
+    public void setMeterReading30(Float meterReading30) {
         this.meterReading30 = meterReading30;
     }
     /**       
-     *      * 31æ—¥è¡¨è®¡è¯»æ•°
+     *      * 31ÈÕ±í¼Æ¶ÁÊı
      */
 
-    public Long getMeterReading31() {
+    public Float getMeterReading31() {
         return this.meterReading31;
     }
     
-    public void setMeterReading31(Long meterReading31) {
+    public void setMeterReading31(Float meterReading31) {
         this.meterReading31 = meterReading31;
     }
     /**       
-     *      * å†»ç»“æ—¶é—´(å¹´)
+     *      * ¶³½áÊ±¼ä(Äê)
      */
 
     public String getFreezeYear() {
@@ -616,7 +616,7 @@ public class CheckingFreezeData  implements java.io.Serializable {
         this.freezeYear = freezeYear;
     }
     /**       
-     *      * å†»ç»“æ—¶é—´(æœˆ)
+     *      * ¶³½áÊ±¼ä(ÔÂ)
      */
 
     public String getFreezeMonth() {
@@ -627,7 +627,7 @@ public class CheckingFreezeData  implements java.io.Serializable {
         this.freezeMonth = freezeMonth;
     }
     /**       
-     *      * åˆ›å»ºæ—¶é—´æˆ³
+     *      * ´´½¨Ê±¼ä´Á
      */
 
     public Long getCreateTimestamp() {
@@ -638,7 +638,7 @@ public class CheckingFreezeData  implements java.io.Serializable {
         this.createTimestamp = createTimestamp;
     }
     /**       
-     *      * å®¢æˆ·ç¼–å·
+     *      * ¿Í»§±àºÅ
      */
 
     public String getUserId() {
@@ -649,7 +649,7 @@ public class CheckingFreezeData  implements java.io.Serializable {
         this.userId = userId;
     }
     /**       
-     *      * ç”¨æ°´ç”¨æˆ·ç¼–å·
+     *      * ÓÃË®ÓÃ»§±àºÅ
      */
 
     public String getWaterCustomerId() {
@@ -660,7 +660,7 @@ public class CheckingFreezeData  implements java.io.Serializable {
         this.waterCustomerId = waterCustomerId;
     }
     /**       
-     *      * æ”¶è´¹å•ä½ç¼–å·
+     *      * ÊÕ·Ñµ¥Î»±àºÅ
      */
 
     public String getChargingUnitId() {
@@ -671,7 +671,7 @@ public class CheckingFreezeData  implements java.io.Serializable {
         this.chargingUnitId = chargingUnitId;
     }
     /**       
-     *      * ä¸Šçº§æ”¶è´¹å•ä½ç¼–å·ï¼Œå¤šä¸ªç”¨"||"åŒ…ä½ï¼Œå¦‚|123||456|,ç”¨äºæœç´¢
+     *      * ÉÏ¼¶ÊÕ·Ñµ¥Î»±àºÅ£¬¶à¸öÓÃ"||"°ü×¡£¬Èç|123||456|,ÓÃÓÚËÑË÷
      */
 
     public String getParentUnits() {

@@ -57,7 +57,7 @@ public class WaterMonthUsageAmountManager {
 		paramList.add(dayData.getConcHardwareId());
 		paramList.add(dayData.getFreezeYear());
 		List<WaterMonthUsageAmount> list = this.commonHibernateDao.findBy(hql, paramList.toArray(), 0, 1);
-		if(list == null || list.size() < 0){
+		if(list == null || list.size() < 1){
 			model = new WaterMonthUsageAmount();
 			model.setChargingUnitId(dayData.getChargingUnitId());
 			model.setConcHardwareId(dayData.getConcHardwareId());

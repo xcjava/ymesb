@@ -1,5 +1,8 @@
 package com.ymsino.esb.protocol.strutc;
 
+import java.util.Date;
+
+import com.gmail.xcjava.base.date.DateUtil;
 import com.gmail.xcjava.base.math.DataConverter;
 import com.gmail.xcjava.base.str.ByteTool;
 import com.ymsino.esb.protocol.AbstractMessage;
@@ -178,6 +181,8 @@ public class ReadData extends AbstractMessage {
 	
 	public static void main(String[] args){
 		
+		Date d = DateUtil.parseDate("15210714", "HHddMMyy");
+		System.out.println(DateUtil.formatDate(d, "20yy-MM-dd"));
 		
 	}
 	//68 80 41 01 00 41 00 68 12| 0C 00| 40 01| 01| 78 56 34 12 00 00| 12 11 12 7C 16

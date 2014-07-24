@@ -99,6 +99,8 @@ public class WaterDayCostManager {
 		long lastTotalPrice = 0l;
 		for(int i = 1; i <= 31; i++){
 			Float itemAmount = (Float) ObjectMapping.getFieldValue(model, "usageAmount" + i);
+			if(itemAmount == null)
+				itemAmount = 0f;
 			
 			float totalAmount = Arith.add(lastTotalAmount, itemAmount);
 			long totalPrice = 0l;

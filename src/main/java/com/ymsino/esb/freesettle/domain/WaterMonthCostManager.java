@@ -29,7 +29,7 @@ public class WaterMonthCostManager {
 		paramList.add(dayCost.getConcHardwareId());
 		paramList.add(dayCost.getFreezeYear());
 		List<WaterMonthCost> list = this.commonHibernateDao.findBy(hql, paramList.toArray(), 0, 1);
-		if(list == null || list.size() < 0){
+		if(list == null || list.size() < 1){
 			model = new WaterMonthCost();
 			model.setChargingUnitId(dayCost.getChargingUnitId());
 			model.setConcHardwareId(dayCost.getConcHardwareId());

@@ -122,6 +122,7 @@ public class TestMeterCodeServiceImpl implements TestMeterCodeService {
 		tmcd.setReplyStatus(resp.getMeterDataVo().getReplyStatus());
 		tmcd.setUserId(wm.getUserId());
 		tmcd.setValveStatus(resp.getMeterDataVo().getValveStatus());
+		tmcd.setWaterCustomerId(wm.getWaterCustomerId());
 		this.testMeterCodeDataManager.save(tmcd);
 		
 		

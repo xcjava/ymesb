@@ -47,7 +47,7 @@ public class CheckingFreezeDataManager {
 		paramList.add(freezeData.getFreezeDateStr().substring(2, 4));
 		
 		List<CheckingFreezeData> list = this.commonHibernateDao.findBy(hql, paramList.toArray(), 0, 1);
-		if(list == null || list.size() < 0){
+		if(list == null || list.size() < 1){
 			data = new CheckingFreezeData();
 			data.setChargingUnitId(freezeData.getChargingUnitId());
 			data.setConcHardwareId(freezeData.getConcHardwareId());

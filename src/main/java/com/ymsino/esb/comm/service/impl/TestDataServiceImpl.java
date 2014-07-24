@@ -117,6 +117,7 @@ public class TestDataServiceImpl implements TestDataService {
 		tdd.setReplyStatus(resp.getMeterDataVo().getReplyStatus());
 		tdd.setUserId(wm.getUserId());
 		tdd.setValveStatus(resp.getMeterDataVo().getValveStatus());
+		tdd.setWaterCustomerId(wm.getWaterCustomerId());
 		testDynamicDataManager.save(tdd);
 		
 		return vo;

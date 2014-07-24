@@ -39,13 +39,13 @@ public class WaterDayUsageAmountManager {
 		paramList.add(StringTool.fromatNum(lastMonth, 2));
 		
 		List<CheckingFreezeData> list = this.commonHibernateDao.findBy(hql, paramList.toArray(), 0, 1);
-		if(list == null || list.size() < 0){
+		if(list == null || list.size() < 1){
 			WaterMeter waterMeter = (WaterMeter) this.commonHibernateDao.get(WaterMeter.class, data.getMeterHardwareId());
 			initMeterReading = waterMeter.getInitialYards();
 		}else{
 			for(int i = 31; i > 0; i--){
-				if(ObjectMapping.getFieldValue(data, "meterReading" + i) != null){
-					initMeterReading = (Float) ObjectMapping.getFieldValue(data, "meterReading" + i);
+				if(ObjectMapping.getFieldValue(list.get(0), "meterReading" + i) != null){
+					initMeterReading = (Float) ObjectMapping.getFieldValue(list.get(0), "meterReading" + i);
 					break;
 				}
 			}
@@ -59,11 +59,11 @@ public class WaterDayUsageAmountManager {
 		paramList = new ArrayList<Object>();
 		paramList.add(data.getMeterHardwareId());
 		paramList.add(data.getConcHardwareId());
-		paramList.add(StringTool.fromatNum(lastYear, 2));
-		paramList.add(StringTool.fromatNum(lastMonth, 2));
+		paramList.add(data.getFreezeYear());
+		paramList.add(data.getFreezeMonth());
 		
 		List<WaterDayUsageAmount> waterDayUsageAmountList = this.commonHibernateDao.findBy(hql, paramList.toArray(), 0, 1);
-		if(waterDayUsageAmountList == null || waterDayUsageAmountList.size() < 0){
+		if(waterDayUsageAmountList != null && waterDayUsageAmountList.size() > 0){
 			//waterDayUsageAmount = (WaterDayUsageAmount) this.commonHibernateDao.get(WaterDayUsageAmount.class, data.getMeterHardwareId());
 			waterDayUsageAmount = waterDayUsageAmountList.get(0);
 		}else{
@@ -96,10 +96,7 @@ public class WaterDayUsageAmountManager {
 			}
 		}
 		
-		if(waterDayUsageAmount.getId() == null){
-			this.commonHibernateDao.saveOrUpdate(waterDayUsageAmount);
-		}
-		
+		this.commonHibernateDao.saveOrUpdate(waterDayUsageAmount);
 		return true;
 		
 	}

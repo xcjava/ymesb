@@ -13,6 +13,7 @@ import org.apache.camel.ProducerTemplate;
 import org.apache.log4j.Logger;
 
 import com.gmail.xcjava.base.dataMapping.ObjectMapping;
+import com.gmail.xcjava.base.date.DateUtil;
 import com.gmail.xcjava.base.math.Arith;
 import com.gmail.xcjava.base.spring.CommonHibernateDao;
 import com.ymsino.esb.archives.model.WaterMeter;
@@ -92,7 +93,7 @@ public class ReadDataServiceImpl implements ReadDataService {
 				
 				MeterDataVo vo = new MeterDataVo();
 				ObjectMapping.objMapping(item.getMeterDataVo(), vo);
-				vo.setReadDateStr(AbstractMessage.getFieldString(item.readDate));
+				vo.setReadDateStr(DateUtil.formatDate(DateUtil.parseDate(AbstractMessage.getFieldString(item.readDate), "HHddMMyy"), "20yy-MM-dd"));
 				vo.setMeterId(AbstractMessage.getFieldString(item.meterId));
 				
 				WaterMeter wm = (WaterMeter) this.commonHibernateDao.get(WaterMeter.class, AbstractMessage.getFieldString(item.meterId));
@@ -109,7 +110,8 @@ public class ReadDataServiceImpl implements ReadDataService {
 				freezeData.setCreateTimestamp(new Date().getTime());
 				freezeData.setDataType(item.getMeterDataVo().getDataType());
 				freezeData.setErrorStatus(item.getMeterDataVo().getErrorStatus());
-				freezeData.setFreezeDateStr(AbstractMessage.getFieldString(item.readDate));
+				//freezeData.setFreezeDateStr(AbstractMessage.getFieldString(item.readDate));
+				freezeData.setFreezeDateStr(dateStr);
 				freezeData.setMagneticAttack(item.getMeterDataVo().getMagneticAttack());
 				freezeData.setMeterHardwareId(AbstractMessage.getFieldString(item.meterId));
 				if("1".equals(wm.getDataType())){
@@ -122,6 +124,7 @@ public class ReadDataServiceImpl implements ReadDataService {
 				freezeData.setParentUnits(wm.getParentUnits());
 				freezeData.setReplyStatus(item.getMeterDataVo().getReplyStatus());
 				freezeData.setUserId(wm.getUserId());
+				freezeData.setWaterCustomerId(wm.getWaterCustomerId());
 				freezeData.setValveStatus(item.getMeterDataVo().getValveStatus());
 				this.freezeDataManager.insertOrUpdate(freezeData);
 				
