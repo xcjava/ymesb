@@ -28,217 +28,217 @@
 			</column>
 		</property>
 		
-		<property name="meterReading1" type="java.lang.Long">
+		<property name="meterReading1" type="java.lang.Float">
 			<meta attribute="field-description">1日表计读数</meta>
 			<column name="METER_READING_1">
 				<comment>1日表计读数</comment>
 			</column>
 		</property>
 		
-		<property name="meterReading2" type="java.lang.Long">
+		<property name="meterReading2" type="java.lang.Float">
 			<meta attribute="field-description">2日表计读数</meta>
 			<column name="METER_READING_2">
 				<comment>2日表计读数</comment>
 			</column>
 		</property>
 		
-		<property name="meterReading3" type="java.lang.Long">
+		<property name="meterReading3" type="java.lang.Float">
 			<meta attribute="field-description">3日表计读数</meta>
 			<column name="METER_READING_3">
 				<comment>3日表计读数</comment>
 			</column>
 		</property>
 		
-		<property name="meterReading4" type="java.lang.Long">
+		<property name="meterReading4" type="java.lang.Float">
 			<meta attribute="field-description">4日表计读数</meta>
 			<column name="METER_READING_4">
 				<comment>4日表计读数</comment>
 			</column>
 		</property>
 		
-		<property name="meterReading5" type="java.lang.Long">
+		<property name="meterReading5" type="java.lang.Float">
 			<meta attribute="field-description">5日表计读数</meta>
 			<column name="METER_READING_5">
 				<comment>5日表计读数</comment>
 			</column>
 		</property>
 		
-		<property name="meterReading6" type="java.lang.Long">
+		<property name="meterReading6" type="java.lang.Float">
 			<meta attribute="field-description">6日表计读数</meta>
 			<column name="METER_READING_6">
 				<comment>6日表计读数</comment>
 			</column>
 		</property>
 		
-		<property name="meterReading7" type="java.lang.Long">
+		<property name="meterReading7" type="java.lang.Float">
 			<meta attribute="field-description">7日表计读数</meta>
 			<column name="METER_READING_7">
 				<comment>7日表计读数</comment>
 			</column>
 		</property>
 		
-		<property name="meterReading8" type="java.lang.Long">
+		<property name="meterReading8" type="java.lang.Float">
 			<meta attribute="field-description">8日表计读数</meta>
 			<column name="METER_READING_8">
 				<comment>8日表计读数</comment>
 			</column>
 		</property>
 		
-		<property name="meterReading9" type="java.lang.Long">
+		<property name="meterReading9" type="java.lang.Float">
 			<meta attribute="field-description">9日表计读数</meta>
 			<column name="METER_READING_9">
 				<comment>9日表计读数</comment>
 			</column>
 		</property>
 		
-		<property name="meterReading10" type="java.lang.Long">
+		<property name="meterReading10" type="java.lang.Float">
 			<meta attribute="field-description">10日表计读数</meta>
 			<column name="METER_READING_10">
 				<comment>10日表计读数</comment>
 			</column>
 		</property>
 		
-		<property name="meterReading11" type="java.lang.Long">
+		<property name="meterReading11" type="java.lang.Float">
 			<meta attribute="field-description">11日表计读数</meta>
 			<column name="METER_READING_11">
 				<comment>11日表计读数</comment>
 			</column>
 		</property>
 		
-		<property name="meterReading12" type="java.lang.Long">
+		<property name="meterReading12" type="java.lang.Float">
 			<meta attribute="field-description">12日表计读数</meta>
 			<column name="METER_READING_12">
 				<comment>12日表计读数</comment>
 			</column>
 		</property>
 		
-		<property name="meterReading13" type="java.lang.Long">
+		<property name="meterReading13" type="java.lang.Float">
 			<meta attribute="field-description">13日表计读数</meta>
 			<column name="METER_READING_13">
 				<comment>13日表计读数</comment>
 			</column>
 		</property>
 		
-		<property name="meterReading14" type="java.lang.Long">
+		<property name="meterReading14" type="java.lang.Float">
 			<meta attribute="field-description">14日表计读数</meta>
 			<column name="METER_READING_14">
 				<comment>14日表计读数</comment>
 			</column>
 		</property>
 		
-		<property name="meterReading15" type="java.lang.Long">
+		<property name="meterReading15" type="java.lang.Float">
 			<meta attribute="field-description">15日表计读数</meta>
 			<column name="METER_READING_15">
 				<comment>15日表计读数</comment>
 			</column>
 		</property>
 		
-		<property name="meterReading16" type="java.lang.Long">
+		<property name="meterReading16" type="java.lang.Float">
 			<meta attribute="field-description">16日表计读数</meta>
 			<column name="METER_READING_16">
 				<comment>16日表计读数</comment>
 			</column>
 		</property>
 		
-		<property name="meterReading17" type="java.lang.Long">
+		<property name="meterReading17" type="java.lang.Float">
 			<meta attribute="field-description">17日表计读数</meta>
 			<column name="METER_READING_17">
 				<comment>17日表计读数</comment>
 			</column>
 		</property>
 		
-		<property name="meterReading18" type="java.lang.Long">
+		<property name="meterReading18" type="java.lang.Float">
 			<meta attribute="field-description">18日表计读数</meta>
 			<column name="METER_READING_18">
 				<comment>18日表计读数</comment>
 			</column>
 		</property>
 		
-		<property name="meterReading19" type="java.lang.Long">
+		<property name="meterReading19" type="java.lang.Float">
 			<meta attribute="field-description">19日表计读数</meta>
 			<column name="METER_READING_19">
 				<comment>19日表计读数</comment>
 			</column>
 		</property>
 		
-		<property name="meterReading20" type="java.lang.Long">
+		<property name="meterReading20" type="java.lang.Float">
 			<meta attribute="field-description">20日表计读数</meta>
 			<column name="METER_READING_20">
 				<comment>20日表计读数</comment>
 			</column>
 		</property>
 		
-		<property name="meterReading21" type="java.lang.Long">
+		<property name="meterReading21" type="java.lang.Float">
 			<meta attribute="field-description">21日表计读数</meta>
 			<column name="METER_READING_21">
 				<comment>21日表计读数</comment>
 			</column>
 		</property>
 		
-		<property name="meterReading22" type="java.lang.Long">
+		<property name="meterReading22" type="java.lang.Float">
 			<meta attribute="field-description">22日表计读数</meta>
 			<column name="METER_READING_22">
 				<comment>22日表计读数</comment>
 			</column>
 		</property>
 		
-		<property name="meterReading23" type="java.lang.Long">
+		<property name="meterReading23" type="java.lang.Float">
 			<meta attribute="field-description">23日表计读数</meta>
 			<column name="METER_READING_23">
 				<comment>23日表计读数</comment>
 			</column>
 		</property>
 		
-		<property name="meterReading24" type="java.lang.Long">
+		<property name="meterReading24" type="java.lang.Float">
 			<meta attribute="field-description">24日表计读数</meta>
 			<column name="METER_READING_24">
 				<comment>24日表计读数</comment>
 			</column>
 		</property>
 		
-		<property name="meterReading25" type="java.lang.Long">
+		<property name="meterReading25" type="java.lang.Float">
 			<meta attribute="field-description">25日表计读数</meta>
 			<column name="METER_READING_25">
 				<comment>25日表计读数</comment>
 			</column>
 		</property>
 		
-		<property name="meterReading26" type="java.lang.Long">
+		<property name="meterReading26" type="java.lang.Float">
 			<meta attribute="field-description">26日表计读数</meta>
 			<column name="METER_READING_26">
 				<comment>26日表计读数</comment>
 			</column>
 		</property>
 		
-		<property name="meterReading27" type="java.lang.Long">
+		<property name="meterReading27" type="java.lang.Float">
 			<meta attribute="field-description">27日表计读数</meta>
 			<column name="METER_READING_27">
 				<comment>27日表计读数</comment>
 			</column>
 		</property>
 		
-		<property name="meterReading28" type="java.lang.Long">
+		<property name="meterReading28" type="java.lang.Float">
 			<meta attribute="field-description">28日表计读数</meta>
 			<column name="METER_READING_28">
 				<comment>28日表计读数</comment>
 			</column>
 		</property>
 		
-		<property name="meterReading29" type="java.lang.Long">
+		<property name="meterReading29" type="java.lang.Float">
 			<meta attribute="field-description">29日表计读数</meta>
 			<column name="METER_READING_29">
 				<comment>29日表计读数</comment>
 			</column>
 		</property>
 		
-		<property name="meterReading30" type="java.lang.Long">
+		<property name="meterReading30" type="java.lang.Float">
 			<meta attribute="field-description">30日表计读数</meta>
 			<column name="METER_READING_30">
 				<comment>30日表计读数</comment>
 			</column>
 		</property>
 		
-		<property name="meterReading31" type="java.lang.Long">
+		<property name="meterReading31" type="java.lang.Float">
 			<meta attribute="field-description">31日表计读数</meta>
 			<column name="METER_READING_31">
 				<comment>31日表计读数</comment>
