@@ -29,6 +29,11 @@
 	<bean class="com.ymsino.esb.comm.task.CheckActTask" id="checkActTask">
 		<property name="concentratorOnLine" ref="concentratorOnLine"></property>
 	</bean>
+	<bean class="com.ymsino.esb.comm.task.ReadDataTask" id="readDataTask">
+		<property name="collectTaskManager" ref="collectTaskManager"></property>
+		<property name="waterMeterService" ref="waterMeterServiceImpl"></property>
+		<property name="readDataService" ref="readDataServiceImpl"></property>
+	</bean>
 
 	<bean id="sendMsgConsume" class="com.ymsino.esb.comm.ioprocess.SendMsgConsume">
 		<property name="concentratorOnLine" ref="concentratorOnLine"></property>

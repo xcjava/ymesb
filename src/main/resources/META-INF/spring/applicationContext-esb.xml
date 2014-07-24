@@ -55,7 +55,10 @@
 		<camel:template id="producerTemplate" />
 		<camel:consumerTemplate id="consumerTemplate" />
 		<camel:routeBuilder id="route1" ref="commRoute"></camel:routeBuilder>
-		<!-- com.ymsino.esb.comm.task.ReadDataTask -->
+		<route id="readDataTaskQuartz">
+	  		<from uri="quartz://comm/readDataTask?cron=0+0+5+*+*+?" />
+	  		<to uri="bean:readDataTask?method=exec" />
+	  	</route>
 		<route id="checkActTaskQuartz">
 	  		<from uri="quartz://comm/checkActTask?cron=0+*+*+*+*+?" />
 	  		<to uri="bean:checkActTask?method=checkAct" />
