@@ -45,7 +45,7 @@ public class WaterMonthUsageAmountTask {
 		
 		String lastMonthStr = DateUtil.format(DateUtil.addMonth(today, -1), "yy-MM");
 		QueryParamWriter qpw = new QueryParamWriter();
-		qpw.addQueryParam("freezeYear", lastMonthStr.split("-")[0], QueryCondition.QC_UNEQ);
+		qpw.addQueryParam("freezeYear", lastMonthStr.split("-")[0], QueryCondition.QC_EQ);
 		qpw.addQueryParam("freezeMonth", lastMonthStr.split("-")[1], QueryCondition.QC_EQ);
 		
 		QueryParam qp = new QueryParam();
