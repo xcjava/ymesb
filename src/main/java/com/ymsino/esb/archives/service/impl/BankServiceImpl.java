@@ -66,7 +66,7 @@ public class BankServiceImpl implements BankService {
 			throw new RuntimeException("银行信息未持久化");
 		}
 		
-		if(vo.getChargingUnitId() != null && vo.getChargingUnitId().equals(po.getChargingUnitId())){
+		if(vo.getChargingUnitId() != null && !vo.getChargingUnitId().equals(po.getChargingUnitId())){
 			if("".equals(vo.getChargingUnitId()))
 				po.setParentUnits(null);
 			else

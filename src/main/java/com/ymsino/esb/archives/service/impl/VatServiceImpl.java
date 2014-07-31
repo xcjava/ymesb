@@ -66,7 +66,7 @@ public class VatServiceImpl implements VatService {
 			throw new RuntimeException("增值税未持久化");
 		}
 		
-		if(vo.getChargingUnitId() != null && vo.getChargingUnitId().equals(po.getChargingUnitId())){
+		if(vo.getChargingUnitId() != null && !vo.getChargingUnitId().equals(po.getChargingUnitId())){
 			if("".equals(vo.getChargingUnitId()))
 				po.setParentUnits(null);
 			else

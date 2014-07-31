@@ -61,7 +61,7 @@ public class CollectTaskServiceImpl implements CollectTaskService {
 			throw new RuntimeException("采集任务未持久化");
 		}
 		
-		if(vo.getChargingUnitId() != null && vo.getChargingUnitId().equals(po.getChargingUnitId())){
+		if(vo.getChargingUnitId() != null && !vo.getChargingUnitId().equals(po.getChargingUnitId())){
 			if("".equals(vo.getChargingUnitId()))
 				po.setParentUnits(null);
 			else

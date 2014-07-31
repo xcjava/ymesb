@@ -73,7 +73,7 @@ public class WaterCustomerServiceImpl implements WaterCustomerService {
 			throw new RuntimeException("用水用户未持久化");
 		}
 		
-		if(vo.getChargingUnitId() != null && vo.getChargingUnitId().equals(po.getChargingUnitId())){
+		if(vo.getChargingUnitId() != null && !vo.getChargingUnitId().equals(po.getChargingUnitId())){
 			if("".equals(vo.getChargingUnitId()))
 				po.setParentUnits(null);
 			else

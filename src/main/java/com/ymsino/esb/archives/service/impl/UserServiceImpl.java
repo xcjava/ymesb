@@ -71,7 +71,7 @@ public class UserServiceImpl implements UserService {
 			throw new RuntimeException("用户未持久化");
 		}
 		
-		if(vo.getChargingUnitId() != null && vo.getChargingUnitId().equals(po.getChargingUnitId())){
+		if(vo.getChargingUnitId() != null && !vo.getChargingUnitId().equals(po.getChargingUnitId())){
 			if("".equals(vo.getChargingUnitId()))
 				po.setParentUnits(null);
 			else

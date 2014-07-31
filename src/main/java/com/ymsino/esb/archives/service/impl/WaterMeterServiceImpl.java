@@ -74,7 +74,7 @@ public class WaterMeterServiceImpl implements WaterMeterService {
 			logger.error("modify:水表未持久化");
 			throw new RuntimeException("水表未持久化");
 		}
-		if(vo.getChargingUnitId() != null && vo.getChargingUnitId().equals(po.getChargingUnitId())){
+		if(vo.getChargingUnitId() != null && !vo.getChargingUnitId().equals(po.getChargingUnitId())){
 			if("".equals(vo.getChargingUnitId()))
 				po.setParentUnits(null);
 			else
