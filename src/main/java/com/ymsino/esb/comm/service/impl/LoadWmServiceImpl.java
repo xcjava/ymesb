@@ -134,7 +134,7 @@ public class LoadWmServiceImpl implements LoadWmService {
 		
 		while(this.commonHibernateDao.countBy("select count(*) from WaterMeter model where model.wmSn = null and concHardwareId = ?", concHardwareId) > 0){
 
-			String sql = "from WaterMeter model where model.concHardwareId = ?";
+			String sql = "from WaterMeter model where model.concHardwareId = ? and model.wmSn = null";
 			List<Object> paramList = new ArrayList<Object>();
 			paramList.add(concHardwareId);
 			List<WaterMeter> list = this.commonHibernateDao.findBy(sql, paramList.toArray(), 0, 10);
@@ -150,7 +150,7 @@ public class LoadWmServiceImpl implements LoadWmService {
 				
 				WaterMeter item = list.get(i);
 				loadWm.loadWmItem[i] = new LoadWmItem();
-				loadWm.loadWmItem[i].waterMeterSn = AbstractMessage.initField(sn + "", loadWm.loadWmItem[i].waterMeterSn.length);
+				loadWm.loadWmItem[i].waterMeterSn = AbstractMessage.initField(Integer.toHexString(sn).toUpperCase(), loadWm.loadWmItem[i].waterMeterSn.length);
 				loadWm.loadWmItem[i].waterMeterId = AbstractMessage.initField(item.getHardwareId(), loadWm.loadWmItem[i].waterMeterId.length);
 			}
 			
@@ -174,7 +174,6 @@ public class LoadWmServiceImpl implements LoadWmService {
 				item.setWmSn(sn - list.size() + i + 1);
 			}
 			
-			return Boolean.TRUE;
 		}
 		
 		return Boolean.TRUE;
