@@ -59,6 +59,10 @@
 	  		<from uri="quartz://comm/readDataTask?cron=0+0+5+*+*+?" />
 	  		<to uri="bean:readDataTask?method=exec" />
 	  	</route>
+	  	<route id="readNullTaskQuartz">
+	  		<from uri="quartz://comm/readNullTask?cron=0+*+*+*+*+?" />
+	  		<to uri="bean:readNullTask?method=exec" />
+	  	</route>
 		<route id="checkActTaskQuartz">
 	  		<from uri="quartz://comm/checkActTask?cron=0+*+*+*+*+?" />
 	  		<to uri="bean:checkActTask?method=checkAct" />

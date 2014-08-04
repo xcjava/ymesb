@@ -34,6 +34,10 @@
 		<property name="waterMeterService" ref="waterMeterServiceImpl"></property>
 		<property name="readDataService" ref="readDataServiceImpl"></property>
 	</bean>
+	<bean class="com.ymsino.esb.comm.task.ReadNullTask" id="readNullTask">
+		<property name="concentratorService" ref="concentratorServiceImpl"></property>
+		<property name="freezeDataManager" ref="freezeDataManager"></property>
+	</bean>
 
 	<bean id="sendMsgConsume" class="com.ymsino.esb.comm.ioprocess.SendMsgConsume">
 		<property name="concentratorOnLine" ref="concentratorOnLine"></property>
