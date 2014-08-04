@@ -12,6 +12,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.gmail.xcjava.base.io.PropertyReader;
 import com.ymsino.esb.archives.domain.ConcentratorManager;
+import com.ymsino.esb.comm.task.ReadNullTask;
 
 public class EsbApplicationMain {
 
@@ -36,6 +37,9 @@ public class EsbApplicationMain {
 		ConcentratorManager concentratorManager = applicationContext.getBean("concentratorManager", ConcentratorManager.class);
 		concentratorManager.resetAllOffLine();
 		
+		ReadNullTask readNullTask = applicationContext.getBean("readNullTask", ReadNullTask.class);
+		readNullTask.exec();
+		
 		CamelContext camelContext = (CamelContext) applicationContext.getBean("camelContext");
 		if(!startTask){
 			List<Route> routes = camelContext.getRoutes();
@@ -49,7 +53,7 @@ public class EsbApplicationMain {
 		
 		Date endDate = new Date();
 	    System.out.println("启动完成,耗时:" + (endDate.getTime() - startDate.getTime()) + "ms");
-	    System.out.println("系统版本:2014.7.25");
+	    System.out.println("系统版本:2014.8.1");
 	    
 	}  
 	

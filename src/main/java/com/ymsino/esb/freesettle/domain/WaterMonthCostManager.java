@@ -23,10 +23,10 @@ public class WaterMonthCostManager {
 		
 		WaterMonthCost model;
 		String hql = "from WaterMonthCost model where model.meterHardwareId = ? " +
-				" and model.concHardwareId = ? and model.freezeYear = ? ";
+				" and model.freezeYear = ? ";
 		List<Object> paramList = new ArrayList<Object>();
 		paramList.add(dayCost.getMeterHardwareId());
-		paramList.add(dayCost.getConcHardwareId());
+		//paramList.add(dayCost.getConcHardwareId());
 		paramList.add(dayCost.getFreezeYear());
 		List<WaterMonthCost> list = this.commonHibernateDao.findBy(hql, paramList.toArray(), 0, 1);
 		if(list == null || list.size() < 1){

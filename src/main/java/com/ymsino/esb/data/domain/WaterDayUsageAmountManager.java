@@ -30,11 +30,11 @@ public class WaterDayUsageAmountManager {
 		int lastYear = month - 1 > 0 ? year : year -1;
 		
 		String hql = "from CheckingFreezeData model where model.meterHardwareId = ? " +
-				" and model.concHardwareId = ? and model.freezeYear = ? and model.freezeMonth = ?";
+				" and model.freezeYear = ? and model.freezeMonth = ?";
 		
 		List<Object> paramList = new ArrayList<Object>();
 		paramList.add(data.getMeterHardwareId());
-		paramList.add(data.getConcHardwareId());
+		//paramList.add(data.getConcHardwareId());
 		paramList.add(StringTool.fromatNum(lastYear, 2));
 		paramList.add(StringTool.fromatNum(lastMonth, 2));
 		
@@ -54,11 +54,11 @@ public class WaterDayUsageAmountManager {
 		
 		WaterDayUsageAmount waterDayUsageAmount;
 		hql = "from WaterDayUsageAmount model where model.meterHardwareId = ? " +
-				" and model.concHardwareId = ? and model.freezeYear = ? and model.freezeMonth = ?";
+				" and model.freezeYear = ? and model.freezeMonth = ?";
 		
 		paramList = new ArrayList<Object>();
 		paramList.add(data.getMeterHardwareId());
-		paramList.add(data.getConcHardwareId());
+		//paramList.add(data.getConcHardwareId());
 		paramList.add(data.getFreezeYear());
 		paramList.add(data.getFreezeMonth());
 		

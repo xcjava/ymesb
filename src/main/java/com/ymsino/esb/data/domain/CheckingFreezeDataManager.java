@@ -38,11 +38,11 @@ public class CheckingFreezeDataManager {
 		CheckingFreezeData data;
 		
 		String hql = "from CheckingFreezeData model where model.meterHardwareId = ? " +
-				" and model.concHardwareId = ? and model.freezeYear = ? and model.freezeMonth = ?";
+				" and model.freezeYear = ? and model.freezeMonth = ?";
 		
 		List<Object> paramList = new ArrayList<Object>();
 		paramList.add(freezeData.getMeterHardwareId());
-		paramList.add(freezeData.getConcHardwareId());
+		//paramList.add(freezeData.getConcHardwareId());
 		paramList.add(freezeData.getFreezeDateStr().substring(0, 2));
 		paramList.add(freezeData.getFreezeDateStr().substring(2, 4));
 		

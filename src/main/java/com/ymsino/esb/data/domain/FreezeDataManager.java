@@ -1,6 +1,7 @@
 package com.ymsino.esb.data.domain;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,6 +14,7 @@ import org.apache.log4j.Logger;
 import com.gmail.xcjava.base.dataMapping.MapMapping;
 import com.gmail.xcjava.base.dataMapping.ObjectMapping;
 import com.gmail.xcjava.base.spring.CommonHibernateDao;
+import com.ymsino.esb.archives.model.WaterMeter;
 import com.ymsino.esb.data.model.FreezeData;
 
 public class FreezeDataManager {
@@ -55,6 +57,32 @@ public class FreezeDataManager {
 		producerTemplate.sendBodyAndHeaders("jms:queue:com.ymsino.esb.domain", ExchangePattern.InOnly, po, header);
 
 		return true;
+	}
+	
+	public void initNullFreezeData(String concHardwareId, String freezeDateStr){
+		
+		String hql = "from WaterMeter wm where wm.concHardwareId = ? and wm.hardwareId not in (" +
+				"select fd.meterHardwareId from FreezeData fd where fd.freezeDateStr = ? and fd.concHardwareId = ?)";
+		
+		List<Object> paramList = new ArrayList<Object>();
+		paramList.add(concHardwareId);
+		paramList.add(freezeDateStr);
+		paramList.add(concHardwareId);
+		List<WaterMeter> list = this.commonHibernateDao.findBy(hql, paramList.toArray());
+		
+		for(WaterMeter item : list){
+			FreezeData model = new FreezeData();
+			model.setChargingUnitId(item.getChargingUnitId());
+			model.setConcHardwareId(model.getConcHardwareId());
+			model.setCreateTimestamp(new Date().getTime());
+			model.setFreezeDateStr(freezeDateStr);
+			model.setMeterHardwareId(item.getHardwareId());
+			model.setParentUnits(item.getParentUnits());
+			model.setUserId(item.getUserId());
+			model.setWaterCustomerId(item.getWaterCustomerId());
+			insertOrUpdate(model);
+		}
+		
 	}
 	
 }
