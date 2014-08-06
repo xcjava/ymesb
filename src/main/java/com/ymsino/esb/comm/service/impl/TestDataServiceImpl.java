@@ -11,6 +11,7 @@ import org.apache.camel.ProducerTemplate;
 import org.apache.log4j.Logger;
 
 import com.gmail.xcjava.base.dataMapping.ObjectMapping;
+import com.gmail.xcjava.base.date.DateUtil;
 import com.gmail.xcjava.base.math.Arith;
 import com.gmail.xcjava.base.spring.CommonHibernateDao;
 import com.ymsino.esb.archives.model.WaterMeter;
@@ -93,7 +94,8 @@ public class TestDataServiceImpl implements TestDataService {
 		
 		MeterDataVo vo = new MeterDataVo();
 		ObjectMapping.objMapping(resp.getMeterDataVo(), vo);
-		vo.setReadDateStr(AbstractMessage.getFieldString(resp.dataDate));
+		vo.setRealDateStr(DateUtil.formatDate(DateUtil.parseDate(AbstractMessage.getFieldString(resp.dataDate), "HHddMMyy"), "20yy-MM-dd HH:mm:ss"));
+		vo.setReadDateStr(DateUtil.formatDate(DateUtil.parseDate(AbstractMessage.getFieldString(resp.dataDate), "HHddMMyy"), "20yy-MM-dd HH:mm:ss"));
 		vo.setMeterId(AbstractMessage.getFieldString(resp.waterMeterId));
 		
 		TestDynamicData tdd = new TestDynamicData();
@@ -101,6 +103,7 @@ public class TestDataServiceImpl implements TestDataService {
 		tdd.setChargingUnitId(wm.getChargingUnitId());
 		tdd.setConcHardwareId(concHardwareId);
 		tdd.setCreateTimestamp(new Date().getTime());
+		tdd.setRealTimestamp(DateUtil.parseDate(AbstractMessage.getFieldString(resp.dataDate), "HHddMMyy").getTime());
 		tdd.setDataType(resp.getMeterDataVo().getDataType());
 		tdd.setErrorStatus(resp.getMeterDataVo().getErrorStatus());
 		tdd.setMagneticAttack(resp.getMeterDataVo().getMagneticAttack());

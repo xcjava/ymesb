@@ -52,6 +52,10 @@ public class TestDynamicDataReturn implements Serializable {
     */
     private Long createTimestamp;
     /**
+     * 真实数据时间戳
+    */
+    private Long realTimestamp;
+    /**
      * 客户编号
     */
     private String userId;
@@ -67,6 +71,13 @@ public class TestDynamicDataReturn implements Serializable {
      * 上级收费单位编号，多个用"||"包住，如|123||456|,用于搜索
     */
     private String parentUnits;
+    
+	public Long getRealTimestamp() {
+		return realTimestamp;
+	}
+	public void setRealTimestamp(Long realTimestamp) {
+		this.realTimestamp = realTimestamp;
+	}
 	public Long getId() {
 		return id;
 	}

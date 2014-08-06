@@ -59,6 +59,10 @@ public class FreezeData  implements java.io.Serializable {
      */
      private String freezeDateStr;
      /**
+      * 真实数据时间戳
+     */
+     private Long realTimestamp;
+     /**
       * 创建时间戳
      */
      private Long createTimestamp;
@@ -88,7 +92,7 @@ public class FreezeData  implements java.io.Serializable {
 
     
     /** full constructor */
-    public FreezeData(String concHardwareId, String meterHardwareId, Float meterReading, Float batteryVoltage, String valveStatus, String dataType, String magneticAttack, String errorStatus, String replyStatus, String freezeDateStr, Long createTimestamp, String userId, String waterCustomerId, String chargingUnitId, String parentUnits) {
+    public FreezeData(String concHardwareId, String meterHardwareId, Float meterReading, Float batteryVoltage, String valveStatus, String dataType, String magneticAttack, String errorStatus, String replyStatus, String freezeDateStr, Long realTimestamp, Long createTimestamp, String userId, String waterCustomerId, String chargingUnitId, String parentUnits) {
         this.concHardwareId = concHardwareId;
         this.meterHardwareId = meterHardwareId;
         this.meterReading = meterReading;
@@ -99,6 +103,7 @@ public class FreezeData  implements java.io.Serializable {
         this.errorStatus = errorStatus;
         this.replyStatus = replyStatus;
         this.freezeDateStr = freezeDateStr;
+        this.realTimestamp = realTimestamp;
         this.createTimestamp = createTimestamp;
         this.userId = userId;
         this.waterCustomerId = waterCustomerId;
@@ -231,6 +236,17 @@ public class FreezeData  implements java.io.Serializable {
     
     public void setFreezeDateStr(String freezeDateStr) {
         this.freezeDateStr = freezeDateStr;
+    }
+    /**       
+     *      * 真实数据时间戳
+     */
+
+    public Long getRealTimestamp() {
+        return this.realTimestamp;
+    }
+    
+    public void setRealTimestamp(Long realTimestamp) {
+        this.realTimestamp = realTimestamp;
     }
     /**       
      *      * 创建时间戳

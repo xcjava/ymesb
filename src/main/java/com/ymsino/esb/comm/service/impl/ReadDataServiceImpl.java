@@ -93,7 +93,8 @@ public class ReadDataServiceImpl implements ReadDataService {
 				
 				MeterDataVo vo = new MeterDataVo();
 				ObjectMapping.objMapping(item.getMeterDataVo(), vo);
-				vo.setReadDateStr(DateUtil.formatDate(DateUtil.parseDate(AbstractMessage.getFieldString(item.readDate), "HHddMMyy"), "20yy-MM-dd"));
+				vo.setReadDateStr(DateUtil.formatDate(DateUtil.parseDate(dateStr, "yymmdd"), "20yy-MM-dd"));
+				vo.setRealDateStr(DateUtil.formatDate(DateUtil.parseDate(AbstractMessage.getFieldString(item.readDate), "HHddMMyy"), "20yy-MM-dd HH:mm:ss"));
 				vo.setMeterId(AbstractMessage.getFieldString(item.meterId));
 				
 				WaterMeter wm = (WaterMeter) this.commonHibernateDao.get(WaterMeter.class, AbstractMessage.getFieldString(item.meterId));
@@ -112,6 +113,7 @@ public class ReadDataServiceImpl implements ReadDataService {
 				freezeData.setErrorStatus(item.getMeterDataVo().getErrorStatus());
 				//freezeData.setFreezeDateStr(AbstractMessage.getFieldString(item.readDate));
 				freezeData.setFreezeDateStr(dateStr);
+				freezeData.setRealTimestamp(DateUtil.parseDate(AbstractMessage.getFieldString(item.readDate), "HHddMMyy").getTime());
 				freezeData.setMagneticAttack(item.getMeterDataVo().getMagneticAttack());
 				freezeData.setMeterHardwareId(AbstractMessage.getFieldString(item.meterId));
 				if("1".equals(wm.getDataType())){

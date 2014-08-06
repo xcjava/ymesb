@@ -98,7 +98,8 @@ public class TestMeterCodeServiceImpl implements TestMeterCodeService {
 		
 		MeterDataVo vo = new MeterDataVo();
 		ObjectMapping.objMapping(resp.getMeterDataVo(), vo);
-		vo.setReadDateStr(DateUtil.format(new Date(), "yymmdd"));
+		vo.setReadDateStr(DateUtil.format(new Date(), "20yy-mm-dd"));
+		vo.setRealDateStr(DateUtil.format(new Date(), "20yy-mm-dd"));
 		vo.setMeterId(AbstractMessage.getFieldString(resp.waterMeterId));
 		
 		TestMeterCodeData tmcd = new TestMeterCodeData();
@@ -106,6 +107,7 @@ public class TestMeterCodeServiceImpl implements TestMeterCodeService {
 		tmcd.setChargingUnitId(wm.getChargingUnitId());
 		tmcd.setConcHardwareId(concHardwareId);
 		tmcd.setCreateTimestamp(new Date().getTime());
+		tmcd.setRealTimestamp(new Date().getTime());
 		tmcd.setDataType(resp.getMeterDataVo().getDataType());
 		tmcd.setErrorStatus(resp.getMeterDataVo().getErrorStatus());
 		tmcd.setMagneticAttack(resp.getMeterDataVo().getMagneticAttack());

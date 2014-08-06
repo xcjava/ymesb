@@ -59,6 +59,10 @@ public class TestDynamicData  implements java.io.Serializable {
      */
      private Long createTimestamp;
      /**
+      * 真实数据时间戳
+     */
+     private Long realTimestamp;
+     /**
       * 客户编号
      */
      private String userId;
@@ -84,7 +88,7 @@ public class TestDynamicData  implements java.io.Serializable {
 
     
     /** full constructor */
-    public TestDynamicData(String concHardwareId, String meterHardwareId, Float meterReading, Float batteryVoltage, String valveStatus, String dataType, String magneticAttack, String errorStatus, String replyStatus, Long createTimestamp, String userId, String waterCustomerId, String chargingUnitId, String parentUnits) {
+    public TestDynamicData(String concHardwareId, String meterHardwareId, Float meterReading, Float batteryVoltage, String valveStatus, String dataType, String magneticAttack, String errorStatus, String replyStatus, Long createTimestamp, Long realTimestamp, String userId, String waterCustomerId, String chargingUnitId, String parentUnits) {
         this.concHardwareId = concHardwareId;
         this.meterHardwareId = meterHardwareId;
         this.meterReading = meterReading;
@@ -95,6 +99,7 @@ public class TestDynamicData  implements java.io.Serializable {
         this.errorStatus = errorStatus;
         this.replyStatus = replyStatus;
         this.createTimestamp = createTimestamp;
+        this.realTimestamp = realTimestamp;
         this.userId = userId;
         this.waterCustomerId = waterCustomerId;
         this.chargingUnitId = chargingUnitId;
@@ -226,6 +231,17 @@ public class TestDynamicData  implements java.io.Serializable {
     
     public void setCreateTimestamp(Long createTimestamp) {
         this.createTimestamp = createTimestamp;
+    }
+    /**       
+     *      * 真实数据时间戳
+     */
+
+    public Long getRealTimestamp() {
+        return this.realTimestamp;
+    }
+    
+    public void setRealTimestamp(Long realTimestamp) {
+        this.realTimestamp = realTimestamp;
     }
     /**       
      *      * 客户编号

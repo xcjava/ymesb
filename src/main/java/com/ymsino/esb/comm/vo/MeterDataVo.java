@@ -13,6 +13,11 @@ public class MeterDataVo {
 	private String readDateStr;
 	
 	/**
+	 * 真实抄表日期
+	 */
+	private String realDateStr;
+	
+	/**
 	 * 读数
 	 * 1-4字节：HEX，水表用量；
 	 */
@@ -63,6 +68,14 @@ public class MeterDataVo {
 
 	
 	
+	public String getRealDateStr() {
+		return realDateStr;
+	}
+
+	public void setRealDateStr(String realDateStr) {
+		this.realDateStr = realDateStr;
+	}
+
 	public String getMeterId() {
 		return meterId;
 	}
