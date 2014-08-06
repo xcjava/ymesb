@@ -92,6 +92,13 @@
 			</column>
 		</property>
 		
+		<property name="realTimestamp" type="java.lang.Long">
+			<meta attribute="field-description">真实数据时间戳</meta>
+			<column name="REAL_TIMESTAMP">
+				<comment>真实数据时间戳</comment>
+			</column>
+		</property>
+		
 		<property name="userId" type="java.lang.String">
 			<meta attribute="field-description">客户编号</meta>
 			<column name="USER_ID" length="300">

@@ -92,6 +92,13 @@
 			</column>
 		</property>
 		
+		<property name="realTimestamp" type="java.lang.Long">
+			<meta attribute="field-description">真实数据时间戳</meta>
+			<column name="REAL_TIMESTAMP">
+				<comment>真实数据时间戳</comment>
+			</column>
+		</property>
+		
         <property name="createTimestamp" type="java.lang.Long">
 			<meta attribute="field-description">创建时间戳</meta>
 			<column name="CREATE_TIMESTAMP">
