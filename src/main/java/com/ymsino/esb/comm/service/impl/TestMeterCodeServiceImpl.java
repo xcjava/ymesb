@@ -98,8 +98,8 @@ public class TestMeterCodeServiceImpl implements TestMeterCodeService {
 		
 		MeterDataVo vo = new MeterDataVo();
 		ObjectMapping.objMapping(resp.getMeterDataVo(), vo);
-		vo.setReadDateStr(DateUtil.format(new Date(), "20yy-mm-dd"));
-		vo.setRealDateStr(DateUtil.format(new Date(), "20yy-mm-dd"));
+		vo.setReadDateStr(DateUtil.format(new Date(), "20yy-MM-dd"));
+		vo.setRealDateStr(DateUtil.format(new Date(), "20yy-MM-dd"));
 		vo.setMeterId(AbstractMessage.getFieldString(resp.waterMeterId));
 		
 		TestMeterCodeData tmcd = new TestMeterCodeData();

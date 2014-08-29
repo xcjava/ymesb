@@ -93,7 +93,7 @@ public class ReadDataServiceImpl implements ReadDataService {
 				
 				MeterDataVo vo = new MeterDataVo();
 				ObjectMapping.objMapping(item.getMeterDataVo(), vo);
-				vo.setReadDateStr(DateUtil.formatDate(DateUtil.parseDate(dateStr, "yymmdd"), "20yy-MM-dd"));
+				vo.setReadDateStr(DateUtil.formatDate(DateUtil.parseDate(dateStr, "yyMMdd"), "20yy-MM-dd"));
 				vo.setRealDateStr(DateUtil.formatDate(DateUtil.parseDate(AbstractMessage.getFieldString(item.readDate), "HHddMMyy"), "20yy-MM-dd HH:mm:ss"));
 				vo.setMeterId(AbstractMessage.getFieldString(item.meterId));
 				
@@ -135,6 +135,11 @@ public class ReadDataServiceImpl implements ReadDataService {
 		}
 		
 		return resultList;
+	}
+	
+	public static void main(String[] args){
+		System.out.println(DateUtil.formatDate(DateUtil.parseDate("140727", "yyMMdd"), "20yy-MM-dd"));
+		System.out.println(DateUtil.formatDate(DateUtil.parseDate("15270714", "HHddMMyy"), "20yy-MM-dd HH:mm:ss"));
 	}
 
 }
